@@ -1,0 +1,15 @@
+{
+  "episode": 233,
+  "headings": [
+    "彼得林區選股策略預測經濟景氣毫無用處",
+    "Elon Musk 收推特股份與 Gogoro 順利美國上市",
+    "現金投入不動產獲利量化交易台股千家公司"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2158,
+    "eval_count": 550,
+    "total_duration": 42518422584
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

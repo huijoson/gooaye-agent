@@ -1,0 +1,16 @@
+{
+  "episode": 590,
+  "headings": [
+    "人生發散階段變回 Yes Man",
+    "軍工股重新整理與 PCB 逐群走卵",
+    "通路端考察 SSD 漲價與 DRAM 族群",
+    "2026 成長率不輸 2025 AI 達 50-60%"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2406,
+    "eval_count": 486,
+    "total_duration": 47884209292
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

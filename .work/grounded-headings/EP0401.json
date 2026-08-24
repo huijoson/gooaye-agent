@@ -1,0 +1,31 @@
+{
+  "episode": 401,
+  "headings": [
+    "Coldplay 兩日演唱會體驗極佳與朋友模仿建議",
+    "data center 工控 To B 投資機會",
+    "支出不到一趴但標案市場將大發展",
+    "注意季節性變化後透過營收均線介入低估公司"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2031,
+    "eval_count": 538,
+    "total_duration": 19923016625
+  },
+  "original_headings": [
+    "Coldplay 兩日演唱會體驗極佳與朋友模仿建議",
+    "專注數據中心工控 To B 投資而非消費性復甦",
+    "美國標案市場發展年趨勢與營收均線驗證策略",
+    "注意季節性變化後透過營收均線介入低估公司"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "些工控跟 To B 相關的投資上",
+      "我不會把信仰放在 beta"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

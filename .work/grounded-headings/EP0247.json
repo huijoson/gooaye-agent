@@ -1,0 +1,16 @@
+{
+  "episode": 247,
+  "headings": [
+    "吳敏求傳新人殺手旺宏人物",
+    "蘋果供應鏈悲歌與 Apple 炒股話題",
+    "NDX 均線發財密碼與週期規律",
+    "台中悲劇事件與生活壓力家庭毀滅提醒"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2529,
+    "eval_count": 529,
+    "total_duration": 45538543125
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

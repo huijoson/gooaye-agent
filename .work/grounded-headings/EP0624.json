@@ -1,0 +1,31 @@
+{
+  "episode": 624,
+  "headings": [
+    "馬斯克模擬論與台灣 MR 晶片公司",
+    "每年 4M 晶片需求與台積電上看 2000",
+    "上修 50B CAPEX 與台積電 50B 以上投資",
+    "終端 Edge 設備市場與 pseudo SRAM L3 Cache"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 642,
+    "eval_count": 101,
+    "total_duration": 33262008708
+  },
+  "original_headings": [
+    "馬斯克模擬論與台灣 MR 晶片公司",
+    "MR 公司產能需求與台積電估值推估",
+    "台積電資本支出上修至五十億美元",
+    "終端 Edge 設備市場與 pseudo SRAM L3 Cache"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "4 個 Million 顆的晶片",
+      "台積電摸到 2000"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

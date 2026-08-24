@@ -1,0 +1,28 @@
+{
+  "episode": 269,
+  "headings": [
+    "台股強勢族群網通 IPC 與 PCB 分析",
+    "網通庫存修正最後一棒",
+    "半導體科技產業下行趨勢與輝達財報"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2093,
+    "eval_count": 484,
+    "total_duration": 29911792000
+  },
+  "original_headings": [
+    "台股強勢族群網通 IPC 與 PCB 分析",
+    "網通庫存修正壓力與美國消費縮手",
+    "半導體科技產業下行趨勢與輝達財報"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "美國這邊消費是有縮手的",
+      "沒有辦法逃掉這一波的庫存修正"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

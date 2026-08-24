@@ -1,0 +1,16 @@
+{
+  "episode": 591,
+  "headings": [
+    "兒子住院開心但護理師短缺導致醫療量能縮減",
+    "尿道感染原因分析與台大急診送醫處理必要性",
+    "Nebius 獲微軟 5 年 194 億美元基建服務大單",
+    "美國算力業者率先發難台系供應鏈湧單向上噴華碩牛皮股"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2558,
+    "eval_count": 549,
+    "total_duration": 43140615042
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

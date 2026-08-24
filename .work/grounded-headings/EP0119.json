@@ -1,0 +1,34 @@
+{
+  "episode": 119,
+  "headings": [
+    "巴菲特價值股成長與投資霸主論戰",
+    "1380 億浮存金生意被政府搶走",
+    "加槓桿 QQQ 報酬優於 ARK 風險考量",
+    "串流媒體股投資標的選擇策略"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1405,
+    "eval_count": 257,
+    "total_duration": 26268842167
+  },
+  "original_headings": [
+    "巴菲特保守與巴菲特資金未動用原因",
+    "保險業浮存金運作模式解析",
+    "加槓桿 QQQ 報酬優於 ARK 風險考量",
+    "串流媒體股投資標的選擇策略"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "裡面就在討論說",
+      "有人講說巴菲特的投資方式比較保守"
+    ],
+    [
+      "資金目前在他帳上 1380 億",
+      "他的企業裡面很重要的一環是保險公司"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

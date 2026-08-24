@@ -1,0 +1,15 @@
+{
+  "episode": 498,
+  "headings": [
+    "DTox 新生活運動第二彈啟動與放空心態",
+    "AI 投資契機與台灣遊戲 IP 出海困境",
+    "台積電 HPC AI 展望超越預期數字分析",
+    "Marvell 高速傳輸光通復甦時點重估"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2364,
+    "eval_count": 558,
+    "total_duration": 42283662375
+  }
+}

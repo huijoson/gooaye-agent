@@ -1,0 +1,16 @@
+{
+  "episode": 330,
+  "headings": [
+    "計程車司機駕駛技術印象深遠",
+    "櫃買市場天量價格殺出現象",
+    "Peter Thiel 建議撤出 SVB 引發擠兌",
+    "Charles Schwab 部位超過五百萬會撥風險"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1924,
+    "eval_count": 380,
+    "total_duration": 48812751542
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

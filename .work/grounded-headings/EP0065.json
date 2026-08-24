@@ -1,0 +1,31 @@
+{
+  "episode": 65,
+  "headings": [
+    "Robinhood 零手續費模式與暗池回饋機制",
+    "錄製節目心態與股市操作本業的區隔",
+    "網通族群配點基準點八月二十日下殺設定",
+    "歐美民情反壟斷趨勢與聽證會增加"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1790,
+    "eval_count": 475,
+    "total_duration": 22654220625
+  },
+  "original_headings": [
+    "Robinhood 零手續費模式與暗池回饋機制",
+    "錄製節目心態與股市操作本業的區隔",
+    "台股網通族群配倉基準點設定邏輯",
+    "歐美民情反壟斷趨勢與聽證會增加"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "時候跟大家講那是一個基準點",
+      "我就把它設定為基準點"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

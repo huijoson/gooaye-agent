@@ -1,0 +1,34 @@
+{
+  "episode": 256,
+  "headings": [
+    "烏克蘭郵票限發規定與重複發行限制",
+    "股市反彈策略與資金效率選擇難題",
+    "台積電稼動率鬆脫與 7 奈米代表意義",
+    "QCOM 賣掉理由與 AMD 指引較好"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2093,
+    "eval_count": 484,
+    "total_duration": 29911792000
+  },
+  "original_headings": [
+    "烏克蘭郵票限發規定與重複發行限制",
+    "股市反彈策略與資金效率選擇難題",
+    "臺積電 7 奈米與 16 奈米稼動率鬆脫現象",
+    "QCOM 賣出決策與 IC 設計公司指引比較"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "息人士在傳說它有稼動率鬆脫的現象",
+      "裡面的 7 跟 16"
+    ],
+    [
+      "QCOM 我賣掉",
+      "未來的指引比 QCOM 好"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

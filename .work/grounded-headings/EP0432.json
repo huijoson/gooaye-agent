@@ -1,0 +1,31 @@
+{
+  "episode": 432,
+  "headings": [
+    "家中支柱導致全家不花錢的現象",
+    "Pure Storage Earnings Call AI 時代儲存方式",
+    "蘋果喊卡 Titan 電動車計畫調整策略",
+    "工業電腦供貨順暢營收可能噴升"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1039,
+    "eval_count": 195,
+    "total_duration": 33363637459
+  },
+  "original_headings": [
+    "家中支柱導致全家不花錢的現象",
+    "Pure Storage NetApp Dell 客戶轉向 AI 儲存",
+    "蘋果喊卡 Titan 電動車計畫調整策略",
+    "工業電腦供貨順暢營收可能噴升"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "說以 Pure Storage",
+      "較近期的 Pure Storag"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

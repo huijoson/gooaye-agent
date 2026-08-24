@@ -1,0 +1,31 @@
+{
+  "episode": 509,
+  "headings": [
+    "世界最好吃漢堡帶來巨大救贖",
+    "晶片端 DPU 看法與輝達台系供應鏈 feedback",
+    "指數創高階段非 AI 產業景氣循環股低估值",
+    "半導體破口風險與短期加碼首選策略"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2308,
+    "eval_count": 533,
+    "total_duration": 41655626958
+  },
+  "original_headings": [
+    "In-N-Out 漢堡美味救贖與製作工藝好奇",
+    "晶片端 DPU 看法與輝達台系供應鏈 feedback",
+    "指數創高階段非 AI 產業景氣循環股低估值",
+    "半導體破口風險與短期加碼首選策略"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "In-N-Out 是他媽的世界上",
+      "但吃到 In-N-Out 就覺得"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

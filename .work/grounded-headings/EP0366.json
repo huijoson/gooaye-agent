@@ -1,0 +1,14 @@
+{
+  "episode": 366,
+  "headings": [
+    "Podcast 訂閱制與廣告版位兩種模式",
+    "AMD 伺服器供應重疊 NVIDIA 但數據亮眼",
+    "MEMO 非專業報告直接攤開券商分析數字"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2054,
+    "eval_count": 477,
+    "total_duration": 52315121167
+  }
+}

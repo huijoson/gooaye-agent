@@ -1,0 +1,14 @@
+{
+  "episode": 215,
+  "headings": [
+    "Omicron 輕症抗體與零確診意義",
+    "環球晶併購世創失敗收場",
+    "比特幣價值儲存與區塊鏈信仰"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2044,
+    "eval_count": 398,
+    "total_duration": 41645551541
+  }
+}

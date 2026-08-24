@@ -1,0 +1,28 @@
+{
+  "episode": 316,
+  "headings": [
+    "《窮人的經濟學》介紹",
+    "新興市場避險成本與報酬",
+    "特輯內容不明與聽眾半絕望狀態"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2485,
+    "eval_count": 438,
+    "total_duration": 26319788084
+  },
+  "original_headings": [
+    "《窮人的經濟學》介紹",
+    "新興市場避險成本與報酬",
+    "聽眾半絕望狀態感受"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "你們也沒有明確講說要聽什麼",
+      "有點那種半絕望的狀態"
+    ]
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

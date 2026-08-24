@@ -1,0 +1,15 @@
+{
+  "episode": 387,
+  "headings": [
+    "指數編列邏輯與少數不受行情影響者",
+    "市值加權 ETF 內建汰弱留強機制",
+    "UAW 工會要求與通膨下穩拿策略",
+    "科技股新剛性需求與 CSP 抄底選擇"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2104,
+    "eval_count": 489,
+    "total_duration": 47721023250
+  }
+}

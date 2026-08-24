@@ -1,0 +1,37 @@
+{
+  "episode": 404,
+  "headings": [
+    "Mini 感謝祭邀見朋友 Android 合作創作",
+    "創作者將工作延伸為節目獲得槓桿",
+    "立端法說的資安行情疑問與買點判斷",
+    "2024 年中看 AI 供應鏈改善非晶片訂單調整",
+    "市場永遠是對的說法未必成立"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 655,
+    "eval_count": 114,
+    "total_duration": 20266420542
+  },
+  "original_headings": [
+    "Mini 電子報感謝祭與 Android 合作模式",
+    "創作者將工作延伸為節目獲得槓桿",
+    "立端法說內容驗證資安噴三小觀點",
+    "2024 年中 AI 供應鏈改善非晶片傳出",
+    "市場永遠是對的說法未必成立"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "我去參加她的電子報感謝祭",
+      "tner 叫 Android 一"
+    ],
+    [],
+    [
+      "看了一家立端的法說內容",
+      "說我今天看了這個法說內容"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

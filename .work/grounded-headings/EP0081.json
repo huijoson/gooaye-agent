@@ -1,0 +1,16 @@
+{
+  "episode": 81,
+  "headings": [
+    "市場改做法或改變看法正常",
+    "股市鬼故事皆基於事實以氫燃料電池為例",
+    "Hindenburg 做空 Nikola 報告精彩之處與股價跌幅",
+    "Dana 應了解 Hyliion 有無商業可能及 BMS 技術來源"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2136,
+    "eval_count": 546,
+    "total_duration": 33095508291
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

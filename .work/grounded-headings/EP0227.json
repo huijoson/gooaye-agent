@@ -1,0 +1,15 @@
+{
+  "episode": 227,
+  "headings": [
+    "股債同殺與階級翻轉機會不存在",
+    "VXX 停止裸賣與多空雙殺現象",
+    "切勿為他人妥協真正想做的事"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2216,
+    "eval_count": 537,
+    "total_duration": 26513697667
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

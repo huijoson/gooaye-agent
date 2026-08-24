@@ -1,0 +1,16 @@
+{
+  "episode": 465,
+  "headings": [
+    "台灣供應鏈品牌故事 CAPEX 支出推演",
+    "魔獸世界 Arm 運行極限與 Morris 全球化消失",
+    "江山代有才人出興衰起落",
+    "AI 漲幅循環與保守智慧"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2436,
+    "eval_count": 588,
+    "total_duration": 53379116084
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

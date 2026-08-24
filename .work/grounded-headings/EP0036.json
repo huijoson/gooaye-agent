@@ -1,0 +1,28 @@
+{
+  "episode": 36,
+  "headings": [
+    "台積電亞利桑那設廠與國際政治角力選邊站",
+    "分批買進減碼操作策略與華為封殺消息",
+    "台積電先進製程五奈米應用戰機"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1690,
+    "eval_count": 496,
+    "total_duration": 33594910084
+  },
+  "original_headings": [
+    "台積電亞利桑那設廠地緣政治角力",
+    "分批買進減碼操作策略與華為封殺消息",
+    "台積電先進製程五奈米應用戰機"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "台積電要去美國的亞利桑那設廠",
+      "地緣政治的角力"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

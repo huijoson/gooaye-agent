@@ -1,0 +1,17 @@
+{
+  "episode": 630,
+  "headings": [
+    "搶錢防守策略對照恐怖一月漲幅",
+    "台灣衛星概念股擴產能與昇達科摸 1000 塊",
+    "馬斯克推動 No China No Taiwan 供應鏈策略",
+    "景氣循環股股價領先報價營收的歷史規律提醒",
+    "外銷晶片起量與大戶買入鎖定漲停現象"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2465,
+    "eval_count": 584,
+    "total_duration": 42038392041
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

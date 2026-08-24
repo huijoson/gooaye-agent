@@ -1,0 +1,14 @@
+{
+  "episode": 539,
+  "headings": [
+    "盤中反彈調整部位與制服股大逃殺擔憂",
+    "好友 Fernando 過世與羅馬看門人回憶",
+    "台積電美國投資持續討論與新 JV 成立消息"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1892,
+    "eval_count": 508,
+    "total_duration": 53233688916
+  }
+}

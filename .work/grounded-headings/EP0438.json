@@ -1,0 +1,31 @@
+{
+  "episode": 438,
+  "headings": [
+    "Vision Pro 看《拿破崙》影片品質與攝影模式體驗",
+    "Llama AI DAPTIV SSD 訓練取代 HBM",
+    "未來兩三年 HBM 供需與每 GB 美元價格推算",
+    "高股息標的股價推高導致 ETF 表現疲軟結局底定"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1872,
+    "eval_count": 549,
+    "total_duration": 29068133166
+  },
+  "original_headings": [
+    "Vision Pro 看《拿破崙》影片品質與攝影模式體驗",
+    "Llama 模型 AI DAPTIV 方案 SSD 訓練取代 DRAM HBM",
+    "HBM 供不應求狀態持續與單顆價格市場計算方式",
+    "高股息標的股價推高導致 ETF 表現疲軟結局底定"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "HBM 都會持續地處在供不應求的狀態",
+      "HBM 的產能基本上是包下來的"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

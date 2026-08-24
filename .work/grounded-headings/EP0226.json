@@ -1,0 +1,15 @@
+{
+  "episode": 226,
+  "headings": [
+    "制裁中國與俄羅斯打台灣推演",
+    "原物料高價侵蝕利潤與衰退劇本準備",
+    "盤整行情以 covered call 投入大盤並賺取權利金"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2216,
+    "eval_count": 537,
+    "total_duration": 26513697667
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

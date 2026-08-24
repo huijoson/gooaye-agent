@@ -1,0 +1,28 @@
+{
+  "episode": 240,
+  "headings": [
+    "馬斯克推測質押賣股與買推特時效至十月",
+    "Smart Beta ETF 與特斯拉配置策略",
+    "ETF 投資人特性與 QQQ 流出案例提醒"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2340,
+    "eval_count": 467,
+    "total_duration": 42799200750
+  },
+  "original_headings": [
+    "馬斯克賣股規模與 Nasdaq 大崩關聯分析",
+    "主動型 ETF 與指數型基金及 Smart Beta 差異",
+    "ETF 投資人特性與 QQQ 流出案例提醒"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "一天剛好是 Nasdaq 的大崩",
+      "他買推特的這個時效應該是到 10 月"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

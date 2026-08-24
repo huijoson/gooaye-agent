@@ -1,0 +1,16 @@
+{
+  "episode": 196,
+  "headings": [
+    "南非變種病毒 Omicron 害的沉默循環正式開啟",
+    "FOMO 心理導致知識焦慮恐慌與資訊過多問題",
+    "回歸基本面看汽車通訊族群解封出遊",
+    "五大廠掌握功率半導體 2022 年仍有許多題材可關注"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2138,
+    "eval_count": 518,
+    "total_duration": 43466213667
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

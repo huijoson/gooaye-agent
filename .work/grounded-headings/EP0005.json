@@ -1,0 +1,15 @@
+{
+  "episode": 5,
+  "headings": [
+    "聯準會降息兩碼緊急做法與正確進場時機",
+    "橋水基金雷達利歐拆解武漢肺炎影響",
+    "短線操作被洗出風險與美國開牌後佈局"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1783,
+    "eval_count": 472,
+    "total_duration": 34236218333
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

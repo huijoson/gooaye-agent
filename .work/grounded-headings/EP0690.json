@@ -1,0 +1,34 @@
+{
+  "episode": 690,
+  "headings": [
+    "Bass Phillip 與 Hubert Lamy 盲飲高分",
+    "盤面收復失土趨勢與貪心心態分析",
+    "Google NRE IP 授權收入路線推演",
+    "月線出場防三成回吐與天鑽法師賣出難題"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1207,
+    "eval_count": 173,
+    "total_duration": 33445719709
+  },
+  "original_headings": [
+    "優質酒款 Bass Phillip 等品牌推薦",
+    "盤面收復失土趨勢與貪心心態分析",
+    "Google NRE IP 授權收入路線推演",
+    "天鑽法師交易策略與賣出時機探討"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "Bass Phillip、Bur",
+      "應該也是有機會可以拿到非常高分"
+    ],
+    [],
+    [],
+    [
+      "光是用十日線或是月線去做出場",
+      "另外好想了解一下天鑽法師是怎麼交易的"
+    ]
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

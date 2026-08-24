@@ -1,0 +1,34 @@
+{
+  "episode": 21,
+  "headings": [
+    "范棋斐節目來賓與百靈果 KK Show",
+    "房貸調整機會與中國網友留言",
+    "RSI 指標由美國工程師發明",
+    "投資人不要跟股票談戀愛"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1930,
+    "eval_count": 420,
+    "total_duration": 43549495250
+  },
+  "original_headings": [
+    "范棋斐歡迎漫遊與 KK Show",
+    "中國房貸浮動利率調整機會",
+    "RSI 指標由美國工程師發明",
+    "投資人不要跟股票談戀愛"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "百靈果的KK Show",
+      "不然說我昨天上范棋斐的節目"
+    ],
+    [
+      "看你要不要把房貸調成浮動利率",
+      "定利率跟浮動利率之間的事情的時候"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

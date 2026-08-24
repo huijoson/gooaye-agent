@@ -1,0 +1,14 @@
+{
+  "episode": 72,
+  "headings": [
+    "IPO 公司上市後股價大跌現象與護城河重要性",
+    "Snowflake 承銷價格與收盤價大幅波動分析",
+    "分散投資策略與年輕世代 ETF 被動投資建議"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1828,
+    "eval_count": 508,
+    "total_duration": 35434205125
+  }
+}

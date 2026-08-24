@@ -1,0 +1,16 @@
+{
+  "episode": 453,
+  "headings": [
+    "開源模型解放與 GB200 延誤",
+    "AI 幻覺解決技術 Falgo 業界猛男",
+    "AI 分析優勢消失競爭激烈減少退出策略調整",
+    "美國拉大蘋果股票賭注 LLM 遲早進場市場發現點"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2495,
+    "eval_count": 649,
+    "total_duration": 38073306083
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

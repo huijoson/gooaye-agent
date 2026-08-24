@@ -1,0 +1,16 @@
+{
+  "episode": 586,
+  "headings": [
+    "肖楠資本創始股東會與 Evergreen Fund 理念",
+    "Meta 包伺服器量 Apple 用 Gemini Siri",
+    "眼鏡勝率遠大於 VR 與產品線喜好",
+    "大額資金推升市場關注與誠實面對交易"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2257,
+    "eval_count": 536,
+    "total_duration": 50167193750
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

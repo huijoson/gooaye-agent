@@ -1,0 +1,31 @@
+{
+  "episode": 133,
+  "headings": [
+    "預估 600 多萬落差 50% Netflix 全球總用戶突破 2 億人",
+    "避免單股重壓與波動風險",
+    "營收獲利創新高承繼動能",
+    "AirTag 追蹤器是發表會有趣亮點"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2153,
+    "eval_count": 501,
+    "total_duration": 27779694250
+  },
+  "original_headings": [
+    "投資需分散避免重壓單一持股",
+    "Netflix 營收獲利創新高但用戶成長可惜",
+    "蘋果發表會後操作股票不建議做",
+    "AirTag 追蹤器是發表會有趣亮點"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "營收跟獲利部分應該會看到持續的創新高",
+      "他應該要繼續承繼現在第一季的動能"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

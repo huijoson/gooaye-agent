@@ -1,0 +1,14 @@
+{
+  "episode": 303,
+  "headings": [
+    "童年被討厭感與自我認同的掙扎",
+    "美林時鐘週期理論與事件影響",
+    "養狗經驗與生活重心的缺失"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1942,
+    "eval_count": 443,
+    "total_duration": 33323845792
+  }
+}

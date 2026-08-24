@@ -1,0 +1,15 @@
+{
+  "episode": 61,
+  "headings": [
+    "香港人挺黎智英買股行為分析",
+    "康友公司人事異動與密集辭職現象",
+    "承認看錯賣掉挑新檔修正無大礙"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2020,
+    "eval_count": 454,
+    "total_duration": 21490585292
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

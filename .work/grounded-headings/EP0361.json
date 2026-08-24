@@ -1,0 +1,15 @@
+{
+  "episode": 361,
+  "headings": [
+    "老婆零食箱對抗節食與油炸減量",
+    "中國 AI 封鎖與瓦格納組織",
+    "Stanley Druckenmiller 先買再研究體會"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2011,
+    "eval_count": 464,
+    "total_duration": 52533771459
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,15 @@
+{
+  "episode": 476,
+  "headings": [
+    "借日圓投別處之 Carry Trade 運作模式",
+    "斷頭潮左側狀態下先風控再減碼策略",
+    "生產與需求端健康與科技股衰退例外",
+    "股債配對降低空頭回調幅度波動"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2466,
+    "eval_count": 579,
+    "total_duration": 48718071333
+  }
+}

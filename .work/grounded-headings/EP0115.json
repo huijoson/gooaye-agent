@@ -1,0 +1,15 @@
+{
+  "episode": 115,
+  "headings": [
+    "新年前不建議清空手中投資部位",
+    "Spawner 企業能持續產出新業務創造價值",
+    "Palantir Virgin Galactic 雞蛋水餃股差異"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2307,
+    "eval_count": 517,
+    "total_duration": 43306890958
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

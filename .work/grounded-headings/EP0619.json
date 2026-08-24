@@ -1,0 +1,14 @@
+{
+  "episode": 619,
+  "headings": [
+    "AWS 加入臥底聯盟的推測",
+    "低軌衛星題材市場情緒波動",
+    "矽光子磊晶雷射與光收發模組"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2407,
+    "eval_count": 461,
+    "total_duration": 46079368000
+  }
+}

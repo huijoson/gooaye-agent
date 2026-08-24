@@ -1,0 +1,15 @@
+{
+  "episode": 456,
+  "headings": [
+    "重聚生活回憶與 Arctic Monkeys 歌曲",
+    "伺服器供應鏈佈局與 Dell AI PC 觀點",
+    "道瓊題材觀察與買方預期落差",
+    "AI PC 佈局與旅館備品管理實務"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2239,
+    "eval_count": 464,
+    "total_duration": 47724609583
+  }
+}

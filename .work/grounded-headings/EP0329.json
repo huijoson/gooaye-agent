@@ -1,0 +1,15 @@
+{
+  "episode": 329,
+  "headings": [
+    "股東會紀念品獵人與台股淺碟市場規則",
+    "車用相關類股與導線架好表現",
+    "特斯拉新方案受惠者難以辨識"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1473,
+    "eval_count": 297,
+    "total_duration": 30939556417
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

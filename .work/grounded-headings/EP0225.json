@@ -1,0 +1,28 @@
+{
+  "episode": 225,
+  "headings": [
+    "套利機會減少與造市機制 Bug 理論探討",
+    "航空期貨避險與受制裁鎳無法交割",
+    "倫敦金屬交易所倫鎳期貨異常避險部位陰謀論"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2187,
+    "eval_count": 527,
+    "total_duration": 30790045208
+  },
+  "original_headings": [
+    "套利機會減少與造市機制 Bug 理論探討",
+    "航空燃油避險與俄羅斯鎳交割制裁事件",
+    "倫敦金屬交易所倫鎳期貨異常避險部位陰謀論"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "航空的燃油避險是很重要的一環",
+      "你沒有辦法拿俄羅斯的鎳交割"
+    ],
+    []
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

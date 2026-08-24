@@ -1,0 +1,31 @@
+{
+  "episode": 391,
+  "headings": [
+    "Habana 晶片設計公司位於以色列",
+    "烏俄戰爭崩跌反彈一路下去晶片設計公司",
+    "對市場造成有限影響與黎巴嫩等地衝突長期化"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2041,
+    "eval_count": 499,
+    "total_duration": 40181952625
+  },
+  "original_headings": [
+    "Intel 旗下以色列晶片設計公司 Habana 簡介",
+    "烏俄戰爭經驗顯示崩跌後反彈再一路下跌",
+    "晶片設計生產基地不在當地影響有限"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "位於以色列的一個晶片設計公司",
+      "他們有很多厲害的科技產業的公司"
+    ],
+    [
+      "烏俄戰爭的經驗",
+      "他的生產基地不在那邊"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

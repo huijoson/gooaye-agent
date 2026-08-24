@@ -1,0 +1,31 @@
+{
+  "episode": 179,
+  "headings": [
+    "台商衝擊與供應鏈斷裂風險",
+    "台商 PCB CCL 與網通受創",
+    "週末鬼故事等級中美貿易戰聯發科晶海戰術最大 Chip vendor",
+    "大盤市值型 ETF 報酬比較"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2313,
+    "eval_count": 429,
+    "total_duration": 39595784375
+  },
+  "original_headings": [
+    "中國限電衝擊全球供應鏈",
+    "台商 PCB CCL 與網通受創",
+    "聯發科晶片戰術席捲市場",
+    "大盤市值型 ETF 報酬比較"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "說我才會覺得這個有週末鬼故事的等級",
+      "聯發科用這個芯海戰術"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

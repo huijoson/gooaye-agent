@@ -1,0 +1,34 @@
+{
+  "episode": 195,
+  "headings": [
+    "高配息標的 ETF 產生相同問題",
+    "配息當下左手換右手觀念",
+    "高收益商品含息報酬率輸給市值型 ETF",
+    "停損時機討論與五星給癌大的回應"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2593,
+    "eval_count": 518,
+    "total_duration": 36594573000
+  },
+  "original_headings": [
+    "高配息標的與 ETF 的左手換右手現象",
+    "含息報酬率比較揭示商品優劣差異",
+    "央行升息策略與癌大買房背景分析",
+    "停損時機討論與五星給癌大的回應"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "不管你是不是殖利率的基本教義派",
+      "我剛剛講的共識"
+    ],
+    [
+      "大多數的所謂的高收益的商品都比",
+      "你就可以很快的知道說商品的優劣"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

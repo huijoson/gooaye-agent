@@ -1,0 +1,14 @@
+{
+  "episode": 260,
+  "headings": [
+    "過度使用槓桿導致補保證金困境",
+    "槓桿 ETF 續命機制與 ProShares 管理單位策略",
+    "期貨選擇權優先於場外融資風險提醒"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2255,
+    "eval_count": 473,
+    "total_duration": 29557005667
+  }
+}

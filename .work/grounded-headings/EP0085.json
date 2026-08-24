@@ -1,0 +1,28 @@
+{
+  "episode": 85,
+  "headings": [
+    "對沖基金老闆犯錯 Portfolio 投資早上手",
+    "台股權證小賺零用錢美股 ETF 被動投資",
+    "高雄後面的兩個字看不懂盤整均線看季線"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2148,
+    "eval_count": 519,
+    "total_duration": 43468925000
+  },
+  "original_headings": [
+    "馬雲膨脹遭盯上螞蟻金服 IPO 最新發展",
+    "金融新技術風險放大與王岐山致辭內容",
+    "台股權證零用錢轉美股 VIX 對沖策略"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "馬雲有時候就會膨脹",
+      "跟這個螞蟻金服 Ant Grou"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

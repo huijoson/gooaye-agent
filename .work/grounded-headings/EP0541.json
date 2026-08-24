@@ -1,0 +1,37 @@
+{
+  "episode": 541,
+  "headings": [
+    "資產持續下降與更衰案例的心理調適",
+    "錢包獻祭儀式感與生命有趣安排",
+    "生活自理習慣與避免 panic sell",
+    "GTC 大會無驚喜估值調整定調",
+    "供應鏈重複下單短期無需擔心"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2491,
+    "eval_count": 442,
+    "total_duration": 27011737375
+  },
+  "original_headings": [
+    "比更衰者存在一切皆最好安排",
+    "錢包獻祭儀式感與生命有趣安排",
+    "心態調整避免恐慌賣出亂追",
+    "GTC 大會無驚喜估值調整定調",
+    "供應鏈重複下單短期無需擔心"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "一切都會是最好的安排",
+      "我自己傾向的去歸納是"
+    ],
+    [],
+    [
+      "他可以教會他生活怎麼自理",
+      "有時候我們心態有調整好"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

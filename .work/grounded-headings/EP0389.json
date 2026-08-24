@@ -1,0 +1,31 @@
+{
+  "episode": 389,
+  "headings": [
+    "波動市場生存心態與帶狀選擇策略",
+    "AI 前景模糊但 Nvidia 代工帶來估值亮點",
+    "市值最高幾家公司影響市場列下來記憶",
+    "做錯一次決定不是大不了帶狀修正"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2166,
+    "eval_count": 497,
+    "total_duration": 38331233125
+  },
+  "original_headings": [
+    "台股 AI ODM 全面反彈後隨美股軟跌",
+    "AI 代工估值邏輯與 Nvidia H100 B100 Baseboard",
+    "市值大盤影響市場基本常識與列單做法",
+    "決定帶狀特性修正錯失而非定生死"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "選擇就留給大家自己去思考了",
+      "到 AI 的 ODM 他們出現了"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

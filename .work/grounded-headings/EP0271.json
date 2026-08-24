@@ -1,0 +1,16 @@
+{
+  "episode": 271,
+  "headings": [
+    "股市瘋狂上漲情緒變化心理分析",
+    "觀察再行動與嘲笑空軍囂張",
+    "跟單抄作業風險控制與大股東角色定位",
+    "西方石油碳捕捉技術押注與巴菲特動機"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2024,
+    "eval_count": 409,
+    "total_duration": 27363469166
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

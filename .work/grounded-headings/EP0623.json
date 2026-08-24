@@ -1,0 +1,15 @@
+{
+  "episode": 623,
+  "headings": [
+    "2024 或 2025 願望為多花時間陪家人",
+    "光通訊雷射題材拉昇記憶體報酬率不錯",
+    "指數進攻段勿預設高點"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2081,
+    "eval_count": 552,
+    "total_duration": 44673716000
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

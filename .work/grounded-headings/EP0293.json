@@ -1,0 +1,15 @@
+{
+  "episode": 293,
+  "headings": [
+    "人口稀少霧氣重林口涼爽紅利",
+    "債券獲利機會公債淨值谷底及 LNG 船困境",
+    "聽眾請教癌大分析鴻海電動車發展性"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2455,
+    "eval_count": 550,
+    "total_duration": 44350749625
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

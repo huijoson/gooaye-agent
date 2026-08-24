@@ -1,0 +1,14 @@
+{
+  "episode": 621,
+  "headings": [
+    "流動性擠壓下期貨保證金 Hedging 操作",
+    "資本家目標與在度假村整天下單狀態",
+    "累積信心後放大小鬼股投資部位"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2435,
+    "eval_count": 481,
+    "total_duration": 35422667792
+  }
+}

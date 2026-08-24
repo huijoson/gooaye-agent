@@ -1,0 +1,14 @@
+{
+  "episode": 82,
+  "headings": [
+    "零股交易優勢與成本注意",
+    "做空機構中概股預測落差",
+    "拜登能源政策與賓州選情"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1797,
+    "eval_count": 386,
+    "total_duration": 32147938333
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "episode": 75,
+  "headings": [
+    "選舉期間避免與家人吵架建議",
+    "支持創作者勇氣與 Vortex 等串流服務",
+    "遊戲 ETF 組建順位 NVIDIA Microsoft"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1801,
+    "eval_count": 457,
+    "total_duration": 33956283416
+  },
+  "original_headings": [
+    "選舉期間避免與家人吵架建議",
+    "Vortex LiquidSky Shadow 串流服務",
+    "遊戲 ETF 組建順位 NVIDIA Microsoft"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "支持癌大有做自己的勇氣",
+      "公司像是 Vortex、Liqu"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

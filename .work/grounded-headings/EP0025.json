@@ -1,0 +1,15 @@
+{
+  "episode": 25,
+  "headings": [
+    "華南永昌權證賣出與期貨放空避險機制",
+    "Nick Leeson 黑鍋事件與金融監管荒謬",
+    "美國投資人公懶氣質溫吞不疾不徐卻厲害"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2109,
+    "eval_count": 556,
+    "total_duration": 46699565375
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

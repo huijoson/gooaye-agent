@@ -1,0 +1,14 @@
+{
+  "episode": 70,
+  "headings": [
+    "IPO 股票分批買進策略重要性",
+    "汎德永業代理權整合與 DR 之亂後續",
+    "Theranos 集體失智現象與 Nikola 2.0"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1446,
+    "eval_count": 343,
+    "total_duration": 34489951500
+  }
+}

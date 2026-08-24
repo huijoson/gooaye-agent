@@ -1,0 +1,16 @@
+{
+  "episode": 597,
+  "headings": [
+    "特殊照護需求引發家長付費爭議與攝影機安裝分歧",
+    "餐飲百貨業普遍缺工導致經營困難加劇",
+    "DRAM NAND D4 漲快看多報價",
+    "去中化政策影響無人機供應鏈零件來源限制"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2385,
+    "eval_count": 579,
+    "total_duration": 34411055250
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

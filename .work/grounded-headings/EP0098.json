@@ -1,0 +1,34 @@
+{
+  "episode": 98,
+  "headings": [
+    "2018 年股癌粉專對帳單蹲半年多放棄金管會兩年前講併購",
+    "假設富邦金不放出股份併購失敗股價倒回原點應賣人太少",
+    "波蘭蠢驢 CD Projekt 電馭叛客 Bug 嚴重"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2390,
+    "eval_count": 531,
+    "total_duration": 45538475541
+  },
+  "original_headings": [
+    "日盛金併購案面臨大股東不賣股等風險",
+    "波蘭蠢驢開發電馭叛客卻遭股價創低打擊",
+    "魔戒三部曲重看發現未修剪版本長度增加"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "當時 2018 年的一個小小的對帳單",
+      "金金併的東西"
+    ],
+    [
+      "股價就會倒回原點",
+      "或者說參加應賣的人太少"
+    ],
+    [
+      "一直在創新高、表現得非常好同時",
+      "雖然剛出的時候也是有一大堆的 Bug"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,31 @@
+{
+  "episode": 32,
+  "headings": [
+    "馬斯克指控特斯拉股價過高與自我選擇陰謀論",
+    "搞不好只是吸大麻或是聽政府講什麼",
+    "Bill Gates 認為八至十種療法特別有希望研究",
+    "市場心情常處於極度樂觀或極度悲觀狀態"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1669,
+    "eval_count": 518,
+    "total_duration": 11408917834
+  },
+  "original_headings": [
+    "馬斯克推特發文質疑特斯拉股價過高陰謀論",
+    "投資大師觀點市場極度樂觀或悲觀情緒循環",
+    "Bill Gates 認為八至十種療法特別有希望研究",
+    "市場心情常處於極度樂觀或極度悲觀狀態"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "或是說又跑去吸大麻",
+      "純粹一種是佔比較大部分"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

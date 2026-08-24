@@ -1,0 +1,14 @@
+{
+  "episode": 132,
+  "headings": [
+    "車用晶片缺貨減緩狀況值得關注",
+    "亞馬遜 CEO 交接與貝佐斯寫信藝術",
+    "傑夫·貝佐斯社會貢獻與名人討厭現象"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1912,
+    "eval_count": 448,
+    "total_duration": 40315104959
+  }
+}

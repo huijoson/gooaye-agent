@@ -1,0 +1,31 @@
+{
+  "episode": 528,
+  "headings": [
+    "珍惜孩子成長時間與警惕多頭新手侃侃而談",
+    "菜頭媽穿黑絲屌與代工廠軟體主軸期待",
+    "關稅消息面衝擊與槓桿風險"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2491,
+    "eval_count": 442,
+    "total_duration": 27011737375
+  },
+  "original_headings": [
+    "時間流逝加速提醒把握當下",
+    "台股開盤軟體股與代工廠炒作",
+    "關稅消息面衝擊與槓桿風險"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "發現這個時間度過的速度實在是太快",
+      "才加入市場那不到一年之內"
+    ],
+    [
+      "菜頭他媽穿一個黑絲",
+      "在台股開盤的時候"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

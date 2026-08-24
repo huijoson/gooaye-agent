@@ -1,0 +1,16 @@
+{
+  "episode": 263,
+  "headings": [
+    "聯發科演講體驗與現金流強勁者策略",
+    "散戶追高殺低心力交瘁與本金破億建議",
+    "機構持有大量現金 Repo 停滯與 Fed put 限制",
+    "基金經理人調查數據與晶片法案影響分析",
+    "Foundry 廠與 IP 廠受晶片法案衝擊順序"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2220,
+    "eval_count": 527,
+    "total_duration": 42471484042
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "episode": 239,
+  "headings": [
+    "推薦影集 Ozark 黑錢勝地並提及新一季播出時間",
+    "Jeff Bezos 質疑 Elon Musk 麻粉神化",
+    "停損太緊追高殺低資金沒了報酬漂亮"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2437,
+    "eval_count": 613,
+    "total_duration": 33661438291
+  },
+  "original_headings": [
+    "推薦影集 Ozark 黑錢勝地並提及新一季播出時間",
+    "分析公眾人物如馬斯克與川普不應被神化看待",
+    "市場波動劇烈時緊守停損線比追高殺低更能保存資金"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "你一個很重大的市場之一是在中國",
+      "所有的公眾人物"
+    ],
+    [
+      "你每天在那邊追高殺低",
+      "說你的致命錯誤犯的機會是變少"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

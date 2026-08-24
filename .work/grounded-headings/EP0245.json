@@ -1,0 +1,14 @@
+{
+  "episode": 245,
+  "headings": [
+    "熊市反彈槓桿操作斷頭風險與進出時機",
+    "做多主軸策略與 VIX 台指期價差商品",
+    "美國機構 13F 報告 Apple Put 買空現象"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2529,
+    "eval_count": 529,
+    "total_duration": 45538543125
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "episode": 363,
+  "headings": [
+    "歐公司無臉男金錢無限掀起市場波瀾",
+    "CoreWeave 投資擴張與稼動率下滑",
+    "Intel 雙向液冷標案爭議與業者說法不一",
+    "傷敵一百自損八百可能開特許管道"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1988,
+    "eval_count": 509,
+    "total_duration": 36155641583
+  },
+  "original_headings": [
+    "無臉男歐公司資金無限引發市場波瀾",
+    "AI 需求強勁下擴產恐懼與稼動率下跌",
+    "Intel 雙向液冷標案爭議與業者說法不一",
+    "中國禁美光傷敵八百自損八百的封鎖策略"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "AI 需求這麼強",
+      "CoreWeave 是有被投資"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

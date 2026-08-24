@@ -1,0 +1,31 @@
+{
+  "episode": 221,
+  "headings": [
+    "低利環境下資金成本與通膨資產膨脹分析",
+    "5G 滲透率高峰期中國手機成長趨緩",
+    "終端需求消失後的反向操作與 Chromebook 庫存風險",
+    "聽眾畢業職業選擇銀行證券保險建議"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2187,
+    "eval_count": 527,
+    "total_duration": 30790045208
+  },
+  "original_headings": [
+    "低利環境下資金成本與通膨資產膨脹分析",
+    "中國手機市場趨緩與 5G SOC 訂單減縮衝擊",
+    "庫存堆高風險關注 Chromebook PC 筆電",
+    "聽眾畢業職業選擇銀行證券保險建議"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "說你認為這個是庫存堆高",
+      "是覺得是 Chromebook"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

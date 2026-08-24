@@ -1,0 +1,37 @@
+{
+  "episode": 369,
+  "headings": [
+    "資本主義接力賽與真接力賽呼應",
+    "《Kid A》近期重聽更有味道",
+    "Google 的廣告營收拉回與手機連八季年減",
+    "雙相式浸沒式液冷訂單數千億美金"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2085,
+    "eval_count": 534,
+    "total_duration": 38477122792
+  },
+  "original_headings": [
+    "資本主義是接力賽盡量讓其延續下去",
+    "越聽越有味道重新發現 Radiohead Kid A",
+    "Google 廣告營收回春與手機銷量連續八季下滑",
+    "AI Server 訂單數千億台幣採用雙相液冷"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "最近突然發現 Radiohead",
+      "最近越聽越有味道"
+    ],
+    [
+      "Google 的廣告營收部分開始",
+      "mobile phone 手機"
+    ],
+    [
+      "他全部都要用雙相式的浸沒式液冷",
+      "本來雙相式浸沒式液冷已經宣告是死亡了"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

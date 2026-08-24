@@ -1,0 +1,37 @@
+{
+  "episode": 480,
+  "headings": [
+    "股價波動正常市場風險控管三千萬上限",
+    "科技業出現 AI 的貧富差距及產業疲弱",
+    "川普拜登 Kamala Harris 政策方向對比",
+    "空力下跌策略與基本面投資判斷"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2558,
+    "eval_count": 568,
+    "total_duration": 35640330291
+  },
+  "original_headings": [
+    "券商風控限制開倉數值與標的壓制",
+    "科技業 AI 貧富差距導致產業表現不佳",
+    "川普與 Kamala Harris 政策方向差異分析",
+    "股價博弈基本面對比與進空力策略"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "只要波動率沒有再放到很大",
+      "已經有幾支標的又壓到超過三千萬的"
+    ],
+    [
+      "科技業有 AI 的貧富差距",
+      "它是一個 AI 的貧富差距"
+    ],
+    [
+      "是 Kamala Harris 上",
+      "在 Kamala Harris"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

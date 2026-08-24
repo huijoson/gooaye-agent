@@ -1,0 +1,15 @@
+{
+  "episode": 627,
+  "headings": [
+    "鳳凰電波雷射音波醫美療程體驗感受",
+    "日系設備廠商營收拉升與中低階放給台系",
+    "無科學證據卻有焦慮反應與神明前客比喻"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2106,
+    "eval_count": 540,
+    "total_duration": 39958145375
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

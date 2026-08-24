@@ -1,0 +1,31 @@
+{
+  "episode": 625,
+  "headings": [
+    "謝孟恭言論拿捏得當大盤未打贏",
+    "群聯控制器與 NAND 顆粒組裝進 NVIDIA Switch Tray",
+    "Agentic AI 推理過程與 NVIDIA ICMS 情報"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2228,
+    "eval_count": 574,
+    "total_duration": 22472250667
+  },
+  "original_headings": [
+    "謝孟恭節目評價與大盤虧損自白",
+    "群聯 Controller 出貨 NVIDIA Switch Tray 組裝細節",
+    "Agentic AI 時代推理過程與 NVIDIA ICMS 情報分析"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "群聯的 Controller 怎",
+      "上自己的 Controller"
+    ],
+    [
+      "進入 Agentic AI 的一",
+      "到底 NVIDIA 它的這個 I"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,31 @@
+{
+  "episode": 628,
+  "headings": [
+    "超乎預期勝利與台灣對等關稅 15%",
+    "資本市場觀念與社群媒體言論不等價差異",
+    "豐華高科漲價函蔓延至被動元件銀料成本驅動",
+    "台積電 CapEx 開出後設備耗材市場 Top Pick 觀點"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2228,
+    "eval_count": 574,
+    "total_duration": 22472250667
+  },
+  "original_headings": [
+    "台灣對等關稅政策與最惠國待遇簽署成果",
+    "資本市場觀念與社群媒體言論不等價差異",
+    "豐華高科漲價函蔓延至被動元件銀料成本驅動",
+    "台積電 CapEx 開出後設備耗材市場 Top Pick 觀點"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "我會覺得說我們這個是超乎預期的勝利",
+      "台灣拿了一個對等關稅 15% 不疊加"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

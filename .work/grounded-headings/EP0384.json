@@ -1,0 +1,28 @@
+{
+  "episode": 384,
+  "headings": [
+    "陌生人信箱同理心與朋友路人理解",
+    "傳統伺服器龍頭反彈力量大非無稽之談",
+    "輝達博通 Marvell Lattice 特斯拉與自我認知差異"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2431,
+    "eval_count": 552,
+    "total_duration": 31213762750
+  },
+  "original_headings": [
+    "節目讓陌生人當信箱分享故事增同理心",
+    "傳統伺服器龍頭反彈力量大非無稽之談",
+    "美股部位含輝達博通 Marvell Lattice 特斯拉"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "輝達、博通、Marvell",
+      "講出來也比一般人的認知再稍微多一點"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

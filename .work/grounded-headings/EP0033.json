@@ -1,0 +1,37 @@
+{
+  "episode": 33,
+  "headings": [
+    "巴菲特的股東會線上模式與硬知識目標",
+    "巴菲特持有 1,372 億美元現金與 S&P 500 ETF 選擇",
+    "Fed 對作禁忌與 Never Bet Against America",
+    "黃國昌參選大同公司獨立董事條件"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1690,
+    "eval_count": 496,
+    "total_duration": 33594910084
+  },
+  "original_headings": [
+    "巴菲特股東會硬知識與現金部位增加",
+    "S&P500 被動投資 ETF 選擇建議",
+    "Never Bet Against America 投資邏輯",
+    "黃國昌參選大同公司獨立董事條件"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "硬知識這樣子",
+      "巴菲特的股東會"
+    ],
+    [
+      "比去年多了 100 多億",
+      "掛對應的被動投資的 ETF"
+    ],
+    [
+      "說不要跟 Fed 對作",
+      "`Never Bet Again"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

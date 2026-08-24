@@ -1,0 +1,31 @@
+{
+  "episode": 550,
+  "headings": [
+    "迷惑行為看懂維持率自斷券商選擇",
+    "微軟光通元件砍單不確定七月八月",
+    "黃仁勳去中國見獵心喜與白宮未攻擊"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2313,
+    "eval_count": 503,
+    "total_duration": 38346516250
+  },
+  "original_headings": [
+    "券商自斷維持率非真意願砍單",
+    "光通元件微軟表現最差恐延後",
+    "黃仁勳訪華白宮未攻擊死定論"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "有些市場他認為是迷惑行為的東西",
+      "維持率已經到了"
+    ],
+    [
+      "微軟真的是在裡面表現最差的一環",
+      "說不定弄到七月、八月都有"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

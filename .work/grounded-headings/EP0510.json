@@ -1,0 +1,34 @@
+{
+  "episode": 510,
+  "headings": [
+    "兒子想泡澡與家長需給紀律",
+    "半夜 Google 爸媽問題帶小孩辛苦",
+    "投資策略轉向軟硬整合與軟體方向",
+    "鎖定智能體 AI 晶片與穿戴裝置大贏"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1729,
+    "eval_count": 331,
+    "total_duration": 22893669125
+  },
+  "original_headings": [
+    "家長面對孩子問題可嘗試理解其需求",
+    "親子管教角色轉換與尋求外援經驗",
+    "投資策略轉向軟硬整合與軟體方向",
+    "鎖定智能體 AI 晶片與穿戴裝置大贏"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "遇到一樣問題的家長",
+      "是那一個需要去給紀律的人"
+    ],
+    [
+      "兩個在半夜在那邊想",
+      "你沒有其他外援的"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

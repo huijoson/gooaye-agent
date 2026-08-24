@@ -1,0 +1,15 @@
+{
+  "episode": 250,
+  "headings": [
+    "王心凌《捍衛戰士：獨行俠》年輕味道",
+    "升息通膨影響消費波動率恐慌指數",
+    "有家庭後跳出圈子代價龐大趁年輕做夢"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2305,
+    "eval_count": 511,
+    "total_duration": 35823461625
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

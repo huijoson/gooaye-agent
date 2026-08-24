@@ -1,0 +1,25 @@
+{
+  "episode": 39,
+  "headings": [
+    "Musk 與 NASA 合作及 Spotify 簽約",
+    "0050 買家屬被動投資人及黃國昌參選獨董",
+    "三家民營太空公司與 SPCE 上市代號",
+    "七七如家五星提問與聽眾群像"
+  ],
+  "method": "natural_heading_refined_from_both_excerpts",
+  "original_headings": [
+    "Musk 與 NASA 合作及 Spotify 簽約",
+    "0050 被動投資與黃國昌參選獨董",
+    "三家民營太空公司與 SPCE 上市代號",
+    "五星提問與嘴硬心軟的聽眾"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "買 0050 的這種",
+      "黃國昌要進去選獨董"
+    ],
+    [],
+    []
+  ]
+}

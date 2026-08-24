@@ -1,0 +1,14 @@
+{
+  "episode": 514,
+  "headings": [
+    "工作滿意度感受與七騎士指數股輪動現象",
+    "健康優先價值觀與家人寵物交換意願思考",
+    "營收來源澄清與 Google TPU 主要客戶地位分析"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2226,
+    "eval_count": 534,
+    "total_duration": 50329468833
+  }
+}

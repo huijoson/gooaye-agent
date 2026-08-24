@@ -1,0 +1,14 @@
+{
+  "episode": 213,
+  "headings": [
+    "出錢者為老大開公司第一課",
+    "公司登記時明定金額與維護朋友關係",
+    "看好美國功率半導體與聯發科成長"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2004,
+    "eval_count": 439,
+    "total_duration": 30488683250
+  }
+}

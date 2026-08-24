@@ -1,0 +1,34 @@
+{
+  "episode": 88,
+  "headings": [
+    "中概股復甦早於歐美但漲一根危險",
+    "政治鬥爭從螞蟻金服到阿里巴巴",
+    "達利歐買 MCHI 與 KWEB 追蹤中國科技股"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2148,
+    "eval_count": 519,
+    "total_duration": 43468925000
+  },
+  "original_headings": [
+    "中概股復甦早於歐美與台股財報表現",
+    "職位調整背後政治鬥爭與習近平整治意圖",
+    "低費用中國科技 ETF 標的推薦清單"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "看目前台股的中概股第三季的財報",
+      "說你買股票只期待它會漲 10%"
+    ],
+    [
+      "個人的職位調整等等的",
+      "阿里巴巴就前兩天搞一個這個平台反壟斷"
+    ],
+    [
+      "費用低的 ETF 裡面",
+      "MCHI 它最大的是 Alibaba"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

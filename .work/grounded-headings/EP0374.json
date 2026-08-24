@@ -1,0 +1,34 @@
+{
+  "episode": 374,
+  "headings": [
+    "AI 股淨值回吐到 6 月底左右",
+    "財報好數字不夠市場要求更高",
+    "GPU 供貨順進入削價競爭",
+    "專注 PR95 99.99 有把握地方",
+    "AI Server 投資空手打架占比非絕對多數",
+    "辦公室戀情與關鍵字搞錯"
+  ],
+  "method": "natural_heading_refined_from_both_excerpts",
+  "original_headings": [
+    "市場要求好還要更好的財報",
+    "GPU 供貨順暢後的削價競爭",
+    "專注最有把握的投資領域",
+    "AI Server 營收占比與獲利結構",
+    "Siri 與華碩的 AI 受惠程度",
+    "辦公室戀情與關鍵字搞錯"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "己真的是最有把握的東西",
+      "在我自己有把握可以變成 PR95"
+    ],
+    [
+      "針對這個 AI Server 投資",
+      "好像 AI Server 是唯一"
+    ],
+    [],
+    []
+  ]
+}

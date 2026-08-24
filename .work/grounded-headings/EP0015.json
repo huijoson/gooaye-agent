@@ -1,0 +1,14 @@
+{
+  "episode": 15,
+  "headings": [
+    "查無不法結論與理性絕望的判斷",
+    "金管會放寬下市門檻與清算標準說明",
+    "電影大賣空與 2008 年金融海嘯背景"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1774,
+    "eval_count": 493,
+    "total_duration": 37996715250
+  }
+}

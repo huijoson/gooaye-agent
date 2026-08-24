@@ -1,0 +1,14 @@
+{
+  "episode": 155,
+  "headings": [
+    "台灣復甦潮難比歐美猛",
+    "道德防疫讓健身房撐多久",
+    "健身工廠與柏仁醫院案例"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2124,
+    "eval_count": 449,
+    "total_duration": 37867693917
+  }
+}

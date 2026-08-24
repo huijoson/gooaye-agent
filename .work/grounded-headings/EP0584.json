@@ -1,0 +1,14 @@
+{
+  "episode": 584,
+  "headings": [
+    "資訊分析能力與長期投資研究方法",
+    "富喬金居 PCB 銅箔族群白熱化階段",
+    "川普高關稅半導體議題分析"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1524,
+    "eval_count": 279,
+    "total_duration": 32449846500
+  }
+}

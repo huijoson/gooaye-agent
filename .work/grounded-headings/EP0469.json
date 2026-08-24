@@ -1,0 +1,15 @@
+{
+  "episode": 469,
+  "headings": [
+    "慢下來感受呼吸走路與遊戲避免爛尾心態",
+    "新能源股持股影響不大但 RE100 發展可期",
+    "軟體贏家未知 Confluent 代理與金融客戶無關"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2064,
+    "eval_count": 564,
+    "total_duration": 44563459625
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

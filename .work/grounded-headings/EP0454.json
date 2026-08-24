@@ -1,0 +1,34 @@
+{
+  "episode": 454,
+  "headings": [
+    "標的送分題穩賺不賠小心黃金鄉輝達",
+    "股票質押用錢與買貴價差聚沙成塔",
+    "先觀察聯發科博通 Wi-Fi 7 爆發",
+    "零到五十萬存錢工作與節目線索",
+    "父子散步眼神交會鋼琴被視為樂器之母"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2493,
+    "eval_count": 663,
+    "total_duration": 45345993625
+  },
+  "original_headings": [
+    "《艾爾登法環 黃金樹幽影》上市探索未知挑戰困難",
+    "台股創新高主因與不知道在漲什麼東西股價不漲現象",
+    "股票市場懂 70% 理論科技業高層持股賣光不敢買",
+    "工具機 MCU 嘗試失敗分享無法每一筆都中加勒比海打手槍",
+    "Cisco 庫存淡化解決搭配 BEAD 法案與 Wi-Fi 7 搭載"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [],
+    [],
+    [
+      "國的這個 BEAD 法案",
+      "當你的庫存問題解決"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

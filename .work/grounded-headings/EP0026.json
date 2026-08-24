@@ -1,0 +1,34 @@
+{
+  "episode": 26,
+  "headings": [
+    "多數人利益角力資訊判讀背後可能問題",
+    "川普甩鍋 WHO 台灣勿誤讀打中國機會",
+    "克蘇魯文化外神舊日支配者等級概念",
+    "美元印鈔犧牲全世界辛巴威通貨膨脹風險",
+    "修正式民主非法西斯 Hitler 拉姆喜歌 payer"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2109,
+    "eval_count": 556,
+    "total_duration": 46699565375
+  },
+  "original_headings": [
+    "跟隨大眾意見背後可能隱藏的問題",
+    "川普拒絕繳錢 WHO 鍋甩策略與台灣誤解",
+    "克蘇魯文化外神舊日支配者等級概念",
+    "美元印鈔犧牲全世界辛巴威通貨膨脹風險",
+    "修正式民主非法西斯精英掌控世界極端"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "當你發現你跟大多數人想的一樣的時候",
+      "只是我說在一些利益的角力上面"
+    ],
+    [],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

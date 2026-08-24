@@ -1,0 +1,15 @@
+{
+  "episode": 3,
+  "headings": [
+    "武漢肺炎淡化股市美中台世界影響",
+    "PMI 數據惡化引發放空情緒",
+    "市場效率反映已知利空訊息"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1566,
+    "eval_count": 322,
+    "total_duration": 39828565917
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

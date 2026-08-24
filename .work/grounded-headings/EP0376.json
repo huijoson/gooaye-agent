@@ -1,0 +1,31 @@
+{
+  "episode": 376,
+  "headings": [
+    "第四季營收預測達 180 至 190 億",
+    "台股長期持有優勢較弱切換節奏快",
+    "房地產崩盤社會跡象消費復甦眼見為憑",
+    "盯盤組效益不好故降低資訊檢查頻率"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2431,
+    "eval_count": 552,
+    "total_duration": 31213762750
+  },
+  "original_headings": [
+    "第二季營收預估保守第四季達一百八十億",
+    "台股長期持有優勢較弱切換節奏快",
+    "房地產崩盤社會不敢買且需見跡象",
+    "盯盤組效益不好故降低資訊檢查頻率"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "是假設第二季我猜 120、125 億",
+      "開出來有個 120、125 億"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

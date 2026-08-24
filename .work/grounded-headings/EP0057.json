@@ -1,0 +1,28 @@
+{
+  "episode": 57,
+  "headings": [
+    "高年級媒體人引戰行為與個人臉書文章分享",
+    "台積電評價十五至二十五倍與傳產配息受惠",
+    "壓台積電風險報酬比考量與首選標的分析"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1984,
+    "eval_count": 527,
+    "total_duration": 12105086333
+  },
+  "original_headings": [
+    "高年級媒體人引戰行為與個人臉書文章分享",
+    "台積電本益比評價與低利率下傳產配息股受惠",
+    "壓台積電風險報酬比考量與首選標的分析"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "台積電這家公司我給他的本益比評價",
+      "覺得一些傳產或是一些這種比較老派"
+    ],
+    []
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

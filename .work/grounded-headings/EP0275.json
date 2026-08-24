@@ -1,0 +1,31 @@
+{
+  "episode": 275,
+  "headings": [
+    "教育基金存儲與期貨工具",
+    "台指期與全標的期貨差異",
+    "工具標的無絕對好壞認清個性做投機行為",
+    "投資前先顧好自己心情"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1534,
+    "eval_count": 221,
+    "total_duration": 21301622084
+  },
+  "original_headings": [
+    "教育基金存儲與期貨工具",
+    "台指期與全標的期貨差異",
+    "投機行為與自我認知重要性",
+    "投資前先顧好自己心情"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "為什麼工具沒有絕對好壞",
+      "我自己本身也是有在做投機行為"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

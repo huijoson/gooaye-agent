@@ -1,0 +1,15 @@
+{
+  "episode": 55,
+  "headings": [
+    "詐騙集團運作模式與封號機制",
+    "雷蛇推出能量飲料與 Predator Shot",
+    "展碁國際股價表現與小股本策略"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1658,
+    "eval_count": 365,
+    "total_duration": 39764418334
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

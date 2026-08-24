@@ -1,0 +1,34 @@
+{
+  "episode": 444,
+  "headings": [
+    "一天內刷新義大利麵與 Panna Cotta",
+    "岳母朋友社交牛逼與 Suri 美味驚喜",
+    "工業端導入 AI 與 Maple 押注"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1872,
+    "eval_count": 549,
+    "total_duration": 29068133166
+  },
+  "original_headings": [
+    "岳母朋友 Suri 社交表現與在家煮義大利麵美食分享",
+    "消費伺服器端 AI 導入機會與工業端時間成本差異",
+    "美國警告伊朗代理人飛彈攻擊以色列敘利亞使館"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "是岳母的朋友",
+      "我上一集跟大家聊到的 Suri"
+    ],
+    [
+      "後來又再送了 Tiramisù 進來",
+      "說禮拜天我再煮那個 vongole"
+    ],
+    [
+      "但可惜目前在工業端",
+      "對伊朗駐敘利亞使館的攻擊"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

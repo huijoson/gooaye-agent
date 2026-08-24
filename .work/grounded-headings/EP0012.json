@@ -1,0 +1,15 @@
+{
+  "episode": 12,
+  "headings": [
+    "閃電降息與七千億量化寬鬆推高悲觀劇本機率",
+    "大型企業倒閉將波及個人生活而非神仙打架",
+    "景氣下行開店慘淡賭運不通提醒別做"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1861,
+    "eval_count": 568,
+    "total_duration": 23713800667
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

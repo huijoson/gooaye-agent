@@ -1,0 +1,31 @@
+{
+  "episode": 463,
+  "headings": [
+    "夫妻吵架不可對兒子不耐煩且看別人秀單受影響",
+    "投資決策心態調整與硬體部位降低策略",
+    "Omniverse 應用前景與機器人導入時間表",
+    "數位轉型漸進式特性與軟體整合黃金機會"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2414,
+    "eval_count": 520,
+    "total_duration": 34471647083
+  },
+  "original_headings": [
+    "夫妻相處原則與避免在兒女面前生氣",
+    "投資決策心態調整與硬體部位降低策略",
+    "Omniverse 應用前景與機器人導入時間表",
+    "數位轉型漸進式特性與軟體整合黃金機會"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "對不能夠在兒子的面前露出我不耐煩",
+      "我一直看別人每天都在秀單"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

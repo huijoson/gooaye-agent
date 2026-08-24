@@ -1,0 +1,31 @@
+{
+  "episode": 507,
+  "headings": [
+    "藤井風這場演唱會讓心中被治癒且近期特別厲害",
+    "共和黨政府聚焦 Google Search 壟斷",
+    "生小孩身材變掉骨盆跑掉妊娠紋"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2308,
+    "eval_count": 533,
+    "total_duration": 41655626958
+  },
+  "original_headings": [
+    "藤井風演唱會治癒感與極短演出評價",
+    "美國司法部 Chrome 拆分要求與共和黨聚焦 Google Search",
+    "成長後事情立場之分與絕對是非對錯的消失"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "覺得說好像我心中的某個東西被治癒好了",
+      "藤井風這場演唱會"
+    ],
+    [],
+    [
+      "事情好像只有立場之分",
+      "不是這樣子說的"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

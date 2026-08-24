@@ -1,0 +1,14 @@
+{
+  "episode": 445,
+  "headings": [
+    "巴西廚神 Ceres 影片與律師 AI",
+    "Yes Man 運動心得分享",
+    "AI 助理訂立新工作框架"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2162,
+    "eval_count": 429,
+    "total_duration": 38735649917
+  }
+}

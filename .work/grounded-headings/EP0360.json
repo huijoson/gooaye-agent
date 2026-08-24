@@ -1,0 +1,15 @@
+{
+  "episode": 360,
+  "headings": [
+    "偷吃步與飲食控制難題",
+    "Intel 轉型 IFS 設計屋投資興趣提升",
+    "量化交易公司做 CB 與 Unity 虧損"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2011,
+    "eval_count": 464,
+    "total_duration": 52533771459
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

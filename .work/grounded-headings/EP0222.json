@@ -1,0 +1,15 @@
+{
+  "episode": 222,
+  "headings": [
+    "戰情分析角度看待股市崩盤風險",
+    "高估自制力風險與期貨槓桿計算",
+    "趁勝追擊加槓桿帶錢回家建議"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2640,
+    "eval_count": 487,
+    "total_duration": 42617870834
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

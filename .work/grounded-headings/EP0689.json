@@ -1,0 +1,31 @@
+{
+  "episode": 689,
+  "headings": [
+    "功能性訓練發現與尋找身材棒的教練",
+    "房間裡的大象發作與 Sector 攻破高點族群",
+    "科技巨頭產能過剩與高點賣出風險",
+    "公司基本面分析研究品質標準探討"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 688,
+    "eval_count": 90,
+    "total_duration": 9750062375
+  },
+  "original_headings": [
+    "七夕促銷特斯拉 Model Sox 優惠活動",
+    "尋找具備功能性訓練的優質教練",
+    "市場回檔對各產業與交易策略影響",
+    "公司基本面分析研究品質標準探討"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "搶購特斯拉 Model Sox",
+      "產能過剩有點講的這種好像是高大上"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

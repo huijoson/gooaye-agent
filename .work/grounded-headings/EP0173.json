@@ -1,0 +1,31 @@
+{
+  "episode": 173,
+  "headings": [
+    "蘋概股營收遞延劇本與終端減緩",
+    "非蘋手機 CIS 感測晶片價值投資需服輸",
+    "主動選股多數虧損與不懂標的警戒"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2046,
+    "eval_count": 447,
+    "total_duration": 38138776750
+  },
+  "original_headings": [
+    "蘋概股營收遞延劇本與終端減緩",
+    "財報不符預期時的服輸與砍單心態",
+    "主動選股絕大多數輸家與指數投資警示"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "我聽到實際的狀況不是這樣子",
+      "財報開出來不符如你預期"
+    ],
+    [
+      "主動選股裡面輸家是絕大多數",
+      "千萬不要去碰任何你不懂的東西"
+    ]
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

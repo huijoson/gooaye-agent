@@ -1,0 +1,31 @@
+{
+  "episode": 559,
+  "headings": [
+    "NVIDIA TAM 因 NVLink 授權優勢上修",
+    "機器狗應用 Computex 新鮮感不足",
+    "華碩展示有趣東西與腦中思維變清晰"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 517,
+    "eval_count": 84,
+    "total_duration": 20049496666
+  },
+  "original_headings": [
+    "NVIDIA TAM 因 NVLink 授權優勢上修",
+    "Computex 軟硬整合應用與新鮮感不足",
+    "華碩展示成果回顧與情緒穩定之道"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "給我們看一些軟硬整合的應用",
+      "這一次的 Computex"
+    ],
+    [
+      "謝謝華碩展示了這麼多有趣的東西",
+      "你是下去你就會比較 chill"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

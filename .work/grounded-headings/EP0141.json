@@ -1,0 +1,14 @@
+{
+  "episode": 141,
+  "headings": [
+    "歷史最大漲點與跌點呼應劇烈震盪行情預期",
+    "國安基金不應過度信仰因為救濟未必包含個人",
+    "投資大師 13F 報告作為參考而非直接跟單依據"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2261,
+    "eval_count": 583,
+    "total_duration": 38934550500
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "episode": 434,
+  "headings": [
+    "作者與岳母分享義大利餅乾口味差異",
+    "美股台股攻新高中小股遭殺跌走勢",
+    "VMware Broadcom AI 業務上修評價",
+    "ETF 高股息申購爆量與上下其手策略",
+    "加槓桿操作部位需具備反人性特質"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1039,
+    "eval_count": 195,
+    "total_duration": 33363637459
+  },
+  "original_headings": [
+    "作者與岳母分享義大利餅乾口味差異",
+    "美股台股攻新高中小股遭殺跌走勢",
+    "VMware Broadcom AI 業務上修評價",
+    "菜籃族勇敢申購高股息 ETF 買爆",
+    "加槓桿操作部位需具備反人性特質"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [],
+    [
+      "大家都是很勇敢去申購這些高股息的東西",
+      "針對這些高股息的 ETF 去上下"
+    ],
+    []
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

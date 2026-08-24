@@ -1,0 +1,17 @@
+{
+  "episode": 650,
+  "headings": [
+    "GPU 表現強大食慾下降十到二十量",
+    "美股難做環境下化解未來不確定性的長遠視野",
+    "優先檢視 AMD Intel CPU 並調整 NVIDIA 模型策略",
+    "鉭電鋁電被動元件漲價傳導鏈與 MLCC 取代機會",
+    "被動元件布局漲價故事發生後股價未動的反思"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2322,
+    "eval_count": 548,
+    "total_duration": 35516975667
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

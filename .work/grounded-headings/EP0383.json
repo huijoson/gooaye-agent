@@ -1,0 +1,16 @@
+{
+  "episode": 383,
+  "headings": [
+    "鈦合金機殼質感與大眾購買動機",
+    "潛望式鏡頭爭議與 Tetraprism camera 定義",
+    "Dojo 超級電腦對特斯拉業績影響",
+    "D1 晶片出貨量預測與實際數據"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1221,
+    "eval_count": 216,
+    "total_duration": 37020417750
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

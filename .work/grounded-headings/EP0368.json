@@ -1,0 +1,16 @@
+{
+  "episode": 368,
+  "headings": [
+    "有小孩讓人變踏實穩重像個好爸爸",
+    "台積電特斯拉財報顯示 AI 營收成長優異",
+    "降價背景下維持毛利率的合理預期區間",
+    "家族企業讓人不滿並非因為它是家族企業"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1988,
+    "eval_count": 509,
+    "total_duration": 36155641583
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

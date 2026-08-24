@@ -1,0 +1,16 @@
+{
+  "episode": 312,
+  "headings": [
+    "散裝卡包騙人寶可夢機台搶玩",
+    "台股四五零壓力直接攻上",
+    "聯準會變數影響美國指數市場無法控制",
+    "輝達 AI 晶片 FPGA IC 設計半導體 ETF"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2352,
+    "eval_count": 577,
+    "total_duration": 43201482417
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

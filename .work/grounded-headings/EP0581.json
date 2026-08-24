@@ -1,0 +1,34 @@
+{
+  "episode": 581,
+  "headings": [
+    "設備股資金堆疊與 Palantir 演說心得",
+    "Anduril 台灣辦事處 Palantir 烏克蘭戰地觀察",
+    "台積電營業秘密外洩給 TEL 兩奈米"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1911,
+    "eval_count": 436,
+    "total_duration": 28841907083
+  },
+  "original_headings": [
+    "曼尼《曼報 Pro》訂閱方案啟動",
+    "Anduril 演講與 Palantir 台灣辦事處",
+    "台積電兩奈米機密外洩事件"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "成為《曼報 Pro》",
+      "我本身是《曼報 Pro》計畫的一"
+    ],
+    [
+      "Anduril 這次的演講",
+      "第一人稱的自殺無人機的表現"
+    ],
+    [
+      "台積電這個事件",
+      "兩奈米的一些機密資料"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

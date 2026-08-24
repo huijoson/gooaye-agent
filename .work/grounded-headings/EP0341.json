@@ -1,0 +1,37 @@
+{
+  "episode": 341,
+  "headings": [
+    "搞笑諾貝爾獎運氣角色廢論",
+    "認證到貢獻需兩三年以上時間",
+    "利基型串流媒體進入成熟高原期",
+    "Lattice 低功率 FPGA 與 RFID 數位轉型",
+    "三分之一 DLC 酸甜苦辣麻煩"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2642,
+    "eval_count": 499,
+    "total_duration": 31492219167
+  },
+  "original_headings": [
+    "老高文運氣角色重大討論走偏",
+    "認證到貢獻需兩三年以上時間",
+    "利基型串流媒體進入成熟高原期",
+    "Lattice FPGA 低功率內容受惠 AI",
+    "小孩 DLC 遊戲擴充包酸甜苦辣"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [],
+    [
+      "Lattice 它是在做 FPG",
+      "已經新增兩三季以上的一個持股"
+    ],
+    [
+      "他裡面一定是酸甜苦辣都會有",
+      "並且就算他為你帶來一些麻煩"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

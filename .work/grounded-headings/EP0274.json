@@ -1,0 +1,28 @@
+{
+  "episode": 274,
+  "headings": [
+    "主動選股靈魂讓被動投資過度擇時",
+    "期望值比勝率重要資金控管風險管理加減碼",
+    "選擇權包租公高勝率策略進棺材案例警示"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2228,
+    "eval_count": 496,
+    "total_duration": 20501579833
+  },
+  "original_headings": [
+    "被動投資過度擇時回測結果不佳經驗",
+    "期望值概念重要性超越勝率資金管理核心",
+    "選擇權包租公高勝率策略進棺材案例警示"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "你已經過度的去試著幫市場擇時",
+      "他有那個主動選股的靈魂在裡面"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

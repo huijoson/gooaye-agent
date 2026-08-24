@@ -1,0 +1,14 @@
+{
+  "episode": 9,
+  "headings": [
+    "油價創紀錄大跌與原油 ETF 槓桿特性",
+    "華航巨虧案例與航空業獲利預期",
+    "五星飯店低入住率與旅宿業虧損風險"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1706,
+    "eval_count": 458,
+    "total_duration": 27058558208
+  }
+}

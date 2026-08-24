@@ -1,0 +1,28 @@
+{
+  "episode": 30,
+  "headings": [
+    "Gogoro 公關危機與排擠一般用戶權益",
+    "張安樂演講中山大學非垃圾學院",
+    "股癌大聊 Radiohead 音樂轉變心得"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1690,
+    "eval_count": 496,
+    "total_duration": 33594910084
+  },
+  "original_headings": [
+    "Gogoro 公關危機與排擠一般用戶權益",
+    "張安樂中山大學演講爭議澄清",
+    "股癌大聊 Radiohead 音樂轉變心得"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "講說張安樂跑去中山大學裡面演講",
+      "找張安樂去中山大學"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

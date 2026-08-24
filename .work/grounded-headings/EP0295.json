@@ -1,0 +1,16 @@
+{
+  "episode": 295,
+  "headings": [
+    "CoinDesk 指控 FTX Alameda Research",
+    "FTX 爆炸宣告幣圈危險九成資金盤",
+    "流動性風險瞬間產生爆倉帳上現金不夠付",
+    "小生意管理困難與不以《股癌》角度投資"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2455,
+    "eval_count": 550,
+    "total_duration": 44350749625
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

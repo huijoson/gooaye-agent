@@ -1,0 +1,31 @@
+{
+  "episode": 573,
+  "headings": [
+    "推薦《人生的五種財富》一書分享個人感悟",
+    "4147 中裕新藥爆倉",
+    "快速獲利造成日薪麻木與槓桿風控經驗"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2140,
+    "eval_count": 519,
+    "total_duration": 35927192667
+  },
+  "original_headings": [
+    "推薦《人生的五種財富》一書分享個人感悟",
+    "2018 年中裕新藥質押爆倉案例與壯士斷腕經驗",
+    "加密貨幣參與者因快速獲利而對實體日薪麻木"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "2018 年有一檔 4147 中",
+      "面就壯士斷腕"
+    ],
+    [
+      "或者說加密貨幣的這些參與者也是",
+      "是沒有收過這樣子的東西"
+    ]
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

@@ -1,0 +1,31 @@
+{
+  "episode": 642,
+  "headings": [
+    "Hock Tan 光通說法與市場唱壞唱好循環",
+    "Apple 毛利競爭策略與 iPhone 17e、Mac Neo",
+    "生活修正犯錯與銅價估值轉換難度"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1959,
+    "eval_count": 440,
+    "total_duration": 26385391792
+  },
+  "original_headings": [
+    "博通 Hock Tan 對光通發言非絕對否定",
+    "Apple 趁記憶體毛利壓縮階段吃掉對手",
+    "生活修正犯錯與銅價估值轉換難度"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "多人引用博通 Hock Tan",
+      "你要怎麼抓到平衡實際上是不容易的"
+    ],
+    [
+      "在記憶體漲價的毛利壓縮階段",
+      "我可以算是非常確定他的想法"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

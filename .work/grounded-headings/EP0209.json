@@ -1,0 +1,31 @@
+{
+  "episode": 209,
+  "headings": [
+    "政府鎖國境怪異 謬誤與真相書名",
+    "Take-Two Zynga 元宇宙遊戲公司收購優勢",
+    "估值調整 Forward P/E ratio 概念解析"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2322,
+    "eval_count": 494,
+    "total_duration": 30276641667
+  },
+  "original_headings": [
+    "台灣聽眾對政府介入元宇宙之誤解",
+    "Take-Two 收購 Zynga 與 GameFi 投資參考",
+    "估值調整 Forward P/E ratio 概念解析"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "政府介入應該很好",
+      "它的書名叫做《謬誤與真相》"
+    ],
+    [
+      "或說你有興趣要去投 GameFi",
+      "Zynga 是屬於一個相對弱勢的"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

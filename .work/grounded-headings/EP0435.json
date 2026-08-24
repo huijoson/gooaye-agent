@@ -1,0 +1,28 @@
+{
+  "episode": 435,
+  "headings": [
+    "挪威縮影行程推薦與搭峽灣渡輪永生難忘體驗",
+    "故意推高價格讓買貴者接連推出高股息",
+    "GB200 大量採用將衝擊機殼滑軌廠"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2300,
+    "eval_count": 691,
+    "total_duration": 24281188125
+  },
+  "original_headings": [
+    "挪威縮影行程推薦與搭峽灣渡輪永生難忘體驗",
+    "高股息 ETF 推高價格導致買貴與接下來多個高股息 ETF 推出",
+    "GB200大量採用後機殼滑軌廠商由受惠轉為受害者風險"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "很多人要去買這種高股息的 ETF",
+      "有好幾個 ETF 接連要推出"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

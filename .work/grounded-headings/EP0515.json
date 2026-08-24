@@ -1,0 +1,16 @@
+{
+  "episode": 515,
+  "headings": [
+    "痛苦磨難知足常樂往更好方向",
+    "避免過度悲觀良率數字喊低",
+    "AI 產出能力變超大與伺服器需求激增",
+    "OpenAI 6000 元訂閱價值與 Home Tutor 應用"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2226,
+    "eval_count": 534,
+    "total_duration": 50329468833
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

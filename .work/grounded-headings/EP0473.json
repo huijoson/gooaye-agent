@@ -1,0 +1,15 @@
+{
+  "episode": 473,
+  "headings": [
+    "假日憂鬱感與身份轉變帶來的厭煩情緒",
+    "軟體展後市場盤整與短線調整策略",
+    "融資餘額高位與加權指數大幅反彈現況",
+    "晶片股強勢與 ODM 散熱業者競爭壓力"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2466,
+    "eval_count": 579,
+    "total_duration": 48718071333
+  }
+}

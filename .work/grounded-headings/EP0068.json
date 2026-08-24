@@ -1,0 +1,28 @@
+{
+  "episode": 68,
+  "headings": [
+    "提前布局機會成本與分批投入降低糾結",
+    "三月最強下殺孫正義與瘋狂漲跌關係",
+    "大量選擇權 Call 推升股價獲利方式"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1760,
+    "eval_count": 511,
+    "total_duration": 28654763542
+  },
+  "original_headings": [
+    "事件發生前無需緊張提前佈局會錯過機會",
+    "斯達克三月最強下殺與孫正義關聯性分析",
+    "大量選擇權 Call 推升股價獲利方式"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "你提前佈局你就錯過很多東西",
+      "你會解決掉超多人性的糾結"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

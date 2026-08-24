@@ -1,0 +1,31 @@
+{
+  "episode": 127,
+  "headings": [
+    "Archegos 高槓桿與 Bill Hwang 爆倉主力",
+    "500 億爆倉部位與 150 億虧損",
+    "本多終勝核心在於持續投入"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2115,
+    "eval_count": 425,
+    "total_duration": 37756528792
+  },
+  "original_headings": [
+    "Archegos 家族基金高槓桿操作",
+    "Bill Hwang 爆倉虧損達百億",
+    "本多終勝核心在於持續投入"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "Archegos",
+      "Archegos 的爆倉事件"
+    ],
+    [
+      "實際虧損至少 150 億以上",
+      "說單一一個 Family Fund"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

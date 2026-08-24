@@ -1,0 +1,28 @@
+{
+  "episode": 491,
+  "headings": [
+    "產業剛復甦消息盤Tesla 一知半解賺大錢",
+    "美國關稅政策對車用晶片影響",
+    "AI 軍不矛盾 o1 幻覺錯誤答案測試夠了"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2365,
+    "eval_count": 465,
+    "total_duration": 29919783958
+  },
+  "original_headings": [
+    "車用半導體消息盤與供應鏈變化",
+    "美國關稅政策對車用晶片影響",
+    "AI 軍幻覺與 o1 測試結果驗證"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "的階段是比較屬於消息盤",
+      "大家會發現說好像比較容易賺到大的錢"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

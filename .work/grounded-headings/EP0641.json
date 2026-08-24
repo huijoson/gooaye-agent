@@ -1,0 +1,28 @@
+{
+  "episode": 641,
+  "headings": [
+    "拜拜聚會觀察少年董仔與人品好的人",
+    "AI 典範轉移與被動元件多次漲價",
+    "台積電作為光通題材純度高的選擇"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1959,
+    "eval_count": 440,
+    "total_duration": 26385391792
+  },
+  "original_headings": [
+    "拜拜聚會觀察少年董仔與人品好的人",
+    "新典範轉移下被動元件漲價信爆發",
+    "台積電作為光通題材純度高的選擇"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "新的一種典範轉移——過去全部人都",
+      "真的有感——被動元件已經漲幾次了"
+    ],
+    []
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

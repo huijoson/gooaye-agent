@@ -1,0 +1,34 @@
+{
+  "episode": 393,
+  "headings": [
+    "晶片面積與能效比計算方法",
+    "Broadcom 晶片設計與 AI 漲勢表現",
+    "轉單台灣的意外與財富自由觀點用於教學",
+    "指數投資參與經濟但不保證穩贏"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 686,
+    "eval_count": 89,
+    "total_duration": 17999009333
+  },
+  "original_headings": [
+    "晶片面積與能效比計算方法",
+    "AI 專用晶片設計公司受益者",
+    "麥克風裝反意外獲得財富自由觀點",
+    "指數投資參與經濟但不保證穩贏"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "我在看它晶片設計",
+      "個很棒的 AI 漲勢"
+    ],
+    [
+      "突然間轉單到台灣",
+      "我從麥克風裝反聽到現在"
+    ],
+    []
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

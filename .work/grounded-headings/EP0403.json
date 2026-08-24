@@ -1,0 +1,22 @@
+{
+  "episode": 403,
+  "headings": [
+    "環球影城 VIP 票配聖淘沙遊玩安排",
+    "NVIDIA 財報與 OpenAI 員工聯署",
+    "Intel 與 AMD 運行 Stable Diffusion"
+  ],
+  "method": "natural_heading_with_manual_evidence_review",
+  "original_headings": [
+    "新加坡環球影城 VIP 票與聖淘沙",
+    "NVIDIA 財報與 OpenAI 員工聯署",
+    "Intel 與 AMD 運行 Stable Diffusion"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "新加坡的環球影城 VIP 票",
+      "裡面有環球影城"
+    ],
+    [],
+    []
+  ]
+}

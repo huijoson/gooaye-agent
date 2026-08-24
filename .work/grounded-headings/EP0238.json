@@ -1,0 +1,40 @@
+{
+  "episode": 238,
+  "headings": [
+    "詐騙防範切勿交給任何個人錢款",
+    "特斯拉營收淨利毛利數據優勢分析",
+    "挖礦金屬生意與庫存天數轉嫁價格",
+    "Bear Case 2900 與 Bull Case 5800",
+    "自動駕駛普及面臨認知挑戰辯論",
+    "特斯拉保險推廣自動駕駛關鍵一環"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2592,
+    "eval_count": 530,
+    "total_duration": 37870380125
+  },
+  "original_headings": [
+    "詐騙防範核心原則不交錢給個人",
+    "特斯拉營收淨利毛利數據優勢分析",
+    "挖礦金屬生意與庫存天數轉嫁價格",
+    "Tesla 目標價區間與 Ark 新評級",
+    "自動駕駛普及面臨認知挑戰辯論",
+    "特斯拉保險推廣自動駕駛關鍵一環"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "我已經把詐騙、反詐騙這些事情濃縮",
+      "你一輩子都不會被騙"
+    ],
+    [],
+    [],
+    [
+      "Bear Case 是 2900",
+      "Ark 對特斯拉出的新的目標價"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

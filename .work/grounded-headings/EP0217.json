@@ -1,0 +1,14 @@
+{
+  "episode": 217,
+  "headings": [
+    "4% 法則參考退休規劃調整",
+    "長期投資道路與年輕高風險操作",
+    "現金流折現推估公允價值"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2044,
+    "eval_count": 398,
+    "total_duration": 41645551541
+  }
+}

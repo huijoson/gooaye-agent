@@ -1,0 +1,14 @@
+{
+  "episode": 460,
+  "headings": [
+    "Jarvis 鋼鐵人助手整合智慧家庭 iPad 控制窗簾燈光",
+    "AI 模型 LLM 與 Agent 差別分析討論回答問題能力",
+    "社群媒體推薦系統演算法算力浪費與 AI 軟體被收割"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2493,
+    "eval_count": 663,
+    "total_duration": 45345993625
+  }
+}

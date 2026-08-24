@@ -1,0 +1,34 @@
+{
+  "episode": 167,
+  "headings": [
+    "全職家庭兩小時一次哭鬧",
+    "下影線不代表大盤收腳或 W 底",
+    "悲觀十幾天下影線全倉反噬",
+    "台灣記憶體老闆看多與外資看空"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2107,
+    "eval_count": 508,
+    "total_duration": 44338361792
+  },
+  "original_headings": [
+    "產值成長來自漲價而非出貨量",
+    "下影線不代表大盤收腳或 W 底",
+    "避免悲觀後因反彈而盲目全倉進場",
+    "台灣記憶體老闆看多與外資看空"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "我跟我太太基本上我們是全職在家",
+      "說整個業界的產值的成長 50 幾趴"
+    ],
+    [],
+    [
+      "你不要看到說這個拉了一個下影線",
+      "前面明明就已經悲觀了十幾天了"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

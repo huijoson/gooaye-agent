@@ -1,0 +1,16 @@
+{
+  "episode": 147,
+  "headings": [
+    "交易邏輯心態文章分享方法",
+    "獲利模式未找先研究花錢動能交易穩定報酬",
+    "運氣與實力區分原則與反覆驗證才能算實力部分",
+    "葛拉漢崩盤預測誤解與認真投資股票市場建議"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1879,
+    "eval_count": 424,
+    "total_duration": 37093060583
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,16 @@
+{
+  "episode": 128,
+  "headings": [
+    "基礎建設 ETF 維持先行者優勢",
+    "基建電動車充電樁與 Vtuber 純概念股",
+    "左手右手看法分享追便宜買",
+    "長期投資需重視費用成本"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2121,
+    "eval_count": 437,
+    "total_duration": 35467766792
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

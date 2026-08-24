@@ -1,0 +1,34 @@
+{
+  "episode": 680,
+  "headings": [
+    "火箭接收器製成餐具與 SpaceX、Tesla 粉絲情懷",
+    "台積電重倉遇 6% 跌幅與法說未見敗相",
+    "回檔超過 10 幾% 改用指數且避免積極操作",
+    "Kimi K2 參數 2.8 兆仍需高規 AI 伺服器"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2028,
+    "eval_count": 365,
+    "total_duration": 29075573125
+  },
+  "original_headings": [
+    "SpaceX 火箭筷碗與馬斯克粉絲心情",
+    "台積電持股重挫六成難解敗相",
+    "回檔十幾百分後轉向指數防守策略",
+    "Kimi K2 高參數伺服器衝擊市場誤判"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "一樣是用火箭的接收器所做出來的",
+      "我對 SpaceX"
+    ],
+    [],
+    [
+      "回檔超過 10 幾% 以上",
+      "上集的節目末端講了"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

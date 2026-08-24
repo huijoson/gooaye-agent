@@ -1,0 +1,14 @@
+{
+  "episode": 531,
+  "headings": [
+    "產檢經歷引發創傷反應與壓力",
+    "市場成交量放大與效率市場假說",
+    "機器人自駕車夢境與 MBTI 人格分享"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2306,
+    "eval_count": 463,
+    "total_duration": 41952551292
+  }
+}

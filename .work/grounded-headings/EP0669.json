@@ -1,0 +1,17 @@
+{
+  "episode": 669,
+  "headings": [
+    "謝孟恭持股策略與蕭南資本創投嘗試",
+    "Semi-Analysis 影響力與被動元件強勢",
+    "Semi-Analysis 引發 NVIDIA 空頭情緒與光通跌勢",
+    "預期資金流向大型流動性佳且有數據公司",
+    "蘋果螢幕感知功能提升手機自動化綁定"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 785,
+    "eval_count": 122,
+    "total_duration": 21849104709
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

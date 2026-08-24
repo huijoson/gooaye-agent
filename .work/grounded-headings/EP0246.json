@@ -1,0 +1,31 @@
+{
+  "episode": 246,
+  "headings": [
+    "外商投行報告預測升降息循環",
+    "小台期貨作為反指標與斷頭潮",
+    "台股多單為主美股長短鎖倉",
+    "極端事件下賺麵粉錢承擔賣毒品風險"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2592,
+    "eval_count": 530,
+    "total_duration": 37870380125
+  },
+  "original_headings": [
+    "外商投行報告預測升降息循環",
+    "小台期貨作為反指標與斷頭潮",
+    "台股 Long Short 策略多單為主困境",
+    "極端事件下賺麵粉錢承擔賣毒品風險"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "我自己還是以多單為主",
+      "說我在明年假設一樣在大漲的時候"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

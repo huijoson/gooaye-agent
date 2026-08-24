@@ -1,0 +1,34 @@
+{
+  "episode": 678,
+  "headings": [
+    "台北大賭場開盤時間與健康考量",
+    "NVIDIA 重登 200 美元季線 Meta 租賃賽遇供應鏈現實",
+    "光通輪動 VCSEL Wide and Slow 新做法",
+    "被動元件導線架缺貨與功率元件輪動邏輯"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 849,
+    "eval_count": 109,
+    "total_duration": 16389401500
+  },
+  "original_headings": [
+    "證交所台北大賭場與開盤時間延後爭議",
+    "美股 NVIDIA 突破二百美元與 AI 租賃新變數",
+    "光通產業從矽光轉向 Wide and Slow VCSEL",
+    "被動元件導線架缺貨與功率元件輪動邏輯"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "沒有看到 NVIDIA 連續出這",
+      "Meta 來參加 AI 租賃大賽"
+    ],
+    [
+      "你今天是 Wide and Slow",
+      "跟 wide and slow"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

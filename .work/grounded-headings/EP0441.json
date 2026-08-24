@@ -1,0 +1,28 @@
+{
+  "episode": 441,
+  "headings": [
+    "台積電的 ADR 衝百分之四與山達基贊助電影爆料",
+    "小米上市訂單突破與 SU7 外觀致敬保時捷電動車",
+    "人車家全生態拆解為 Human Car Home 三個成分"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1872,
+    "eval_count": 549,
+    "total_duration": 29068133166
+  },
+  "original_headings": [
+    "台積電 ADR 衝高阿湯哥退出山達基電影贊助爆料",
+    "小米上市訂單突破與 SU7 外觀致敬保時捷電動車",
+    "人車家全生態拆解為 Human Car Home 三個成分"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "台積電的 ADR 就直接往上衝了",
+      "什麼阿湯哥退出山達基"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

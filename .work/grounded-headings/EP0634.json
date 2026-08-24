@@ -1,0 +1,31 @@
+{
+  "episode": 634,
+  "headings": [
+    "兒童功課選擇與有錢人開車迷思",
+    "Meta Google Amazon CapEx 上修重殺市場現象",
+    "銀價崩跌被動元件不調價有趣市場觀察",
+    "忠實聽眾陪伴開車時光與實際做人才珍貴"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2106,
+    "eval_count": 540,
+    "total_duration": 39958145375
+  },
+  "original_headings": [
+    "功課教育選擇與富豪汽車品牌刻板印象破除",
+    "Meta Google Amazon CapEx 上修重殺市場現象",
+    "銀價崩跌被動元件不調價有趣市場觀察",
+    "忠實聽眾陪伴開車時光與實際做人才珍貴"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "對大家的教育選擇——你覺得小朋友",
+      "什麼跑車是 Ferrari——沒有"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

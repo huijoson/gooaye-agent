@@ -1,0 +1,14 @@
+{
+  "episode": 83,
+  "headings": [
+    "美國房地產股票修正與台股匯損",
+    "螞蟻金服 IPO 紀錄與中概股表現",
+    "三峽大壩爭議多年未解"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1695,
+    "eval_count": 345,
+    "total_duration": 38110921875
+  }
+}

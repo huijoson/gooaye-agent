@@ -1,0 +1,34 @@
+{
+  "episode": 100,
+  "headings": [
+    "Apple TV 買哈比人魔戒三部曲重看",
+    "阿里巴巴重拳風險與國家扶植企業",
+    "抹殺巨獸非好事 抄底阿里需觀察"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2390,
+    "eval_count": 531,
+    "total_duration": 45538475541
+  },
+  "original_headings": [
+    "抄底中國企業需考量國家政策扶持因素",
+    "阿里巴巴遭監管下建議觀察後續狀況再行動",
+    "台積電止跌修正幅度小車用晶片難靠單一廠"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "只是重看是從 Apple TV 上面",
+      "是我發現說它那邊有未修剪版本"
+    ],
+    [
+      "比方說你百分之百資金都在阿里巴巴",
+      "大部分還是在於說國家要不要讓你去發展"
+    ],
+    [
+      "殺掉任何的中國的巨獸",
+      "先觀察一下說後續的狀況是什麼樣"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

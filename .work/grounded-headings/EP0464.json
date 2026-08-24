@@ -1,0 +1,31 @@
+{
+  "episode": 464,
+  "headings": [
+    "美光 HBM3E 賠款與廠失火",
+    "代理商資服業者機會與微軟軟體核心布局",
+    "年化報酬率用法與轉職工程師即時看盤專案",
+    "Yuyu Court 宣導遠離機車阿北與 Gugu 火球老鼠期貨正價差大"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2493,
+    "eval_count": 663,
+    "total_duration": 45345993625
+  },
+  "original_headings": [
+    "美光 HBM3E 驗證問題賠款後里廠失火股價照噴",
+    "代理商資服業者機會槓桿美國人努力微軟軟體佈局核心",
+    "轉職工程師個人專案即時看盤現金部位年化報酬率試算",
+    "期貨半年結算前轉倉正價差發現 Yuyu Court 宣導遠離機車阿北"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "大晶片商的 HBM3E",
+      "美光的後里廠失火"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,28 @@
+{
+  "episode": 327,
+  "headings": [
+    "尊重市場與尋找東西的矛盾",
+    "資本主義社會相較於過去提供更多翻身機會給無家族庇蔭者",
+    "故事背後樣子與巨嬰自救會"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1893,
+    "eval_count": 507,
+    "total_duration": 29236262333
+  },
+  "original_headings": [
+    "尊重市場概念與人們仍渴望翻身分層機會的矛盾",
+    "資本主義社會相較於過去提供更多翻身機會給無家族庇蔭者",
+    "故事背後實際樣子與巨嬰成立自救會的可能性"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "很多人說尊重市場就在講這樣的一個",
+      "可是為什麼很多人還是汲汲營營要去"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,14 @@
+{
+  "episode": 302,
+  "headings": [
+    "聯準會政策不確定性與 Powell 言論影響分析",
+    "美國 PTP 稅務政策下美股賣出時機建議",
+    "大航商投資價值與股價遲緩上漲困境"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1739,
+    "eval_count": 360,
+    "total_duration": 51237822000
+  }
+}

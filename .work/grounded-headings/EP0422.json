@@ -1,0 +1,34 @@
+{
+  "episode": 422,
+  "headings": [
+    "幻獸帕魯推薦與農曆年避險荒謬",
+    "槓桿開到十倍以上與資金面非股市全貌",
+    "Intel 聯電合做十二奈米契機可能產生",
+    "特斯拉財報崩盤與 FSD Robotaxi 能源系統"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2234,
+    "eval_count": 535,
+    "total_duration": 28934824000
+  },
+  "original_headings": [
+    "幻獸帕魯遊戲推薦與農曆年避險策略反思",
+    "Intel 聯電開發 12 奈米與台股盤跌強勢",
+    "資金槓桿開八倍十倍與股市非僅資金面層面",
+    "Tesla 財報噴翔與 FSD Robotaxi 能源系統檢視"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "跟我推薦《幻獸帕魯》（Palwo",
+      "什麼農曆年、聖誕節還是各種他媽的"
+    ],
+    [],
+    [],
+    [
+      "特斯拉財報一做",
+      "Robotaxi"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

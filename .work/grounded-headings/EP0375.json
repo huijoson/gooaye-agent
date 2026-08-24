@@ -1,0 +1,14 @@
+{
+  "episode": 375,
+  "headings": [
+    "鴻海工業電腦品牌化與 Advantech 參訪",
+    "鴻海股價表現與核心報酬分析",
+    "鴻海 AI 伺服器營收成長率與份額優勢"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2421,
+    "eval_count": 463,
+    "total_duration": 37575370875
+  }
+}

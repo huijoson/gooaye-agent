@@ -1,0 +1,31 @@
+{
+  "episode": 236,
+  "headings": [
+    "績效暫時狀況與節目聽眾心理壓力",
+    "第一季 Long Short 賺大錢",
+    "台積電法說會驗證 HPC 車用優勢",
+    "閒錢投資與現金流緊繃狀況分析"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2592,
+    "eval_count": 530,
+    "total_duration": 37870380125
+  },
+  "original_headings": [
+    "績效壓力與心理負擔的差異",
+    "第一季賺錢者使用 Long Short 策略",
+    "台積電法說會驗證 HPC 車用優勢",
+    "閒錢投資與現金流緊繃狀況分析"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "使用 Long Short 的策略",
+      "謂的這種 Long Short"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

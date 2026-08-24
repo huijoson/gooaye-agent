@@ -1,0 +1,28 @@
+{
+  "episode": 485,
+  "headings": [
+    "Sweet Baby Inc. 接管遊戲並推動多元包容",
+    "遊戲供應鏈設計變更宿命難逃",
+    "XQ 策略回測成效與節日觀點"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2151,
+    "eval_count": 393,
+    "total_duration": 39839842458
+  },
+  "original_headings": [
+    "Sweet Baby Inc. 多元包容顧問服務",
+    "遊戲供應鏈設計變更宿命難逃",
+    "XQ 策略回測成效與節日觀點"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "麼樣做出多元、包容、多樣化的東西",
+      "兵特攻 Concord》"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

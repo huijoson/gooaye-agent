@@ -1,0 +1,28 @@
+{
+  "episode": 97,
+  "headings": [
+    "富士康跨足咖啡失敗倒閉與員工解僱問題",
+    "MasterCard Visa JCB 抵制色情網站催化區塊鏈加速",
+    "色情產業催化黃賭毒發展嚴格上傳人背景調查"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2148,
+    "eval_count": 519,
+    "total_duration": 43468925000
+  },
+  "original_headings": [
+    "富士康跨足咖啡失敗倒閉與員工解僱問題",
+    "發卡機構抵制色情網站可能催化區塊鏈加速",
+    "色情產業作為催化劑與區塊鏈付費方法預期"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "會造成區塊鏈貨幣超級加速的一個催化劑",
+      "時候當這些發卡機構表明要抵制的時候"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

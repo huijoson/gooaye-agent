@@ -1,0 +1,31 @@
+{
+  "episode": 482,
+  "headings": [
+    "陪伴時間有限需把握當下",
+    "Powell 鴿派訊號與持股分散風險",
+    "OpenAI 晶片路徑與系統架構追蹤",
+    "財報樣態期待聚焦 Nvidia 供應鏈及盤整風險疑問"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2151,
+    "eval_count": 393,
+    "total_duration": 39839842458
+  },
+  "original_headings": [
+    "陪伴時間有限需把握當下",
+    "Powell 鴿派訊號與持股分散風險",
+    "OpenAI 晶片路徑與系統架構追蹤",
+    "Nvidia 財報樣態與供應鏈隱藏風險"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [],
+    [
+      "都在期待 Nvidia 的財報的",
+      "有什麼會發生的隱藏風險嗎"
+    ]
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

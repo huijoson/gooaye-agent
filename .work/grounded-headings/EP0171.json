@@ -1,0 +1,16 @@
+{
+  "episode": 171,
+  "headings": [
+    "養兒方知父母恩新事物排擠舊習慣",
+    "共產黨推波助瀾與奢侈品大中華區貢獻",
+    "IP 矽智財授權金與被動元件廠拉貨",
+    "事件型交易分析突發狀況與封城影響"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2251,
+    "eval_count": 478,
+    "total_duration": 34568890458
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

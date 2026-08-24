@@ -1,0 +1,16 @@
+{
+  "episode": 554,
+  "headings": [
+    "下班時段天使體驗與老大吃醋",
+    "後悔未上槓桿卻知背後有理由存在",
+    "AI 伺服器需求下修對營收獲利無影響",
+    "台系供應鏈受惠 GPU 出貨順勢與巨頭 earnings call"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1445,
+    "eval_count": 292,
+    "total_duration": 42139038750
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

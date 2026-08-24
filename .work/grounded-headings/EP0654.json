@@ -1,0 +1,17 @@
+{
+  "episode": 654,
+  "headings": [
+    "強勢進攻拉回買點與多頭跳樓行情做多",
+    "CPU 市場大象效應與被動元件題材機會觀察",
+    "Token 空燒公司泡沫破裂與 AI 支出合理性計算",
+    "AI 裁員 token maxing 公司風險與硬體股買爆策略",
+    "產值回歸真金白銀財務數字與軟體公司表現"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2719,
+    "eval_count": 567,
+    "total_duration": 40275142542
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

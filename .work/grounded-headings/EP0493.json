@@ -1,0 +1,34 @@
+{
+  "episode": 493,
+  "headings": [
+    "任天堂投信故事長助手時間少不能做",
+    "產業佈局思路與時間壓縮下的操作邏輯",
+    "Intel Lunar Lake 非台廠生意影響德州儀器重大",
+    "PC 市場 DDR5 滲透與矽力-KY 6415 關聯"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2308,
+    "eval_count": 533,
+    "total_duration": 41655626958
+  },
+  "original_headings": [
+    "任天堂投信故事背後隱藏的更長敘事",
+    "產業佈局思路與時間壓縮下的操作邏輯",
+    "P-MIC 市場觀察與台系外商封裝差異",
+    "筆電 DDR5 滲透與矽力-KY 中國關係"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "有些這種任天堂相關的名字",
+      "時候到了你就往那個方向"
+    ],
+    [],
+    [],
+    [
+      "天在討論 DDR5 的一個滲透的",
+      "矽力-KY（6415"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

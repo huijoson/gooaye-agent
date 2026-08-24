@@ -1,0 +1,28 @@
+{
+  "episode": 255,
+  "headings": [
+    "現金相對價值與穩賺不賠交易的疑問",
+    "美中貿易戰關稅停掉空點與買方資金家族基金",
+    "台灣融資維持率與斷頭風險"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2305,
+    "eval_count": 511,
+    "total_duration": 35823461625
+  },
+  "original_headings": [
+    "Sony 抽獎穩賺不賠現金相對價值考量",
+    "美中貿易戰關稅停掉大盤指數空點機會",
+    "買方資金來源與臺灣融資維持率斷頭風險"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "是美中貿易戰的關稅停掉",
+      "是哪一個老闆的退休金或什麼的"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

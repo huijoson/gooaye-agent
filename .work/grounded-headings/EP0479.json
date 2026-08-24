@@ -1,0 +1,15 @@
+{
+  "episode": 479,
+  "headings": [
+    "韓國五天四夜消費與返台看盤喜悅",
+    "H200 拉貨超預期救場與氣冷廠商機會",
+    "聽眾生日祝福與推薦遊戲作品"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2364,
+    "eval_count": 481,
+    "total_duration": 54589003208
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

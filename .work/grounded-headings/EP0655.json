@@ -1,0 +1,15 @@
+{
+  "episode": 655,
+  "headings": [
+    "相對剝奪感減輕與四公斤啞鈴簡單體重 cue",
+    "資金水位影響比較感受與意外陳緣發生",
+    "強勢股無腦噴與 Google 選 Intel 封裝"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2105,
+    "eval_count": 417,
+    "total_duration": 37505847500
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

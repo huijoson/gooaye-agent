@@ -1,0 +1,37 @@
+{
+  "episode": 674,
+  "headings": [
+    "上半年人生高光時刻處置股反而飆漲",
+    "主權基金季度 rebalance 美銀報告快速升息",
+    "市場信心丟失跌破季線價值投資買點",
+    "記憶體成本翻倍與 MacBook 漲價 10 幾到 20%"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 3348,
+    "eval_count": 579,
+    "total_duration": 32193515084
+  },
+  "original_headings": [
+    "上半年人生高光時刻處置股反而飆漲",
+    "主權基金 rebalance 是市場修正理由",
+    "跌破季線價值投資買點但需等待確認",
+    "記憶體成本翻倍售價加價幅度有限"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "每個季度的 rebalance",
+      "應該 rebalance 那個—"
+    ],
+    [
+      "比較像是一個市場信心的短期內的丟失",
+      "是以價值投資來講相對好的買點"
+    ],
+    [
+      "假設記憶體他多插一條",
+      "MacBook 或是一些產品線的價格"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

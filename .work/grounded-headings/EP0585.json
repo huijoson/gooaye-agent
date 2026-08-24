@@ -1,0 +1,16 @@
+{
+  "episode": 585,
+  "headings": [
+    "2025 台灣米其林指南頒獎典禮與優質餐廳推薦",
+    "Howard Marks 價值備忘錄與高估值低預期報酬",
+    "高估值投報率低 Marvell 晶片股淡出",
+    "優質標的買價過高仍可能形成不良投資"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2605,
+    "eval_count": 675,
+    "total_duration": 28891092167
+  },
+  "method": "natural_heading_with_manual_evidence_review"
+}

@@ -1,0 +1,31 @@
+{
+  "episode": 63,
+  "headings": [
+    "財富自由建立在認真工作節流與持續資產配置",
+    "華為份額被小米跟 Oppo 吃下統一世界遭制裁",
+    "超跌投資機會尋找與房子流通性不佳問題",
+    "衛星通訊供應鏈 Router 工業品台灣廠商分析"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1984,
+    "eval_count": 527,
+    "total_duration": 12105086333
+  },
+  "original_headings": [
+    "財富自由建立在認真工作節流與持續資產配置",
+    "華為份額被小米 Oppo 吃下與大國崛起制裁風險",
+    "超跌投資機會尋找與房子流通性不佳問題",
+    "衛星通訊供應鏈 Router 工業品台灣廠商分析"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "被小米跟 Oppo 給吃下來",
+      "Oppo 跟小米他們突然又腦筋沒"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

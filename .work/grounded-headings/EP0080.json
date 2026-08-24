@@ -1,0 +1,31 @@
+{
+  "episode": 80,
+  "headings": [
+    "社群平台事實查核與假消息治理",
+    "政治審查政治正確助選與陣營工具化",
+    "大立光修正預期 VR 與 AR 發展部分內容"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1790,
+    "eval_count": 475,
+    "total_duration": 22654220625
+  },
+  "original_headings": [
+    "Facebook Twitter 事實查核機制運作邏輯",
+    "政治審查政治正確助選與陣營工具化",
+    "修正 VR AR 發展預期參考大立光說法"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "Facebook 跟 Twitt",
+      "有人做事實查核非常好"
+    ],
+    [],
+    [
+      "我預期的 VR 跟 AR 的發展",
+      "大立光有提到這個 VR 跟 AR"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

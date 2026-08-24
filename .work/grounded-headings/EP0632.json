@@ -1,0 +1,15 @@
+{
+  "episode": 632,
+  "headings": [
+    "自排車考照經驗與手排車駕駛習慣反思",
+    "市場慣性思維錯誤與機器人題材觀察角度",
+    "ASML 與特斯拉縮編車隊展望 Cybercab"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1708,
+    "eval_count": 379,
+    "total_duration": 30285694292
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,28 @@
+{
+  "episode": 442,
+  "headings": [
+    "先進製程裸晶圓尚可、記憶體高階 DRAM 滿載受震",
+    "特斯拉 Optimus 與輝達機器人趨勢轉變",
+    "美股漲 60% 台股 25% 到 30% 特斯拉食之無味"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1442,
+    "eval_count": 338,
+    "total_duration": 44487002167
+  },
+  "original_headings": [
+    "晶圓廠滿載運行受地震影響記憶體部分",
+    "特斯拉 Optimus 與輝達機器人趨勢轉變",
+    "美股績效優於台股小型股震盪影響"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "小型股的一些震盪就會影響到蠻大的",
+      "真的會覺得有點食之無味、棄之可惜"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

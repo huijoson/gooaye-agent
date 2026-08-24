@@ -1,0 +1,31 @@
+{
+  "episode": 598,
+  "headings": [
+    "兒童玩具快樂體驗與家人自我壓力釋放建議",
+    "臉書流量營利功能開啟與每日九百元收入發現",
+    "台股回檔降槓桿操作與 Hedge Fund 瘋狂亂殺現象",
+    "鴻海緯創廣達 L6 到 L10 散熱解方 MCCP"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2605,
+    "eval_count": 675,
+    "total_duration": 28891092167
+  },
+  "original_headings": [
+    "兒童玩具快樂體驗與家人自我壓力釋放建議",
+    "臉書流量營利功能開啟與每日九百元收入發現",
+    "台股回檔降槓桿操作與 Hedge Fund 瘋狂亂殺現象",
+    "鴻海緯創廣達 L6 至 L10 變革與 MCCP 散熱解方看多"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [],
+    [
+      "聊到像是鴻海、緯創跟廣達有望從",
+      "跑出一個 MCCP 作為一個中繼"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

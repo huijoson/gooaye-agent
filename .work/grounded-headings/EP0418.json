@@ -1,0 +1,14 @@
+{
+  "episode": 418,
+  "headings": [
+    "期貨槓桿追蹤台股指數方法",
+    "區塊鏈技術非詐騙與比特幣信仰",
+    "資產配置心臟大者配比特幣"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2096,
+    "eval_count": 474,
+    "total_duration": 41489726000
+  }
+}

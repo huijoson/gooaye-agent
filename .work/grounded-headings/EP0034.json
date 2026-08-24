@@ -1,0 +1,16 @@
+{
+  "episode": 34,
+  "headings": [
+    "國家金融秩序健全發展規矩確實執行",
+    "馬斯克回應中國宣傳並再次上 Joe Rogan 節目",
+    "遊戲橘子放消息炒股市場很多東西",
+    "紓困金分配不均與存股者需關注填息"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1798,
+    "eval_count": 435,
+    "total_duration": 41357038416
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

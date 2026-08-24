@@ -1,0 +1,37 @@
+{
+  "episode": 670,
+  "headings": [
+    "Ozempic 未看說明直接施打最高劑量",
+    "Meta Google 買入與奉承者過濾",
+    "不用認真算估值 SpaceX 只是會信者買",
+    "ODM EMS 漲價成功與村田 EPS",
+    "Meta AI 模型 Token 燒得快"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 3348,
+    "eval_count": 579,
+    "total_duration": 32193515084
+  },
+  "original_headings": [
+    "不看說明書打 Ozempic 最高劑量未爆炸",
+    "Meta Google 買下之物值得忽略奉承者",
+    "不用認真算估值 SpaceX 只是會信者買",
+    "被動元件漲價成功 EPS 狂拉 PE 變低",
+    "Meta AI 新模型速度快 Token 燒得快"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [],
+    [
+      "被動元件在這個禮拜也有新的一些消",
+      "說它後來的 EPS 狂拉"
+    ],
+    [
+      "用的這個 Meta AI 的新模",
+      "市場的偏好就會從去追求這些大模型"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

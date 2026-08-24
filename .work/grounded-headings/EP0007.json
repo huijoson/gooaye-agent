@@ -1,0 +1,28 @@
+{
+  "episode": 7,
+  "headings": [
+    "中醫診所治乾咳旅館插頭拔重接",
+    "富邦 VIX 與元大石油正二皆屬期貨型 ETF",
+    "週五央行宣布元大 S&P 石油正二可追募"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1783,
+    "eval_count": 472,
+    "total_duration": 34236218333
+  },
+  "original_headings": [
+    "旅館電視壞掉重接插頭多試幾次",
+    "富邦 VIX 與元大石油正二皆屬期貨型 ETF",
+    "週五央行宣布元大 S&P 石油正二可追募"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "巷口開了一個還不錯的中醫診所",
+      "多試幾次"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

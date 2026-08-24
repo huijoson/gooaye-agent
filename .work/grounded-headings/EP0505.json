@@ -1,0 +1,15 @@
+{
+  "episode": 505,
+  "headings": [
+    "費城里滕豪斯廣場生活地點與美股相關係數",
+    "川普上任後不確定性終結與 checkpoint 設定",
+    "軟體 SaaS 股動起來 AI 應用導向股票方向"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2102,
+    "eval_count": 519,
+    "total_duration": 44122254291
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

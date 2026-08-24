@@ -1,0 +1,14 @@
+{
+  "episode": 425,
+  "headings": [
+    "演唱會現場體驗與迪士尼入場預測網站",
+    "Spotify 廣告復甦趨勢與訂閱模式競爭",
+    "Intel 伺服器市佔挑戰與輝達平台優勢"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2615,
+    "eval_count": 486,
+    "total_duration": 55523099083
+  }
+}

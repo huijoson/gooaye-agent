@@ -1,0 +1,28 @@
+{
+  "episode": 6,
+  "headings": [
+    "股癌聽眾建議開 compressor 麥克風用錯確認",
+    "指數於好消息震盪時反而創下高點",
+    "投資大師謙遜未料市場樂觀劇本追單"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1783,
+    "eval_count": 472,
+    "total_duration": 34236218333
+  },
+  "original_headings": [
+    "股癌聽眾誤用麥克風導致設備故障",
+    "指數於好消息震盪時反而創下高點",
+    "投資大師未明言市場走向樂觀劇本"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "《股癌》的聽眾",
+      "他問我說是不是用錯邊的時候"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,18 @@
+{
+  "episode": 647,
+  "headings": [
+    "AI 實際產出者與中國尬吹文之差異",
+    "台股 AI 如虎添翼與美股盤差無用",
+    "程式交易者讚嘆 AI 威力與收益限制",
+    "放棄 AI 者被取代與戰力提升真相",
+    "OpenAI 聚焦核心項目與影片生成平台發展",
+    "壓價格燒錢特斯拉股東心情兩面"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2545,
+    "eval_count": 542,
+    "total_duration": 38648249250
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

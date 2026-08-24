@@ -1,0 +1,31 @@
+{
+  "episode": 462,
+  "headings": [
+    "零組件散熱領域風向與 ODM OEM 業者角色",
+    "Optimus 機器人薪酬方案股東會大餅",
+    "自動駕駛里程累積與安全性數據對比分析",
+    "蘋果 Google AI 競爭局勢與硬體軟體獲利"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 606,
+    "eval_count": 102,
+    "total_duration": 5949048750
+  },
+  "original_headings": [
+    "零組件散熱領域風向與 ODM OEM 業者角色",
+    "特斯拉股東會 Optimus 機器人薪酬方案通過",
+    "自動駕駛里程累積與安全性數據對比分析",
+    "蘋果 Google AI 競爭局勢與硬體軟體獲利"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "Optimus 機器人",
+      "先恭喜馬斯克確定拿到他的薪酬方案"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

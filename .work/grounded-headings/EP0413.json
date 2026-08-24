@@ -1,0 +1,34 @@
+{
+  "episode": 413,
+  "headings": [
+    "流浪漢題材新穎小孩開禮",
+    "低周轉率與工作生活壓力",
+    "PMIC MCU 價格落底復甦機會",
+    "2021 至 2024 年週期展望調整與緩步上升"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2471,
+    "eval_count": 576,
+    "total_duration": 18042962125
+  },
+  "original_headings": [
+    "中國流浪漢題材節目體驗與小孩開禮物畫面",
+    "工作生活壓力狀態與遊戲紓壓情緒波動",
+    "PMIC 與 MCU 價格合作落底時機與復甦機會",
+    "2021 至 2024 年週期展望調整與緩步上升"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "之前節目有聊到那個中國流浪漢",
+      "特別是自己的小孩跟狗在開禮物的時候"
+    ],
+    [
+      "我不知道是不是也在那個轉換的期間",
+      "知道工作生活壓力很大"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

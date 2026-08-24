@@ -1,0 +1,15 @@
+{
+  "episode": 129,
+  "headings": [
+    "台股攻新高時應轉而討論心理面因素",
+    "朋友研究結果跟單癌大 JG 說",
+    "重申市場上不存在穩賺不賠的標的或老師"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2106,
+    "eval_count": 577,
+    "total_duration": 38716143459
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

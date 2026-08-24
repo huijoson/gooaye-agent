@@ -1,0 +1,31 @@
+{
+  "episode": 458,
+  "headings": [
+    "三分籌碼被洗掉與急性耳聾診斷",
+    "隔日沖明星隊策略方向與聰明判斷",
+    "美國 IDM 模式 Apple 硬體均線敘事轉換",
+    "Marvell Google CPU 預期差異 Tesla 長期跑道"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 587,
+    "eval_count": 102,
+    "total_duration": 4849057958
+  },
+  "original_headings": [
+    "急性耳聾神經性失聰與壓力健康狀況",
+    "隔日沖明星隊策略方向與聰明判斷",
+    "美國 IDM 模式 Apple 硬體均線敘事轉換",
+    "Marvell Google CPU 預期差異 Tesla 長期跑道"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "我三分之一的籌碼在那一天就直接被洗掉",
+      "你這個應該是那種急性耳聾"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

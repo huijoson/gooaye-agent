@@ -1,0 +1,14 @@
+{
+  "episode": 172,
+  "headings": [
+    "疫情變種與共同生活新常態",
+    "SPAC 彩票特性與大盤指數差異分析",
+    "定期定額鈍化問題與指數投資建議"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2046,
+    "eval_count": 447,
+    "total_duration": 38138776750
+  }
+}

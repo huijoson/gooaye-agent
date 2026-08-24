@@ -1,0 +1,43 @@
+{
+  "episode": 350,
+  "headings": [
+    "Nvidia 重返三百保證金斷頭畢業",
+    "交通積非成是與民主國家執法",
+    "全力儲蓄憂鬱心態與痔瘡不敢治療",
+    "理論費用便宜但觀察股票無此問題",
+    "活在當下招待家人小台缺點可講"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 671,
+    "eval_count": 115,
+    "total_duration": 29233392417
+  },
+  "original_headings": [
+    "酷玩演唱會門票購買經驗與年齡感",
+    "MTIA 晶片的推出與降低 Nvidia 依賴策略",
+    "台灣交通現況與 Fed 主席滿意度民調",
+    "Tesla SiC 降用比例與廣告曝光效果分析",
+    "馬斯克個人曝光度高於 Tesla 廣告加成"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "我本來就鎖定一萬多塊",
+      "真的是年紀到了"
+    ],
+    [
+      "別人可以做一樣算力就可以取代他",
+      "Meta 在禮拜四"
+    ],
+    [
+      "台灣交通是一個很積非成是",
+      "在蓋洛普的最新一個民調上面"
+    ],
+    [
+      "他講說他要降用 75% 的 SiC",
+      "本來馬斯克自己本身的曝光度"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

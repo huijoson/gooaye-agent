@@ -1,0 +1,28 @@
+{
+  "episode": 174,
+  "headings": [
+    "主力作手比例高與代操圈子現況",
+    "Ray-Ban Stories 資料庫與 Facebook 賺錢",
+    "小韭菜心態調整與本益比對應觀念"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2046,
+    "eval_count": 447,
+    "total_duration": 38138776750
+  },
+  "original_headings": [
+    "主力作手比例高與代操圈子現況",
+    "Ray-Ban Stories 產品蒐集資料庫策略",
+    "小韭菜心態調整與本益比對應觀念"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "增進他們的資料庫",
+      "順便蒐集資料"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

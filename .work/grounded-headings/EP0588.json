@@ -1,0 +1,14 @@
+{
+  "episode": 588,
+  "headings": [
+    "家長比較心態調整與專注自身發展",
+    "軍備競賽弱肉強食與避免參與小朋友比較",
+    "儲蓄股指數錢持續流出轉向個股方向"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2257,
+    "eval_count": 536,
+    "total_duration": 50167193750
+  }
+}

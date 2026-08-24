@@ -1,0 +1,31 @@
+{
+  "episode": 110,
+  "headings": [
+    "GameStop 三百多塊完成嘎空與 Gamma Squeeze",
+    "避免一頭熱犧牲與缺乏交易紀律",
+    "Ryan Cohen 資金龐大具備機構級財力參與",
+    "券資比逾 100% 與 GME 高額借券費"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2390,
+    "eval_count": 531,
+    "total_duration": 45538475541
+  },
+  "original_headings": [
+    "GameStop股價飆升伴隨高風向的嘎空過程",
+    "投資市場應保持理性避免一頭熱當烈士",
+    "Ryan Cohen 資金龐大具備機構級財力參與",
+    "熱門放空標的借券費用高昂因券資比過百"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "比較像是投資相關的事件上面",
+      "你要改變這一點"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

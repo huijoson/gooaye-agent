@@ -1,0 +1,28 @@
+{
+  "episode": 517,
+  "headings": [
+    "美股史無前例創新高台股卻相對疲軟",
+    "晶片貿易戰雙體系成熟產能開拓困境",
+    "槓桿 ETF 月經題與熔斷風險討論"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2436,
+    "eval_count": 488,
+    "total_duration": 40234128750
+  },
+  "original_headings": [
+    "2024 年美股創新高與台股疲軟落差",
+    "晶片貿易戰雙體系成熟產能開拓困境",
+    "槓桿 ETF 月經題與熔斷風險討論"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "2024 年的美股基本上算是無敵",
+      "在過去幾個月是相對疲軟"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

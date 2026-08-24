@@ -1,0 +1,31 @@
+{
+  "episode": 46,
+  "headings": [
+    "新手風險控管不足與翻船案例",
+    "廣明光電敗訴賠款超過公司價值",
+    "避免玩自己看不懂或無法扛風險產品",
+    "16000 美金負 70 幾萬股算"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1690,
+    "eval_count": 496,
+    "total_duration": 33594910084
+  },
+  "original_headings": [
+    "老手與新手風險控管能力差距案例",
+    "廣明光電敗訴賠款超過公司價值",
+    "避免玩自己看不懂或無法扛風險產品",
+    "16000 美金投資未實現損益負七十幾萬"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "在於說普遍沒有風險控管的能力",
+      "說你沒有注意風險這一塊"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

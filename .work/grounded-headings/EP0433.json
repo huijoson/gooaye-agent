@@ -1,0 +1,15 @@
+{
+  "episode": 433,
+  "headings": [
+    "初代變形金剛西亞李畢福羅馬競技場維納斯神廟",
+    "低基期產業電動車與槓桿比率心理準備",
+    "Marvell 財報 ASIC 觀點上修軌道觀察"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2592,
+    "eval_count": 540,
+    "total_duration": 45088379708
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

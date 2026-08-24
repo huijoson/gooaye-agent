@@ -1,0 +1,15 @@
+{
+  "episode": 459,
+  "headings": [
+    "黃仁勳狂熱布道台大體育館",
+    "短線熱度高潮點保全獲利安全出場與 AI 真實性",
+    "台灣供應鏈老闆綁樁曝光下游廠商發表機會"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2495,
+    "eval_count": 649,
+    "total_duration": 38073306083
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

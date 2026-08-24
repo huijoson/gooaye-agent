@@ -1,0 +1,16 @@
+{
+  "episode": 43,
+  "headings": [
+    "韓國瑜退休金與中天合一驚人數字",
+    "所得區間 200 萬以上人群養社會與振興方案看法",
+    "台灣稻草人現象與仇富趨勢邁進",
+    "主動性投資選股賭產業進階做法與稅金領取"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1773,
+    "eval_count": 533,
+    "total_duration": 37154962041
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

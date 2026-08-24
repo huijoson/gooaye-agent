@@ -1,0 +1,34 @@
+{
+  "episode": 427,
+  "headings": [
+    "日本歸來觀察大谷翔平廣告與人潮避開策略",
+    "Vision Pro 推升 Quest 銷量與前期消費者扛風險買入機會",
+    "消費者等待門檻 VR 裝置成熟",
+    "財報前加碼 NVIDIA 建議買近月"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2300,
+    "eval_count": 691,
+    "total_duration": 24281188125
+  },
+  "original_headings": [
+    "日本歸來觀察大谷翔平廣告與人潮避開策略",
+    "Vision Pro 推升 Quest 銷量與前期消費者扛風險買入機會",
+    "電動車未成熟先買與 NVIDIA 財報前加碼近月建議",
+    "台積電解套配息考量與 Sora 驅動儲存伺服器傳輸需求"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "大家都開始大量採用",
+      "VR 裝置還沒有很成熟先買的人"
+    ],
+    [
+      "不知道 NVIDIA 會怎麼樣",
+      "有些人會選擇買遠月比較方便"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

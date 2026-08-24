@@ -1,0 +1,14 @@
+{
+  "episode": 152,
+  "headings": [
+    "紓困貸款炒股現象與個人利益無關觀察",
+    "假消息鎖漲停出掉籌碼與市場寵兒追捧故事",
+    "動能投資純度不足與股價回歸基本面主從關係"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2166,
+    "eval_count": 453,
+    "total_duration": 39451421000
+  }
+}

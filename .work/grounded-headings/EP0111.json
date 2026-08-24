@@ -1,0 +1,31 @@
+{
+  "episode": 111,
+  "headings": [
+    "網路小說家討厭 Clubhouse 收會員機制",
+    "Clubhouse 是否與聲網合作目前仍屬猜測",
+    "資金成本壓力下減碼與台股新春紅包行情"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2390,
+    "eval_count": 531,
+    "total_duration": 45538475541
+  },
+  "original_headings": [
+    "台灣網路小說家眾多討厭 App 收會員機制",
+    "Clubhouse 是否與聲網合作目前仍屬猜測",
+    "槓桿部位或需資金成本壓力者建議減碼"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "我也看到很多台灣的一些網路小說家",
+      "比方說藉由一個團體的折扣"
+    ],
+    [],
+    [
+      "或者說一些比方說有資金成本壓力的東西",
+      "台股是真的有所謂的新春紅包行情的"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

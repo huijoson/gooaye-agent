@@ -1,0 +1,14 @@
+{
+  "episode": 264,
+  "headings": [
+    "短線部位撤出後生活品質顯著改善",
+    "美商居家辦公與社區游泳池熱身體驗",
+    "高股息債券 ETF 賣出與定期定額調整"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1263,
+    "eval_count": 256,
+    "total_duration": 18793894541
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "episode": 564,
+  "headings": [
+    "十年印象最佳生日特洛伊木馬氣球組合",
+    "馬斯克表處理引來報復 獨立運作種下引信",
+    "CPO 用到更多光學 Broadcom ASIC 必然發展"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2140,
+    "eval_count": 519,
+    "total_duration": 35927192667
+  },
+  "original_headings": [
+    "馬斯克對川普指控判斷錯誤恐引發報復風險",
+    "客戶需求激增促使 CPO 光學元件用量大幅增加",
+    "Broadcom 強調 ASIC 發展必然性與銅纜應用轉變"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "晚上已經被嚇到兩三次了",
+      "朋友也幫我準備一個驚喜"
+    ],
+    [
+      "我反而覺得馬斯克他做了一些錯誤的判斷",
+      "馬斯克要去跟各個部門去做一個協作"
+    ],
+    [
+      "等到 customer 的速度變大",
+      "反而在 Broadcom 這邊"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,15 @@
+{
+  "episode": 599,
+  "headings": [
+    "注射藥物使 LDL 膽固醇降至出生以來最低點",
+    "AMD OpenAI 交付六 GW 存疑點",
+    "區塊鏈炒風高而 AI 導入具備真實產業循環潛力"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2385,
+    "eval_count": 579,
+    "total_duration": 34411055250
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

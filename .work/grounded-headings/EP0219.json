@@ -1,0 +1,31 @@
+{
+  "episode": 219,
+  "headings": [
+    "醫院隔離狀況未明恐生紛擾",
+    "索羅斯 QQQ 減碼 3.56 億 940 萬 現金為王",
+    "David Einhorn 放空特斯拉與消費品能源題材"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2004,
+    "eval_count": 439,
+    "total_duration": 30488683250
+  },
+  "original_headings": [
+    "隔離期間未告知醫院安排房間細節",
+    "索羅斯高點減碼 QQQ 閃過跌幅",
+    "通膨環境下消費能源醫療保險受寵"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "索羅斯在這次的操作是先把 QQQ",
+      "大家都要 hold 住"
+    ],
+    [
+      "David Einhorn",
+      "或是說什麼醫療保險公司"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

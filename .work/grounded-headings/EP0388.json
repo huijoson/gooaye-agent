@@ -1,0 +1,28 @@
+{
+  "episode": 388,
+  "headings": [
+    "台灣住宿價格高昂讓遊客驚呼太貴",
+    "台股兩成資金小型股配置與 Amazon Anthropic",
+    "ETF 產品設計精準引發狂潮變永動機"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2041,
+    "eval_count": 499,
+    "total_duration": 40181952625
+  },
+  "original_headings": [
+    "台灣住宿價格高昂讓遊客驚呼太貴",
+    "台股小型股配置策略與 Amazon 投資 Anthropic 新聞",
+    "ETF 產品設計精準引發狂潮變永動機"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "兩成資金的小型股的配置",
+      "on 跑去投 Anthropic"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

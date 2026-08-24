@@ -1,0 +1,31 @@
+{
+  "episode": 396,
+  "headings": [
+    "兩歲多記憶密碼與拆解電腦嘗試",
+    "父母過去拆解電腦與現在懶揭穿孩子的共鳴",
+    "面對兒子不理人需耐心",
+    "等比例 Google 單貢獻大於 Flex Celestica"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2031,
+    "eval_count": 538,
+    "total_duration": 19923016625
+  },
+  "original_headings": [
+    "兩歲孩童自行破解 iPad 密碼的真實經驗",
+    "父母過去拆解電腦與現在懶揭穿孩子的共鳴",
+    "面對兒子不理人特質的家庭教育心理準備",
+    "Google 單佔比下 Celestica 與 Flex 在台股貢獻比較"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "他自己把那個 iPad 解開",
+      "小時候我就會去拆解我們家的電腦密碼"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

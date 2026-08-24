@@ -1,0 +1,14 @@
+{
+  "episode": 288,
+  "headings": [
+    "台積電明年可能衰退與第三季法說分析",
+    "聯準會專業預測失誤與全球危機變數",
+    "借錢買債券槓桿操作度過寒冬"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1749,
+    "eval_count": 396,
+    "total_duration": 37134517917
+  }
+}

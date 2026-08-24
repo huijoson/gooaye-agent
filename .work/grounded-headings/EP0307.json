@@ -1,0 +1,34 @@
+{
+  "episode": 307,
+  "headings": [
+    "Paul Volcker 暴力升息與永豐雲豹榮幸之旅",
+    "飯局出現 Impostor Syndrome 及持續投資至離場",
+    "Howard Marks 備忘錄 Sea Change 垃圾債私募股權",
+    "日本指數投資失敗案例與微軟跌幅三成合理"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2069,
+    "eval_count": 499,
+    "total_duration": 36961581917
+  },
+  "original_headings": [
+    "飯局冒牌者症候群與個性選擇差異",
+    "Howard Marks 最新備忘錄 Sea Change 投資觀念轉變",
+    "Paul Volcker 暴力升息啟動四十年的降息循環",
+    "日本指數投資失敗案例人生就像一場夢"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "冒牌者症候群",
+      "他的選擇跟我選擇不一樣"
+    ],
+    [
+      "家聊一下 Howard Mark",
+      "說投資人的想法也改變了"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

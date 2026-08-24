@@ -1,0 +1,28 @@
+{
+  "episode": 667,
+  "headings": [
+    "好吃不好喝樂花品酒會",
+    "開源模型追趕閉鎖巨頭半年差距與 Snowflake 觀點",
+    "NVIDIA 與 Marvell Computex 演講光通訊主軸強調"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2608,
+    "eval_count": 566,
+    "total_duration": 45127071375
+  },
+  "original_headings": [
+    "樂花品酒會邀請與口腹滿足感謝分享",
+    "開源模型追趕閉鎖巨頭半年差距與 Snowflake 觀點",
+    "NVIDIA 與 Marvell Computex 演講光通訊主軸強調"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "好吃不好吃好喝不好喝",
+      "問我說先生要不要來參加品酒會"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

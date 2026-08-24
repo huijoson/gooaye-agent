@@ -1,0 +1,15 @@
+{
+  "episode": 325,
+  "headings": [
+    "散戶湧入星宇航空與推論驗證",
+    "台積電權證成交價異常與垂直整合製造業拆解趨勢",
+    "被動投資穩定性與主動投資爆發機會的對比"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1893,
+    "eval_count": 507,
+    "total_duration": 29236262333
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

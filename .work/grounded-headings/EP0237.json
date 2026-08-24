@@ -1,0 +1,15 @@
+{
+  "episode": 237,
+  "headings": [
+    "BNPL 無限擴張信用醞釀新風暴",
+    "貶值九成一獲利增加三成毛利率",
+    "熊市氛圍下見招拆招勝過預測"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2251,
+    "eval_count": 476,
+    "total_duration": 36797508000
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,15 @@
+{
+  "episode": 373,
+  "headings": [
+    "父親節禮物陪伴感與實際價值比較",
+    "AI Server 油國新聞一月後才爆",
+    "Ominiva 強勢介入浸沒式液冷方案重燃熱潮"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2029,
+    "eval_count": 506,
+    "total_duration": 38976396958
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

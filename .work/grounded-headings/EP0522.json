@@ -1,0 +1,28 @@
+{
+  "episode": 522,
+  "headings": [
+    "目睹災難與人性光輝的複雜心情",
+    "科技巨頭對多元價值包裝的反思",
+    "美股進入磨人狀態隔日沖催化股價"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2398,
+    "eval_count": 436,
+    "total_duration": 37431481542
+  },
+  "original_headings": [
+    "目睹災難與人性光輝的複雜心情",
+    "科技巨頭對多元價值包裝的反思",
+    "隔日沖催化股價的投機現象"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "非常的磨人、非常痛苦",
+      "他們雖然他們的做法非常的投機"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

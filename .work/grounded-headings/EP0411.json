@@ -1,0 +1,15 @@
+{
+  "episode": 411,
+  "headings": [
+    "韓國寒流體溫體驗與當地民眾勇氣觀察",
+    "多方消息來源驗證策略與第一手資訊獲取",
+    "手無寸鐵股噴與 Arm 開發模擬"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2471,
+    "eval_count": 576,
+    "total_duration": 18042962125
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

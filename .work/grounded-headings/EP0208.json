@@ -1,0 +1,16 @@
+{
+  "episode": 208,
+  "headings": [
+    "義大利西班牙抗議自由被剝奪狀況相似",
+    "台灣市場疫情耐受度低恐慌反應拉抬標的",
+    "房貸槓桿升息循環繳款增加與 Google 雲端硬碟潘洛斯三角構造",
+    "成長股估值便宜 市場偏好高成長"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1870,
+    "eval_count": 439,
+    "total_duration": 43395510416
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

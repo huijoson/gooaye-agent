@@ -1,0 +1,14 @@
+{
+  "episode": 345,
+  "headings": [
+    "YouTube 留言回覆與加碼邏輯說明",
+    "指數投資汰弱留強與基本面看多理由",
+    "分享成功失敗記錄供大眾檢驗"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2179,
+    "eval_count": 447,
+    "total_duration": 37682343042
+  }
+}

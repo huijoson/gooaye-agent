@@ -1,0 +1,16 @@
+{
+  "episode": 589,
+  "headings": [
+    "忽略他人感受與難以如實反應觀點",
+    "下一波持股輪動展開與槓桿動作快",
+    "AI 伺服器軍工題材投資機會",
+    "良性腫瘤結果與停損拿節目講"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2406,
+    "eval_count": 486,
+    "total_duration": 47884209292
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

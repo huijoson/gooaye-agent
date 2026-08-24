@@ -1,0 +1,34 @@
+{
+  "episode": 28,
+  "headings": [
+    "中國首季 GDP 為負 6.8% 且零售銷售縮減",
+    "選擇性收聽中國爛作弊論調不可全信",
+    "無節操印鈔造成道德風險",
+    "00672 嚴重溢價長期持有不利"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1930,
+    "eval_count": 420,
+    "total_duration": 43549495250
+  },
+  "original_headings": [
+    "中國 GDP 大幅衰退至負六點八",
+    "選擇性收聽經濟數據現象",
+    "無節操印鈔造成道德風險",
+    "石油 ETF 長期持有扣寫淨值"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "你就變成你是選擇性在收聽",
+      "你不能說我看到壞的"
+    ],
+    [],
+    [
+      "它有非常嚴重的溢價問題",
+      "跟很多這種追蹤石油的 ETF"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

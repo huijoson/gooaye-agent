@@ -1,0 +1,15 @@
+{
+  "episode": 574,
+  "headings": [
+    "高端圈層日常互動與長輩化過程",
+    "台系廠商財報反漲與匯損消化",
+    "AWS IRHX 伺服器推出與供應鏈機會",
+    "AI 模型通用性與領域知識差異"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1911,
+    "eval_count": 436,
+    "total_duration": 28841907083
+  }
+}

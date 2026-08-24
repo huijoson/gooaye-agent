@@ -1,0 +1,15 @@
+{
+  "episode": 223,
+  "headings": [
+    "俄國股匯雙殺與台灣外資賣出規模對比",
+    "戰爭能源與供應鏈通膨壓力",
+    "車用通訊庫存成長性殖利率支持"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2216,
+    "eval_count": 537,
+    "total_duration": 26513697667
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

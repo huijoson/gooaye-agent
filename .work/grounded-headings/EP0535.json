@@ -1,0 +1,37 @@
+{
+  "episode": 535,
+  "headings": [
+    "Stargate 算力規劃與生病人生低點",
+    "微軟延遲數據中心 OpenAI 緊密合作",
+    "GB200 怪物架構與 144、288 規模",
+    "聽眾順利解決心理打氣生技股 NDA 無人要"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2419,
+    "eval_count": 664,
+    "total_duration": 36152816167
+  },
+  "original_headings": [
+    "OpenAI 算力轉向 Stargate 與微軟計畫延遲取消",
+    "HGX 至 GB200 架構升級與 144、288 怪物結構想像",
+    "聽眾生技股 NDA 案例解謎與技術非問題核心觀點",
+    "聽眾解決問題打氣與生技股 NDA 條件超好卻無人要用的反思"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "的算力是由 Stargate 去",
+      "我以為那時候是我人生的低點"
+    ],
+    [
+      "不一定認為這件事情該對市場有影響",
+      "導致這樣的一個規劃的改變"
+    ],
+    [
+      "HGX 到 GB200 就越來越高",
+      "144、288 這個架構"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

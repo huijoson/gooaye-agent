@@ -1,0 +1,31 @@
+{
+  "episode": 138,
+  "headings": [
+    "去年三倍五倍績效行情非個人厲害",
+    "期貨融資選擇權皆須承擔對應風險",
+    "槓桿破壞力極端可能導致負債需還款",
+    "金錢老婆不管我也不會管她、最後面選擇你自己去選適合自己的方法"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2153,
+    "eval_count": 501,
+    "total_duration": 27779694250
+  },
+  "original_headings": [
+    "去年三倍五倍績效行情非個人厲害",
+    "期貨融資選擇權皆須承擔對應風險",
+    "槓桿破壞力極端可能導致負債需還款",
+    "選股方法應依自身狀況自行決定"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [],
+    [
+      "金錢我老婆不管我",
+      "你就選一個你適合自己的方法就好"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

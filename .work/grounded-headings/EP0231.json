@@ -1,0 +1,37 @@
+{
+  "episode": 231,
+  "headings": [
+    "奧咖依賴他人進場賠錢與 ID 取用差異",
+    "新手恐懼曲線從無知到變小心的信心變化",
+    "金管會主委曾銘宗外資賣空坑殺台灣人",
+    "穩懋聯茂 Apple 射頻與旺宏華邦電利差"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2187,
+    "eval_count": 527,
+    "total_duration": 30790045208
+  },
+  "original_headings": [
+    "外資 Sell-side Buy-side 分界與曾銘宗常識質疑",
+    "新手恐懼曲線從無知到變小心的信心變化",
+    "台股經典三本柱散戶必買必套標的穩懋聯茂",
+    "記憶體 NAND 報價利多旺宏華邦電潛在機會"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "所有的進場跟下車都要問別人",
+      "我發現好像很多人會取一樣的 ID"
+    ],
+    [],
+    [
+      "看你當過金管會主委",
+      "連這個基本的常識都沒有"
+    ],
+    [
+      "想到——我相信應該也很多人想問這一支",
+      "NAND 的報價上會有一個利多的產生"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

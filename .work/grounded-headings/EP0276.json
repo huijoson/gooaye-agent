@@ -1,0 +1,16 @@
+{
+  "episode": 276,
+  "headings": [
+    "爭議人物節目與晶片封鎖",
+    "台積電與阿里可能受害",
+    "半導體貿易戰 2.0 封殺華為",
+    "受害股變受惠股與匯率優勢抵消熊年績效"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1534,
+    "eval_count": 221,
+    "total_duration": 21301622084
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

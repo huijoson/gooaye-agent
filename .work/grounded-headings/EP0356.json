@@ -1,0 +1,31 @@
+{
+  "episode": 356,
+  "headings": [
+    "企業演講透過聽眾提問了解真實想法",
+    "營收高但毛利低與 EPS 貢獻小的警訊",
+    "Vision Pro 開箱 YouTuber 與 Joeman 使用",
+    "癌大金錢觀與小萬太太祝福"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2085,
+    "eval_count": 534,
+    "total_duration": 38477122792
+  },
+  "original_headings": [
+    "企業演講透過聽眾提問了解真實想法",
+    "營收高但毛利低與 EPS 貢獻小的警訊",
+    "開箱體驗顯示蘋果 Vision Pro 潛力巨大",
+    "培養孩子正確金錢觀與感謝癌大分享"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "箱蘋果的 Vision Pro",
+      "到蘋果的 Vision Pro"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

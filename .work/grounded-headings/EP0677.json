@@ -1,0 +1,31 @@
+{
+  "episode": 677,
+  "headings": [
+    "三十四歲反思四代同堂與高風險槓上加槓",
+    "擊不倒自己先穩住信心慢慢來比較快",
+    "Semi-Analysis 下修短期預期與閱聽人恐慌賣出",
+    "MLCC 功率元件與季線修整差異"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 3348,
+    "eval_count": 579,
+    "total_duration": 32193515084
+  },
+  "original_headings": [
+    "年輕人高風險累積財富被掃下去超保守",
+    "擊不倒自己先穩住信心慢慢來比較快",
+    "Semi-Analysis 修正短期預期長線不變看法",
+    "功率元件差異多被動元件 MLCC PMIC 知"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "認真去看Semi-Analysi",
+      "你要說是Semi-Analysi"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

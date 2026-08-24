@@ -1,0 +1,31 @@
+{
+  "episode": 407,
+  "headings": [
+    "GTA6 推出時間延遲與生活型態現實考量",
+    "中國企業 Data Center 移往新加坡",
+    "AI 稅劇本下降趨勢與 H200 晶片封殺底線",
+    "傳統伺服器支出排擠隱憂與基礎建設需求"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2471,
+    "eval_count": 576,
+    "total_duration": 18042962125
+  },
+  "original_headings": [
+    "GTA6 推出時間延遲與生活型態現實考量",
+    "中國企業 Data Center 移轉新加坡與 AI 伺服器投入",
+    "AI 稅劇本下降趨勢與 H200 晶片封殺底線",
+    "傳統伺服器支出排擠隱憂與基礎建設需求"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "把一些 Data Center",
+      "很多關於 AI 伺服器、人工智慧"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

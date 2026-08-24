@@ -1,0 +1,15 @@
+{
+  "episode": 385,
+  "headings": [
+    "命運決定者而非過度依賴命理改運祭改",
+    "馬斯克命盤事件同業反應",
+    "700 萬人損益兩平與 6.8 million 用戶推演"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1986,
+    "eval_count": 380,
+    "total_duration": 41248341250
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

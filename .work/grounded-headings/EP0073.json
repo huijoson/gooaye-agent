@@ -1,0 +1,15 @@
+{
+  "episode": 73,
+  "headings": [
+    "員工罷工威脅與 Apple Amazon Podcast 壓制",
+    "印度 TikTok 國安危機與政治角力",
+    "政治因素影響商業本質分析"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1801,
+    "eval_count": 457,
+    "total_duration": 33956283416
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,28 @@
+{
+  "episode": 566,
+  "headings": [
+    "患者僅存一顆代償性較大的腎臟狀況確認",
+    "台北私廚固定釋出訂位與半導體電子業好壞",
+    "NVIDIA 統一算力平台消除用戶選擇差異化"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2038,
+    "eval_count": 470,
+    "total_duration": 29632058625
+  },
+  "original_headings": [
+    "患者僅存一顆代償性較大的腎臟狀況確認",
+    "實體經濟疲軟與半導體電子業表現差異觀察",
+    "NVIDIA 統一算力平台消除用戶選擇差異化"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "當這些餐廳是釋出額度的時候",
+      "知道說半導體電子業"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

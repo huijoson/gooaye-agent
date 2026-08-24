@@ -1,0 +1,15 @@
+{
+  "episode": 42,
+  "headings": [
+    "股癌吉安規避與 00672L 理論參與",
+    "感性怎麼認為市場裡面就是絕對理性",
+    "巴菲特沒拿到優惠特別股清倉航空股"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1773,
+    "eval_count": 533,
+    "total_duration": 37154962041
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

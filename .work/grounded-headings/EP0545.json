@@ -1,0 +1,28 @@
+{
+  "episode": 545,
+  "headings": [
+    "產檢發現少腎囊腫引發心理壓力與面對生命不如意",
+    "符合想像袋鼠市橫盤區間很大",
+    "台股資金卡住 10%、20% 後對硬體市場暫時不碰的決定"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2419,
+    "eval_count": 664,
+    "total_duration": 36152816167
+  },
+  "original_headings": [
+    "產檢發現少腎囊腫引發心理壓力與面對生命不如意",
+    "袋鼠市橫盤整理預期與 AI 硬體作為防守性標的觀點",
+    "台股資金卡住 10%、20% 後對硬體市場暫時不碰的決定"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "變成是某一種防守性的標的",
+      "人是覺得袋鼠市這個說法是還蠻符合"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

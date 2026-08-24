@@ -1,0 +1,28 @@
+{
+  "episode": 377,
+  "headings": [
+    "番茄醬義大利麵侮辱與軍武競賽養育成本",
+    "Meta SeamlessM4T 與特斯拉自駕算力",
+    "國產神劇《山道猴子的一生》劇情與心境變化"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2085,
+    "eval_count": 534,
+    "total_duration": 38477122792
+  },
+  "original_headings": [
+    "在義大利麵加番茄醬被視為對義大利人的侮辱",
+    "Meta 推出 SeamlessM4T 語言模型應用於自駕",
+    "國產神劇《山道猴子的一生》劇情與心境變化"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "原來在義大利麵上面加番茄醬",
+      "他很不爽你在義大利麵上面加番茄醬"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

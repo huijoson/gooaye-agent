@@ -1,0 +1,15 @@
+{
+  "episode": 419,
+  "headings": [
+    "岳母前男友離婚判決書引發婚前協議盛行思考",
+    "電動車預期高但市場滲透與政治經濟影響股市",
+    "特斯拉 Hertz 租車出售事件被市場錯估",
+    "AI 時代軟硬整合平台執行重要性"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2096,
+    "eval_count": 474,
+    "total_duration": 41489726000
+  }
+}

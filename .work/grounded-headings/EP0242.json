@@ -1,0 +1,14 @@
+{
+  "episode": 242,
+  "headings": [
+    "Applied Materials ASML 員工問股票認購",
+    "伺服器競爭雙倍成長市占率擴大",
+    "全球資金縮手流向變化導致股價便宜"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2251,
+    "eval_count": 476,
+    "total_duration": 36797508000
+  }
+}

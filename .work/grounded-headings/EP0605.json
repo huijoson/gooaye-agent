@@ -1,0 +1,31 @@
+{
+  "episode": 605,
+  "headings": [
+    "綠洲演唱會啤酒乾杯與全家日本旅行超預期",
+    "Skyworks 併購 Qorvo 與特定供應鏈機會",
+    "艾爾登法環骨灰難度調整與裁掉後發展性"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2242,
+    "eval_count": 509,
+    "total_duration": 39139476458
+  },
+  "original_headings": [
+    "分享修麗可 A.G.E. 緊緻霜使用體驗",
+    "Skyworks Qorvo 合併事件引發供應鏈尋找",
+    "推薦魂系遊戲艾爾登法環並建議使用骨灰"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "個 Skyworks 跟 Qor",
+      "專門去找一些特定的供應鏈來做"
+    ],
+    [
+      "也蠻推薦,艾爾登法環,不要給自己",
+      "怎麼說,有些事情就會發生,"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

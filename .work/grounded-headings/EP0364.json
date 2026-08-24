@@ -1,0 +1,31 @@
+{
+  "episode": 364,
+  "headings": [
+    "拳上拳擊賽與 Toyz 假藥問題",
+    "Threads 娛樂平台取代 IG Facebook",
+    "內心訓練強勁是防止 PUA 的有效方式"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2085,
+    "eval_count": 534,
+    "total_duration": 38477122792
+  },
+  "original_headings": [
+    "拳擊賽《拳上》成為例行賽的期待",
+    "Toyz 平台定位娛樂並取代部分 IG 功能",
+    "內心訓練強勁是防止 PUA 的有效方式"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "去看一個拳擊賽《拳上》",
+      "Toyz 是打電動"
+    ],
+    [
+      "他是偏娛樂向的文字平台",
+      "可以有效的取代部分 IG 的功能"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

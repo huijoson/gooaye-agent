@@ -1,0 +1,15 @@
+{
+  "episode": 91,
+  "headings": [
+    "股東權益照顧與控制權風險評估注意事項",
+    "Ark Invest 換發行商引發的價值質疑爭議",
+    "特斯拉電動車風潮中國三傻分羹"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1542,
+    "eval_count": 344,
+    "total_duration": 35110873792
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

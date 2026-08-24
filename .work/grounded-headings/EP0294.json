@@ -1,0 +1,16 @@
+{
+  "episode": 294,
+  "headings": [
+    "科技公司裁員權限被拔代表被解僱",
+    "數位轉型新篇與 RFID tag chip 應用廣",
+    "短空長多 CAPEX 放大 LCRX 科林受影響",
+    "單一金融股風險高建議做基礎分散配置"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2455,
+    "eval_count": 550,
+    "total_duration": 44350749625
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

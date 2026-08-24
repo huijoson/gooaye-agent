@@ -1,0 +1,28 @@
+{
+  "episode": 323,
+  "headings": [
+    "投資專頁分享操作與不同專長間的互相體諒",
+    "覺醒青年 SJW 取消文化現象在台灣可能越演越烈",
+    "台積電基本面不受巴菲特持股變動影響最大漲幅"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1893,
+    "eval_count": 507,
+    "total_duration": 29236262333
+  },
+  "original_headings": [
+    "開設投資專頁分享操作盤勢期許助人成長",
+    "覺醒青年 SJW 取消文化現象在台灣可能越演越烈",
+    "台積電基本面不受巴菲特持股變動影響最大漲幅"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "我也分享自己的操作跟盤勢的看法",
+      "有時候互相體諒"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_repaired_from_both_excerpts"
+}

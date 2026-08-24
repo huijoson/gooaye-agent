@@ -1,0 +1,14 @@
+{
+  "episode": 188,
+  "headings": [
+    "Meta ETF 搶走 Ticker 與臉書改名正式出爐",
+    "定期定額策略運用與左側交易風控觀念",
+    "SPAC 公司高報酬與下檔風險巨大特性"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2289,
+    "eval_count": 504,
+    "total_duration": 37521457500
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "episode": 252,
+  "headings": [
+    "聯發科期貨除權息開心與保證金直接加入權益數",
+    "延遲享受風險控制與低階錯誤提醒",
+    "Meta 供應鏈朋友砍掉五件產品開發",
+    "納斯達克兩日下跌洗掉盤整平台及科技股盤勢"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2305,
+    "eval_count": 511,
+    "total_duration": 35823461625
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

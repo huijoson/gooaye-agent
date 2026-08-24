@@ -1,0 +1,15 @@
+{
+  "episode": 620,
+  "headings": [
+    "曲解意圖製造育兒焦慮與同溫層仇恨",
+    "記憶體光通龍頭維持強勢未見回落",
+    "Lemonade 數據分群模式挑戰傳統保險",
+    "大型保險企業轉型軟體思維面臨阻力"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 649,
+    "eval_count": 98,
+    "total_duration": 9978487375
+  }
+}

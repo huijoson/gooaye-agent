@@ -1,0 +1,14 @@
+{
+  "episode": 136,
+  "headings": [
+    "靈魂急轉彎動畫片生活執念與美好",
+    "彭博與經濟學人文章共同觀點總結",
+    "Intel 新平台帶動伺服器類股與高價門檻"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1912,
+    "eval_count": 448,
+    "total_duration": 40315104959
+  }
+}

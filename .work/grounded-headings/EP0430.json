@@ -1,0 +1,18 @@
+{
+  "episode": 430,
+  "headings": [
+    "回西班牙義大利拉長交易週期",
+    "報復性旅遊潮減緩口袋錢不夠",
+    "帶狗出國自行準備文件麻煩找代辦較輕鬆但有風險",
+    "Nvidia 產能良率切換訂單財報預期",
+    "AI GPU 運算機器防護木馬軟體",
+    "感情專一鬧鐘八點半四十五"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2373,
+    "eval_count": 724,
+    "total_duration": 47668087167
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

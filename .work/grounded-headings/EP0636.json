@@ -1,0 +1,16 @@
+{
+  "episode": 636,
+  "headings": [
+    "峇里島頂級住宿體驗與 Bulgari Villa",
+    "Palantir 派工程師串連資料的特殊模式",
+    "視訊報表軟體 AI 取代人力服務連結",
+    "結合股價觀察與基本面分析的重要性"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2015,
+    "eval_count": 522,
+    "total_duration": 44851466709
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

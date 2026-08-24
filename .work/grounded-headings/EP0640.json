@@ -1,0 +1,37 @@
+{
+  "episode": 640,
+  "headings": [
+    "尊重創作者意願與家庭育兒教育反思",
+    "Jack Dorsey 裁員四千 Block 縮編",
+    "AI ML 工程師年增四成與職缺結構變化",
+    "美國股市不確定性觀望與光通強勢",
+    "K 型分化高階 AI 車用供不應求消費級承壓"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 630,
+    "eval_count": 119,
+    "total_duration": 22331843000
+  },
+  "original_headings": [
+    "尊重創作者意願與家庭育兒教育反思",
+    "Square Block 裁員縮編與 Jack Dorsey 背景",
+    "AI ML 工程師年增四成與職缺結構變化",
+    "美國股市不確定性觀望與光通強勢",
+    "產業 K 型分化與日系大廠轉向高階"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "Jack Dorsey 的 Bl",
+      "依我對 Jack Dorsey"
+    ],
+    [],
+    [],
+    [
+      "體產業是 K 型分化——高階 A",
+      "判斷日系大廠後面有機會退出一些低"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

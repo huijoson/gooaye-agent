@@ -1,0 +1,34 @@
+{
+  "episode": 405,
+  "headings": [
+    "CSP 模型優化複製效果成本降低新加坡度假城市天氣",
+    "VIP 票值得購買並談工作狂人陪小朋友",
+    "搶產能趨勢與科技巨頭來台佈局",
+    "長期故事信念與短期表現驗證邏輯"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2494,
+    "eval_count": 550,
+    "total_duration": 39622486750
+  },
+  "original_headings": [
+    "模型優化複製效果與 CSP 意願分析",
+    "新加坡度假城市體驗與工作狂人陪玩心得",
+    "搶產能趨勢與科技巨頭來台佈局",
+    "長期故事信念與短期表現驗證邏輯"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "很多的 CSP 就有意願了",
+      "我真的覺得新加坡是一個完美的度假城市"
+    ],
+    [
+      "你買這個票應該就還蠻划算的",
+      "工作狂人"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

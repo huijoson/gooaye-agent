@@ -1,0 +1,31 @@
+{
+  "episode": 267,
+  "headings": [
+    "上博恩講當爸、股癌傳心法",
+    "高頻交易與低延遲交易搶先優勢",
+    "Pelosi 來台影響開國外證券戶很方便"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2093,
+    "eval_count": 484,
+    "total_duration": 29911792000
+  },
+  "original_headings": [
+    "上博恩 Podcast 分享投資心法觀念",
+    "高頻交易與低延遲交易搶先優勢",
+    "Nancy Pelosi 訪台影響與開國外證戶"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "先跑去上博恩的 Podcast",
+      "個優質的 Podcast"
+    ],
+    [],
+    [
+      "微聊一下 Nancy Pelos",
+      "你要知道開國外證券戶是很方便的"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

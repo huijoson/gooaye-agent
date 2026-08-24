@@ -1,0 +1,15 @@
+{
+  "episode": 506,
+  "headings": [
+    "大谷翔平傳奇球與被轟投手球衣",
+    "三人成虎威力驚人網路酷東西收穫豐富",
+    "專業投資人門檻低與 SMCI 出貨狀況"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2544,
+    "eval_count": 496,
+    "total_duration": 49427438667
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

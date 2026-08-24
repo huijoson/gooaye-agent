@@ -1,0 +1,15 @@
+{
+  "episode": 254,
+  "headings": [
+    "血崩臉著陸與需求破壞導致原物料下跌",
+    "先進成熟製程庫存調整與均值回歸",
+    "極度悲觀牛熊指標與投資本質回歸"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2150,
+    "eval_count": 484,
+    "total_duration": 26751321791
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

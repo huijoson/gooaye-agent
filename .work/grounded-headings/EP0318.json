@@ -1,0 +1,15 @@
+{
+  "episode": 318,
+  "headings": [
+    "Intel 變局機會與看漲看跌分析局限",
+    "節目閒聊碎嘴與過往爭議內容",
+    "追求和平並非人人皆能達成目標"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2403,
+    "eval_count": 466,
+    "total_duration": 52353145500
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

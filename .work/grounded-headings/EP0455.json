@@ -1,0 +1,14 @@
+{
+  "episode": 455,
+  "headings": [
+    "業界人際宮鬥壓力與共鳴",
+    "高通 AI PC 體驗與小畫家功能",
+    "2025 晶片大戰競爭對手展望"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2239,
+    "eval_count": 464,
+    "total_duration": 47724609583
+  }
+}

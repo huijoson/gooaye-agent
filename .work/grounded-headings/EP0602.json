@@ -1,0 +1,15 @@
+{
+  "episode": 602,
+  "headings": [
+    "HPC QoQ 為 0% 及毛利率跨越 60%",
+    "DRAM NAND報價持續上漲且特櫃記憶體品受關注",
+    "標準品供需失衡漲幅與 DDR3 DDR4 短中期缺貨現象"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2276,
+    "eval_count": 599,
+    "total_duration": 48069606917
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

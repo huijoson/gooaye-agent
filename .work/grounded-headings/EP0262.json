@@ -1,0 +1,14 @@
+{
+  "episode": 262,
+  "headings": [
+    "防疫政策繁文縟節與企業做作邏輯",
+    "岳母摩爾多瓦出身故事與 CP 值分析",
+    "散戶難以競爭專業投資人資訊優勢"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2373,
+    "eval_count": 488,
+    "total_duration": 36385121583
+  }
+}

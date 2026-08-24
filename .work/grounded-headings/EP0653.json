@@ -1,0 +1,31 @@
+{
+  "episode": 653,
+  "headings": [
+    "小朋友專注力不足與發哥 AI 資金投向",
+    "Zebrafish Humpfish 與 Marvell 合作",
+    "被動元件需求高潮可能不如 2017",
+    "緊湊盤寬鬆盤時間軸衡量差異"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2546,
+    "eval_count": 579,
+    "total_duration": 39204689125
+  },
+  "original_headings": [
+    "專注力跳躍行為 CP 值清酒紅酒",
+    "Zebrafish Humpfish V8 V9 代號",
+    "被動元件需求高潮可能不如 2017",
+    "緊湊盤寬鬆盤時間軸衡量差異"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "通——一個是 Zebrafish",
+      "總之昨天開始有很多的外媒大量報導"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

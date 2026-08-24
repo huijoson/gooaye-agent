@@ -1,0 +1,37 @@
+{
+  "episode": 200,
+  "headings": [
+    "華盛頓州增加七個百分比及 Build Back Better 稅制",
+    "RSU Stock Option 逃不掉 IRS 美國政府稅收",
+    "散戶操作衍生性金融品之風險警示",
+    "TQQQ QQQ 策略套利與期貨現貨價差十幾檔"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2322,
+    "eval_count": 494,
+    "total_duration": 30276641667
+  },
+  "original_headings": [
+    "華盛頓州稅改與微軟納德拉拋售股票",
+    "IRS 監管 RSU 與 Stock Option 繳稅機制",
+    "散戶操作衍生性金融品之風險警示",
+    "TQQQ QQQ 策略與台灣股票期貨介紹"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "華盛頓州在明年開始",
+      "說Build Back Better"
+    ],
+    [
+      "SU 還是拿 Stock Opt",
+      "RSU 跟 Stock Opt"
+    ],
+    [],
+    [
+      "跟大家介紹一下台灣的股票期貨",
+      "有些人當他發現期貨跟現貨的價差很大"
+    ]
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

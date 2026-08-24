@@ -1,0 +1,15 @@
+{
+  "episode": 436,
+  "headings": [
+    "台積電集團超旺帶動精材創意歷史新高",
+    "立法制裁訴求與基本面轉換後出場",
+    "比特幣信仰中心阿撒布魯小幣整鏈核心區塊鏈技術"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2373,
+    "eval_count": 724,
+    "total_duration": 47668087167
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

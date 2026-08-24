@@ -1,0 +1,18 @@
+{
+  "episode": 27,
+  "headings": [
+    "黃賭毒上癮栽跌與人類世界高獲利特性",
+    "遮眼不看地獄存在大麻開放台灣未來討論",
+    "抽卡賭博慾望與每單三千多元成本",
+    "Fabien Sayer 賣掉 MindGeek 26 億台幣可惜",
+    "巴菲特致股東信推薦反脆弱隨機騙局等書",
+    "不站政府對立面與福利熊反向操作"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2109,
+    "eval_count": 556,
+    "total_duration": 46699565375
+  },
+  "method": "natural_heading_with_manual_evidence_review"
+}

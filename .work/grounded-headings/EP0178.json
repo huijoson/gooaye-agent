@@ -1,0 +1,28 @@
+{
+  "episode": 178,
+  "headings": [
+    "文藝復興科技公司大獎章基金數學鬼才",
+    "台灣當沖與量化交易相似性",
+    "瑪利歐派對與薩爾達傳說電影高潮"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2313,
+    "eval_count": 429,
+    "total_duration": 39595784375
+  },
+  "original_headings": [
+    "文藝復興科技Jim Simons量化交易",
+    "台灣當沖與量化交易相似性",
+    "任天堂發表會電影最高潮部分"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "《薩爾達傳說 曠野之息》加擴充票",
+      "整個任天堂發表會裡面最高潮"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

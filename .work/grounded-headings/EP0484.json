@@ -1,0 +1,16 @@
+{
+  "episode": 484,
+  "headings": [
+    "美國資本市場短期動盪預期",
+    "新青安熱對房地產與股市資金影響",
+    "Supermicro ODM 地位與做空報告解析",
+    "Nvidia GPU 大缺貨下 EPS 表現分析",
+    "健康檢查發現與生命平安祝福"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2364,
+    "eval_count": 481,
+    "total_duration": 54589003208
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "episode": 416,
+  "headings": [
+    "Vision Pro 後續機會與 40 至 80 萬台出貨估計",
+    "Marvell AWS 資料中心晶片與消費端 ASIC 應用",
+    "特斯拉鬼煞卡住與 FSD 三年進步",
+    "三十億小鬼股條件與部位對沖"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2234,
+    "eval_count": 535,
+    "total_duration": 28934824000
+  },
+  "original_headings": [
+    "Vision Pro 出貨量猜測與 Marvell 晶片話題",
+    "消費端 ASIC 應用與特斯拉 FSD 比較",
+    "小鬼股市值條件與資金大起來對沖策略",
+    "Tesla 財報下跌與 Robotaxi 訂閱服務檢視"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "Vision Pro 的東西我們",
+      "Vision Pro 的出貨量"
+    ],
+    [
+      "討論 AWS 的資料中心晶片",
+      "在聊 ASIC 相關的時候"
+    ],
+    [
+      "你這東西是比較聰明沒錯",
+      "注意到左邊、右邊有加速的空間"
+    ],
+    [
+      "我現在手上小鬼股五支",
+      "你有卡一些小鬼股、你有卡一些個股期"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

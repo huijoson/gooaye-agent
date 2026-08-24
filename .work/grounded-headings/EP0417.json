@@ -1,0 +1,15 @@
+{
+  "episode": 417,
+  "headings": [
+    "年末感謝季免錢吃飯與下背痛成因",
+    "CES 發現 MSI AI 運算螢幕",
+    "疫情期間小型股 SaaS 估值暴跌"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2125,
+    "eval_count": 507,
+    "total_duration": 55285292583
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

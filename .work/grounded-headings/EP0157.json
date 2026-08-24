@@ -1,0 +1,31 @@
+{
+  "episode": 157,
+  "headings": [
+    "櫃買指數天量未攻大戶疑慮主動選股檢視標的",
+    "太空公司競爭與 Richard Branson 爵士成就",
+    "公司募資管道高點發生對後續影響有限",
+    "景氣循環股報價參考與新納入股票討論"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2154,
+    "eval_count": 524,
+    "total_duration": 38176114208
+  },
+  "original_headings": [
+    "櫃買指數歷史天量未持續進攻引發疑慮",
+    "太空公司競爭與 Richard Branson 爵士成就",
+    "公司募資管道高點發生對後續影響有限",
+    "景氣循環股報價參考與新納入股票討論"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "櫃買指數的這個歷史天量跑出來了",
+      "稍微看一下你手上標的變化"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,15 @@
+{
+  "episode": 20,
+  "headings": [
+    "被動投資財富自由懶人投資皆是假象",
+    "ETF 風險分散功能與一籃子股票挑選",
+    "投資無腦買股票與隨時皆可賣掉"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1774,
+    "eval_count": 493,
+    "total_duration": 37996715250
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

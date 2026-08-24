@@ -1,0 +1,31 @@
+{
+  "episode": 162,
+  "headings": [
+    "裘莉主演《陌生的孩子》Casey Affleck 演《失蹤人口》",
+    "中美晶集團表現優異且聯電集團亦顯現轉強跡象",
+    "Amazon AWS 受惠於產業趨勢而特斯拉蘋果無問題",
+    "賣方策略 Sell Put 適合低接股票且選擇權交易量不錯時"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1762,
+    "eval_count": 585,
+    "total_duration": 40601704500
+  },
+  "original_headings": [
+    "裘莉主演《陌生的孩子》與 Casey Affleck 主演《失蹤人口》",
+    "中美晶集團表現優異且聯電集團亦顯現轉強跡象",
+    "Amazon AWS 受惠於產業趨勢而特斯拉蘋果無問題",
+    "賣方策略 Sell Put 適合低接股票且選擇權交易量不錯時"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "《陌生的孩子》",
+      "外一部是 Casey Affle"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

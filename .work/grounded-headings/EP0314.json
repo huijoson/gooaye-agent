@@ -1,0 +1,16 @@
+{
+  "episode": 314,
+  "headings": [
+    "散裝航運波羅的海指數與貨櫃股報價",
+    "台股景氣循環特性與機會財股票風險",
+    "指數化投資與航運股派對未終",
+    "主委資產配置被動指數觀點與虛擬貨幣看法"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1362,
+    "eval_count": 259,
+    "total_duration": 31111614041
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

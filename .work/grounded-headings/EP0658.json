@@ -1,0 +1,17 @@
+{
+  "episode": 658,
+  "headings": [
+    "對的時間分享好喝飲品的意義",
+    "美國軟體工程師數據回升與 Claude 輔助編程",
+    "拆解工作環節判斷 AI 替代性與大型巨頭被模型取代對象",
+    "AI 時代難搞公司變利多",
+    "先進封裝研發大將榮退加入聯發科與 5921 CoWoS 數字"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2918,
+    "eval_count": 731,
+    "total_duration": 47401469875
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

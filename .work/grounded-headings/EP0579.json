@@ -1,0 +1,14 @@
+{
+  "episode": 579,
+  "headings": [
+    "泰拳訓練體能改善與睡眠提升",
+    "營業員交流專業賺錢部位減少",
+    "類載板供應鏈考古題與 CoWoS-P"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1911,
+    "eval_count": 436,
+    "total_duration": 28841907083
+  }
+}

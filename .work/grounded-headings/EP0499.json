@@ -1,0 +1,37 @@
+{
+  "episode": 499,
+  "headings": [
+    "麥當勞 Hello Kitty 玩偶拍賣價格盤跌建議",
+    "TCG Card Shop Simulator 療癒",
+    "OCP Global Summit standardization 走向",
+    "成熟製程復甦市場展望"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2308,
+    "eval_count": 533,
+    "total_duration": 41655626958
+  },
+  "original_headings": [
+    "麥當勞 Hello Kitty 玩偶拍賣價格盤跌建議",
+    "TCG Card Shop Simulator 遊戲推薦與高評分卡片",
+    "OCP Global Summit 定調 AI 伺服器標準化走向",
+    "高通 Arm 衝突後 RISC-V 加速與成熟製程復甦"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "Card Shop Simula",
+      "收到的是 PSA 10 跟 BG"
+    ],
+    [
+      "最近的 OCP Global S",
+      "有一些大咖玩家應該從此會正式地加入"
+    ],
+    [
+      "有在 TSMC 的成熟製程以上",
+      "我很難想像到一個比較負面的劇本"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

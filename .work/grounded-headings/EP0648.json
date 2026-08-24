@@ -1,0 +1,15 @@
+{
+  "episode": 648,
+  "headings": [
+    "蘋果在 AI 時代類似便宜 Cloudflare 的角色定位",
+    "NASDAQ 破底後類比 Liberation Day 減碼策略",
+    "GCS TGV 玻璃載板 2027 到 2028 出量"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2322,
+    "eval_count": 548,
+    "total_duration": 35516975667
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

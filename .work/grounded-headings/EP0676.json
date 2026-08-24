@@ -1,0 +1,16 @@
+{
+  "episode": 676,
+  "headings": [
+    "宜蘭買房備孕與夏令營雙贏策略",
+    "凱杜飯店 Kids Club 換代幣電玩租借木車",
+    "缺料白熱化買不到料件買哪一檔",
+    "xAI 建置卡關與掌握成熟製程產能的重要性"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 3348,
+    "eval_count": 579,
+    "total_duration": 32193515084
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

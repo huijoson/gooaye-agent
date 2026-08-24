@@ -1,0 +1,40 @@
+{
+  "episode": 478,
+  "headings": [
+    "金浦機場 GMP 排隊感受",
+    "雪花秀 SPA 價格高昂與延遲補償",
+    "循環底垃圾時間介入處理",
+    "抄底大盤槓桿 ETF Wi-Fi 7 Wi-Fi 8"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2558,
+    "eval_count": 568,
+    "total_duration": 35640330291
+  },
+  "original_headings": [
+    "金浦機場排隊經驗與雪花秀 SPA 延遲",
+    "垃圾時間尋找業績支撐循環底股票處理",
+    "Wi-Fi 7 樣品推出與 Wi-Fi 8 明年預期",
+    "無明確第四章重點內容"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "我那時候在那個金浦機場排隊的時候",
+      "你可以去試看看那個金浦機場"
+    ],
+    [
+      "個雪花秀的 SPA 好像滿有名的",
+      "在機場這邊排隊是完全爆炸的狀態"
+    ],
+    [
+      "找一些有一些業績支撐",
+      "比較偏向說它是一個在這種垃圾時間"
+    ],
+    [
+      "是直接買一些大盤的槓桿 ETF",
+      "有機會在明年就已經有一些樣品出來"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

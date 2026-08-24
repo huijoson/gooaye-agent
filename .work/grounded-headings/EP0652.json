@@ -1,0 +1,15 @@
+{
+  "episode": 652,
+  "headings": [
+    "美股資金調動 CPU 光通創新高",
+    "Methos 算力不足 AI 變笨時段",
+    "國巨創歷史新高與光通元件新趨勢"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2546,
+    "eval_count": 579,
+    "total_duration": 39204689125
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

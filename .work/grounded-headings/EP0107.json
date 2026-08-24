@@ -1,0 +1,16 @@
+{
+  "episode": 107,
+  "headings": [
+    "淘寶 B2B 阿里巴巴量級大黨需阿里",
+    "美國遺產稅潛在風險與美股零手續費優勢",
+    "Netflix 用戶增長對流失率控制的關鍵意義",
+    "台灣第三代半導體供應鏈現況與 Lidar 價格趨勢"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2402,
+    "eval_count": 547,
+    "total_duration": 33093407375
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

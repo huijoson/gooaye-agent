@@ -1,0 +1,31 @@
+{
+  "episode": 629,
+  "headings": [
+    "馬斯克 Ryanair Fleet Starlink 航空市場",
+    "網路言論權重與親子日本行避開廉航",
+    "市場廣度多元翻盤風險與網路言論不等價",
+    "理想生活追求與先生家庭生活感觸良多感謝"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2228,
+    "eval_count": 574,
+    "total_duration": 22472250667
+  },
+  "original_headings": [
+    "桂格飲品推薦與網路言論不等價核心觀念",
+    "馬斯克 Ryanair Starlink 合作構想與航空市場分類",
+    "話題多元性觀察與直男巧虎苗栗友神快拜分享",
+    "理想生活追求與先生家庭生活感觸良多感謝"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "多元性也會變多",
+      "這也算是我一直在跟大家傳道的"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

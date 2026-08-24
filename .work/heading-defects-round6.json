@@ -1,0 +1,224 @@
+{
+  "heading_defects": [
+    {
+      "episode": 92,
+      "chapter": 2,
+      "title": "投資成本控制與 FOMO 恐懼錯過心理應對與才不會空手而回",
+      "replacement": "投資成本與避免 FOMO 後空手而回",
+      "bullets": [
+        "投資很重要的一件事就是成本，如果說你成本就是買得比別人高，如果你就是在每一次的大漲段，都 FOMO，就是所謂的 fear of missing out，都覺得說看現在在漲我趕快進去。",
+        "一般人我會建議你，就提早設定，就是我該怎麼樣，才不會空手而回。"
+      ],
+      "reason": "round6 independent audit: mechanical splice, oral fragment, semantic reversal, unsupported assertion, unit loss, or noun pile-up"
+    },
+    {
+      "episode": 142,
+      "chapter": 3,
+      "title": "這是一家遊戲公司與成長股趨緩遭遇無情下殺案例",
+      "replacement": "Take-Two 遊戲公司成長趨緩的下殺風險",
+      "bullets": [
+        "好，那接下來我們來聊一下 Take-Two Interactive 的財報，這是一家遊戲公司。",
+        "在成長股上面，如果你今天成長趨緩了，你就會遇到無情的下殺。"
+      ],
+      "reason": "round6 independent audit: mechanical splice, oral fragment, semantic reversal, unsupported assertion, unit loss, or noun pile-up"
+    },
+    {
+      "episode": 18,
+      "chapter": 4,
+      "title": "期待 Take-Two 疫情表現關在家裡買遊戲另一支也是遊戲相關",
+      "replacement": "疫情居家遊戲需求與 Take-Two 表現期待",
+      "bullets": [
+        "其實本來很多人也在期待說 Take-Two 會在這次的疫情裡面有什麼表現，因為大家關在家裡，所以得買你們的遊戲。",
+        "有另外一支呢，也是遊戲相關的，也是蠻有趣的，叫做 Take-Two。"
+      ],
+      "reason": "round6 independent audit: mechanical splice, oral fragment, semantic reversal, unsupported assertion, unit loss, or noun pile-up"
+    },
+    {
+      "episode": 322,
+      "chapter": 4,
+      "title": "股市三個月菜雞一問孟恭生科 all in 梭哈",
+      "replacement": "美國經濟提問與生科轉程式的 all in 選擇",
+      "bullets": [
+        "第一位，20 歲當韭菜 他說，股市三個月菜雞一問孟恭，我想請問關於美國的經濟問題，最近很常聽到軟著陸以及硬著陸，甚至股癌 second 的 YouTube 最新一集講到了 No Landing 的可能。",
+        "像前面 QA 有一位，他是生科的，然後之後面決定去學程式，那個真的是 all in、梭哈去做，所以他會有很多的提心吊膽。"
+      ],
+      "reason": "round6 independent audit: mechanical splice, oral fragment, semantic reversal, unsupported assertion, unit loss, or noun pile-up"
+    },
+    {
+      "episode": 150,
+      "chapter": 3,
+      "title": "運氣好跟不好同時發生重壓單一標的注意太多爸爸經",
+      "replacement": "重壓單一標的的運氣風險與減少爸爸經分享",
+      "bullets": [
+        "應該說你運氣好跟不好同時發生，因為你是重壓單一標的。",
+        "對也沒錯，就像你說的，可能等到這個小孩出來之後，再來跟大家分享，但是也會注意一下，不會太多爸爸經這樣子。"
+      ],
+      "reason": "round6 independent audit: mechanical splice, oral fragment, semantic reversal, unsupported assertion, unit loss, or noun pile-up"
+    },
+    {
+      "episode": 27,
+      "chapter": 6,
+      "title": "不要站在政府對立面笑福利熊與對抗",
+      "replacement": "不站政府對立面與福利熊反向操作",
+      "bullets": [
+        "好，既然回答你的問題，不要站在政府對立面，就是我在笑福利熊，可是我會講說要跟福利熊對做。",
+        "但是不要站在政府對立面這件事情，其實就是...你知道我們一直笑福利熊嗎？"
+      ],
+      "reason": "round6 independent audit: mechanical splice, oral fragment, semantic reversal, unsupported assertion, unit loss, or noun pile-up"
+    },
+    {
+      "episode": 323,
+      "chapter": 1,
+      "title": "開設投資專頁分享操作盤勢期許助人成長與有時候互相體諒",
+      "replacement": "投資專頁分享操作與不同專長間的互相體諒",
+      "bullets": [
+        "呼應上集內容，我也是厚顏無恥的開設自己的專頁一段時間，雖然都在講一堆投資的幹話，我也分享自己的操作跟盤勢的看法，期許最後可以越來越強並幫助別人。",
+        "有時候互相體諒，就是說當有些人他可能專精在一些地方，他的其他地方可能就沒有這麼好。"
+      ],
+      "reason": "round6 independent audit: mechanical splice, oral fragment, semantic reversal, unsupported assertion, unit loss, or noun pile-up"
+    },
+    {
+      "episode": 393,
+      "chapter": 3,
+      "title": "突然間轉單到台灣與麥克風裝反意外獲得財富自由",
+      "replacement": "轉單台灣的意外與財富自由觀點用於教學",
+      "bullets": [
+        "結果後來，真的是 surprise, motherfucker，突然間轉單到台灣。",
+        "我從麥克風裝反聽到現在，感謝主委提供觀點、概念跟一針見血的回覆留言，尤其是財富自由的澄清，讓我可以運用在國中的教學中，並且跟師大正誠老師把複雜的宏觀金融教育轉化到國中的現場，從歷史事件對股債匯物房市場的影響，然後提升學生對世界經濟的關心。"
+      ],
+      "reason": "round6 independent audit: mechanical splice, oral fragment, semantic reversal, unsupported assertion, unit loss, or noun pile-up"
+    },
+    {
+      "episode": 84,
+      "chapter": 1,
+      "title": "不要放棄任何機會與科技財報漂亮進場反而受傷的風險",
+      "replacement": "留在場上的機會意識與財報後追價受傷風險",
+      "bullets": [
+        "我覺得，不要放棄任何機會，隨時都要留在場上。",
+        "或者說看到科技巨頭的財報數字好漂亮，結果現在在進場就受傷了。"
+      ],
+      "reason": "round6 independent audit: mechanical splice, oral fragment, semantic reversal, unsupported assertion, unit loss, or noun pile-up"
+    },
+    {
+      "episode": 315,
+      "chapter": 3,
+      "title": "期交所造半導體指數期貨很爛",
+      "replacement": "半導體指數期貨造市問題與電子期純度差異",
+      "bullets": [
+        "我會蠻希望說，期交所他媽認真一點，他那個半導體 30 指數期貨造市真的造得很爛，真的造得很爛。",
+        "因為電子期又沒有像這個半導體期這麼的純，就是在壓住半導體公司。"
+      ],
+      "reason": "round6 independent audit: mechanical splice, oral fragment, semantic reversal, unsupported assertion, unit loss, or noun pile-up"
+    },
+    {
+      "episode": 629,
+      "chapter": 2,
+      "title": "網路言論不等價且日本廉航時間很爛不帶小孩搭",
+      "replacement": "網路言論權重與親子日本行避開廉航",
+      "bullets": [
+        "就因為我自己的經驗，所以我就跟大家說網路言論是不等價的，你要知道講的人是誰很重要。",
+        "除非說什麼廉價航空時間很爛，像飛日本的話因為日本的廉航時間都很差，那我們要帶小孩所以我們是不可能搭廉航的。"
+      ],
+      "reason": "round6 independent audit: mechanical splice, oral fragment, semantic reversal, unsupported assertion, unit loss, or noun pile-up"
+    },
+    {
+      "episode": 661,
+      "chapter": 3,
+      "title": "漢磊財報數字失望盛群表現特好成本驅動漲價優勢",
+      "replacement": "漢磊與盛群財報表現及成本驅動漲價影響",
+      "bullets": [
+        "最近也注意到像那個晶圓代工廠漢磊他開了他的財報數字，那我覺得漢磊應該是對蠻多人來講是一個令人很失望的股票，他過去曾經非常的強大，蠻多人都在上面賺過錢，那只是在過去的一陣子，漢磊的表現就沒有這麼好，只有一些可能像盛群這種表現特好，因為盛群他可能做的是比較偏鄉之，ODM 的廠商之類的…",
+        "成本驅動的漲價的話，除非他自己本身，像有些廠商他是生產鋁電容的，然後他同時他的子公司就是在做鋁箔的，那這個就會變成說他有一定程度的優勢，因為他自己有，所以這個價格可以調整得比較漂亮一點，他的毛利數字也可以做得比較好看一點。"
+      ],
+      "reason": "round6 independent audit: mechanical splice, oral fragment, semantic reversal, unsupported assertion, unit loss, or noun pile-up"
+    },
+    {
+      "episode": 464,
+      "chapter": 2,
+      "title": "代理商資服業者機會槓桿美國人努力微軟軟體佈局核心",
+      "replacement": "代理商資服業者機會與微軟軟體核心布局",
+      "bullets": [
+        "可是其中我覺得最容易看到機會的，反而是在代理商跟資服業者這一邊，那道理一樣就是去槓桿美國人的一些努力。",
+        "在軟體的佈局，當然非常簡單的一個大核心就是我認為微軟是一個軟體佈局的中心，就是軟體股的核心就是微軟，所以微軟就會是一個核心的持股。"
+      ],
+      "reason": "round6 independent audit: mechanical splice, oral fragment, semantic reversal, unsupported assertion, unit loss, or noun pile-up"
+    },
+    {
+      "episode": 464,
+      "chapter": 3,
+      "title": "轉職工程師個人專案即時看盤現金部位年化報酬率試算",
+      "replacement": "年化報酬率用法與轉職工程師即時看盤專案",
+      "bullets": [
+        "好，雖然一樣都在講年化報酬率，但這個使用上是比上面那個還要正確的多很多。",
+        "小弟為了轉職工程師，在做個人的專案，想法是試做即時看盤加含現金部位的年化報酬率試算以及圖表等等，所以想問算法。"
+      ],
+      "reason": "round6 independent audit: mechanical splice, oral fragment, semantic reversal, unsupported assertion, unit loss, or noun pile-up"
+    },
+    {
+      "episode": 226,
+      "chapter": 2,
+      "title": "原物料價格下不來吃掉廠商利潤小熊標題劇本衰退準備",
+      "replacement": "原物料高價侵蝕利潤與衰退劇本準備",
+      "bullets": [
+        "目前我們知道市場上比較不好的劇本，就是原物料價格持續下不來，那把所有的廠商利潤吃掉，這像我們那個小熊標題那一集裡面跟大家聊到，就可能比較差的劇本，那是一個。",
+        "只有可能，就是像說原物料價格是一直下不來，把大家打進衰退，把廠商利潤都吃掉的話，最壞的劇本是有可能會這樣子，我們都要做好各種準備。"
+      ],
+      "reason": "round6 independent audit: mechanical splice, oral fragment, semantic reversal, unsupported assertion, unit loss, or noun pile-up"
+    },
+    {
+      "episode": 4,
+      "chapter": 3,
+      "title": "遠見持有熱映三成之間台股定期定額精神",
+      "replacement": "遠見持有評價與 0050 定期定額精神",
+      "bullets": [
+        "好，那講完籌碼的部分，我們就來講遠見持有熱映三成之間，這事情要怎麼評價？",
+        "因為 0050 就是在做這樣子的事情，你買 0050，並且定期定額的買進，就是符合這樣子的精神。"
+      ],
+      "reason": "round6 independent audit: mechanical splice, oral fragment, semantic reversal, unsupported assertion, unit loss, or noun pile-up"
+    },
+    {
+      "episode": 548,
+      "chapter": 2,
+      "title": "乖寶寶印章代表風控不錯月子中心爸爸肚子越來越大",
+      "replacement": "存活市場的風控肯定與月子中心爸爸增重",
+      "bullets": [
+        "能夠順利活下來，我覺得就該給自己蓋一個乖寶寶印章，代表你一定有不錯的風控，或是你對於盤面的理解跟反應可能不錯，才可以順利活下來、只有一點點損失，或甚至有些人是沒有損失。",
+        "月子中心真的是一個很特別的地方，它是一個讓媽媽肚子跟爸爸肚子交換的地方，也就是媽媽肚子會越來越小，然後爸爸肚子會越來越大，因為月子餐很多吃不完都是爸爸吃掉，然後他們幾乎每一餐都會給你雞湯，所以我就是幫媽媽連續喝了一個禮拜的雞湯。"
+      ],
+      "reason": "round6 independent audit: mechanical splice, oral fragment, semantic reversal, unsupported assertion, unit loss, or noun pile-up"
+    },
+    {
+      "episode": 622,
+      "chapter": 3,
+      "title": "NVIDIA 花兩百億取得 Groq 的團隊及低配 HBM",
+      "replacement": "低配版 HBM 嘗試與 Groq 相關 IP 的 200 億美元交易",
+      "bullets": [
+        "好，那接下來我們來討論另外一個本週重大的話題，就是 NVIDIA 花了 20 億——有，200 億美元——去買了 Groq 的團隊跟他的 know-how，以及 IP 相關的東西。",
+        "它也可以視為是想要去打破記憶體牆的某一種嘗試，雖然嚴格上來定義，我會把它視為說它可能是一個比較低配版的 HBM，可是它是類似的東西。"
+      ],
+      "reason": "round6 independent audit: mechanical splice, oral fragment, semantic reversal, unsupported assertion, unit loss, or noun pile-up"
+    },
+    {
+      "episode": 81,
+      "chapter": 4,
+      "title": "Dana 掌握 Hyliion 混合動力商業可能",
+      "replacement": "Dana 應了解 Hyliion 有無商業可能及 BMS 技術來源",
+      "bullets": [
+        "呢根據 Bonitas Research 所說，Dana 應該要非常了解 Hyliion 的混合動力系統到底有沒有商業可能性。",
+        "首先就是先提到說 Hyliion 的關鍵技術，這個 BMS 技術是跟一個上市公司買的。"
+      ],
+      "reason": "round6 independent audit: mechanical splice, oral fragment, semantic reversal, unsupported assertion, unit loss, or noun pile-up"
+    },
+    {
+      "episode": 295,
+      "chapter": 4,
+      "title": "自我投資與股癌角度避開",
+      "replacement": "小生意管理困難與不以《股癌》角度投資",
+      "bullets": [
+        "這履歷可能是現在很多聽眾當時丟來的，但不是說你們不好，就只是單純覺得，其實我自己有去投資一些小生意，我就發現說，管人這件事情，對我來說非常痛苦，它是一件我覺得我做不好的事情，因為我不會想要罵人，然後我不會想要去責備任何人，可是我又期待你會自我管理。",
+        "最多就是可能我以，也不用《股癌》的角度去投資，就還是我本人，然後去做其他的投資，只是可能是跟這個市場媒體相關的東西。"
+      ],
+      "reason": "round6 independent audit: mechanical splice, oral fragment, semantic reversal, unsupported assertion, unit loss, or noun pile-up"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "episode": 437,
+  "headings": [
+    "情緒控管提升避免跟家人爭出你死我活",
+    "日本升息後工具機產業復甦預期",
+    "GB200 散熱供應鏈與機器人 Groot"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1872,
+    "eval_count": 488,
+    "total_duration": 40125377625
+  },
+  "original_headings": [
+    "情緒控管與家庭衝突處理技巧",
+    "日本升息後工具機產業復甦預期",
+    "GB200 散熱供應鏈與機器人 Groot"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "對自己的情緒控管這幾年非常有感的提升",
+      "在家裡跟家人吵架也是"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

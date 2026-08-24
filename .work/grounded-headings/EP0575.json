@@ -1,0 +1,15 @@
+{
+  "episode": 575,
+  "headings": [
+    "發現 LDL 膽固醇達 20 的恐怖數字並考慮停藥",
+    "男生婚禮邀請標準與可悲婚後生活",
+    "Grok 在生成內容時會自行刪除違規資訊與圖表"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2418,
+    "eval_count": 594,
+    "total_duration": 44399401334
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

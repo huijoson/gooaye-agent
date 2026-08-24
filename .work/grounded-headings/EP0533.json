@@ -1,0 +1,16 @@
+{
+  "episode": 533,
+  "headings": [
+    "量化基金 DeepSeek 副業變主業 AI 社群聊天機器人",
+    "軟體股接棒中小型轉強輪動",
+    "推論端趨勢判斷與晶圓供給順暢展望",
+    "台美股陪伴感恩與家人時間重要性"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1907,
+    "eval_count": 310,
+    "total_duration": 39956376708
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

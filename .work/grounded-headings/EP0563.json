@@ -1,0 +1,28 @@
+{
+  "episode": 563,
+  "headings": [
+    "市場不確定性下需增強忍耐與自我洗腦",
+    "蜘蛛網行動成無人機史上最大不對稱打擊",
+    "貿聯 BizLink 出貨對象 Credo 標的 scale-up 王者"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2140,
+    "eval_count": 519,
+    "total_duration": 35927192667
+  },
+  "original_headings": [
+    "市場不確定性下需增強忍耐與自我洗腦",
+    "烏克蘭蜘蛛網行動引發無人機技術滲透加速",
+    "Credo 在 AOC 與 DAC 發展上展現規模擴張王者氣勢"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "烏克蘭有一個特殊行動叫做 Ope",
+      "無人機跟無人機相關的一些技術演進"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

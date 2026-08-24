@@ -1,0 +1,34 @@
+{
+  "episode": 241,
+  "headings": [
+    "自駕電腦故障與花蓮車輛側裙受損",
+    "巴菲特減持現金部位與 VIX 指標",
+    "Twitter 下檔風險比 Activision Blizzard 高",
+    "Michael Burry 空軍案例與 Gurley 觀點"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2592,
+    "eval_count": 530,
+    "total_duration": 37870380125
+  },
+  "original_headings": [
+    "Tesla 自駕電腦故障與花蓮事故",
+    "巴菲特減持現金部位與 VIX 指標",
+    "Twitter 收購投票風險高於 Activision",
+    "Michael Burry 空軍案例與 Gurley 觀點"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "特斯拉的自駕電腦壞掉之後",
+      "我把它遇到那個自駕電腦壞掉"
+    ],
+    [],
+    [
+      "tter、有 Activisio",
+      "應該會比 Activision"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

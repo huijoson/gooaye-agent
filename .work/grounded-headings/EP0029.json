@@ -1,0 +1,14 @@
+{
+  "episode": 29,
+  "headings": [
+    "權證造神現象與券商強制平倉",
+    "原油 ETF 溢價陷阱與正相關性缺失",
+    "機師空服員罷工爭議與公審現象"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1925,
+    "eval_count": 488,
+    "total_duration": 23459018167
+  }
+}

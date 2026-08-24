@@ -1,0 +1,14 @@
+{
+  "episode": 122,
+  "headings": [
+    "被討厭勇氣與踏出同溫層重要性",
+    "FOMO 情緒與 YOLO 只活一次概念",
+    "股市天才書使用 LEAPS 深度價內"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2465,
+    "eval_count": 486,
+    "total_duration": 38816134125
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "episode": 483,
+  "headings": [
+    "全包式 Resort 特色四手按摩體驗分享",
+    "黑神話悟空暢銷拉貨供需失衡觀點",
+    "遊戲價值觀強灌玩家心照不宣與織田信長設定"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2119,
+    "eval_count": 517,
+    "total_duration": 42911088750
+  }
+}

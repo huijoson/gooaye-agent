@@ -1,0 +1,15 @@
+{
+  "episode": 202,
+  "headings": [
+    "小型成長股估值回調至疫情前",
+    "貝殼公司營收獲利與基本面分析",
+    "基本面角度加入技術面東西 挖寶功力一流買進理由股價這麼好沒道理"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2124,
+    "eval_count": 453,
+    "total_duration": 25930228083
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

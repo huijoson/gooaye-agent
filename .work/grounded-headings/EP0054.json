@@ -1,0 +1,28 @@
+{
+  "episode": 54,
+  "headings": [
+    "資安危機未殺死更強壯",
+    "PTT 生技股炒作案例警示切勿跟股票談戀愛",
+    "美台股修正與 ECFA 影響 6000 億出口"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2062,
+    "eval_count": 504,
+    "total_duration": 23692523250
+  },
+  "original_headings": [
+    "Twitter 資安危機引發生存者偏差反思",
+    "PTT 生技股炒作案例警示切勿跟股票談戀愛",
+    "ECFA 到期可能衝擊台灣六百兆出口"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "最近美股跟台股都預到修正",
+      "ECFA 到期"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

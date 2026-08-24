@@ -1,0 +1,37 @@
+{
+  "episode": 283,
+  "headings": [
+    "華頓商學院 Jeremy Siegel 看法",
+    "物慾調整聯準會決策中國市場滬深感覺",
+    "維持 long-short 配置沖掉 beta 壓美元定存",
+    "台灣 Steven Cohen 抓轉折能力即時回測 AI",
+    "理財型房貸再借出本金投資與兩性關係溝通忍讓"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1890,
+    "eval_count": 358,
+    "total_duration": 34553369875
+  },
+  "original_headings": [
+    "追求永無止境的躺平哲學思考",
+    "Steven Cohen 天才交易員與基金模式",
+    "Jeremy Siegel 吐槽 Fed 華頓商學院觀點",
+    "Long Short 配置策略與美元定存想法",
+    "理財型房貸借出本金投資機會"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "追求是永無止境的",
+      "算你真的有一天到非常厲害的誇稱"
+    ],
+    [],
+    [],
+    [],
+    [
+      "機會可以用理財型房貸再借出本金投資",
+      "它不是說什麼唯一筆投入"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

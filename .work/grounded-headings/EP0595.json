@@ -1,0 +1,15 @@
+{
+  "episode": 595,
+  "headings": [
+    "人生無限賽局不賭單一事件生死",
+    "報價打開需壓力測試觀察盤面強勢",
+    "蘋果手機 Google AI Amazon Trainium 第四代"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2204,
+    "eval_count": 500,
+    "total_duration": 39307292083
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

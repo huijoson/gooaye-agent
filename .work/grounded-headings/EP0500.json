@@ -1,0 +1,31 @@
+{
+  "episode": 500,
+  "headings": [
+    "中小市值比較疲軟而特斯拉毛利獲利不錯",
+    "經濟自主權利與家庭溝通方式",
+    "演唱會管制反效果與身份證驗票荒謬論"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2308,
+    "eval_count": 533,
+    "total_duration": 41655626958
+  },
+  "original_headings": [
+    "大谷翔平球被標走引發的歷史意義討論",
+    "臺北中小市值疲軟與特斯拉毛利獲利展望",
+    "演唱會管制反效果與身份證驗票荒謬論"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "都有看到大谷翔平的球被臺灣人標走",
+      "個非常有歷史意義跟地位的價格"
+    ],
+    [
+      "是屬於那一種中小市值比較相對疲軟的",
+      "的毛利應該都可以維持得不錯"
+    ],
+    []
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

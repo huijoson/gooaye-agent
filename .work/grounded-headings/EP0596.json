@@ -1,0 +1,31 @@
+{
+  "episode": 596,
+  "headings": [
+    "Apple Watch 的高血壓功能在台灣鎖住讓朋友傻眼",
+    "8、9 月股市表現極佳與劉通瑤 9 月 27 號生日",
+    "Credo 跟 Astera 的 Retimer 及 AEC 高市佔"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2605,
+    "eval_count": 675,
+    "total_duration": 28891092167
+  },
+  "original_headings": [
+    "Apple Watch 高血壓功能台灣未開放聽眾集思廣益",
+    "8 月 9 月股市極佳表現與劉通瑤老師生日祝福分享",
+    "茂聯線材 Credo Astera Labs AEC 市佔率與產品優勢"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "大家分享說 Apple Watc",
+      "我自己的朋友也是以為有高血壓功能,"
+    ],
+    [],
+    [
+      "redo 跟 Astera La",
+      "Credo 跟 Astera L"
+    ]
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

@@ -1,0 +1,14 @@
+{
+  "episode": 49,
+  "headings": [
+    "企業併購中股東投票權與主管機關認定權爭議",
+    "情緒主導下公司治理與金融秩序被置後",
+    "Podcast 與 YouTube 內容差異及台派小圈子討論"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1419,
+    "eval_count": 354,
+    "total_duration": 29863988459
+  }
+}

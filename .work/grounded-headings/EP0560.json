@@ -1,0 +1,14 @@
+{
+  "episode": 560,
+  "headings": [
+    "台股景氣循環特性與機會財股票週期性",
+    "航運貨櫃生產受疫情管制與原物料影響",
+    "加密貨幣區塊鏈技術核心與詐騙論述"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2174,
+    "eval_count": 459,
+    "total_duration": 51895464083
+  }
+}

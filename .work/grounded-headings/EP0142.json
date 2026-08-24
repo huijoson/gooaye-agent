@@ -1,0 +1,31 @@
+{
+  "episode": 142,
+  "headings": [
+    "航運原物料強勢與台股最低點擔憂",
+    "財經部落客玩遊戲與市場做法差異",
+    "Take-Two 遊戲公司成長趨緩的下殺風險",
+    "處方藥便利性與十大持股調整"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1971,
+    "eval_count": 470,
+    "total_duration": 31627367709
+  },
+  "original_headings": [
+    "航運原物料強勢與台股最低點擔憂",
+    "財經部落客玩遊戲與市場做法差異",
+    "成長股趨緩遭遇無情下殺案例",
+    "處方藥便利性與十大持股調整"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "這是一家遊戲公司",
+      "你就會遇到無情的下殺"
+    ],
+    []
+  ],
+  "method": "natural_heading_repaired_from_both_excerpts"
+}

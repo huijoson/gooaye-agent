@@ -1,0 +1,37 @@
+{
+  "episode": 604,
+  "headings": [
+    "華山演唱會後朋友提及台灣綠洲經歷",
+    "DDR3 DDR4 HBM TSV Nexperia 產能排擠",
+    "Tesla意外集買點導致股價重挫與大量抨擊調查",
+    "Optimus 計程車隊與 Robotaxi Cybercab"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2242,
+    "eval_count": 509,
+    "total_duration": 39139476458
+  },
+  "original_headings": [
+    "華山演唱會後朋友提及台灣綠洲經歷",
+    "DDR4 DDR3 因產能擠壓而獲得發展空間",
+    "Tesla 意外集買點策略與 Robotaxi 未來發展",
+    "股東不會因 Robotaxi 上路而安穩"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "甚至連 DDR3 都跟著雞犬升天",
+      "同時有滿多東西都已經先轉出來了"
+    ],
+    [
+      "意外集買點",
+      "之後在 Tesla 這邊就會變成"
+    ],
+    [
+      "跟它的計程車車隊的一個發展",
+      "於要看到 Robotaxi 要上"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

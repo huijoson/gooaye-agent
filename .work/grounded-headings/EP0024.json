@@ -1,0 +1,14 @@
+{
+  "episode": 24,
+  "headings": [
+    "上下交相賊政治巧合背後真實邏輯",
+    "川普選舉策略偏好 Bernie Sanders 對手",
+    "投資界互相批鬥與帳單獲利才是關鍵"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2109,
+    "eval_count": 556,
+    "total_duration": 46699565375
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "episode": 633,
+  "headings": [
+    "西班牙度假陪老婆看房與童年成長地方感受",
+    "低軌衛星族群強勢表現與散熱族群突破觀察",
+    "AI 順風車 CSP 建置受惠與軟體 AI 加成策略",
+    "科技發展快速與兒童尿濕褲子次數難以預估"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2465,
+    "eval_count": 584,
+    "total_duration": 42038392041
+  }
+}

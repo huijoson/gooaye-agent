@@ -1,0 +1,14 @@
+{
+  "episode": 194,
+  "headings": [
+    "全息攝影技術應用與 NFT 場域風險提醒",
+    "被動元件車用市場成長率分析",
+    "電動車電子元件需求趨勢與台美股布局猜想"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1207,
+    "eval_count": 251,
+    "total_duration": 35778380084
+  }
+}

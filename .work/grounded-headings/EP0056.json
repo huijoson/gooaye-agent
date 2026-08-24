@@ -1,0 +1,31 @@
+{
+  "episode": 56,
+  "headings": [
+    "資金做 VXX 選擇權期貨對沖",
+    "高點下跌直接減碼或單純避險做法建議",
+    "Microsoft 跌到兩百塊 Azure 營收不符預期",
+    "勝率四五成配合資金控制聯詠創意虧損案例"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2028,
+    "eval_count": 452,
+    "total_duration": 35150666333
+  },
+  "original_headings": [
+    "下跌時資金配置 VXX 選擇權期貨對沖策略",
+    "高點下跌直接減碼或單純避險做法建議",
+    "微軟股價波動與 Azure 營收成長不符原因分析",
+    "勝率四五成配合資金控制聯詠創意虧損案例"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "回到他最前面提到的減碼的東西",
+      "Azure 的營收成長不符合預期"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

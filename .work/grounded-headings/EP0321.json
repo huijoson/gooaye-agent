@@ -1,0 +1,28 @@
+{
+  "episode": 321,
+  "headings": [
+    "定期定額大盤仔看 Buffett 買進與林恩平接大立光",
+    "百度知乎幻想題材與波克夏海瑟威投資公司",
+    "巴菲特樂做業務保守龜縮薪水成績與長途預算抗噪耳機"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2069,
+    "eval_count": 499,
+    "total_duration": 36961581917
+  },
+  "original_headings": [
+    "半導體科技股反彈超過預期嚇到投資人",
+    "標借日利率暴利被軋漲停回補券源",
+    "穩定配息公司幾乎都有問題元宵祝福"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "說你手上是以半導體、科技股為主的",
+      "說這波的反彈是有點超過自己的想像"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,37 @@
+{
+  "episode": 199,
+  "headings": [
+    "少子化議題與人類文明陷落演說",
+    "HPQ 和 Dell 財報跳升但明年下單量預期下調",
+    "以太坊 2.0 升級與挖礦搶購關聯",
+    "機會成本考量與勝率相對高低判斷"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2342,
+    "eval_count": 485,
+    "total_duration": 37808949875
+  },
+  "original_headings": [
+    "少子化議題與人類文明陷落演說",
+    "HPQ Dell 財報跳升與需求下調預期",
+    "技嘉華擎板卡廠強勢上漲現象",
+    "以太坊升級與挖礦機會成本考量"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "HPQ 跟 Dell 在財報之",
+      "HPQ 跟 Dell"
+    ],
+    [
+      "這一波去搶挖礦",
+      "跟挖礦是有蠻大的關係"
+    ],
+    [
+      "你還要把機會成本去考量",
+      "十年後的事情真的沒有人講得準"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

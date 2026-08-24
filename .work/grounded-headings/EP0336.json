@@ -1,0 +1,14 @@
+{
+  "episode": 336,
+  "headings": [
+    "高資產階級踩中奧峰基金吸金陷阱",
+    "台灣人對高配息事物難以抗拒人性關卡",
+    "AI 伺服器供應鏈因規格提升產生機會"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2034,
+    "eval_count": 476,
+    "total_duration": 43189524417
+  }
+}

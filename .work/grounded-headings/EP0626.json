@@ -1,0 +1,16 @@
+{
+  "episode": 626,
+  "headings": [
+    "人生目標避免框架定義喝酒無法開頻道分享味道",
+    "不合理噴射物與低倍率受傷機率",
+    "廠房建置無塵室水電化學品環節機會顯著增加",
+    "面板廠轉型挑戰與馬斯克第一性原理"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2046,
+    "eval_count": 515,
+    "total_duration": 39100360167
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

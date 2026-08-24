@@ -1,0 +1,31 @@
+{
+  "episode": 665,
+  "headings": [
+    "作者音樂聽覺能力與絕對音感差異分享",
+    "喜歡吃肉的神父驕傲掉肥肉",
+    "SpaceX 衛星算力出租概念股潛力與新雲架構展望",
+    "台股噴題材熱潮與鉭電容供需斷供爭議金屬現況"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2608,
+    "eval_count": 566,
+    "total_duration": 45127071375
+  },
+  "original_headings": [
+    "作者音樂聽覺能力與絕對音感差異分享",
+    "減重運動效果與肌肉量維持神氣自豪感受",
+    "SpaceX 衛星算力出租概念股潛力與新雲架構展望",
+    "台股噴題材熱潮與鉭電容供需斷供爭議金屬現況"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "注意到肌肉量是沒有什麼顯著的下降",
+      "但當下真的是"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,14 @@
+{
+  "episode": 659,
+  "headings": [
+    "身體柔軟度提升讓人整天想跳動",
+    "國巨 AI 日帶動被動元件轉強",
+    "Palantir 推動降低 AI Slop"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2909,
+    "eval_count": 487,
+    "total_duration": 50605719667
+  }
+}

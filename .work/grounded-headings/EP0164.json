@@ -1,0 +1,14 @@
+{
+  "episode": 164,
+  "headings": [
+    "月子中心本質與金六結新兵訓練中心相似",
+    "散戶動能交易挫折後歸咎當沖主力策略",
+    "專業追蹤籌碼人故意展示假訊息風險"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1956,
+    "eval_count": 440,
+    "total_duration": 36947836458
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "episode": 355,
+  "headings": [
+    "放慢腳步享受生日與身邊事物",
+    "人類演進從 Wi-Fi 6 到 Wi-Fi 8 及 6G",
+    "技術分析沒有絕對與個人操作差異"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2255,
+    "eval_count": 494,
+    "total_duration": 30079607666
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,15 @@
+{
+  "episode": 576,
+  "headings": [
+    "手遊課金購買回憶與爽度並自欺欺人地合理化行為",
+    "台達電 Power 與 BPU 整合趨勢及 ARX 相關財報分析",
+    "Meta 雖有資料中心規劃但下游伺服器加單尚未顯現",
+    "尊重市場波動並透過觀察大方向來優化資金配置"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2418,
+    "eval_count": 594,
+    "total_duration": 44399401334
+  }
+}

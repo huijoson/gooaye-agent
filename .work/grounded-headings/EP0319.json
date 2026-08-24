@@ -1,0 +1,16 @@
+{
+  "episode": 319,
+  "headings": [
+    "遊戲王卡收藏快樂與老婆勸止瘋狂買卡",
+    "AI 暴增受惠邊緣運算與記憶體公司",
+    "PC 顯卡 Data Center 投資機會評估",
+    "月配息基金槓桿操作賺取利差"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1548,
+    "eval_count": 262,
+    "total_duration": 29712160500
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

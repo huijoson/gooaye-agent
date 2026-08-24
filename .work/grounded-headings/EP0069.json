@@ -1,0 +1,15 @@
+{
+  "episode": 69,
+  "headings": [
+    "太太愛看超大隻蝸牛",
+    "Tesla S&P 500 編進理由 很多人賭進 S&P 500",
+    "台廠供應鏈受衝擊建議分散投資"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1601,
+    "eval_count": 467,
+    "total_duration": 28402433416
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

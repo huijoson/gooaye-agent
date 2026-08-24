@@ -1,0 +1,15 @@
+{
+  "episode": 551,
+  "headings": [
+    "小朋友上不去高處遙控器挑釁出現",
+    "Lighthizer 發話關稅情勢應降級",
+    "機器人撐起估值大餅交車數據怪異"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2194,
+    "eval_count": 508,
+    "total_duration": 34341757875
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

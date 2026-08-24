@@ -1,0 +1,14 @@
+{
+  "episode": 352,
+  "headings": [
+    "被攻擊後的心理壓力與韭菜心態",
+    "輝達 H100 下半年大量出貨預期",
+    "AI 伺服器營收成長擠壓傳統市場"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2375,
+    "eval_count": 461,
+    "total_duration": 23170761041
+  }
+}

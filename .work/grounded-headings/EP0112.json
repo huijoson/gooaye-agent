@@ -1,0 +1,34 @@
+{
+  "episode": 112,
+  "headings": [
+    "Twitter 有趣言論與雅虎失敗投資",
+    "時間壓力導致急於出場可能買在高點",
+    "Costless Collar 無成本期權對沖策略原理",
+    "85 到 205 塊價格鎖定與零成本選擇權"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2307,
+    "eval_count": 517,
+    "total_duration": 43306890958
+  },
+  "original_headings": [
+    "雅虎科技泡沫下最失敗投資案例回顧",
+    "時間壓力導致急於出場可能買在高點",
+    "Costless Collar 無成本期權對沖策略原理",
+    "利用零成本選擇權將股價鎖定在特定區間"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "蠻有意思的",
+      "是後來被認為最失敗的投資之一"
+    ],
+    [],
+    [],
+    [
+      "很簡單",
+      "叫做所謂的零成本的選擇權"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

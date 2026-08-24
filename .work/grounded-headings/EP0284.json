@@ -1,0 +1,28 @@
+{
+  "episode": 284,
+  "headings": [
+    "買得起機器人創造力與地獄週熬夜到四點",
+    "記憶體減產谷底早於 23 年 Q4 且投信買進時機佳",
+    "大盤崩跌時空單對沖風險與新手多空策略配置"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2186,
+    "eval_count": 555,
+    "total_duration": 37627977167
+  },
+  "original_headings": [
+    "機器人普及後創造力競爭取代勞務工作",
+    "記憶體減產谷底早於 23 年 Q4 且投信買進時機佳",
+    "大盤崩跌時空單對沖風險與新手多空策略配置"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "任何的勞務工作都交給這個機器人去做",
+      "過去幾天堪稱超級地獄週"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,15 @@
+{
+  "episode": 504,
+  "headings": [
+    "川普勝選劇本對台股投資策略的評估",
+    "川普政策先棒後糖的市場機會推演",
+    "台股降槓變現與美股整體強勢表現",
+    "New Yorker 預言大賺錢與特斯拉炒作趣聞"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2544,
+    "eval_count": 496,
+    "total_duration": 49427438667
+  }
+}

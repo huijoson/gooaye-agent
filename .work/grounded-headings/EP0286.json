@@ -1,0 +1,28 @@
+{
+  "episode": 286,
+  "headings": [
+    "國際政治利益與馬斯克台海看法",
+    "BIS 對中禁令導致半導體崩跌核心原因",
+    "工程師轉職三倍待遇與投票避免房地產候選人"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2186,
+    "eval_count": 555,
+    "total_duration": 37627977167
+  },
+  "original_headings": [
+    "Cybex 兒童安全座椅通過 ADAC 嚴苛測試",
+    "BIS 對中禁令導致半導體崩跌核心原因",
+    "工程師轉職三倍待遇與投票避免房地產候選人"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "Cybex 兒童安全座椅是全球唯",
+      "有更多那種有苦說不出的感覺"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

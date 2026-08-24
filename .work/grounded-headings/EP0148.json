@@ -1,0 +1,28 @@
+{
+  "episode": 148,
+  "headings": [
+    "好市多逛店體驗與自幹水蜜桃 ETF 趣事",
+    "臉書封殺川普事件對投資判斷影響分析",
+    "晶片缺貨緩解之後供應鏈表現"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2154,
+    "eval_count": 524,
+    "total_duration": 38176114208
+  },
+  "original_headings": [
+    "好市多逛店體驗與自幹水蜜桃 ETF 趣事",
+    "臉書封殺川普事件對投資判斷影響分析",
+    "車用晶片缺貨緩解後供應鏈表現觀察"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "車用的晶片缺貨緩解之後",
+      "車用晶片的缺貨狀況會緩解"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

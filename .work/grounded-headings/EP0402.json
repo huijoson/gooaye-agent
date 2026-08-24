@@ -1,0 +1,16 @@
+{
+  "episode": 402,
+  "headings": [
+    "AI 瓶頸從 CoWoS 移向 HBM 容量不足",
+    "麒麟 9000S 投片量與伺服器四張加速卡",
+    "海力士市佔九成 HBM3E 美光拉高產能",
+    "聽眾免費試 PS5 九 An 賣出打折機型"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2593,
+    "eval_count": 536,
+    "total_duration": 45536786833
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

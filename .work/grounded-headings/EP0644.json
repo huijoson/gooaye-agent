@@ -1,0 +1,17 @@
+{
+  "episode": 644,
+  "headings": [
+    "陪伴家人時間增多準備面對波動",
+    "記憶體舞台換角 EMMC NOR Flash 旺宏強勢",
+    "黑 Tesla 帳號瓶頸與馬斯克追加訂單驚喜",
+    "泛軟體股漲回零軸 Palantir Cloudflare 屬性",
+    "國際情勢未緩解時保留流動性與辨識 AI 波動機會"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2207,
+    "eval_count": 542,
+    "total_duration": 42574363791
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

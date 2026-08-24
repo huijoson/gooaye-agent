@@ -1,0 +1,15 @@
+{
+  "episode": 452,
+  "headings": [
+    "小鬼股主力想搭車卻跳車需放寬心",
+    "社群注意到蘋果 AI 大眾媒體仍感無吸引力",
+    "從高階往低階推 LLM 加強 Siri 值得期待",
+    "股東結構複雜生意辛苦建議轉換或換工作"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2697,
+    "eval_count": 563,
+    "total_duration": 53130368000
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "episode": 616,
+  "headings": [
+    "Google 尋找產能與 Reticle Size 需求",
+    "CSP 產能缺口與台積電 CoWoS-P 競爭",
+    "台積電保守狀態 Intel 封裝市場份額",
+    "畫藍圖想像巴菲特訃聞寫理想未來"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2435,
+    "eval_count": 481,
+    "total_duration": 35422667792
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

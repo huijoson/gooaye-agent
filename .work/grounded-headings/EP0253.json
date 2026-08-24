@@ -1,0 +1,14 @@
+{
+  "episode": 253,
+  "headings": [
+    "Stanley Druckenmiller 市場空時點建議",
+    "投資未來而非當下與偏保守資產拋售",
+    "加密貨幣缺乏生產力背書資金寬鬆產物"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2305,
+    "eval_count": 511,
+    "total_duration": 35823461625
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "episode": 158,
+  "headings": [
+    "台積電 2021 Q2 營收與產值",
+    "台積電 Q2 營收占比五奈米十八%",
+    "看新聞做股票需有判讀能力",
+    "拉貨趨緩早於法說會預示"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2124,
+    "eval_count": 449,
+    "total_duration": 37867693917
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

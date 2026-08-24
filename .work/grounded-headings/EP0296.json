@@ -1,0 +1,16 @@
+{
+  "episode": 296,
+  "headings": [
+    "道不同不相為謀 詐騙仔遭來一個殺一個",
+    "聯準會前無古人後無來者暴力升息終點",
+    "馬斯克改革 Twitter 開 Space 搭首班車體驗",
+    "2019 年尾投入航運半導體面板股房地產隱憂"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1455,
+    "eval_count": 274,
+    "total_duration": 39051641375
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

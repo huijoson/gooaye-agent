@@ -1,0 +1,28 @@
+{
+  "episode": 216,
+  "headings": [
+    "西班牙旅遊體驗與退休養老蜜月推薦",
+    "Straddle Strangle 直接去試",
+    "工作目的連結到提升生活品質理念"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2187,
+    "eval_count": 527,
+    "total_duration": 30790045208
+  },
+  "original_headings": [
+    "西班牙旅遊體驗與退休養老蜜月推薦",
+    "期權策略 Straddle 與 Strangle 介紹說明",
+    "工作目的連結到提升生活品質理念"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "講完這個 straddle 跟",
+      "是 straddle"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,15 @@
+{
+  "episode": 66,
+  "headings": [
+    "Neuralink Demo 影片正式上限應用層面",
+    "ABF 載板三雄未站回 8 月 20 日下殺點",
+    "特斯拉本益比估值法與 ABF 載板成長軌跡"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1760,
+    "eval_count": 511,
+    "total_duration": 28654763542
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

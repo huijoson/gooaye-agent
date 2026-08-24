@@ -1,0 +1,15 @@
+{
+  "episode": 342,
+  "headings": [
+    "AQ 逆境商數比 EQ 情商更重要觀點",
+    "毛利區間成本下降低檔區震動時間延長",
+    "癌大家庭女權自助餐中小家庭精品拖垮"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2495,
+    "eval_count": 533,
+    "total_duration": 49373464500
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

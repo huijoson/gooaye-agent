@@ -1,0 +1,31 @@
+{
+  "episode": 448,
+  "headings": [
+    "台灣地震頻繁影響外來者居住意願與 Data Center 風險",
+    "美股調整縮減 ODM OEM 散熱業者與未來潛在風險",
+    "Google Meta 廣告營收獲利極爽",
+    "左派員工影響 Azure AI 產品營收占比"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1872,
+    "eval_count": 549,
+    "total_duration": 29068133166
+  },
+  "original_headings": [
+    "台灣地震頻繁影響外來者居住意願與 Data Center 風險",
+    "美股調整縮減 ODM OEM 散熱業者與未來潛在風險",
+    "Google Microsoft Meta 財報顯示 AI 時代營收持續上升",
+    "左派員工現實生活反應對產品消費者的直接影響"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "有像是 Google、Micro",
+      "eta 跟 Google 這兩種"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

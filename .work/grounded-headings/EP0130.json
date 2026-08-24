@@ -1,0 +1,15 @@
+{
+  "episode": 130,
+  "headings": [
+    "台股營收創新高與波浪理論爭議",
+    "價值投資分析基本面分析回歸好",
+    "波浪理論吐槽六個浪 KD RSI MACD 背後原因了解"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2106,
+    "eval_count": 577,
+    "total_duration": 38716143459
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,16 @@
+{
+  "episode": 224,
+  "headings": [
+    "原物料上漲做期貨而非股市標的",
+    "美股破底進入熊市台灣偏防守性資產選擇策略",
+    "股災時持續指數投資與避免恐慌砍倉",
+    "股災衰退情境下指數投資持續投入主動選股困難"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2216,
+    "eval_count": 537,
+    "total_duration": 26513697667
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

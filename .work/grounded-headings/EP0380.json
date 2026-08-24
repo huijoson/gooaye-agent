@@ -1,0 +1,34 @@
+{
+  "episode": 380,
+  "headings": [
+    "義大利兒子對祖母感情淡薄令人反思",
+    "訊息過多已讀不回死局與 Model 3 Highland 降價可能",
+    "會做人加分與供應鏈調整對消費者投資人無關",
+    "股災把握時機與 Dell 財報資本市場投入感悟"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1473,
+    "eval_count": 284,
+    "total_duration": 21075593916
+  },
+  "original_headings": [
+    "義大利兒子對祖母感情淡薄令人反思",
+    "訊息過多導致已讀不回陷入溝通死局",
+    "消費者投資人無需拆解供應鏈細節賭測",
+    "股災早期恐懼晚期悟道把握資本市場"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "是已讀不回",
+      "Model 3 Highland"
+    ],
+    [
+      "大多數人會做人都是加分",
+      "對於大多數的消費者或是投資人來講"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

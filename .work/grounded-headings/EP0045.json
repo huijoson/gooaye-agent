@@ -1,0 +1,16 @@
+{
+  "episode": 45,
+  "headings": [
+    "台灣美國散戶正職適合 ETF",
+    "股市二次影響與利多利空鈍化",
+    "Hertz 房多多 Robinhood 資料散戶愛買標的分析",
+    "修正聲音做法與分散風險決定"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1664,
+    "eval_count": 532,
+    "total_duration": 39818855750
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

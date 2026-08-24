@@ -1,0 +1,14 @@
+{
+  "episode": 580,
+  "headings": [
+    "不強推才藝班但發現其價格低廉的意外",
+    "AI 時代成長率敘事與 Meta Reality Labs 跌價案例",
+    "美國關稅影響下中小企業社群抱怨與 MAGA 支持者"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1834,
+    "eval_count": 486,
+    "total_duration": 49971536125
+  }
+}

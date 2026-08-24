@@ -1,0 +1,31 @@
+{
+  "episode": 95,
+  "headings": [
+    "金管會可能管制金融股現金股利引發賣壓",
+    "槓桿寬鬆導致次貸危機重現與投機客影響",
+    "第三戶以上購屋貸款修正六成抵押限制無寬限期",
+    "美股躺平 IPO 噴漲與 Guardant Health 案例"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2148,
+    "eval_count": 519,
+    "total_duration": 43468925000
+  },
+  "original_headings": [
+    "金管會可能管制金融股現金股利引發賣壓",
+    "槓桿寬鬆導致次貸危機重現與投機客影響",
+    "自然人第三戶以上購屋貸款修正六成無寬限期",
+    "美股躺平 IPO 噴漲與 Guardant Health 案例"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "是第三戶以上的購屋貸款",
+      "你購置第一戶的這個住宅貸款"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

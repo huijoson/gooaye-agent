@@ -1,0 +1,14 @@
+{
+  "episode": 378,
+  "headings": [
+    "台灣住宿價格合理性供需邏輯分析",
+    "輝達 L40S 供應短缺與過量預訂現象",
+    "AMD 競爭對手狀況與輝達毛利管理策略"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2421,
+    "eval_count": 463,
+    "total_duration": 37575370875
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "episode": 120,
+  "headings": [
+    "台股美股群氣氛天差地遠兩極化",
+    "重倉 SPAC 衍生品吃龜苓膏本多終勝富家子弟",
+    "去槓桿建議與個人決策彈性",
+    "ARK 非一定優於巴菲特個人取向",
+    "投資需一生規劃避免烙賽痛失三本柱"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2465,
+    "eval_count": 486,
+    "total_duration": 38816134125
+  },
+  "original_headings": [
+    "台股先於美股崩盤與晚間討論",
+    "重倉 SPAC 與衍生金融品風險",
+    "富家子弟勝率高槓桿非絕對",
+    "ARK 非一定優於巴菲特個人取向",
+    "投資一輩子方法修正調整"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "很多人重倉去壓這些 SPAC",
+      "你的勝率是比沒有錢的人還來得高"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

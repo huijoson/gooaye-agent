@@ -1,0 +1,15 @@
+{
+  "episode": 304,
+  "headings": [
+    "NVIDIA 作為 AI 投資核心標的",
+    "AI 客服現況與新創介入機會",
+    "ChatGPT 滲透生活與努力不再是美德",
+    "人類創造力工作可能被取代"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1942,
+    "eval_count": 443,
+    "total_duration": 33323845792
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "episode": 317,
+  "headings": [
+    "無基談法與紐交所報價故障",
+    "AI 趨勢對半導體動能影響",
+    "年輕全押 SSO 生命週期投資法信仰成分"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2485,
+    "eval_count": 438,
+    "total_duration": 26319788084
+  },
+  "original_headings": [
+    "無基本面消息股價持續彈升",
+    "AI 趨勢對半導體動能影響",
+    "生命週期投資法信仰成分"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "沒有任何的基本面好消息出來",
+      "他們的報價系統出了一些技術上的障礙"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

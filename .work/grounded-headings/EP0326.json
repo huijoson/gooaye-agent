@@ -1,0 +1,28 @@
+{
+  "episode": 326,
+  "headings": [
+    "馬來西亞度假村對外國人原價收費的觀察與感受",
+    "NVIDIA CUDA 綁住 AI 優勢明顯",
+    "尋找新鮮感需求下相處哲學與哈利波特帶來的意義"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2351,
+    "eval_count": 597,
+    "total_duration": 42243912917
+  },
+  "original_headings": [
+    "馬來西亞度假村對外國人原價收費的觀察與感受",
+    "NVIDIA 財報指引優勢與 CUDA 綁定 AI 產業的分析",
+    "尋找新鮮感需求下相處哲學與哈利波特帶來的意義"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "看到這個 NVIDIA 的財報出來",
+      "NVIDIA 的 CUDA"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,15 @@
+{
+  "episode": 1,
+  "headings": [
+    "歐洲排斥亞洲人氛圍濃厚",
+    "觀察匯率判斷外資動向",
+    "全球聚焦消費緊縮影響",
+    "股市空頭排列技術特徵"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1621,
+    "eval_count": 364,
+    "total_duration": 16842038083
+  }
+}

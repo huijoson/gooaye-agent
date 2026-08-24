@@ -1,0 +1,16 @@
+{
+  "episode": 50,
+  "headings": [
+    "國安法實施後香港創短時新高",
+    "非 TikTok 受眾視角下除權息對市場影響有限",
+    "美股走勢脫離台灣政治因素呈現多因心理投射",
+    "美歐資金持續看好中國公司於香港掛牌之趨勢"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1139,
+    "eval_count": 303,
+    "total_duration": 24180856333
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

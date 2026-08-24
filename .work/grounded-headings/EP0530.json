@@ -1,0 +1,14 @@
+{
+  "episode": 530,
+  "headings": [
+    "台股軟體股績效創新高與部位配置",
+    "工業電腦 IPC 選項與市場強勢主線",
+    "AI 伺服器獲利預期與巨頭觀察指標"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2306,
+    "eval_count": 463,
+    "total_duration": 41952551292
+  }
+}

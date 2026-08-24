@@ -1,0 +1,31 @@
+{
+  "episode": 379,
+  "headings": [
+    "育兒軍備競賽與搶先選擇更新",
+    "AI 曝險台股兩成以下美股五成",
+    "L40S PCIe 伺服器導入與法人記憶體叫板",
+    "兒子笑容帶來快樂與維持生活動力"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2431,
+    "eval_count": 552,
+    "total_duration": 31213762750
+  },
+  "original_headings": [
+    "養育小孩軍武競賽程度誇張支線任務滿點",
+    "美股 AI 曝險五成含博通 Marvell不含科技巨頭",
+    "傳統伺服器插 PCIe 版企業端導入隨波逐流",
+    "為兒子付出讓他笑樂維持生活動力很重要"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "小朋友的軍武競-賽是做到一個很誇",
+      "我之前跟大家提說那個不用搶"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

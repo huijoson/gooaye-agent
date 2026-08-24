@@ -1,0 +1,14 @@
+{
+  "episode": 258,
+  "headings": [
+    "台股加碼美國崩盤與上半年操作檢討",
+    "投資觸及率落差考驗與風險管理策略",
+    "追求平緩績效表現與部位調整心態"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2220,
+    "eval_count": 527,
+    "total_duration": 42471484042
+  }
+}

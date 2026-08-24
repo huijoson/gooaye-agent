@@ -1,0 +1,16 @@
+{
+  "episode": 77,
+  "headings": [
+    "實體經濟因疫情共處被迫恢復並非即將完蛋",
+    "川普確診市場崩盤預測邏輯脈絡",
+    "MOSFET 缺貨題材表現不錯但操作需小心起伏",
+    "投資核心觀念為分批投入分散風險非常重要"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1490,
+    "eval_count": 369,
+    "total_duration": 39039613417
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

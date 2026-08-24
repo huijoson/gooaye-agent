@@ -1,0 +1,17 @@
+{
+  "episode": 17,
+  "headings": [
+    "庫藏股與國安基金皆代表股價慘跌之認證",
+    "遊戲橘子炒庫藏股案例顯示有人發財也有人破產",
+    "庫藏股實施不影響股價走勢應自行做實驗驗證",
+    "劉肥公司買零趴與京城銀行買進 100%",
+    "聽眾催促講庫藏股與實施早已進行"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1861,
+    "eval_count": 568,
+    "total_duration": 23713800667
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

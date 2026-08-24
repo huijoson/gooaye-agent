@@ -1,0 +1,14 @@
+{
+  "episode": 64,
+  "headings": [
+    "台股八月二十日下殺大盤個股跌幅討論",
+    "消費股持有想法與科技股不亂解建議",
+    "買不到 SpaceX Starlink 轉向台灣衛星供應鏈"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1984,
+    "eval_count": 527,
+    "total_duration": 12105086333
+  }
+}

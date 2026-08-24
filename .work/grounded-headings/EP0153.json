@@ -1,0 +1,31 @@
+{
+  "episode": 153,
+  "headings": [
+    "串流媒體內容競爭與 Apple TV+ 看見影集",
+    "YouTube 造市者新制與金管會計畫",
+    "台股供應鏈複雜難懂與賭徒行為觀察",
+    "成長股崩盤與祝福主委家人健康"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2154,
+    "eval_count": 524,
+    "total_duration": 38176114208
+  },
+  "original_headings": [
+    "串流媒體內容競爭與 Apple TV+ 影集看見介紹",
+    "YouTube 造市者新制對市場影響解析",
+    "台股供應鏈複雜難懂與賭徒行為觀察",
+    "2021 成長股崩跌與股市祝福願景"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "串流媒體他們要競爭",
+      "但我們一樣先瞎挺 Apple"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

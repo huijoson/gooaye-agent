@@ -1,0 +1,28 @@
+{
+  "episode": 577,
+  "headings": [
+    "礁溪老爺泡湯體驗與裸湯研究",
+    "時間不多無法抓魚與東西重估價格",
+    "錯過契機跳代與育兒婚姻分享"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1911,
+    "eval_count": 436,
+    "total_duration": 28841907083
+  },
+  "original_headings": [
+    "礁溪老爺泡湯體驗與裸湯研究",
+    "時間管理限制與資產重估邏輯",
+    "錯過契機跳代與育兒婚姻分享"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "時間不多就沒有辦法",
+      "為什麼他不可以稍微的貴一點"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

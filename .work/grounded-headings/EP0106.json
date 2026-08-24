@@ -1,0 +1,15 @@
+{
+  "episode": 106,
+  "headings": [
+    "金管會示警富邦 VIX 溢價暴增 2% 至 5% 資金配置風險",
+    "看好半導體業界但無把握選股者可透過 ETF 進行投資",
+    "美股長期持有多 台股 IC 設計可持"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2252,
+    "eval_count": 645,
+    "total_duration": 41943442792
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

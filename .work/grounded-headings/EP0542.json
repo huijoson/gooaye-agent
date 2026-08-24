@@ -1,0 +1,15 @@
+{
+  "episode": 542,
+  "headings": [
+    "中間財搭上機會財風潮進入景氣循環",
+    "產能過剩後的庫存與股價下跌",
+    "長期看好比特幣與不看好小幣"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2325,
+    "eval_count": 455,
+    "total_duration": 36689831125
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,31 @@
+{
+  "episode": 631,
+  "headings": [
+    "Alex Honnold 挑戰台北 101 與官僚保守做法",
+    "衛星 M6 材料與記憶體 ABF 載板漲價",
+    "原物料漲價轉嫁機制與 CoWoS 應用烤箱案例",
+    "題材抓錯經驗分享與定期定額停利策略建議"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2228,
+    "eval_count": 574,
+    "total_duration": 22472250667
+  },
+  "original_headings": [
+    "Alex Honnold 台北 101 紀錄片與兒子誤解趣事",
+    "衛星概念股 Top Down 訂單與 Bottom Up 工料放量",
+    "原物料漲價轉嫁機制與 CoWoS 應用烤箱案例",
+    "題材抓錯經驗分享與定期定額停利策略建議"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "是 bottom up 發生說",
+      "被動元件的漲價也是持續有在跟大家追蹤"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

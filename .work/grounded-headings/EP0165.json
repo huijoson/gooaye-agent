@@ -1,0 +1,37 @@
+{
+  "episode": 165,
+  "headings": [
+    "估值因人而異且是日常生活常態",
+    "Yahoo Finance 分析師共識參考 EPS",
+    "電子股亦存在景氣循環股特性",
+    "試單驗證估值方法散戶勿輕言被低估",
+    "分析師專業素養與共識可參考性",
+    "高賣低買策略在預期中極其困難"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2107,
+    "eval_count": 508,
+    "total_duration": 44338361792
+  },
+  "original_headings": [
+    "估值因人而異且是日常生活常態",
+    "Yahoo Finance 分析師共識參考 EPS",
+    "電子股亦存在景氣循環股特性",
+    "試單驗證市場反應而非盲目樂觀",
+    "分析師專業素養與共識可參考性",
+    "高賣低買策略在預期中極其困難"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [],
+    [
+      "相信很快市場就會告訴你說沒有這種",
+      "跟你去探討一下估值的意涵是什麼"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

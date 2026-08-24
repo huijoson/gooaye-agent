@@ -1,0 +1,31 @@
+{
+  "episode": 466,
+  "headings": [
+    "特斯拉軟體股與車用組裝廠",
+    "先進封裝與浸沒冷卻技術出現帶頭大哥",
+    "AI 取代工程師與 UI UX 人員"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2558,
+    "eval_count": 568,
+    "total_duration": 35640330291
+  },
+  "original_headings": [
+    "軟體股佈局轉向特斯拉與車用相關產業",
+    "先進封裝與浸沒冷卻技術出現帶頭大哥",
+    "AI 取代工程師 UI UX 與 middleware 的討論"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "一些車用相關的東西",
+      "我選擇去降低一些 ODM 跟組裝廠"
+    ],
+    [],
+    [
+      "取代大量的 middleware",
+      "講說 UI 跟 UX 不重要"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

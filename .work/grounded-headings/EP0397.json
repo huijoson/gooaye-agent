@@ -1,0 +1,14 @@
+{
+  "episode": 397,
+  "headings": [
+    "違反人性的登入設計與訂閱制平台價值",
+    "車用電池類股競爭風險與技術反彈機會",
+    "AI 工程師 CUDA 優勢與散戶專業投資人比較"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2092,
+    "eval_count": 496,
+    "total_duration": 35871254666
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "episode": 144,
+  "headings": [
+    "航運股景氣循環特性與短期波動分析",
+    "被動元件歷史高點後股價大幅修正案例",
+    "區塊鏈技術前景與比特幣信仰中心觀點"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1879,
+    "eval_count": 424,
+    "total_duration": 37093060583
+  }
+}

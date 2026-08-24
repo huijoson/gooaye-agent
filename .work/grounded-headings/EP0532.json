@@ -1,0 +1,28 @@
+{
+  "episode": 532,
+  "headings": [
+    "美股 AI 硬體軟體資金流入抵消台股弱勢",
+    "RD 關鍵資源留台與晶片製造合資",
+    "沒錢就工作存錢與 iPhone SE 4 發表會期待"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 628,
+    "eval_count": 82,
+    "total_duration": 25349317375
+  },
+  "original_headings": [
+    "美股 AI 硬體軟體資金流入抵消台股弱勢",
+    "台積電若赴美合資製造面臨巨大挑戰",
+    "蘋果新機發表與 Apple Intelligence 規劃"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "說真的——又不然你講沒錢是怎樣的",
+      "或是它的 Apple Intel"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

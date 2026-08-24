@@ -1,0 +1,28 @@
+{
+  "episode": 134,
+  "headings": [
+    "當沖者誤以為賺便當錢是常態",
+    "市場熱度高成動能交易仔",
+    "每筆交易無論投機或長線都必須先算好風險報酬比"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2106,
+    "eval_count": 577,
+    "total_duration": 38716143459
+  },
+  "original_headings": [
+    "當沖口號賺便當錢並非新新聞但很多人不知所措",
+    "市場熱度高時應做好最壞準備並提醒槓桿風險",
+    "每筆交易無論投機或長線都必須先算好風險報酬比"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "看到現在市場熱度高成",
+      "你要做好最壞的準備"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

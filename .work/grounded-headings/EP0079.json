@@ -1,0 +1,15 @@
+{
+  "episode": 79,
+  "headings": [
+    "賺 25 萬與 3 萬投資煩惱差異在於資金全進風險",
+    "能源 ETF 如 QCLN ICLN 拉漲反映看好拜登勝選",
+    "中國反壟斷審查未自廢武功"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1676,
+    "eval_count": 553,
+    "total_duration": 31030785541
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

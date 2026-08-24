@@ -1,0 +1,14 @@
+{
+  "episode": 558,
+  "headings": [
+    "林口練團室與開酒吧錢坑反思及遊戲團隊投資招募",
+    "美國 tier 分級限制與川普突破飛機業半導體 AI",
+    "癌大全家身體健康祝福與森林一家新生活順利祈願"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2121,
+    "eval_count": 542,
+    "total_duration": 43063372542
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "episode": 446,
+  "headings": [
+    "Q1 歷史新高業力引爆回美股日常",
+    "台積電財報展望涵蓋 HPC、AI server 與一般伺服器業務",
+    "台積電長期軌跡不受短線股價變化或地緣政治影響",
+    "長期大趨勢與地緣政治影響"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2114,
+    "eval_count": 554,
+    "total_duration": 44646075500
+  },
+  "original_headings": [
+    "台積電 Q1 歷史新高績效在第二季業力引爆的市場日常",
+    "台積電財報展望涵蓋 HPC、AI server 與一般伺服器業務",
+    "台積電長期軌跡不受短線股價變化或地緣政治影響",
+    "美國經濟意外衰退等極端事件改變台積電發展路徑的可能性"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [],
+    [
+      "不管是地緣政治或是一些天災人禍",
+      "美國經濟意外衰退之類很誇張的事情"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

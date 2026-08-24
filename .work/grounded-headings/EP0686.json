@@ -1,0 +1,31 @@
+{
+  "episode": 686,
+  "headings": [
+    "地方爸爸身心健康與八八節快樂祝福提醒",
+    "資產新高後保本思維大於賺更多錢的長短配置",
+    "7 月中小股跌三成與 800V 訂單提前",
+    "孟恭吉卡開心手術捏卵陣線聯盟"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2979,
+    "eval_count": 632,
+    "total_duration": 37307980792
+  },
+  "original_headings": [
+    "地方爸爸身心健康與八八節快樂祝福提醒",
+    "資產新高後保本思維大於賺更多錢的長短配置",
+    "七月產業無轉弱跡象卻中小指數疊跌三成現象",
+    "孟恭吉卡女兒平安出生加入捏卵陣線聯盟分享"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "在產業面上你並沒有看到任何轉弱的跡象",
+      "提早的往 800V 的方向去走"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,15 @@
+{
+  "episode": 285,
+  "headings": [
+    "市場信仰崩塌與破底翻",
+    "配息滾動複利與東方神秘力量",
+    "Robotaxi 雲端服務與特斯拉第四家 Cloud"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1864,
+    "eval_count": 462,
+    "total_duration": 43835568958
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

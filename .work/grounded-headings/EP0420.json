@@ -1,0 +1,28 @@
+{
+  "episode": 420,
+  "headings": [
+    "FOPLP 先進封裝技術與面板廠電鍍設備線寬",
+    "TSM 展望 CoWoS SoIC 與 L10 組裝發展",
+    "液冷冷板發展與生活冰淡現實"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2234,
+    "eval_count": 535,
+    "total_duration": 28934824000
+  },
+  "original_headings": [
+    "Fan-out Panel Level Packaging 先進封裝技術",
+    "面板封裝設備 TSM 展望與 CoWoS SoIC 發展",
+    "Liquid Cooling Cold Plate 潛力與生活現實面對"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "一種先進封裝技術",
+      "先進封裝技術跟我們在半導體看到的"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

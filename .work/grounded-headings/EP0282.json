@@ -1,0 +1,15 @@
+{
+  "episode": 282,
+  "headings": [
+    "樂天桃園開球與聯準會經濟博士",
+    "Model Y Model Q 市場定位分析",
+    "美國降息的收割全世界"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2262,
+    "eval_count": 488,
+    "total_duration": 29955591583
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,31 @@
+{
+  "episode": 635,
+  "headings": [
+    "Bambino Gesù 醫院免費治癒癌症病患神蹟故事",
+    "早期節目製作心態轉變與不盲目追高好股票",
+    "MACO 展望上修印證 HDI PCB 衛星題材",
+    "高腰褲 Polo T 退休公務員造型抱鼓過年剪槓桿"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2228,
+    "eval_count": 574,
+    "total_duration": 22472250667
+  },
+  "original_headings": [
+    "Bambino Gesù 醫院免費治癒癌症病患神蹟故事",
+    "早期節目製作心態轉變與不盲目追高好股票",
+    "MACO 上修 HDI PCB 展望驗證衛星題材真實性",
+    "退休公務員造型觀察與抱鼓過年剪掉槓桿做法"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "說我們可以透過這個 MACO 的上修",
+      "上修了他的 HDI PCB 的展"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

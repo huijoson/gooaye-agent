@@ -1,0 +1,28 @@
+{
+  "episode": 220,
+  "headings": [
+    "防疫旅館確診延誤隔離天數影響旅行體驗",
+    "建立交易邏輯與高通投片",
+    "市值型 ETF 定期定額投資效果與壞消息常態"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1252,
+    "eval_count": 262,
+    "total_duration": 34241520750
+  },
+  "original_headings": [
+    "防疫旅館確診延誤隔離天數影響旅行體驗",
+    "高通投片台積電 Snapdragon 8 Gen 1 Plus",
+    "市值型 ETF 定期定額投資效果與壞消息常態"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "一般人你的錢不是無限的",
+      "它的 Snapdragon 8"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,14 @@
+{
+  "episode": 183,
+  "headings": [
+    "外資影響力下降內資法人主導台股走向",
+    "三台車科技日亮相郭台銘駕馭其中一台",
+    "鴻海汽車營收占比最高與新創代工跑道"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1537,
+    "eval_count": 269,
+    "total_duration": 29640614917
+  }
+}

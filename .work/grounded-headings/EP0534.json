@@ -1,0 +1,31 @@
+{
+  "episode": 534,
+  "headings": [
+    "紫微斗數算命與心靈強韌調整",
+    "Grok-3 強大模型煥然一新推薦",
+    "C1 晶片首次用在 iPhone SE 自製"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2436,
+    "eval_count": 488,
+    "total_duration": 40234128750
+  },
+  "original_headings": [
+    "心靈調整面對不可預期事實",
+    "Grok-3 強大模型煥然一新推薦",
+    "iPhone 16 SE 自製數據機晶片 C1"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "這兩天在家裡體驗一個遠端紫微斗數算命",
+      "把自己的心靈調整到"
+    ],
+    [],
+    [
+      "的使用了自家的數據機晶片、mod",
+      "的 iPhone 17 應該也可"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

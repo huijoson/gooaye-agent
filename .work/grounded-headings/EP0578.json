@@ -1,0 +1,31 @@
+{
+  "episode": 578,
+  "headings": [
+    "課金五至六萬仍卡角色與老婆嫌亂花錢",
+    "Tesla 成本極限與 Robotaxi 推演",
+    "教育小朋友家長決定要求嚴格沒大問題"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1911,
+    "eval_count": 436,
+    "total_duration": 28841907083
+  },
+  "original_headings": [
+    "課金追趕困難與家庭溝通衝突",
+    "Tesla 成本極限與 Robotaxi 推演",
+    "兒童教育自主權與家長決定"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "這是我課了五、六萬塊之後才發現",
+      "我就很高興地回去跟老婆分享"
+    ],
+    [],
+    [
+      "畢竟你怎麼樣教育小朋友是家長自己決定",
+      "是在更加的要求嚴格"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

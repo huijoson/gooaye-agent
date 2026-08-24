@@ -1,0 +1,15 @@
+{
+  "episode": 2,
+  "headings": [
+    "長下影線非抄底訊號二月二十七號實例",
+    "本益比評價與訂閱經濟 Disney Plus 案例",
+    "反向商品扣血經理費黃金股災無關"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1623,
+    "eval_count": 469,
+    "total_duration": 43882260625
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

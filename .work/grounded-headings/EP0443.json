@@ -1,0 +1,28 @@
+{
+  "episode": 443,
+  "headings": [
+    "陪小朋友玩小舅子小姨子第七集收尾九分",
+    "AMR 市場熱度與特斯拉人形機器人展望",
+    "景氣循環股歷史本益比在寬鬆貨幣環境下的適用性"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2114,
+    "eval_count": 554,
+    "total_duration": 44646075500
+  },
+  "original_headings": [
+    "第七集《紳士追殺令》收尾方式與評分",
+    "AMR 市場熱度與特斯拉人形機器人展望",
+    "景氣循環股歷史本益比在寬鬆貨幣環境下的適用性"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "我也花了蠻多時間在陪小舅子、小姨子",
+      "跟《紳士追殺令》一樣"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

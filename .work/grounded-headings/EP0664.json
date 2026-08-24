@@ -1,0 +1,16 @@
+{
+  "episode": 664,
+  "headings": [
+    "Star Wine List 發現傳奇酒半價銷售",
+    "AI 模型商獲利轉正打臉泡沫論者",
+    "Google TPU 外銷 Anthropic 共識形成",
+    "被忽略 Power 櫃與 AI 主體 NVIDIA Vera Rubin"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2909,
+    "eval_count": 487,
+    "total_duration": 50605719667
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

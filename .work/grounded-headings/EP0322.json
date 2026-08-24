@@ -1,0 +1,34 @@
+{
+  "episode": 322,
+  "headings": [
+    "社交恐懼誤以為直男後來發現 gay 老天公平專注領域做得很差",
+    "黑天鵝變局未發生下的資安與 Edge Server 爆發預測",
+    "車用大型資料中心與 Edge AI 發展延後帶來的資安類股機會",
+    "孟恭說股癌第二與生科轉程式全押"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2351,
+    "eval_count": 597,
+    "total_duration": 42243912917
+  },
+  "original_headings": [
+    "自我認知偏差與過度專注領域的失衡現象",
+    "黑天鵝變局未發生下的資安與 Edge Server 爆發預測",
+    "車用大型資料中心與 Edge AI 發展延後帶來的資安類股機會",
+    "軟著陸硬著陸概念探討及生科轉程式全進風險提醒"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "有點像以前以為自己是直男",
+      "過度專注在一些領域"
+    ],
+    [],
+    [],
+    [
+      "最近很常聽到軟著陸",
+      "之後面決定去學程式"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

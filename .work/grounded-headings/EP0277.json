@@ -1,0 +1,34 @@
+{
+  "episode": 277,
+  "headings": [
+    "HPC 車用多軍堡壘消失與股債雙殺",
+    "毒害引發封城與數據顯示輪替",
+    "蘋果發表會新規格與題材缺乏狀況",
+    "承認操作失敗獲肯定與自稱不會賠錢文化"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1802,
+    "eval_count": 343,
+    "total_duration": 37365131958
+  },
+  "original_headings": [
+    "HPC 車用多軍堡壘消失與股債雙殺",
+    "差年好年循環規律與明年數據展望",
+    "蘋果發表會新規格與題材缺乏狀況",
+    "承認操作失敗獲得聽眾肯定"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "他們放出來的毒",
+      "一般很差的年後面會是一個不錯的年"
+    ],
+    [],
+    [
+      "有想到在承認自己的今年的操作沒有",
+      "台灣的分享都會跟你講說自己都不會賠錢"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

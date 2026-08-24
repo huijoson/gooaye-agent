@@ -1,0 +1,28 @@
+{
+  "episode": 170,
+  "headings": [
+    "林口建物覆蓋率與除濕需求觀察",
+    "Morgan Stanley 圖表 IC 設計投片漲價",
+    "看好受害但強勢的 IC 設計公司佈局"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2046,
+    "eval_count": 447,
+    "total_duration": 38138776750
+  },
+  "original_headings": [
+    "林口建物覆蓋率與除濕需求觀察",
+    "Morgan Stanley 報告中的晶圓代工投片邏輯",
+    "看好受害但強勢的 IC 設計公司佈局"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "上有一份 Morgan Stan",
+      "他們會去找這些 foundry 投片"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

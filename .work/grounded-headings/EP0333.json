@@ -1,0 +1,28 @@
+{
+  "episode": 333,
+  "headings": [
+    "謝孟恭遇特斯拉事故與南部朋友熱情",
+    "南部血脈熱情甘蔗與台下十年功",
+    "工業自動化改善企業缺乏動機"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2005,
+    "eval_count": 461,
+    "total_duration": 36877144542
+  },
+  "original_headings": [
+    "謝孟恭遇特斯拉事故與南部朋友熱情",
+    "猛男毫不費力特質源自台下十年功",
+    "工業自動化改善企業缺乏動機"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "什麼愛喝水、喝甘蔗之類",
+      "看起來毫不費力的猛男們"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

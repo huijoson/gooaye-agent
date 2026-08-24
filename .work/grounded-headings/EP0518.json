@@ -1,0 +1,15 @@
+{
+  "episode": 518,
+  "headings": [
+    "看完《龍與地下城：盜賊榮耀》後對角色設定感到困擾",
+    "科技巨頭使用大量 GPU 製作模型形成價格競爭壓力",
+    "唐氏症檢驗爭議台指期逆價差"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2219,
+    "eval_count": 611,
+    "total_duration": 43394241875
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

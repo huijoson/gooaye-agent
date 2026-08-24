@@ -1,0 +1,37 @@
+{
+  "episode": 343,
+  "headings": [
+    "投資理財收聽可能有問題與老菜雞長期陪伴",
+    "馬斯克入主後 Twitter 環境變好",
+    "廣告轉換率落差與平台發展性",
+    "已知市場獲利了結大回檔 Google 營收獲利衝擊",
+    "人格障礙導致打電動時情緒失控"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2533,
+    "eval_count": 513,
+    "total_duration": 41519305875
+  },
+  "original_headings": [
+    "台灣投資理財收聽可能面臨問題",
+    "馬斯克入主後 Twitter 環境變好",
+    "廣告轉換率落差與平台發展性",
+    "市場獲利了結與 Google 營收不受衝擊",
+    "人格障礙導致打電動時情緒失控"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "台灣去做投資理財相關的收<seg",
+      "收聽每週兩次的尊重教會很長一段時間了"
+    ],
+    [],
+    [],
+    [
+      "市場的一個獲利了結",
+      "Google 遭受到微軟的大力挑戰"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

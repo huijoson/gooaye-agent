@@ -1,0 +1,28 @@
+{
+  "episode": 204,
+  "headings": [
+    "台積電在 0050 占比論述與報酬率分析",
+    "發哥優於台積電鴻海電動車供應鏈",
+    "小資打工仔定期定額投資大盤 ETF 績效"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2322,
+    "eval_count": 494,
+    "total_duration": 30276641667
+  },
+  "original_headings": [
+    "台積電在 0050 占比論述與報酬率分析",
+    "發哥鴻海排名與電動車供應鏈成長性",
+    "小資打工仔定期定額投資大盤 ETF 績效"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "應該是發哥優於台積電",
+      "電動車供應鏈的成長性是非常強勁的"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

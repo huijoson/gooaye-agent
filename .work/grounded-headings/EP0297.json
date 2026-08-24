@@ -1,0 +1,16 @@
+{
+  "episode": 297,
+  "headings": [
+    "台指大乖離反彈與期貨賣權策略",
+    "核心原則隨時持有部位避免全進全出",
+    "ADR 換算台積電股價與巴菲特買 ADR 討論",
+    "政治信仰不變與高股息配息影響投資信心"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2392,
+    "eval_count": 535,
+    "total_duration": 30211593375
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

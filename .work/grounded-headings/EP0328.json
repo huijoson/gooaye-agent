@@ -1,0 +1,31 @@
+{
+  "episode": 328,
+  "headings": [
+    "台股科技股反彈後空單慘遭打臉",
+    "被動元件消費性產業見底復甦跡象",
+    "車用半導體減碼考量與第三代佈局",
+    "SiC 需求減少影響 Wolfspeed 安森美"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2005,
+    "eval_count": 461,
+    "total_duration": 36877144542
+  },
+  "original_headings": [
+    "台股科技股反彈後空單慘遭打臉",
+    "被動元件消費性產業見底復甦跡象",
+    "車用半導體減碼考量與第三代佈局",
+    "特斯拉矽碳需求減量對供應鏈影響"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [],
+    [
+      "他們不會去使用含稀土的永磁馬達",
+      "想請問特斯拉投資日上"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

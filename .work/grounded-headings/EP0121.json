@@ -1,0 +1,31 @@
+{
+  "episode": 121,
+  "headings": [
+    "左右側交易無絕對對錯",
+    "車用晶片缺貨與價值股復甦",
+    "大盤指數優於特定價值 ETF",
+    "生技股水深不建議盲目投入"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2115,
+    "eval_count": 425,
+    "total_duration": 37756528792
+  },
+  "original_headings": [
+    "左右側交易無絕對對錯",
+    "價值股復甦被視為狼來了",
+    "大盤指數優於特定價值 ETF",
+    "生技股水深不建議盲目投入"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "大家確實是要注意的",
+      "價值 ETF 的復甦、價值股的復甦"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

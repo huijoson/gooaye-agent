@@ -1,0 +1,15 @@
+{
+  "episode": 210,
+  "headings": [
+    "蒜頭蛤蜊湯猴子煮 蘋果晶片設計雜亂",
+    "台積電先進製程營收占比與車用晶片政策",
+    "對手賣股原因不明 追高胡思亂想成本"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2322,
+    "eval_count": 494,
+    "total_duration": 30276641667
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

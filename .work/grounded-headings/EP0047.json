@@ -1,0 +1,15 @@
+{
+  "episode": 47,
+  "headings": [
+    "四五月台美股主動選股獲利困難的觀點",
+    "Spotify 作為音訊串流與 YouTube 影片串流的類比",
+    "回測資訊真假參半 Shihpalii Zhenghe 標的"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1738,
+    "eval_count": 574,
+    "total_duration": 43184015875
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

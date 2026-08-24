@@ -1,0 +1,28 @@
+{
+  "episode": 335,
+  "headings": [
+    "Starlink 解網壞痛點",
+    "籌碼指標成長過程中的笑話與有效性驗證失敗的經驗",
+    "公司派說法被低估且誠信在投資中極為重要的啟示"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2351,
+    "eval_count": 597,
+    "total_duration": 42243912917
+  },
+  "original_headings": [
+    "網路故障痛點下選擇 SpaceX Starlink 衛星網路的決定",
+    "籌碼指標成長過程中的笑話與有效性驗證失敗的經驗",
+    "公司派說法被低估且誠信在投資中極為重要的啟示"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "ceX 旗下 Starlink",
+      "已經下訂 Starlink 的衛"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

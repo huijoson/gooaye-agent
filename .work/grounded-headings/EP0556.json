@@ -1,0 +1,15 @@
+{
+  "episode": 556,
+  "headings": [
+    "Computex 硬體表現平淡與軟硬整合應用驚喜發展",
+    "市場修復估值方向與川普政府 AI 引導者 David Sacks",
+    "拜登 AI 禁令指控傷害美國"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2121,
+    "eval_count": 542,
+    "total_duration": 43063372542
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

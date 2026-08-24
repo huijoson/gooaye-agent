@@ -1,0 +1,14 @@
+{
+  "episode": 544,
+  "headings": [
+    "AI 大型模型與客製化高毛利軟體公司生存策略",
+    "資料清洗模組化業務與 IPC 產業競爭邏輯",
+    "出國工作適應過程與台股加權櫃買維持率現況"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2299,
+    "eval_count": 608,
+    "total_duration": 34486926834
+  }
+}

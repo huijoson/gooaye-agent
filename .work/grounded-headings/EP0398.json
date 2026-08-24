@@ -1,0 +1,14 @@
+{
+  "episode": 398,
+  "headings": [
+    "非政治狂熱者看待物聯網 Buzzword 的現實落差",
+    "頻寬成本高昂促使企業從 AWS 轉向 Cloudflare",
+    "DRAM NAND 存儲設備接口與 Edge 公司迎來大循環"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2031,
+    "eval_count": 538,
+    "total_duration": 19923016625
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "episode": 526,
+  "headings": [
+    "雲玩家成主流看實況與清倉走人模式未定",
+    "HTC Google 人才訓練班 Rumor 流動",
+    "中國複製績效與 Andreessen 抱怨管制"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2436,
+    "eval_count": 488,
+    "total_duration": 40234128750
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

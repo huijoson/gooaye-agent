@@ -1,0 +1,14 @@
+{
+  "episode": 306,
+  "headings": [
+    "賣特斯拉繳稅與推特養護成本",
+    "二手車危機與金融海嘯比較",
+    "中國解封題材對原物料股影響"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1942,
+    "eval_count": 443,
+    "total_duration": 33323845792
+  }
+}

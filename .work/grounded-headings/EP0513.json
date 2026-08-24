@@ -1,0 +1,15 @@
+{
+  "episode": 513,
+  "headings": [
+    "圓夢完成 GTA 復刻遊戲感受",
+    "夢想實現後對努力意義的重新認知與體驗",
+    "CDN 業者與儲存技術"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2226,
+    "eval_count": 534,
+    "total_duration": 50329468833
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

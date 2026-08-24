@@ -1,0 +1,18 @@
+{
+  "episode": 525,
+  "headings": [
+    "朋友支持與新竹台北通勤陪伴",
+    "破除自我審查美國封鎖科技股霸權再起",
+    "市場漲跌邏輯與美國科技投入",
+    "美股觀察與台股長期持股策略",
+    "短期股價難解與早期市場認知不足",
+    "聯亞光電飆漲與目標價迷信反思"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2436,
+    "eval_count": 488,
+    "total_duration": 40234128750
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

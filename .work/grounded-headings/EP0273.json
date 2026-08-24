@@ -1,0 +1,31 @@
+{
+  "episode": 273,
+  "headings": [
+    "做錯修正與先做後定方向",
+    "Adam Neumann 創辦 Flow 反社會人格有執行力",
+    "散戶未料跌深 Qorvo 編列違約金預算"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1534,
+    "eval_count": 221,
+    "total_duration": 21301622084
+  },
+  "original_headings": [
+    "先做下去再修正方向",
+    "反社會人格執行力與道德缺失",
+    "Qorvo 違約金對供應鏈影響"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "天我在臉書跟 Telegram ",
+      "很多那種反社會人格"
+    ],
+    [
+      "這一波大家真的沒有想到是可以跌這麼深",
+      "IDM 大廠 Qorvo"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

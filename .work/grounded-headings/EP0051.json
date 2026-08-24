@@ -1,0 +1,15 @@
+{
+  "episode": 51,
+  "headings": [
+    "夫妻雙重解任訴訟投保中心",
+    "第二次下殺籌資 150 億美元撿便宜策略",
+    "Podcast 股票表現與內容切中喜歡的點"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1664,
+    "eval_count": 532,
+    "total_duration": 39818855750
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

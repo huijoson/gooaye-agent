@@ -1,0 +1,15 @@
+{
+  "episode": 549,
+  "headings": [
+    "拒絕治療者新想法產生與講話風格從批判轉向中性的隨緣態度",
+    "統一單一口對口好 H200 出口管制中斷",
+    "2 月 24 號融資槓桿大盤正二搭雲霄飛車"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2299,
+    "eval_count": 608,
+    "total_duration": 34486926834
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

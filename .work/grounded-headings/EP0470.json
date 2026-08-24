@@ -1,0 +1,43 @@
+{
+  "episode": 470,
+  "headings": [
+    "林口店家服務好情操支持",
+    "Accenture 全球 IT 顧問公司佈局",
+    "顧問公司導入 AI 工具成為時代敲門磚",
+    "AI 導入四階段與 Goldman Sachs 報告",
+    "H20 跟 B20 市場討論及 L40S 需求重疊競爭"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2558,
+    "eval_count": 568,
+    "total_duration": 35640330291
+  },
+  "original_headings": [
+    "Signance 台灣唯一官方購買管道嘖嘖預購",
+    "Accenture 作為大型企業導入 AI 顧問角色",
+    "AI 導入四階段從代理商到最終受惠廠商",
+    "NVIDIA H20 B20 與 L40S 競爭影響 TAM",
+    "Blackwell 晶片組合分析與微型台指看法"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "Signance 客製化簽名目前",
+      "開店是不容易"
+    ],
+    [
+      "Accenture 愛生者",
+      "選擇像是 Accenture 這"
+    ],
+    [],
+    [
+      "的 AI 導入真正運用的受惠",
+      "在 AI 有四個階段"
+    ],
+    [
+      "這邊最近在市場上也蠻多的人在討論",
+      "想想 L40S"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

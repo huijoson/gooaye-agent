@@ -1,0 +1,15 @@
+{
+  "episode": 38,
+  "headings": [
+    "匯豐銀行股價恆生指數走勢影響大於疫情",
+    "港幣脫離聯繫匯率制度賭注",
+    "技術分析應用與長期投資時機"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1669,
+    "eval_count": 518,
+    "total_duration": 11408917834
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

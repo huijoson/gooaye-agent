@@ -1,0 +1,15 @@
+{
+  "episode": 467,
+  "headings": [
+    "特斯拉股價漲幅與車用半導體未來想像空間",
+    "HBM 供過於求情境下 NAND DRAM 股價支撐力探討",
+    "爸媽借錢投資當沖做指數與巴菲特槓桿加密貨幣賺快去做"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2498,
+    "eval_count": 629,
+    "total_duration": 43418499500
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

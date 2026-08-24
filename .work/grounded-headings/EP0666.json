@@ -1,0 +1,15 @@
+{
+  "episode": 666,
+  "headings": [
+    "ServiceNow 老闆認為 AI 論述多為錯誤",
+    "支持黃仁勳觀點認為 AI 將提升工作效率",
+    "被動元件雖有漲但市場討論度仍不足",
+    "未來業務能力將凌駕於模型與硬體強度"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2943,
+    "eval_count": 588,
+    "total_duration": 41435351584
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "episode": 603,
+  "headings": [
+    "膽固醇針劑六個月一打與陽台植物被風吹倒",
+    "Nexperia收購引發荷蘭政府敏感神經與 HVDC資料中心需求提升",
+    "矽中介層與 C-Cap 技術應用於載板製造"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2242,
+    "eval_count": 509,
+    "total_duration": 39139476458
+  },
+  "original_headings": [
+    "荷蘭政府以 Nexperia 為由動用法律手段",
+    "資料中心發酵帶動大電壓被動元件需求提升",
+    "矽中介層與 C-Cap 技術應用於載板製造"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "我昨天也去做這個膽固醇針劑的第二針",
+      "陽台的一些植物想要把它扶起來"
+    ],
+    [
+      "覺得說是不是要把一些技術給弄回去中國",
+      "面的這個被動元件的需求或是一些規"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

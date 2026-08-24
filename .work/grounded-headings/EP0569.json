@@ -1,0 +1,31 @@
+{
+  "episode": 569,
+  "headings": [
+    "喜劇俱樂部表演者受害者角色經營不錯支持喜劇俱樂部",
+    "AI 伺服器峰值需要緩衝池",
+    "台灣軟體族群性與半導體客戶驗證"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2140,
+    "eval_count": 519,
+    "total_duration": 35927192667
+  },
+  "original_headings": [
+    "喜劇俱樂部成員受害心態與經營表現支持呼籲",
+    "AI 伺服器峰值不穩需 HVDC 高壓直流電緩衝池",
+    "台灣軟體股族群性上漲與半導體客戶連結"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "或者說在 AI 伺服器的一個運行",
+      "所謂的 HVDC 就指說高壓直流電"
+    ],
+    [
+      "是台灣的軟體股也看得出來有那種族",
+      "它的客戶是半導體公司"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

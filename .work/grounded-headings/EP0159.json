@@ -1,0 +1,31 @@
+{
+  "episode": 159,
+  "headings": [
+    "費雪潛力股成長股價值股爭執",
+    "Blue Origin 新謝帕德著陸與 SpaceX 競爭",
+    "2021 年回調數據與歷史最低點比較"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2154,
+    "eval_count": 524,
+    "total_duration": 38176114208
+  },
+  "original_headings": [
+    "費雪非常潛力股書對成長性股票想法深化",
+    "Blue Origin 火箭成功發射著陸與 SpaceX 競品",
+    "2021 年回調數據與歷史最低點比較"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "你看了這一本費雪的《非常潛力股》之後",
+      "還在爭執成長股跟價值股到底是孰優"
+    ],
+    [
+      "ezos 的 Blue Orig",
+      "Musk 的 SpaceX"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

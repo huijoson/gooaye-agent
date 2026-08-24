@@ -1,0 +1,17 @@
+{
+  "episode": 474,
+  "headings": [
+    "數位時代 AI 未來商務展 To B 快於 To C 交付觀察",
+    "修正可能尚未到底與加權指數下跌 750 多點",
+    "車用半導體循環 downturn 復甦腳步與股價區間觀察",
+    "電動車產業新變化與特斯拉長期故事不變",
+    "大人看財報新聞習慣與持股降至純現金狀態"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2316,
+    "eval_count": 467,
+    "total_duration": 38446669167
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

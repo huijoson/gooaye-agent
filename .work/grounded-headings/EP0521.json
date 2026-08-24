@@ -1,0 +1,31 @@
+{
+  "episode": 521,
+  "headings": [
+    "CES 預期甚低但老黃演說引爆",
+    "NVIDIA 搶佔 Niche 市場與畢業生首選",
+    "聯發科投入 Grace CPU Tile C2C Connect",
+    "AI PC 普及與市場爆發猜想"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2176,
+    "eval_count": 500,
+    "total_duration": 38145476959
+  },
+  "original_headings": [
+    "群聯認為 NVIDIA 不願進入客製化市場結果被搶走",
+    "CES 展覽預期已足但老黃演說仍引發巨大轟動",
+    "Blackwell GPU 全屬 NVIDIA 而聯發科投入 Grace CPU",
+    "AI PC 將全面具備能力但未如猜想般於爆發點起漲"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "他們認為說 NVIDIA",
+      "它有我們非常抵抗不了的東西"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,31 @@
+{
+  "episode": 344,
+  "headings": [
+    "市場詭譎難懂央行決策藏機",
+    "臉書廣告產出 ROAS 與財評點評",
+    "臉書漲最兇元宇宙燒錢必要投資"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2533,
+    "eval_count": 513,
+    "total_duration": 41519305875
+  },
+  "original_headings": [
+    "馬斯克對十年內市場創新高看法",
+    "臉書廣告產出 ROAS 與財評點評",
+    "Meta 成為漲幅科技巨頭與元宇宙投資"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "他不覺得在十年內市場會創新高",
+      "說現在的行情是很詭譎的"
+    ],
+    [],
+    [
+      "漲最兇的科技巨頭",
+      "元宇宙繼續燒錢"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

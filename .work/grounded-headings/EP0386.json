@@ -1,0 +1,31 @@
+{
+  "episode": 386,
+  "headings": [
+    "Tim 哥台灣之光與年輕聽眾共鳴",
+    "工業電腦季末下單中國市場復甦未見",
+    "美國制裁中國晶片背後原因與罷工潮"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2041,
+    "eval_count": 499,
+    "total_duration": 40181952625
+  },
+  "original_headings": [
+    "演唱會亮點 Tim 哥與年輕觀眾共鳴",
+    "工業電腦見度低但第四季訂單增加",
+    "美國制裁中國晶片背後原因與罷工潮"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "演唱會裡面還有另外一個亮點",
+      "我自己也是很愛去看演唱會的人"
+    ],
+    [
+      "工業電腦的部分也是身邊有一些朋友",
+      "消費復甦就真的沒有看到"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

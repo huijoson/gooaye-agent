@@ -1,0 +1,14 @@
+{
+  "episode": 87,
+  "headings": [
+    "台股脫離死魚盤科技股表現",
+    "疫苗防護率與疫情相關個股",
+    "中國內需股如美食 KY 瓦城動作"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1894,
+    "eval_count": 450,
+    "total_duration": 35453248084
+  }
+}

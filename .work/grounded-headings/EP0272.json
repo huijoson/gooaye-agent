@@ -1,0 +1,15 @@
+{
+  "episode": 272,
+  "headings": [
+    "迷因股 Diamond Hand 與 Ryan Cohen",
+    "碳化矽基板壟斷地位看 Wolfspeed 安森美動盪",
+    "渣男騙取感情邏輯與騎驢找馬職業發展策略"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2228,
+    "eval_count": 496,
+    "total_duration": 20501579833
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

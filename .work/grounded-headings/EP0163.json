@@ -1,0 +1,31 @@
+{
+  "episode": 163,
+  "headings": [
+    "Square 去併 Afterpay 讓 BNPL 彈起",
+    "中租的零卡分期對應 BNPL 股票標的",
+    "癌大重複投資觀念提醒菜雞投資人注意價值接刀盲點"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 429,
+    "eval_count": 90,
+    "total_duration": 10650671916
+  },
+  "original_headings": [
+    "Square 併購 Afterpay 帶動 Affirm 股價反彈",
+    "尋找 BNPL 與中租零卡分期對應標的",
+    "癌大提醒菜雞投資人注意價值投資盲點"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "re 去併了 Afterpay",
+      "了一家叫做 Afterpay 的"
+    ],
+    [
+      "或是你看到这个中租的零卡分期什么",
+      "中租的零卡分期"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,15 @@
+{
+  "episode": 156,
+  "headings": [
+    "小白聽 ETF 別幻想打贏大盤",
+    "衍生金融品包含期貨選擇權與權證",
+    "選擇權賣方風險極高加速歸西"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1813,
+    "eval_count": 334,
+    "total_duration": 40630719667
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

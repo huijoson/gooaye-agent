@@ -1,0 +1,28 @@
+{
+  "episode": 487,
+  "headings": [
+    "散戶技術分析執念與台股弱勢",
+    "iPhone 未漲價成中性偏空 Wi-Fi 7 全面 upside",
+    "工具機個股動向與辯論會心得"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2151,
+    "eval_count": 393,
+    "total_duration": 39839842458
+  },
+  "original_headings": [
+    "散戶技術分析執念與台股弱勢",
+    "iPhone 未漲價與 Wi-Fi 7 供應鏈機會",
+    "工具機個股動向與辯論會心得"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "iPhone 沒有漲價",
+      "大家本來是沒有算到的東西"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

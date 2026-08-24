@@ -1,0 +1,16 @@
+{
+  "episode": 261,
+  "headings": [
+    "短線策略週期變短與媽生活天翻地覆",
+    "台積電法說會財報預期與示弱可能分析",
+    "Peter Lynch 買入 IMAC Holdings 案例分享",
+    "透過腦力激盪進修市場經濟局勢分析"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2220,
+    "eval_count": 527,
+    "total_duration": 42471484042
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

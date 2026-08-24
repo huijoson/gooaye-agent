@@ -1,0 +1,14 @@
+{
+  "episode": 308,
+  "headings": [
+    "聖誕節儀式感與魔幻力量",
+    "中國解封消息對消費市場救贖",
+    "交易電腦選擇與考機師聽眾分享"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1942,
+    "eval_count": 443,
+    "total_duration": 33323845792
+  }
+}

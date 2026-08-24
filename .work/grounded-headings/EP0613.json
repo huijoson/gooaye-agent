@@ -1,0 +1,28 @@
+{
+  "episode": 613,
+  "headings": [
+    "資本介入達成台灣遊戲邁向世界夢想目標",
+    "市場過度反應 TPU performance 比較很怪",
+    "Broadcom MediaTek 晶片產能不足 Google 需求"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2211,
+    "eval_count": 541,
+    "total_duration": 43320277750
+  },
+  "original_headings": [
+    "資本介入達成台灣遊戲邁向世界夢想目標",
+    "TSMC 擴廠將拉高 Broadcom 與 MediaTek 營收",
+    "市場過度反應 NVIDIA 股價轉向後段封裝與 Intel EMIB"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "把 Broadcom 加 Med",
+      "ek 或是在 Broadcom"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

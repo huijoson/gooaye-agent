@@ -1,0 +1,16 @@
+{
+  "episode": 457,
+  "headings": [
+    "刪掉過去貼文成長不停小孩講打勾勾",
+    "市場妥協尊重認知見招拆招無法預知未來走向",
+    "聯想 Bloomberg 伺服器晶片 AI PC 補漲",
+    "CIS 產能排擠 HBM 設備搶佔韓系廠議價權漲價"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2495,
+    "eval_count": 649,
+    "total_duration": 38073306083
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

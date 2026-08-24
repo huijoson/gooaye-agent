@@ -1,0 +1,14 @@
+{
+  "episode": 332,
+  "headings": [
+    "久未聽團的年輕熱血味道",
+    "投資市場憑什麼賺錢的思考",
+    "AI 晶片大單獲利貢獻可能有限"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1473,
+    "eval_count": 297,
+    "total_duration": 30939556417
+  }
+}

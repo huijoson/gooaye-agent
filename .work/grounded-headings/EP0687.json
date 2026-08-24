@@ -1,0 +1,31 @@
+{
+  "episode": 687,
+  "headings": [
+    "搭飛機令人厭煩與峇里島保母協助生活",
+    "Google 轉型房東與 AI 投資策略",
+    "待業期間養身建議與萬萬不可實況主",
+    "台積電奇鋐等散熱電源股輪動"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1946,
+    "eval_count": 328,
+    "total_duration": 36012003208
+  },
+  "original_headings": [
+    "峇里島帶娃經驗與在地保母協助",
+    "Google 轉型房東與 AI 投資策略",
+    "待業期間養身建議與萬萬不可實況主",
+    "台積電奇鋐等散熱電源股輪動"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "我根本就超級討厭搭飛機",
+      "有非常經濟實惠的在地的保母可以聘請"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

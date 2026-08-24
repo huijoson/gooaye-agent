@@ -1,0 +1,31 @@
+{
+  "episode": 71,
+  "headings": [
+    "iPad Air 採用 A14 五奈米晶片細節",
+    "Spotify 言論審查爭議與潛在影響",
+    "晶心科蔡明介 RISC-V 與 NVIDIA ARM 收購",
+    "投資理財責任觀念與房價下跌困難"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1790,
+    "eval_count": 475,
+    "total_duration": 22654220625
+  },
+  "original_headings": [
+    "iPad Air 採用 A14 五奈米晶片細節",
+    "Spotify 言論審查爭議與潛在影響",
+    "晶心科 RISC-V 技術與 NVIDIA 收購 ARM",
+    "投資理財責任觀念與房價下跌困難"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "是一家叫做晶心科（6633",
+      "NVIDIA 去收購 ARM 這"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,14 @@
+{
+  "episode": 348,
+  "headings": [
+    "歐洲 ATM 使用經驗與租車評價建議",
+    "AI 新創軟體公司被巨頭取代風險",
+    "搜尋引擎 AI 整合與 Duet AI 功能"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2179,
+    "eval_count": 447,
+    "total_duration": 37682343042
+  }
+}

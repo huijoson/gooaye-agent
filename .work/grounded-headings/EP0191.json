@@ -1,0 +1,15 @@
+{
+  "episode": 191,
+  "headings": [
+    "宏達電概念股與台灣 IC 設計公司轉強",
+    "尋找元宇宙 NFT 題材的風險取向機會",
+    "Kimbal Musk 賣股爭議與內線交易觀念錯誤",
+    "企業營收成長來源與總量經濟環境運作"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2138,
+    "eval_count": 518,
+    "total_duration": 43466213667
+  }
+}

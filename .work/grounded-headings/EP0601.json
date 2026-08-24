@@ -1,0 +1,31 @@
+{
+  "episode": 601,
+  "headings": [
+    "台股調整優勢與 NASDAQ 盤前回漲 1% 多",
+    "Broadcom 客戶推測為 Anthropic 並採 V6 TPU",
+    "Broadcom 深耕以太網與 Anthropic 晶片組裝路徑",
+    "市場情緒錯殺與 AWS 供應鏈重新評價"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 759,
+    "eval_count": 109,
+    "total_duration": 8458122292
+  },
+  "original_headings": [
+    "台股因美股反彈及盤前NASDAQ回漲而表現穩健",
+    "Broadcom透過Google授權V6 TPU與Anthropic建立合作",
+    "市場關注Broadcom以太網技術優勢及新聯盟影響",
+    "情緒波動過後將重新評估AWS鏈條相關資產價值"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "Broadcom",
+      "說他跟 Broadcom 買了這"
+    ],
+    []
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

@@ -1,0 +1,28 @@
+{
+  "episode": 84,
+  "headings": [
+    "留在場上的機會意識與財報後追價受傷風險",
+    "汽車業本益比低與 Elon Musk 對比",
+    "市場給予高評價基於未來性而非傳統估值"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1790,
+    "eval_count": 475,
+    "total_duration": 22654220625
+  },
+  "original_headings": [
+    "科技財報漂亮進場反而受傷的風險",
+    "汽車業本益比低與 Elon Musk 對比",
+    "市場給予高評價基於未來性而非傳統估值"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "不要放棄任何機會",
+      "或者說看到科技巨頭的財報數字好漂亮"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_repaired_from_both_excerpts"
+}

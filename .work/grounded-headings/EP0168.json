@@ -1,0 +1,28 @@
+{
+  "episode": 168,
+  "headings": [
+    "聯發科低估值與轉蛋抽卡機制對人性的誘惑",
+    "OnlyFans 亞馬遜實體店面百貨",
+    "資本利得與被動現金流本質上屬於同一類追求"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 710,
+    "eval_count": 185,
+    "total_duration": 27882565500
+  },
+  "original_headings": [
+    "聯發科低估值與轉蛋抽卡機制對人性的誘惑",
+    "OnlyFans 自斷武功與亞馬遜拓展實體店面事業",
+    "資本利得與被動現金流本質上屬於同一類追求"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "OnlyFans 他為什麼選擇要",
+      "開始要去做實體店面"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

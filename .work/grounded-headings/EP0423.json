@@ -1,0 +1,28 @@
+{
+  "episode": 423,
+  "headings": [
+    "意外發展新路線發現喜歡東西與遊戲代償感",
+    "Doki Doki Literature Club Undertale",
+    "Apple Vision Pro 重新定義 VR 開箱體驗"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2234,
+    "eval_count": 535,
+    "total_duration": 28934824000
+  },
+  "original_headings": [
+    "遊戲代償感與意外發展出新路線喜歡事物",
+    "打破第四面牆遊戲興趣與 Undertale 發現",
+    "Apple Vision Pro 重新定義 VR 開箱體驗"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "遊戲都是這種所謂的打破第四面牆的遊戲",
+      "叫做《Undertale》"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

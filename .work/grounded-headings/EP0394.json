@@ -1,0 +1,14 @@
+{
+  "episode": 394,
+  "headings": [
+    "Google Podcasts 競爭版圖變化",
+    "Cybertruck 成長率修正評估",
+    "男生情緒低潮週期現象"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2506,
+    "eval_count": 391,
+    "total_duration": 46654714625
+  }
+}

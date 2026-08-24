@@ -1,0 +1,14 @@
+{
+  "episode": 324,
+  "headings": [
+    "三十載無行李箱首次購買大型箱",
+    "星宇航空精品航空體驗與籌碼集中",
+    "工業電腦廠母公司庇蔭與 AI 包裝"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1992,
+    "eval_count": 434,
+    "total_duration": 26564530083
+  }
+}

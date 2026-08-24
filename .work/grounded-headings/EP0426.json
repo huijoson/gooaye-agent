@@ -1,0 +1,14 @@
+{
+  "episode": 426,
+  "headings": [
+    "日本旅遊體驗與迪士尼入場預測網站",
+    "Arm 籌碼集中與股價上漲驅動因素",
+    "Cloudflare 邊緣運算需求與 CSP 業務分析"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1822,
+    "eval_count": 331,
+    "total_duration": 40147142084
+  }
+}

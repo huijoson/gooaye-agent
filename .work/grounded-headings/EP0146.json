@@ -1,0 +1,28 @@
+{
+  "episode": 146,
+  "headings": [
+    "Nvidia 攻上 700 並鞏固資料中心角色",
+    "Apple Amazon Netflix 蘋概股軟弱表現",
+    "社群成為股市核心之一 WallStreetBets 事件 GME AMC"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1971,
+    "eval_count": 470,
+    "total_duration": 31627367709
+  },
+  "original_headings": [
+    "Nvidia 攻上 700 點站穩資料中心角色",
+    "蘋概股軟弱表現與散戶社群核心地位",
+    "WallStreetBets 事件後炒作標的轉變"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "講說未來這種散戶論壇、所謂的社群",
+      "初的時候 WallStreetB"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

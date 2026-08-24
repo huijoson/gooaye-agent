@@ -1,0 +1,16 @@
+{
+  "episode": 543,
+  "headings": [
+    "教育環境改善與 AI 成長放緩",
+    "握有現金特斯拉績效還回轉負",
+    "AI 泡沫風險與中美發展路線差異",
+    "投資策略需明確勝率與期望"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2325,
+    "eval_count": 455,
+    "total_duration": 36689831125
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

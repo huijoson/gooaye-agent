@@ -1,0 +1,15 @@
+{
+  "episode": 501,
+  "headings": [
+    "Queen 演出遺憾與訪談展現真實一面",
+    "晶片課稅複雜性與川普 Joe Rogan Experience 訪談想法",
+    "台積電課稅影響全球產業與美國第一運作邏輯分析",
+    "政府小管制少稅收理念與 AI 加速卡市場差異詢問"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2337,
+    "eval_count": 569,
+    "total_duration": 34566170000
+  }
+}

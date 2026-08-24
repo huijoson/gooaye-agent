@@ -1,0 +1,18 @@
+{
+  "episode": 606,
+  "headings": [
+    "涼風感冒洋蔥式穿法與鼻音氣候變換敏感",
+    "小朋友百無禁忌嘗試狀態與家庭成長比較",
+    "世界通膨兩極化與市場原因論述",
+    "AWS 供應鏈拉貨與 G 社 xAI supply chain",
+    "三星 HBM4 表現優異市佔數字拉高合作擴大",
+    "迴力標持續發生現象與成長狀態檢視方法"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2289,
+    "eval_count": 510,
+    "total_duration": 43661676250
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

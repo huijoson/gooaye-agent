@@ -1,0 +1,15 @@
+{
+  "episode": 126,
+  "headings": [
+    "採棉花新疆棉事件藝人抵制 Nike Adidas",
+    "環球時報去年點火引發今年發表態風險",
+    "創業者前進中國被逼表態兩邊都不喜歡"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2223,
+    "eval_count": 464,
+    "total_duration": 36920936958
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,28 @@
+{
+  "episode": 481,
+  "headings": [
+    "巧虎卡通優質性與聽眾綽號直男巧虎",
+    "黑神話悟空 Unreal Engine 5 騰訊關係",
+    "遊戲科學 3A 大作與台灣團隊開發系列 IP"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2558,
+    "eval_count": 568,
+    "total_duration": 35640330291
+  },
+  "original_headings": [
+    "巧虎卡通優質性與聽眾綽號直男巧虎",
+    "黑神話悟空遊戲玩到廢寢忘食與 Epic Games",
+    "中國開發商遊戲科學系列 IP 潛力評估"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "玩到廢寢忘食",
+      "Epic Games 的母公司"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

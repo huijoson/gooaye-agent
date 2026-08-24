@@ -1,0 +1,31 @@
+{
+  "episode": 116,
+  "headings": [
+    "Michael Burry 次級房貸早洩案例回顧",
+    "Seth Klarman 透過 Baupost 投資電信石油股",
+    "經典建議需跟隨時代變動轉動",
+    "長期投資部位應忽略短線波動並持續補倉"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2307,
+    "eval_count": 517,
+    "total_duration": 43306890958
+  },
+  "original_headings": [
+    "Michael Burry 次級房貸早洩案例回顧",
+    "Seth Klarman 透過 Baupost 投資電信石油股",
+    "閱讀 13F 報告後仍需回歸自身判斷",
+    "長期投資部位應忽略短線波動並持續補倉"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "不管你看了多少的 13F 報告",
+      "時代是會不停的轉動、不停變動的"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

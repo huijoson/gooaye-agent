@@ -1,0 +1,15 @@
+{
+  "episode": 503,
+  "headings": [
+    "二寶爸家庭喜悅與任天堂營收 Miss 預期",
+    "美超微掉單轉台系與供應鏈壓力僅做一代",
+    "投資人 KPI 驅動下長線佈局被忽略與毛利數字重視"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2364,
+    "eval_count": 558,
+    "total_duration": 42283662375
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

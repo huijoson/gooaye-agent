@@ -1,0 +1,16 @@
+{
+  "episode": 298,
+  "headings": [
+    "日本頂級壽司體驗與入門推薦店家介紹",
+    "浪子回頭金不換能人踩進屎坑",
+    "短線交易停損停利規則與經驗累積重要性",
+    "嚴格停損執行時機與部位控管問題分析"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2199,
+    "eval_count": 560,
+    "total_duration": 34096985208
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

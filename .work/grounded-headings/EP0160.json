@@ -1,0 +1,31 @@
+{
+  "episode": 160,
+  "headings": [
+    "鄭州淹水停工一天影響有限",
+    "Snapchat 與 Twitter 財報開出好成績引發股價跳空上漲",
+    "抄底中國股市需警覺人治社會營造的重大風險",
+    "一廂情願想像導致許多下跌股票持有者錯誤判斷"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1762,
+    "eval_count": 585,
+    "total_duration": 40601704500
+  },
+  "original_headings": [
+    "iPhone 出貨受影響有限且鴻海鄭州廠為重要生產基地",
+    "Snapchat 與 Twitter 財報開出好成績引發股價跳空上漲",
+    "抄底中國股市需警覺人治社會營造的重大風險",
+    "投資下跌股票時應避免一廂情願的想像想法"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "對於 iPhone 的出貨應該是",
+      "是佔 iPhone 的一半"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

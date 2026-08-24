@@ -1,0 +1,31 @@
+{
+  "episode": 315,
+  "headings": [
+    "手機成癮者釣魚後的放鬆感受",
+    "半導體期台指期壓倉抱 LP 科技股回檔吃大倍數",
+    "半導體指數期貨造市問題與電子期純度差異",
+    "基本面為主配合技術面型態突破策略"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2069,
+    "eval_count": 499,
+    "total_duration": 36961581917
+  },
+  "original_headings": [
+    "手機成癈釣魚心得被聽眾料中整人",
+    "科技股上漲補血壓住半導體期台指期",
+    "期交所半導體指數期貨造市表現極差",
+    "基本面為主配合技術面型態突破策略"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "導體 30 指數期貨造市真的造得",
+      "電子期又沒有像這個半導體期這麼的純"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

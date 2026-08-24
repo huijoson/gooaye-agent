@@ -1,0 +1,37 @@
+{
+  "episode": 37,
+  "headings": [
+    "投顧老師推牌被當成寶",
+    "美國對沖基金的老闆寫 MEMO 與節目暢談持股",
+    "原始資料與免費網路 MEMO",
+    "台灣五十資訊量根本沒幫助"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1690,
+    "eval_count": 496,
+    "total_duration": 33594910084
+  },
+  "original_headings": [
+    "台灣投顧老師預測市場行為分析",
+    "國外對沖基金老闆網站 Memo 邏輯",
+    "原始資料可取得性與資訊量無效性",
+    "聽眾資訊需求過多導致紓壓放空"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "台灣的投顧老師",
+      "投顧老師基本上沒有在進市場"
+    ],
+    [
+      "他們都會在自己的網站上寫 MEMO",
+      "國外對沖基金的老闆"
+    ],
+    [
+      "拿到所謂的原生的事物、原始資料",
+      "MEMO 你是上網隨便找都有了"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

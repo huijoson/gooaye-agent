@@ -1,0 +1,28 @@
+{
+  "episode": 362,
+  "headings": [
+    "摩爾多瓦護照不便與簽證辦理經驗",
+    "救濟管道體驗與尋找立委民代現象",
+    "PyTorch 2.0 搭配 ROCm 與消費性產品主軸"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2255,
+    "eval_count": 494,
+    "total_duration": 30079607666
+  },
+  "original_headings": [
+    "摩爾多瓦護照不便與簽證辦理經驗",
+    "救濟管道體驗與尋找立委民代現象",
+    "PyTorch 2.0 搭配 ROCm 5.4 使用 AMD 硬體"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "他們使用 PyTorch 2.0",
+      "消費性的東西還是會是主軸"
+    ]
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

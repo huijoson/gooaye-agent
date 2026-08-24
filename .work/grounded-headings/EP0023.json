@@ -1,0 +1,15 @@
+{
+  "episode": 23,
+  "headings": [
+    "市場上下交相賊共同獲利現象探討",
+    "沙特主權基金三小進場買下阿聯酋郵輪公司嘉年華",
+    "美女健身聯盟頻道分享提供新啟發"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2150,
+    "eval_count": 525,
+    "total_duration": 40673781458
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

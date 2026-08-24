@@ -1,0 +1,31 @@
+{
+  "episode": 646,
+  "headings": [
+    "教室大小想像與小型核反應爐",
+    "記憶體基本面角度看多股價反應",
+    "敢衝敢投資廠商的長期觀察策略"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1959,
+    "eval_count": 440,
+    "total_duration": 26385391792
+  },
+  "original_headings": [
+    "SMR 小型核反應爐發電方式介紹",
+    "美光財報利多未漲與記憶體資金時限",
+    "敢衝敢投資廠商的長期觀察策略"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "小型核反應爐",
+      "-site 的發電方式"
+    ],
+    [
+      "有一些外資的分析師開始去調降目標價",
+      "不知道記憶體的資金會玩到什麼時候"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

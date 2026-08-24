@@ -1,0 +1,15 @@
+{
+  "episode": 214,
+  "headings": [
+    "羅馬樓上住著半夜發聲的精神病患",
+    "特斯拉 2022 年供應鏈緊缺持續哭訴",
+    "被動投資無腦做指數獲取績效"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2004,
+    "eval_count": 439,
+    "total_duration": 30488683250
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,28 @@
+{
+  "episode": 359,
+  "headings": [
+    "618 市場情緒低預期下的持平表現",
+    "保持部位在場上不被嚇跑的建議",
+    "每年進步 1% 與非基本面投資手法"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2255,
+    "eval_count": 494,
+    "total_duration": 30079607666
+  },
+  "original_headings": [
+    "618 市場情緒低預期下的持平表現",
+    "保持部位在場上不被嚇跑的建議",
+    "每年進步一點點的長期複利效應"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "你每年都比過去的一年進步就好了",
+      "有些基本面的投資人也會用他的手法"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

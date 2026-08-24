@@ -1,0 +1,31 @@
+{
+  "episode": 114,
+  "headings": [
+    "刮刮樂期望值需大樣本才顯現",
+    "大獎章基金胃納量限制與不对外开放原因",
+    "量化交易無需基本面分析",
+    "台幣被低估央行全力拉尾盤馬斯克賺大錢"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2115,
+    "eval_count": 425,
+    "total_duration": 37756528792
+  },
+  "original_headings": [
+    "刮刮樂期望值需大樣本才顯現",
+    "大獎章基金限額與納量機制",
+    "量化交易無需基本面分析",
+    "台幣匯率操縱與馬斯克效應"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [],
+    [
+      "變成匯率操縱國等等",
+      "你靠馬斯克賺了很多錢"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

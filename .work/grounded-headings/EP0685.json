@@ -1,0 +1,14 @@
+{
+  "episode": 685,
+  "headings": [
+    "無聊感代表幸福狀態",
+    "Palantir Cloudflare 與 HBM 降規傳聞",
+    "Netflix 重溫疑犯追蹤與 Spotify 留言"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2568,
+    "eval_count": 486,
+    "total_duration": 51193058792
+  }
+}

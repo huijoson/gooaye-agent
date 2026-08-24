@@ -1,0 +1,31 @@
+{
+  "episode": 582,
+  "headings": [
+    "交易犧牲時間碎片化無法看《F1》",
+    "台灣晶片代工與關稅衝擊",
+    "GPT-5 進展如同 iPhone 疊代"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1911,
+    "eval_count": 436,
+    "total_duration": 28841907083
+  },
+  "original_headings": [
+    "課金追趕無效與電影《F1》推薦",
+    "台灣半導體關稅百比與出口大國立場",
+    "GPT-5 進展如同 iPhone 疊代"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "你一定會犧牲掉一些你平常很喜歡做",
+      "大家一直推說這部有多屌"
+    ],
+    [
+      "是半導體的一個出口大國",
+      "半導體關稅"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

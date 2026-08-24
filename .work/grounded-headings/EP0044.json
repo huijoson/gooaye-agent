@@ -1,0 +1,15 @@
+{
+  "episode": 44,
+  "headings": [
+    "Zoom 審查管制與中共國際排擠",
+    "政治立場花邊新聞與批踢踢教訓 Zoom",
+    "政府權力過大干預市場造成利益分配不均"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1664,
+    "eval_count": 532,
+    "total_duration": 39818855750
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

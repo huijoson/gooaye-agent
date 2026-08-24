@@ -1,0 +1,28 @@
+{
+  "episode": 424,
+  "headings": [
+    "市場持續衝刺的意外與外資買盤績效修復",
+    "摺疊手機消費降級與華為競爭影響分析",
+    "Meta 伺服器供應鏈 ASIC 與水冷技術機會"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2181,
+    "eval_count": 494,
+    "total_duration": 32652544875
+  },
+  "original_headings": [
+    "外資買盤追蹤與績效調整策略分享",
+    "摺疊手機消費降級與華為競爭影響分析",
+    "Meta 伺服器供應鏈 ASIC 與水冷技術機會"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "我聽到這個我是有點傻眼",
+      "我跟大家分享外資主要在買什麼東西"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

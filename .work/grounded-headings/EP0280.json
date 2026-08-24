@@ -1,0 +1,28 @@
+{
+  "episode": 280,
+  "headings": [
+    "JPR 數據顯示 AIB 毛利持續下滑",
+    "顯卡業務淡出與消費性用量下降預期",
+    "亞馬遜 Prime 反映內需與 USPS 市占穩健"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2392,
+    "eval_count": 535,
+    "total_duration": 30211593375
+  },
+  "original_headings": [
+    "AIB AIC 毛利下滑被 Nvidia 上游拿走",
+    "顯卡業務淡出與消費性用量下降預期",
+    "亞馬遜 Prime 反映内需與 USPS 市占穩健"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "AIB 跟 AIC 的毛利是持續",
+      "被上游的 Nvidia 給拿回去了"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

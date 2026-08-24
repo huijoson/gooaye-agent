@@ -1,0 +1,34 @@
+{
+  "episode": 198,
+  "headings": [
+    "FOMO 仔衝進幣圈近期進場者必會痛苦媒體釋出榜單",
+    "成長股本輪跌幅超越二三月修正",
+    "5G 勢在必行 Automotive 庫存短缺",
+    "Square CrowdStrike持股比例與壓 50%不敢下注"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2342,
+    "eval_count": 485,
+    "total_duration": 37808949875
+  },
+  "original_headings": [
+    "近期進場幣圈者痛苦經驗分享",
+    "美股成長股修正幅度超越二三三月",
+    "汽車通訊產業與缺料現況看好",
+    "Square 與 CrowdStrike 十大持股分析"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "近期進來的",
+      "是跟 Spotify 拿到還是怎麼樣"
+    ],
+    [],
+    [],
+    [
+      "are 跟 CrowdStrik",
+      "Square、CrowdStri"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,37 @@
+{
+  "episode": 488,
+  "headings": [
+    "Sister Friede 芙莉德修女 BOSS 公仔開心",
+    "台股加槓桿推升部位與美股修復仍需時間",
+    "iPhone 銷售數據全球電商動能存在",
+    "o1 demo 展示推理過程有趣現象"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2151,
+    "eval_count": 393,
+    "total_duration": 39839842458
+  },
+  "original_headings": [
+    "芙莉德修女公仔收獲與台股槓桿",
+    "美股槓桿延後與地上資產潛力",
+    "一機銷售數據與全球電商觀察",
+    "Apple o1 Demo 推理過程細節"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "芙莉德修女非常高興",
+      "我收到了芙莉德修女的公仔"
+    ],
+    [],
+    [
+      "蠻多都躺在地上",
+      "有一些我們自己拿到的銷售數據"
+    ],
+    [
+      "官方會給出一些 demo",
+      "你就去看它的推理過程"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

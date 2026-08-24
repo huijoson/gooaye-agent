@@ -1,0 +1,378 @@
+{
+  "heading_defects": [
+    {
+      "episode": 584,
+      "chapter": 1,
+      "title": "資訊欄連結與聽眾交代能力說明",
+      "replacement": "資訊分析能力與長期投資研究方法",
+      "bullets": [
+        "但對我來說，我覺得我對我的聽眾還是有所交代啦，因為我們是真的蠻會抓重點的，以及我們是真的有比一般人強大很多的資訊跟分析的能力。",
+        "你說你怎麼樣獲得這些資訊，我只會說，就我一開始也以為說股票就這麼簡單，你就是看年報，然後你就是去做一些什麼資料的分析跟研究，然後找到好東西並長期投資。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 108,
+      "chapter": 1,
+      "title": "台灣通勤第一品牌贊助化妝品廠商回饋小尾牙",
+      "replacement": "台灣通勤第一品牌受邀與化妝品廠商贊助尾牙",
+      "bullets": [
+        "通常會中我也邀請了另外一個非常紅的團體、Podcast 團體——台灣通勤第一品牌。",
+        "贊助化妝品的這幾家廠商，全部都是過往合作過、而且都是賣破百萬以上非常優秀的廠商，他們都決定共襄盛舉，我們就辦一個回饋的小尾牙這樣。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 17,
+      "chapter": 4,
+      "title": "劉肥公司買零趴京城銀行買一百趴",
+      "replacement": "劉肥公司買零趴與京城銀行買進 100%",
+      "bullets": [
+        "那除了劉肥這樣的公司，買兩趴買零趴的，當然也有那種老老實實買到 100 趴的。",
+        "譬如說京城銀行就是，它們上次說要買，那就買 100 趴。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 54,
+      "chapter": 3,
+      "title": "美台股修正與 ECFA 六千億出口影響",
+      "replacement": "美台股修正與 ECFA 影響 6000 億出口",
+      "bullets": [
+        "這件事情當然就是說，你成本價越低的人，我就直接跟你講一個簡單問題，最近美股跟台股都預到修正。",
+        "ECFA 到期，就如果中國這邊不讓我們繼續做下去的話，那它一定會有所影響，它影響的範圍差不多是6000億，台灣出口到中國的6000億的部分。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 591,
+      "chapter": 3,
+      "title": "微軟買下 Nebius 五年一九四億美元基建服務大單",
+      "replacement": "Nebius 獲微軟 5 年 194 億美元基建服務大單",
+      "bullets": [
+        "最後我們就來聊一下微軟去跟 Nebius 買了一個 5 年 194 億美元的一個基建服務大單。",
+        "但他去對 Nebius 買了這個 194 億美元的事情，一般來講市場上就是會很直接變成只有兩派說法： 樂觀派 (也偏我自己的想法)：覺得這就是另外一種比較彈性的建置。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 686,
+      "chapter": 3,
+      "title": "七月跌三成訂單早推八百伏",
+      "replacement": "7 月中小股跌三成與 800V 訂單提前",
+      "bullets": [
+        "其實我們現在回頭去看 7 月，會覺得 7 月是一個非常不可思議的時間點，因為在產業面上你並沒有看到任何轉弱的跡象，那可是在中小呢，這個指數是可以疊掉三成的，一堆個股那個跌幅都是五六成在跌的。",
+        "這些訂單呢，就是因為它的 data center 可能會比較比同業來說，提早的往 800V 的方向去走。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 372,
+      "chapter": 3,
+      "title": "車用部分第四季十月十一月開始關注新車款",
+      "replacement": "車用布局可在第四季 10 月、11 月關注新車款",
+      "bullets": [
+        "我自己會選擇車用的部分，可能在第四季，10 月、11 月開始可以去注意。",
+        "但是目前看來，我覺得可能 10 月、11 月再開始看，搭配特斯拉的一個新車款的推出、改款的推出，可能是一個非常完美的布局，我的想法這樣子。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 596,
+      "chapter": 2,
+      "title": "8 月 9 月股市極佳表現與劉通瑤老師生日祝福分享",
+      "replacement": "8、9 月股市表現極佳與劉通瑤 9 月 27 號生日",
+      "bullets": [
+        "其實整個加起來,我覺得自己在 8、9 月的表現是極好,是極好。",
+        "他說劉通瑤 9 月 27 號生日快樂,恭喜你考上正式老師,祝你遇到雞歪的學生,哈哈哈。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 649,
+      "chapter": 2,
+      "title": "NVIDIA Marvell 投資兩個 B 合作",
+      "replacement": "Marvell 與 NVIDIA 推進 NVLink Fusion 合作",
+      "bullets": [
+        "另外想請教 NVIDIA 與 Marvell 結盟，有些人說是 Marvell 的 Retimer 跟 Memory Pooling 的解方會影響到 NVLink Fusion 的聯盟小弟 Astera Labs 的產品需求，但我理解是 Astera Labs 主攻 CSP 的混合資料中心…",
+        "最近也算是瞎貓摸到死耗子，大家應該有看到 Marvell 的新聞出來，就是說 NVIDIA 要投資他兩個 B（billion），要跟他在後面去針對 NVLink Fusion 去做更多的一個合作。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 674,
+      "chapter": 4,
+      "title": "記憶體成本翻倍 MacBook 漲價 10 至 20 %",
+      "replacement": "記憶體成本翻倍與 MacBook 漲價 10 幾到 20%",
+      "bullets": [
+        "我這邊舉例：假設記憶體他多插一條，那成本假設 10 塊好了，從 10 塊變 20 塊的成本，他不可能在售價上面只加 10 塊，因為他有他的毛利要顧嘛，然後再來也有品牌價值這一點。",
+        "我們也就是看到說，像是 MacBook 或是一些產品線的價格，拉了大概 10 幾到 20% 左右的位置。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 241,
+      "chapter": 1,
+      "title": "自駕電腦壞掉花蓮車子側裙尻爆門下面",
+      "replacement": "自駕電腦故障與花蓮車輛側裙受損",
+      "bullets": [
+        "最近真的是屋漏偏逢連夜雨，自從我上一集跟大家分享說，特斯拉的自駕電腦壞掉之後，後來在花蓮當天，開去花蓮的第一天，把車子整個尻爆，門下面的側裙直接整個尻爆、尻進去，整條看起來非常慘。",
+        "反正我把它遇到那個自駕電腦壞掉，想說還是得去花蓮，所以就跟他說排後面一點修，反正我就是先開過去。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 292,
+      "chapter": 1,
+      "title": "放寬心尻槍打 B 玩 Cyberpunk 生活繼續因為無法預測未來",
+      "replacement": "無法預測未來時的心理準備與日常放鬆",
+      "bullets": [
+        "因為這基本上不是一般人可以決定的，你只要做好心理準備就好了。",
+        "我是覺得大家真的是放寬心，每天就是好好尻槍打 B、玩一下《Cyberpunk》、看一下一些影集，生活就是這樣繼續，因為你真的沒有辦法預測未來，真的沒有辦法知道未來要發生什麼事情。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 320,
+      "chapter": 5,
+      "title": "雞湯殺小與 OpenAI 論文數量",
+      "replacement": "實際行動的重要性與 OpenAI 論文數量對比",
+      "bullets": [
+        "這不是要安慰你，不知道跟你雞湯殺小的，就是動作有拿出來的人、有做的人，跟我們前面聊那個 AI 一樣，不要講說什麼每個人都想做、都可以做，你有去做的才是重點。",
+        "我知道我老闆都會分享說，其實就算像 OpenAI，他發表的論文數量跟幾個科技巨頭根本沒得比，然後再來就是說，他也是一個非常年輕的公司，其實人家早就在 AI 研究很久……不知道，其實同樣的論述我們很常聽到。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 135,
+      "chapter": 3,
+      "title": "電子股法說會聯電聯發科臺郡登場",
+      "replacement": "電子股法說會與聯電聯發科台郡登場",
+      "bullets": [
+        "電子股這個禮拜算是大事情，因為明天會有很多重量級公司的法說會。",
+        "比方說像明天的話，臺灣可以看聯電、聯發科，還有我們之前聊到那個軟板的臺郡，也是在明天的盤後會開這個法說會。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 102,
+      "chapter": 4,
+      "title": "進入市場圈子配置甚得裝潢地板重新鋪過自己",
+      "replacement": "進入市場圈子後自行研究與配置",
+      "bullets": [
+        "反正我就是跟你講一個概論，我的重點就是跟你講一個概論，讓你可以進入這個市場裡面、你可以進入这个圈子裡面，然後去做一個配置。",
+        "甚得你要去往下去研究，你要去把它裝潢，你要把你家裡裝潢的更好，你要去把地板重新鋪過什麼的，那當然可以，你可以自己做自己的配置。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 235,
+      "chapter": 1,
+      "title": "不要 bipolar 極端 all in all out 操作改善",
+      "replacement": "避免 bipolar 並改善 all in、all out 操作",
+      "bullets": [
+        "沒有什麼今天等一下這樣幹，我受不了 all out，然後會說這個位置太讚了，反彈 all in，沒有這樣子的人。",
+        "大家可以把這種東西放進，我覺得會改善很多你的操作，而且不只是股票，在現實生活中也是，就是你不要這麼的 bipolar，你不要這麼的極端，你就是幹嘛你不是 all in 就是 all out？"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 562,
+      "chapter": 3,
+      "title": "Dario Satya Sundar 願景 Junior 裁掉",
+      "replacement": "AI 程式開發願景與初階工程師裁員風險",
+      "bullets": [
+        "如果可以理解我大概要表達的意思的話就會知道說，就有可能是在矽谷的這些公司會實現像是Dario或是Satya或是Sundar他們所提到的這樣的一個願景，就是現在coding有一堆都交給AI做，然後有很多的junior要掰了。",
+        "在一些大型巨頭的話，因為他們過去養了太多的碼農，這個成本真的是非常高的，所以他們就可以直接去實現，可能把一些junior、一些可以被AI取代的人裁掉的一個狀況。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 601,
+      "chapter": 2,
+      "title": "Broadcom 十逼 Anthropic V6 TPU",
+      "replacement": "Broadcom 客戶推測為 Anthropic 並採 V6 TPU",
+      "bullets": [
+        "但是因為在 Broadcom 其實有點像是說那種,怎麼講,誤打誤撞,因為 Broadcom 這是特別出來講了一下說他那個十逼不是 OpenAI,那基本上就是很確定,那這個十逼應該就是 Anthropic,就是我們本來認為是不太可能的一個方案。",
+        "我們了解到的一個生意模式,應該是偏向 Broadcom 去跟 Google 這邊去買一個授權,授權的對象是 V6,就是 Trillium 這一代的晶片,V6 的 TPU,接著把這個 TPU 賣給了 Anthropic。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 642,
+      "chapter": 2,
+      "title": "Apple 策略吃人毛利口袋 iPhone 17e Mac Neo",
+      "replacement": "Apple 毛利競爭策略與 iPhone 17e、Mac Neo",
+      "bullets": [
+        "Apple 的策略已經成形了——趁大家在記憶體漲價的毛利壓縮階段，持續用自己毛利的大口袋把別人給吃掉。",
+        "iPhone 17e 跟 Mac Neo 之後，我可以算是非常確定他的想法就是這樣。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 657,
+      "chapter": 5,
+      "title": "AI 多尬吹 OpenAI 立訊精密原生 AI 設備",
+      "replacement": "看多 AI 但不盲目吹捧與 OpenAI、立訊原生設備",
+      "bullets": [
+        "但這個東西其實在我的角度來看，一樣啦我們其實是 AI 多，但有時候我們沒有辦法很無聊的去尬吹，就是沒有辦法說所有的 AI 東西啊太厲害了啊，誰又要失業了啊，什麼 iPhone 要被取代了。",
+        "首先一個就是 OpenAI 跟立訊精密要去做原生 AI 消費設備。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 661,
+      "chapter": 2,
+      "title": "高階低階料被動元件電容國巨華新科信昌立隆電電龍國際情勢",
+      "replacement": "高低階被動元件機會與台灣廠商跟進國際情勢",
+      "bullets": [
+        "其實除了大家會去看一些可能比較先進的比較屌炮的料，像剛剛前面提到的比較高階的一些被動元件，或是說比較高階的電容之外，低階的料可能也是後面可以注意的一個項目。",
+        "現在已經不能夠說台灣沒有跟上世界的被動元件，就台灣的不管是領頭羊，像是國巨、華新科，然後後面一些比較小隻的 MLCC，像是什麼信昌啊、然後或者是立隆電、然後或者說電龍，我剛剛舉的這幾家，其實他們本身現在都有跟到這個國際的情勢。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 676,
+      "chapter": 4,
+      "title": "模仿 Elon 組回本快 xAI Meta 卡關產能王",
+      "replacement": "xAI 建置卡關與掌握成熟製程產能的重要性",
+      "bullets": [
+        "我認為它又一次因為它都是模仿或效仿別人，它一定是看到Elon的，不管是SpaceX或X下面的Colossus，因為它拿去組，結果發現一年就可以回本，它一定發現靠北因為它錢可以這樣賺，本來Elon的東西是打算自己要拿去建置，我們知道xAI現在有點卡關的情形產生，Meta我們不確定是不是也是卡關…",
+        "前面提到掌握產能為王，IDM自己有這些廠房，當然也可能自己廠房不夠也要去外面找外包，其他的話可能都需要找到這些外援，包含以前大家都熟悉的，你在AI要獲得勝利，不只是產品要做得好，重點是你要做得出來，所以大家都要去巴結台積電，一樣的道理可以套用在這些比較平常是成熟製程的晶圓製造廠，不管六吋還是八吋…"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 75,
+      "chapter": 2,
+      "title": "支持癌大有做自己的勇氣 Vortex LiquidSky Shadow",
+      "replacement": "支持創作者勇氣與 Vortex 等串流服務",
+      "bullets": [
+        "不要再糾結別人的內容有什麼聽不舒服的事了，支持癌大有做自己的勇氣。",
+        "有一些小公司像是 Vortex、LiquidSky、Shadow 都有在做自己的串流服務。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 39,
+      "chapter": 2,
+      "title": "被動投資人買 0050 股東會黃國昌參選獨董",
+      "replacement": "0050 買家屬被動投資人及黃國昌參選獨董",
+      "bullets": [
+        "因為其實買 0050 的這種，我們稱它為被動投資人。",
+        "其實這個股東會最特別的地方，當然就是因為黃國昌要進去選獨董。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 221,
+      "chapter": 3,
+      "title": "庫存堆高需求不見往反方向做 Chromebook 筆電 PC 小心",
+      "replacement": "終端需求消失後的反向操作與 Chromebook 庫存風險",
+      "bullets": [
+        "就看你相信哪個，如果說你認為這個是庫存堆高，那終端的需求已經不見的話，其實對你來說你就是可以往反方向做了。",
+        "在庫存堆起來的部分，比較需要擔心的部分，我還是覺得是 Chromebook 跟筆電跟 PC，這部分可能是大家要小心的。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 226,
+      "chapter": 3,
+      "title": "盤整盤漲盤跌賣 call 權利金投入大盤 covered call",
+      "replacement": "盤整行情以 covered call 投入大盤並賺取權利金",
+      "bullets": [
+        "如果今天是盤整或是盤漲或是盤跌的話，那等於說它只要不要摸到 sell call 的這個履約價，那你就是持續賺權利金。",
+        "在做多的部分我會選擇以大盤為主，那同時是去 sell call，那藉由這個 covered call 的方式，持續的去投入大盤以及去賺取權利金。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 451,
+      "chapter": 4,
+      "title": "投資詐騙仿冒事件聽眾祝福老弟比賽順利減脂低碳",
+      "replacement": "投資詐騙仿冒警示與聽眾老弟減脂備賽祝福",
+      "bullets": [
+        "因為現在投資詐騙的數量又開始越來越多，最近我又開始被仿冒了。",
+        "我跟我弟弟都忠實聽眾，老弟這個月正準備比賽，甚至是最後一哩路，想藉由被抽到留言密碼的好運氣，請主委用開朗雄壯的語氣喊話，祝福正在減脂低碳期的老弟備賽順利、比賽順利。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 494,
+      "chapter": 2,
+      "title": "公開場合分享 wrap up PIMIC 方向",
+      "replacement": "公開內容最後結論與 PIMIC 後續方向",
+      "bullets": [
+        "我就把一系列可能比較適合在公開場合去分享的東西，我們把它作為一個總結，也當成是一個 wrap up，把它包裝起來，然後去做一個最後的結論。",
+        "我覺得在 PIMIC 這個產業，應該也會往這個方向去走。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 515,
+      "chapter": 4,
+      "title": "OpenAI 6000 元訂閱划算 Home Tutor 好夥伴好朋友",
+      "replacement": "OpenAI 6000 元訂閱價值與 Home Tutor 應用",
+      "bullets": [
+        "首先先講一下，我覺得 OpenAI 的 6000 元訂閱非常划算。",
+        "這個東西可能會把它變成是，不只作用像是對 AGI，甚至對我兒子之後的訓練，如果它的語音可以再做得更好，現在已經很好，可以再更好的話，這些東西就已經像是一個 Home Tutor，甚至是你的好夥伴好朋友。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 528,
+      "chapter": 1,
+      "title": "把握時間快速成長注意大多頭侃侃而談",
+      "replacement": "珍惜孩子成長時間與警惕多頭新手侃侃而談",
+      "bullets": [
+        "兄弟們，好好把握時間，有時候真的發現這個時間度過的速度實在是太快，然後小朋友也長得太快了，一天太長、一年太短，我非常強烈的感受，希望大家在接下來都可以好好把握自己的時間。",
+        "你注意一下，每次大多頭都這樣，像現在外面也一大堆這種就是可以侃侃而談的，然後其實才加入市場那不到一年之內，就是這種人。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 634,
+      "chapter": 1,
+      "title": "功課 Toyota Mercedes Ferrari",
+      "replacement": "兒童功課選擇與有錢人開車迷思",
+      "bullets": [
+        "有些人喜歡寫功課，我們沒有要去反對大家的教育選擇——你覺得小朋友就是要念書、就是要寫一堆功課，OK，那是大家自己的選擇。",
+        "像很多人在遐想幻想——什麼有錢人一定開 Toyota、有錢人一定開 Mercedes、什麼跑車是 Ferrari——沒有，不一定。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 656,
+      "chapter": 3,
+      "title": "美股市場好 CPU 噴 Intel 漲價 TPU 討論",
+      "replacement": "Intel 數字帶動 CPU 類股及 TPU 的 8T 跟 8I 發表",
+      "bullets": [
+        "美股市場還是非常好，CPU 的類股全面噴出去，因為 Intel 開出來的數字還蠻不錯的，而且後面也要開始漲價。",
+        "再來在 TPU 最近也開始有蠻多討論，因為 TPU 的 8T 跟 8I 已經發表出來。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 644,
+      "chapter": 5,
+      "title": "國際情勢未緩解破底機會流動性採購學習",
+      "replacement": "國際情勢未緩解時保留流動性與辨識 AI 波動機會",
+      "bullets": [
+        "特別是假設你已經知道後面就是高機率會產生一些破底，只要這個國際情勢沒有緩解下來的話，那如果到時候真的破底，手上有沒有一些流動性可以去做採購？",
+        "在後面要去識別這些機會，這可能就是 AI 時代在投資方面很重要的學習——有些情緒會被放到更大，類似之前大家講社群對於股價的影響、社群會去放大一些波動跟震盪，那時候大概是兩三年前的話題；現在 AI 我覺得就是把這個波動跟震盪放得更大。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    },
+    {
+      "episode": 680,
+      "chapter": 1,
+      "title": "火箭接收器筷子碗馬斯克粉絲",
+      "replacement": "火箭接收器製成餐具與 SpaceX、Tesla 粉絲情懷",
+      "bullets": [
+        "這次呢，收到這個筷子，我一直覺得來的正好，因為他除了筷子之外，還給你一個小碗，一樣是用火箭的接收器所做出來的。",
+        "總之就是我對 SpaceX，或是像是 Tesla 都是非常喜歡，因為我本身算是馬斯克的一個粉絲，也算是媽咪啦。"
+      ],
+      "reason": "round5 independent audit: sponsor wording, numeric/unit fidelity, awkward splice, oral/粗俗 wording, variant usage, or semantic attachment defect"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "episode": 349,
+  "headings": [
+    "流產經歷與婚姻保障的雙向意義",
+    "中國半導體被卡死哲庫解散裁員",
+    "AI 參與者先進封裝與 ASIC 佈局"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2375,
+    "eval_count": 461,
+    "total_duration": 23170761041
+  },
+  "original_headings": [
+    "女性獨立自強與婚姻保障價值",
+    "中國半導體卡死與哲庫解散",
+    "AI 參與者先進封裝與 ASIC 佈局"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "講說她試了兩次小孩都流產",
+      "女性本來就應該獨立自強"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

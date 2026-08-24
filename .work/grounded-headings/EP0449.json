@@ -1,0 +1,28 @@
+{
+  "episode": 449,
+  "headings": [
+    "工業電腦廠議價能力與研華標準品景氣波動對沖",
+    "工廠醫療端視覺辨識 AI 導入良率檢測",
+    "FSD 中國受限擔憂減半 FSD 落地市場"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1872,
+    "eval_count": 549,
+    "total_duration": 29068133166
+  },
+  "original_headings": [
+    "工業電腦廠議價能力與研華標準品景氣波動對沖",
+    "工廠醫療端 AI 視覺辨識進料良率檢測導入應用",
+    "特斯拉 FSD 中國市場落地疑慮減少新聞報載理由"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "FSD 在中國這邊是受限制",
+      "說 FSD 的中國市場可以落地了"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

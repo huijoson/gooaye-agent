@@ -1,0 +1,31 @@
+{
+  "episode": 278,
+  "headings": [
+    "蘋果衛星服務擴產與手機遙控電視功能",
+    "年輕人本金存錢與五月天眼中釘",
+    "Globalstar 扶植第二供應商降低攻擊力",
+    "衛星射頻 IC 需求增長"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2392,
+    "eval_count": 535,
+    "total_duration": 30211593375
+  },
+  "original_headings": [
+    "蘋果衛星服務擴產與手機遙控電視功能",
+    "獨立樂團排斥主流與 iPhone 盤子效應",
+    "Globalstar 扶植第二供應商降低攻擊力",
+    "衛星趨勢下射頻 IC、PCB 與 VR AR 機會"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "盡量的去試試看有沒有開源的機會",
+      "iPhone"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

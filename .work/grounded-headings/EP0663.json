@@ -1,0 +1,31 @@
+{
+  "episode": 663,
+  "headings": [
+    "兩個月從八十五回到七十八公斤",
+    "被動元件漲價函實際運作模式與歷史對比",
+    "高壓 MLCC 擴產需求與產業漲幅評估策略",
+    "Broadcom Swordfish 晶片迭代延遲與市場影響"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1477,
+    "eval_count": 264,
+    "total_duration": 35725100750
+  },
+  "original_headings": [
+    "減重目標達成分享與體重數據變化",
+    "被動元件漲價函實際運作模式與歷史對比",
+    "高壓 MLCC 擴產需求與產業漲幅評估策略",
+    "Broadcom Swordfish 晶片迭代延遲與市場影響"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "直接回到每天早上去量",
+      "稍微分享一下——我的減重目標"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

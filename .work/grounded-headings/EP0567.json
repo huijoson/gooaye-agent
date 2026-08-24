@@ -1,0 +1,28 @@
+{
+  "episode": 567,
+  "headings": [
+    "拒絕他人定義人生分享算命心得",
+    "行事保持彈性餘裕遠離極端化思維模式",
+    "AI 首發線輪動與 Amphenol Apple 供應鏈實驗"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2038,
+    "eval_count": 470,
+    "total_duration": 29632058625
+  },
+  "original_headings": [
+    "避免將人生生殺大權交給他人定義",
+    "行事保持彈性餘裕遠離極端化思維模式",
+    "AI 首發線輪動與 Amphenol Apple 供應鏈實驗"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "己人生的生殺大權放在別人身上",
+      "這邊稍微跟大家分享一下最近的一個"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

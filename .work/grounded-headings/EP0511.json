@@ -1,0 +1,15 @@
+{
+  "episode": 511,
+  "headings": [
+    "Beverly Hills 設施體驗與兒子反應差異",
+    "Intel 晶圓代工拆離策略與產業隔閡風險",
+    "微軟伺服器擴張計畫與市場數字期待落差",
+    "匯率貶值情境下資產配置與後照鏡評論"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2226,
+    "eval_count": 534,
+    "total_duration": 50329468833
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "episode": 608,
+  "headings": [
+    "部位狀態回檔警訊與判斷時間不夠好風險",
+    "OpenAI 新模型競爭下 Google TPU 布局領先",
+    "訓練模型需大量投資與電力成本分析",
+    "AI 伺服器需求排擠 HDD 並轉向 NAND"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2798,
+    "eval_count": 523,
+    "total_duration": 33773272167
+  },
+  "method": "natural_heading_with_manual_evidence_review"
+}

@@ -1,0 +1,31 @@
+{
+  "episode": 675,
+  "headings": [
+    "反指標被酸日股噴到壞掉",
+    "戰爭通膨升息資金面 Rebalance 影響最大",
+    "修正動能操作避免賠錢與機器人 Cue 人"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 3348,
+    "eval_count": 579,
+    "total_duration": 32193515084
+  },
+  "original_headings": [
+    "台灣遊戲創投邁向三億灌注新創團隊",
+    "外資 Rebalance 結束影響 TSM 壓盤告一段落",
+    "搶快被修理動能操作兩日賠錢太多"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "後面看是 rebalance 這",
+      "光是外資的 Rebalance 結束"
+    ],
+    [
+      "過去的一些動能操作",
+      "之前那個 TGV 做鑽孔的幾家"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

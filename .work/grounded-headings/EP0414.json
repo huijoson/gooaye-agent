@@ -1,0 +1,17 @@
+{
+  "episode": 414,
+  "headings": [
+    "聖誕節生日布局與賭博故事可能性",
+    "愛榭客多軍經歷與 Pattern 重複現象",
+    "中小型股送樣長久營收落差",
+    "明年 CIS 回升 PIMIC 與 MCU 狀況",
+    "技術分析統計機率與跟單參考性"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2234,
+    "eval_count": 535,
+    "total_duration": 28934824000
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

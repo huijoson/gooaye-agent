@@ -1,0 +1,31 @@
+{
+  "episode": 67,
+  "headings": [
+    "Zoom 放空價從 110 漲至 450 與情緒交易風險",
+    "3080 與 3070 效能翻倍售價僅六九九",
+    "台股配到 5% 8% 10% 滿大街都是 NVIDIA 換卡"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1790,
+    "eval_count": 475,
+    "total_duration": 22654220625
+  },
+  "original_headings": [
+    "放空 Zoom 股價波動與情緒發洩提醒",
+    "中階卡效能翻倍價格僅微幅調整",
+    "NVIDIA 換用三星八奈米製程代工"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "Zoom 的股價是 450 塊",
+      "你看 Zoom"
+    ],
+    [],
+    [
+      "NVIDIA 這一次採用的是三星",
+      "台股配到 5%、8% 的"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

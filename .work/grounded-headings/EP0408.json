@@ -1,0 +1,34 @@
+{
+  "episode": 408,
+  "headings": [
+    "三陰性乳癌患者經驗分享與解決問題態度",
+    "AMD 滲透速度超出市場想像與 Intel 對比",
+    "封裝測試廠受惠與供應鏈交叉查證能力",
+    "SK Hynix 與 Samsung HBM 產量數據與供需反轉"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2471,
+    "eval_count": 576,
+    "total_duration": 18042962125
+  },
+  "original_headings": [
+    "三陰性乳癌患者經驗分享與解決問題態度",
+    "AMD 滲透速度超越市場想像與科技巨頭軟體優化",
+    "封裝測試廠受惠對象日月光京元電等企業",
+    "SK Hynix 與 Samsung HBM 產量數據與供需反轉"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "有科技巨頭的一個軟體模型優化的努力",
+      "他本身是有那種軟體優化能力的"
+    ],
+    [
+      "在之後的一些封裝測試廠",
+      "你供應鏈的上下游交叉 check"
+    ],
+    []
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

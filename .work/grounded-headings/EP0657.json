@@ -1,0 +1,37 @@
+{
+  "episode": 657,
+  "headings": [
+    "攀樹看風景與 GoogleP1S 人偶",
+    "台積電中小股外資打亂後觀察發展",
+    "被動元件與記憶體直接動起來",
+    "Intel 90% Yield 與聯發科法說",
+    "看多 AI 但不盲目吹捧與 OpenAI、立訊原生設備",
+    "Meta AWS 簽 Graviton 5 部署協議"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2764,
+    "eval_count": 672,
+    "total_duration": 26877593625
+  },
+  "original_headings": [
+    "攀樹活動 GoogleP1S Bloodborne 人偶",
+    "台積電中小股外資打亂後觀察發展",
+    "中小死一天反彈被動元件記憶體直接動",
+    "Intel 後段封裝廠 90% yield 聯發科法說",
+    "AI 多尬吹 OpenAI 立訊精密原生 AI 設備",
+    "Meta AWS Graviton 5 部署 CPU 激進"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "or large-scale G",
+      "在 CPU 的部署是非常的激進的"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,16 @@
+{
+  "episode": 471,
+  "headings": [
+    "身心靈調整健康後推遲身體檢查與市場小作文",
+    "GB200 delay 與散熱解熱問題",
+    "任天堂新機拉貨小型 MCU 低功耗晶片 AI 機會",
+    "遊戲產業暴擊與小黃油語言"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2064,
+    "eval_count": 564,
+    "total_duration": 44563459625
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

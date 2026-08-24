@@ -1,0 +1,31 @@
+{
+  "episode": 185,
+  "headings": [
+    "Netflix 財報魷魚遊戲排片能力",
+    "意亂情迷下殺十幾趴股癌受益",
+    "Intel 招攬蘋果與 Pat Gelsinger 評價",
+    "台灣矽盾優勢與電子業供貨停擺推演"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2342,
+    "eval_count": 485,
+    "total_duration": 37808949875
+  },
+  "original_headings": [
+    "Netflix 第三季財報與全球供應鏈排片能力",
+    "資金控管心態與股癌風險警示",
+    "Intel 招攬蘋果與 Pat Gelsinger 評價",
+    "台灣矽盾優勢與電子業供貨停擺推演"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "來看一下 Netflix 的第三",
+      "沒有這種全球供應鏈的製片能力"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

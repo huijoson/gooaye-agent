@@ -1,0 +1,28 @@
+{
+  "episode": 527,
+  "headings": [
+    "DeepSeek 方法可驗證與算力增無減結論",
+    "軟體股獲利貢獻與重新評估期待",
+    "AI 模型樂觀看法與最帥癌大新目標"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2436,
+    "eval_count": 488,
+    "total_duration": 40234128750
+  },
+  "original_headings": [
+    "DeepSeek 方法驗證與 AI 算力增無減",
+    "軟體股獲利貢獻與重新評估期待",
+    "AI 硬體價格下降帶動軟體爆發樂觀"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "代表 AI 軟體的爆發的速度跟滲",
+      "最帥癌大找到生活中的樂趣"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

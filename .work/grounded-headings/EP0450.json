@@ -1,0 +1,14 @@
+{
+  "episode": 450,
+  "headings": [
+    "7B 模型可在工作站運行讓中小型企業負擔得起 AI 方案",
+    "成本爆發與儲存空間不足導致推論與微調需求炸開",
+    "AMD 在 data center 競爭實力尚待觀察但消費性復甦有助估值"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2114,
+    "eval_count": 554,
+    "total_duration": 44646075500
+  }
+}

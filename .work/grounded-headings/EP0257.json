@@ -1,0 +1,15 @@
+{
+  "episode": 257,
+  "headings": [
+    "高槓桿操作風險與借錢補保證金建議",
+    "Ray Dalio 與 Michael Burry 投資理念參考",
+    "長鞭效應傳導至 Foundry 產業尾聲判斷",
+    "基本面失效後技術面分析步驟分享"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2255,
+    "eval_count": 473,
+    "total_duration": 29557005667
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "episode": 512,
+  "headings": [
+    "Tesla Model X Plaid FSD 台灣閹割版",
+    "Tesla 垂直整合 SpaceX Starlink",
+    "市場尚未理解時持股與台灣強勢標的反思",
+    "技術面致富稀少與基本籌碼組合及快速市場節奏"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2308,
+    "eval_count": 533,
+    "total_duration": 41655626958
+  },
+  "original_headings": [
+    "台灣 Tesla FSD 閹割版本平面道路限制",
+    "Tesla 垂直整合製造觀念延伸至 SpaceX Starlink",
+    "盯著業務業績成績抱緊別人看不懂股票",
+    "股價技術面發財稀少與基本面籌碼組合"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "台灣的 FSD 真的是一個閹割的版本",
+      "台灣人不喜歡或是說台灣人看不懂"
+    ],
+    [
+      "或者說 Starlink 這個計",
+      "看了一下 Starlink 的一"
+    ],
+    [
+      "作的一些業務、業績跟成績",
+      "台灣人很笨或什麼"
+    ],
+    [
+      "搭配一點基本面或是籌碼去做組合的人",
+      "市場的節奏轉換得非常快"
+    ]
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

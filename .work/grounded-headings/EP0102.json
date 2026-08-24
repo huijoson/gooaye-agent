@@ -1,0 +1,16 @@
+{
+  "episode": 102,
+  "headings": [
+    "心理冒險運動與情緒管理策略",
+    "被動投資配置邏輯與主動部位調整",
+    "美國大盤 ETF 搭配非美市場佈局",
+    "進入市場圈子後自行研究與配置"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2338,
+    "eval_count": 432,
+    "total_duration": 50351464125
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

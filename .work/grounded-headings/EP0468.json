@@ -1,0 +1,15 @@
+{
+  "episode": 468,
+  "headings": [
+    "植物聽音樂專輯悲爛與鼓手共賞 YouTube",
+    "開發遊戲辛苦錢促使手遊走套皮課金風格",
+    "矽谷仔沒上車讓軟體股佈局信心大增"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2064,
+    "eval_count": 564,
+    "total_duration": 44563459625
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

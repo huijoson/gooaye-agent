@@ -1,0 +1,28 @@
+{
+  "episode": 529,
+  "headings": [
+    "流感疫苗決策評估與合理賭注",
+    "供應鏈 Know-how 串聯 Dashboard 關稅議題反彈契機",
+    "軟體股 AI 硬體投入共同體狀態"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2491,
+    "eval_count": 442,
+    "total_duration": 27011737375
+  },
+  "original_headings": [
+    "流感疫苗決策評估與風險比",
+    "企業數據串聯設計系統應用",
+    "軟體股 AI 硬體投入共同體狀態"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "串聯了各家公司自己的一個 kno",
+      "我自己會認為說它是一個值得關切的議題"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

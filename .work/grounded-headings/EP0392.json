@@ -1,0 +1,31 @@
+{
+  "episode": 392,
+  "headings": [
+    "虛無主義套用在洗澡行為與寵物選擇",
+    "收容所狗狗模式與可愛無牙犬",
+    "半導體期呈現正價差等於扣血"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2041,
+    "eval_count": 499,
+    "total_duration": 40181952625
+  },
+  "original_headings": [
+    "虛無主義套用在洗澡行為與寵物選擇",
+    "計算收容所撿狗成本模式並樂意重複",
+    "半導體期正價差等於扣血概念"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "一隻狗我們把她從收容所帶回來",
+      "千萬不要錯過這個可愛的沒牙"
+    ],
+    [
+      "它開始呈現一個正價差",
+      "正價差就等於是你在扣血"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

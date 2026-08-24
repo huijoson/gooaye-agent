@@ -1,0 +1,31 @@
+{
+  "episode": 11,
+  "headings": [
+    "未經歷過空頭者勿妄言股票投資經驗",
+    "美國降息中國流動性反蒙面法逮捕",
+    "外銷電子股傳災困難平行時空大消費市場",
+    "底部行情反彈高漲瑞德西韋疫苗上行可能"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1783,
+    "eval_count": 472,
+    "total_duration": 34236218333
+  },
+  "original_headings": [
+    "未經歷過空頭者勿妄言股票投資經驗",
+    "中國釋出流動性配合美國降息看多說法",
+    "電子股以外銷為主消費市場傳災難難",
+    "底部行情反彈需考量疫苗有效持續上行"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "中國又要釋出流動性",
+      "否則你在路上戴著面罩、口罩的"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

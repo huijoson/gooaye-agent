@@ -1,0 +1,16 @@
+{
+  "episode": 415,
+  "headings": [
+    "避免大賠難題與 2024 年開局不佳",
+    "指標建立於 K 棒變化與台灣投顧慣性",
+    "鎖漲停買賣黃牛票與發散派觀點",
+    "週 K 趨勢解方敵人看得見地方"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2125,
+    "eval_count": 507,
+    "total_duration": 55285292583
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

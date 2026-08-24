@@ -1,0 +1,16 @@
+{
+  "episode": 614,
+  "headings": [
+    "老皮建議自行解決與 Google 能見度變高優勢明顯",
+    "DNA 力量驚人且同業分享企業 DNA 有趣",
+    "消費者重視產品體驗而非 AI 標籤",
+    "NVIDIA 推 L10 solution 供應鏈恐受價格壓力"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1972,
+    "eval_count": 430,
+    "total_duration": 41473036583
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

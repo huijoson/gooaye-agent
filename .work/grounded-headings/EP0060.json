@@ -1,0 +1,15 @@
+{
+  "episode": 60,
+  "headings": [
+    "視網膜優勢與去中心化效率缺失",
+    "川普行政命令禁止 TikTok 騰訊交易",
+    "持有騰訊股票皮繃緊川普交易範圍未知右側交易者風險錯過最低點比較好睡"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1952,
+    "eval_count": 451,
+    "total_duration": 36380007958
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

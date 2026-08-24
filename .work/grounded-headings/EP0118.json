@@ -1,0 +1,31 @@
+{
+  "episode": 118,
+  "headings": [
+    "股市下殺時暫不恐慌並觀察心態反應",
+    "生活費來自本業避免跟單",
+    "罵 Cathie Wood 與 Ark 基金受挫",
+    "Square 財報未達預期被視為爛"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2465,
+    "eval_count": 486,
+    "total_duration": 38816134125
+  },
+  "original_headings": [
+    "股市下殺不必恐慌本業收入足",
+    "跟單行為不可取投資需個人化",
+    "罵 Cathie Wood 與 Ark 基金受挫",
+    "Square 財報未達預期被視為爛"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "你可以把你本業的收入想的是生活費",
+      "投資是一個很個人的事"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

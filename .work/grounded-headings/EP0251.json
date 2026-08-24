@@ -1,0 +1,15 @@
+{
+  "episode": 251,
+  "headings": [
+    "Apple 數位儀表板自定義整合 WWDC",
+    "Steve Jobs Tim Cook 創新供應鏈比較",
+    "實質利率負值下借貸置產生錢策略"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2150,
+    "eval_count": 484,
+    "total_duration": 26751321791
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

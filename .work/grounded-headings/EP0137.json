@@ -1,0 +1,16 @@
+{
+  "episode": 137,
+  "headings": [
+    "巴菲特蒙格波克夏海瑟威股東會",
+    "查理蒙格痛恨比特幣並主張持股多元化以達到分散風險",
+    "大盤型 ETF Robinhood APP 視覺漂亮助長戒心放低",
+    "心中放著各種劇本避免恐慌與選股策略首重題材"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2106,
+    "eval_count": 577,
+    "total_duration": 38716143459
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

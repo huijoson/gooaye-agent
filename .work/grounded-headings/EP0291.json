@@ -1,0 +1,16 @@
+{
+  "episode": 291,
+  "headings": [
+    "當爸初期工作家庭平衡困難與見賢思齊自省",
+    "房貸壓力大需做超乎能力範圍的財務規劃",
+    "拜學巴菲特蒙格觀念與狂吹 ETF 定期定額誤導新手",
+    "投資世界小分類與韭菜"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2186,
+    "eval_count": 555,
+    "total_duration": 37627977167
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

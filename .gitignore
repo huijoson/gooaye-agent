@@ -1,0 +1,23 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# Logs & PIDs
+*.log
+*.pid
+.work/ollama-parallel.log
+.work/ollama-parallel.pid
+.work/audio/
+
+# Temp & Cache
+.pytest_cache/
+.coverage
+htmlcov/

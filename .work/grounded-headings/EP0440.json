@@ -1,0 +1,28 @@
+{
+  "episode": 440,
+  "headings": [
+    "岳母前男友單身貴族生活型態與後悔處境比較",
+    "供應鏈過量採購元大 00940",
+    "信驊功能下放到 BMC Intel Gaudi 4 回收謠言"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1872,
+    "eval_count": 549,
+    "total_duration": 29068133166
+  },
+  "original_headings": [
+    "岳母前男友單身貴族生活型態與後悔處境比較",
+    "供應鏈過量產出風險與元大 00940 採買影響觀察",
+    "信驊晶片功能下移至 BMC 與 Intel Gaudi 4 收回謠言"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "是大家要稍微注意一下",
+      "跟著一些朋友再看一下元大 00940"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

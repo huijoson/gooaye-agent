@@ -1,0 +1,14 @@
+{
+  "episode": 639,
+  "headings": [
+    "台股日股行情瘋狂與美股賣出後悔",
+    "GTC 大會可能驅動公司發展而非財報",
+    "非中國太陽能迎來新一波契機與紅州支持"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2015,
+    "eval_count": 522,
+    "total_duration": 44851466709
+  }
+}

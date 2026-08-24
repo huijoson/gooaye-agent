@@ -1,0 +1,14 @@
+{
+  "episode": 472,
+  "headings": [
+    "大公仔到貨與遊戲王卡代購網站使用心得",
+    "CrowdStrike 資安業務成長與微軟潛在競爭策略推演",
+    "CoWoS 產能供不應求狀態與台積電法說內容拆解意義"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2316,
+    "eval_count": 467,
+    "total_duration": 38446669167
+  }
+}

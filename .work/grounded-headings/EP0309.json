@@ -1,0 +1,17 @@
+{
+  "episode": 309,
+  "headings": [
+    "當過兵才有資格喊打喊殺的資格論觀點",
+    "特戰新軍訓練攀岩與戰爭用量佔比小",
+    "台股策略拚 Beta 大盤表現與 Alpha 選股",
+    "科技股墩跌三成五成跌幅符合合理預期",
+    "長輩看好保險飽和與小弟轉換跑道"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2352,
+    "eval_count": 577,
+    "total_duration": 43201482417
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,28 @@
+{
+  "episode": 161,
+  "headings": [
+    "台股散戶交易占五到六成與大媽財富累積",
+    "特斯拉蘋果股東繼續 hold 因財報符合甚至超乎預期",
+    "投資金額不足百萬元時定期定額與主動選股之配置建議"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1762,
+    "eval_count": 585,
+    "total_duration": 40601704500
+  },
+  "original_headings": [
+    "台股散戶參與交易額已達五成以上且財富累積有原因",
+    "特斯拉與蘋果財報符合預期建議股東繼續持有",
+    "投資金額不足百萬元時定期定額與主動選股之配置建議"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "是完全符合甚至是超乎預期的",
+      "稍微分享一下兩家公司的財報"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

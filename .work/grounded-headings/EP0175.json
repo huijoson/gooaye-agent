@@ -1,0 +1,14 @@
+{
+  "episode": 175,
+  "headings": [
+    "Globalstar 股價波動與封測產業牛皮表現",
+    "朋友炒股故事推估營收遞延或錯估",
+    "台灣供應鏈玩法需尊重趨勢與消息"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2046,
+    "eval_count": 447,
+    "total_duration": 38138776750
+  }
+}

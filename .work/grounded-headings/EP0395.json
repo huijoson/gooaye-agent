@@ -1,0 +1,14 @@
+{
+  "episode": 395,
+  "headings": [
+    "通膨退場補助與學貸壓力下的保守配置",
+    "直債債券 ETF 避險部位的心安價值",
+    "標普七騎士避風港與 Bill Ackman 回補空單"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2118,
+    "eval_count": 499,
+    "total_duration": 29057758875
+  }
+}

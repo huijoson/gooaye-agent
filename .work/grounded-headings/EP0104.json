@@ -1,0 +1,14 @@
+{
+  "episode": 104,
+  "headings": [
+    "台灣川普支持現象與政治立場",
+    "審查等於買入的投資教訓反思",
+    "以市場價格為依歸的操作訓練"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2338,
+    "eval_count": 432,
+    "total_duration": 50351464125
+  }
+}

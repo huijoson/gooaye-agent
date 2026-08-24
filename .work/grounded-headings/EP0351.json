@@ -1,0 +1,34 @@
+{
+  "episode": 351,
+  "headings": [
+    "這世界運作的真相書有趣數據佐證噴泉被環保分子污染",
+    "影響有限 Take-Two 2025 財年",
+    "GTA 線上版比碧血狂殺 2 更有可玩性",
+    "買債券 ETF 與押債券根本差距"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2533,
+    "eval_count": 513,
+    "total_duration": 41519305875
+  },
+  "original_headings": [
+    "這世界運作的真相 Netflix 劇 Beef",
+    "Take-Two 財報影響有限與 2025 財年",
+    "GTA 線上版比碧血狂殺 2 更有可玩性",
+    "財經 YouTuber 推薦債券 ETF 看法"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "應該是影響有限",
+      "2025 Fiscal Year"
+    ],
+    [],
+    [
+      "在一大堆財經 YouTuber",
+      "買債券的 ETF 有根本上的差距"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

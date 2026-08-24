@@ -1,0 +1,28 @@
+{
+  "episode": 52,
+  "headings": [
+    "馬斯克火焰噴射器火燒空頭與特斯拉大飆漲",
+    "極端看多追高特斯拉兩千",
+    "新上市時避免 All-in 與遊戲 ETF 資金配置"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1086,
+    "eval_count": 301,
+    "total_duration": 22617182166
+  },
+  "original_headings": [
+    "馬斯克火焰噴射器火燒空頭與特斯拉大飆漲",
+    "股價 1500 美元極端看好追高風險案例說明",
+    "上市熱度最高衝進投資被視為菜鳥不建議"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "要在市場熱度最高的時候衝進 Al",
+      "比方說我講遊戲相關的 ETF"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

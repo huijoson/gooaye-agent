@@ -1,0 +1,31 @@
+{
+  "episode": 347,
+  "headings": [
+    "冰島旅遊行程取消改看動物",
+    "通膨失控恐成推倒美元骨牌第一步",
+    "美國的經濟急升階段結束與第三季獲利再下調"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2533,
+    "eval_count": 513,
+    "total_duration": 41519305875
+  },
+  "original_headings": [
+    "冰島旅遊行程取消改看動物",
+    "通膨失控對美元地位影響評估",
+    "美國經濟急升期結束與獲利下調"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "甚至是進一步的下調",
+      "大家真的會對美元的地位產生一些問號"
+    ],
+    [
+      "他提到說美國經濟的急升期已經結束了",
+      "在第三季假如還有進一步的獲利下調"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

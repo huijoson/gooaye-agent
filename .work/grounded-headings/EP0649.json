@@ -1,0 +1,28 @@
+{
+  "episode": 649,
+  "headings": [
+    "打網球新運動體驗與持續運動習慣",
+    "Marvell 與 NVIDIA 推進 NVLink Fusion 合作",
+    "NVIDIA 插旗 ASIC 市場競爭 Broadcom"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1959,
+    "eval_count": 440,
+    "total_duration": 26385391792
+  },
+  "original_headings": [
+    "打網球新運動體驗與持續運動習慣",
+    "NVIDIA 投資 Marvell 合作 NVLink Fusion",
+    "NVIDIA 插旗 ASIC 市場競爭 Broadcom"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "IDIA 與 Marvell 結",
+      "面去針對 NVLink Fusi"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

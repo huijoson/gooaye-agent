@@ -1,0 +1,15 @@
+{
+  "episode": 212,
+  "headings": [
+    "台灣 Omicron 疫情趨勢調適與台股連假期間反彈難見",
+    "丙種資金挾持中小類股流動性風險",
+    "網飛 2020 年 SaaS 訂閱數位轉型預期"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2133,
+    "eval_count": 559,
+    "total_duration": 35079420167
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

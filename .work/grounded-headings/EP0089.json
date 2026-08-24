@@ -1,0 +1,14 @@
+{
+  "episode": 89,
+  "headings": [
+    "中國內需股表現優異與王品等公司名單",
+    "追蹤台灣五十指數 ETF 表現與 TIP 債券 ETF",
+    "0050 核心台積電重要性與玉子燒比喻"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2148,
+    "eval_count": 519,
+    "total_duration": 43468925000
+  }
+}

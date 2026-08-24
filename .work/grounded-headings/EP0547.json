@@ -1,0 +1,28 @@
+{
+  "episode": 547,
+  "headings": [
+    "融資維持率比肺炎更高",
+    "大型權值股可買進中小型融資鎖炸彈勿抱希望",
+    "傻多頭風控後必救市站起"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2299,
+    "eval_count": 608,
+    "total_duration": 34486926834
+  },
+  "original_headings": [
+    "台股融資維持率跌破歷史低點與恐慌虐殺程度超越肺炎時期",
+    "大型權值股配置策略與避免買入融資鎖爆的中小型股票建議",
+    "基於過去傻多頭經驗強調極端行情後必有事件發生市場會救市"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "融資鎖到爆炸的中小型",
+      "不是安慰自己說"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

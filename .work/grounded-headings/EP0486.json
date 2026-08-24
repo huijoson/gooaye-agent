@@ -1,0 +1,15 @@
+{
+  "episode": 486,
+  "headings": [
+    "岳母機場送別綠園盤勢震盪",
+    "矽晶圓代工復甦未見強勁 Nvidia 指引顯現企業端 AI 需求增強",
+    "Meta 微軟伺服器算力推銷"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2214,
+    "eval_count": 562,
+    "total_duration": 56034433875
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

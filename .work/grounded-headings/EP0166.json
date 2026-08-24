@@ -1,0 +1,31 @@
+{
+  "episode": 166,
+  "headings": [
+    "策略獲利有時是時也運也命也需跟隨市場脈動",
+    "追蹤 MSCI 指數資金跟隨編撰跑非因抄底中國股市跌",
+    "多空循環次數決定股票精通程度"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1762,
+    "eval_count": 585,
+    "total_duration": 40601704500
+  },
+  "original_headings": [
+    "策略獲利有時是時也運也命也需跟隨市場脈動",
+    "買追蹤 MSCI 指數基金資金會自動編撰在指數跑",
+    "經歷完整多空循環後才將策略視為熟練才是正確"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "只要你去買追蹤 MSCI 指數的東西",
+      "或是說他看到中國股市跌他要去抄底"
+    ],
+    [
+      "你只有等到經歷過一個多空循環",
+      "個完整的多空循環"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

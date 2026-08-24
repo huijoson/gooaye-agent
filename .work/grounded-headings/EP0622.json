@@ -1,0 +1,28 @@
+{
+  "episode": 622,
+  "headings": [
+    "WCCF Tech 報導華碩可能投入 DRAM 產線生產",
+    "消費級記憶體價格敏感度遠高於伺服器級市場",
+    "低配版 HBM 嘗試與 Groq 相關 IP 的 200 億美元交易"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2211,
+    "eval_count": 541,
+    "total_duration": 43320277750
+  },
+  "original_headings": [
+    "WCCF Tech 報導華碩可能投入 DRAM 產線生產",
+    "消費級記憶體價格敏感度遠高於伺服器級市場",
+    "NVIDIA 花費 200 億美元買下 Groq 團隊與 IP"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "NVIDIA 花了 20 億——有",
+      "是一個比較低配版的 HBM"
+    ]
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

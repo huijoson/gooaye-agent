@@ -1,0 +1,14 @@
+{
+  "episode": 53,
+  "headings": [
+    "境外電子交易平台法規違法的真相",
+    "人性糾結與修正後的停損討論",
+    "順勢交易不買下跌段的原則"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1712,
+    "eval_count": 285,
+    "total_duration": 16952317709
+  }
+}

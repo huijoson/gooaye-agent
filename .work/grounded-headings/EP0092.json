@@ -1,0 +1,34 @@
+{
+  "episode": 92,
+  "headings": [
+    "美國百老匯關閉影響《歌劇魅影》亞洲演出",
+    "投資成本與避免 FOMO 後空手而回",
+    "放空 Palantir 30 萬股 120 幾股價",
+    "末升段急跌現象與八九月歷史案例觀察"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2056,
+    "eval_count": 483,
+    "total_duration": 33771518625
+  },
+  "original_headings": [
+    "美國百老匯關閉影響《歌劇魅影》亞洲演出",
+    "投資成本控制與 FOMO 恐懼錯過心理應對",
+    "放空策略設定與末升段垂直井噴特徵解析",
+    "末升段急跌現象與八九月歷史案例觀察"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "FOMO",
+      "才不會空手而回"
+    ],
+    [
+      "我今天去放空 Palantir",
+      "Zoom 是 120 幾"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

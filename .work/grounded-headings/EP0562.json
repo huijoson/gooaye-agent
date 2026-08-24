@@ -1,0 +1,34 @@
+{
+  "episode": 562,
+  "headings": [
+    "NVIDIA 數字落在 44-45B 與搶人北市科駐點",
+    "將 AI 軟體導入視為降本增效以搶佔更多 TAM 市場",
+    "AI 程式開發願景與初階工程師裁員風險",
+    "OpEx 壓低 EPS 漂亮"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2419,
+    "eval_count": 664,
+    "total_duration": 36152816167
+  },
+  "original_headings": [
+    "NVIDIA 財報數字符合猜測落在 44-45B 且台灣不敢裁員",
+    "將 AI 軟體導入視為降本增效以搶佔更多 TAM 市場",
+    "科技巨頭裁掉 Junior 碼農實現 Dario Satya Sundar 願景",
+    "OpEx 控制漂亮與營收拉高後 EPS 被海灌進來變漂亮"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "微講一下NVIDIA這一次的Ea",
+      "特別像NVIDIA現在在碼農直接"
+    ],
+    [],
+    [],
+    [
+      "突然間EPS會被海灌進來",
+      "本結構跟EPS都可以變成很漂亮"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,15 @@
+{
+  "episode": 206,
+  "headings": [
+    "新年快樂祝福與居家跨年無聊生活描述",
+    "對帳單與績效檢討所得結論",
+    "記憶體虧損案例中部位槓桿未減縮問題",
+    "資產減少時交由市場 ETF 操盤的檢驗方式"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2160,
+    "eval_count": 503,
+    "total_duration": 35213062250
+  }
+}

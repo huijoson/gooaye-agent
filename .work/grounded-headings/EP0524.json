@@ -1,0 +1,31 @@
+{
+  "episode": 524,
+  "headings": [
+    "重玩艾爾登法環與黑魂發現劇情碎片",
+    "台股經驗累積與判斷框架的建立",
+    "台積電 AI 業務上修與循環下行",
+    "創意產業競爭激烈的現實"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2398,
+    "eval_count": 436,
+    "total_duration": 37431481542
+  },
+  "original_headings": [
+    "遊戲裝備隱藏劇情碎片的發現",
+    "台股經驗累積與判斷框架的建立",
+    "台積電 AI 業務上修與循環下行",
+    "創意產業競爭激烈的現實"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "半夜現在也開始有超多東西可以看",
+      "《艾爾登法環》或是黑魂裡面的裝備"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

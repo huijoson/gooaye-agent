@@ -1,0 +1,31 @@
+{
+  "episode": 337,
+  "headings": [
+    "台積電一樣 集團可怕一直漲",
+    "技術面輔助判斷與股價跑在最前面",
+    "加密貨幣酸爆傳統金融與 CatsTap 選股策略",
+    "比特幣信仰中心阿撒布魯小幣"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2351,
+    "eval_count": 597,
+    "total_duration": 42243912917
+  },
+  "original_headings": [
+    "不要跟股票談戀愛以免受重傷的暈船借鏡",
+    "產能過剩痛苦庫存過程與缺貨後再往下跌的循環現象",
+    "台股層出不窮的案例循環與台積電長期不變的特質",
+    "看好比特幣信仰中心地位但不看好阿撒布魯小幣的看法"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [],
+    [
+      "有的沒的、阿撒布魯的小幣的",
+      "之後也打算定期定額買以太跟比特幣"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

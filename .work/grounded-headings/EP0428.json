@@ -1,0 +1,34 @@
+{
+  "episode": 428,
+  "headings": [
+    "台積電跳升解套與股價點數不該忽略配息因素",
+    "Sora 演進至 GB 級別驅動儲存伺服器傳輸頻寬需求",
+    "六萬台 AI 伺服器出貨量確認數字",
+    "保守配置台美股 ETF"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2300,
+    "eval_count": 691,
+    "total_duration": 24281188125
+  },
+  "original_headings": [
+    "台積電跳升解套與股價點數不該忽略配息因素",
+    "Sora 演進至 GB 級別驅動儲存伺服器傳輸頻寬需求",
+    "AI 伺服器出貨量六萬台預估與保守配置台美股 ETF",
+    "蘋果廢棄電動車計畫調整策略與工業電腦供貨順暢後營收噴發猜想"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "整體 AI 伺服器出貨量",
+      "全年有個六萬台的伺服器出貨量"
+    ],
+    [
+      "本身比較保守",
+      "比較不太敢去追這樣子的東西"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

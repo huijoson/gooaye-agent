@@ -1,0 +1,15 @@
+{
+  "episode": 370,
+  "headings": [
+    "彩票式財富機會的不可複製性",
+    "中東油商研究與酷款手機探索",
+    "AI 演算法取代搜尋結果改變生活效率"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2029,
+    "eval_count": 506,
+    "total_duration": 38976396958
+  },
+  "method": "natural_heading_with_manual_evidence_review"
+}

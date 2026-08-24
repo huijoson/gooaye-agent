@@ -1,0 +1,15 @@
+{
+  "episode": 78,
+  "headings": [
+    "《原神》被指抄襲《薩爾達：曠野之息》但本體差異大",
+    "任天堂兩款遊戲的抄襲觀感與玩法差異",
+    "市場判斷勿受主流輿論影響因多不正確"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1676,
+    "eval_count": 553,
+    "total_duration": 31030785541
+  },
+  "method": "natural_heading_with_manual_evidence_review"
+}

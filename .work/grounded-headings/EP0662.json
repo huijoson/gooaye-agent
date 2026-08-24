@@ -1,0 +1,28 @@
+{
+  "episode": 662,
+  "headings": [
+    "中小投信停利轉買台積電輪動",
+    "美股軟體完成汰弱留強剩後排",
+    "Panasonic 漲價三成產能跟不上"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1009,
+    "eval_count": 173,
+    "total_duration": 27416701375
+  },
+  "original_headings": [
+    "中小股修正後停利買台積電資金輪動機會",
+    "美股軟體汰弱留強完成與台灣市場應對策略",
+    "Panasonic 淘汰舊產品與超級電容大幅漲價"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "知道 Panasonic 之前有",
+      "你那個產能開出來也不會這麼快"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

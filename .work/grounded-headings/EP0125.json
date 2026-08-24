@@ -1,0 +1,31 @@
+{
+  "episode": 125,
+  "headings": [
+    "張忠謀提出晶圓代工觀念失調殖利率輸掉資本利得",
+    "鴻海聯盟欲成電動車界 Android",
+    "政府介入抑制投資客與新竹房市高點"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2115,
+    "eval_count": 425,
+    "total_duration": 37756528792
+  },
+  "original_headings": [
+    "晶圓代工模式取代 IDM 傳統",
+    "鴻海聯盟欲成電動車界 Android",
+    "房地合一稅抑制投資客入市"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "這就像是晶圓代工的模式",
+      "重點是你賺了這個殖利率"
+    ],
+    [],
+    [
+      "外加現在這個房地合一稅",
+      "每個賣家都預期房市會繼續漲下去"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

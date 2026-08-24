@@ -1,0 +1,14 @@
+{
+  "episode": 94,
+  "headings": [
+    "Michael Burry 放空特斯拉與卡珊德拉神話自嘲",
+    "前輩做空理由薄弱與 Michael Burry 進場時機優勢",
+    "特斯拉短線獲利表現與槓鈴策略上檔下檔設計"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1917,
+    "eval_count": 488,
+    "total_duration": 36491490542
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "episode": 197,
+  "headings": [
+    "未來預期比財報更重要且降槓桿非賭明天漲跌",
+    "ARKK 逆風狀況因成長股偏好降低與部位控管",
+    "避免下檔回吐太多散戶優勢跑在基金前面",
+    "改進與癌大罵鄰居吵架壞習慣避免左側大師買到暈船"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2342,
+    "eval_count": 485,
+    "total_duration": 37808949875
+  },
+  "original_headings": [
+    "加密貨幣激勵行銷與老鼠會模式",
+    "美股財報與電話會議未來預期重要性",
+    "ARKK 基金部位控管策略分析",
+    "散戶優勢與基金固定比例鎖倉比較"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "低於你看電話會議裡面對於未來預期",
+      "降槓桿並不是去賭說隔天會漲還跌"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

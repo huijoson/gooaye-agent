@@ -1,0 +1,28 @@
+{
+  "episode": 638,
+  "headings": [
+    "春節假期意外喜悅與 Chill 心情",
+    "IEEPA 課關稅被否決後策略調整",
+    "財務成長研究與避免逆勢市場"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1959,
+    "eval_count": 440,
+    "total_duration": 26385391792
+  },
+  "original_headings": [
+    "春節假期意外喜悅與 Chill 心情",
+    "IEEPA 課關稅被否決後策略調整",
+    "返璞歸真專注公司財務成長分析"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "近期我越來越有種返璞歸真的想法",
+      "不會因此就去跟市場對著做"
+    ]
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

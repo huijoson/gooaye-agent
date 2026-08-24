@@ -1,0 +1,31 @@
+{
+  "episode": 412,
+  "headings": [
+    "芙莉蓮卡片與貓腳印豐原店致謝",
+    "閃電狼電競投資網紅直播帶貨生意",
+    "資產不值錢股票關起接受不效率報酬"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2164,
+    "eval_count": 560,
+    "total_duration": 42399278959
+  },
+  "original_headings": [
+    "收藏卡片行為愚蠢建議與閃電狼電競投資",
+    "網銀智冠敵意收購事件想像與經營權爭奪",
+    "資產價值評估低時股票關停特殊狀況處理"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "叫做閃電狼 Flash Wolves",
+      "的是一個敵意收購股票的行為"
+    ],
+    [
+      "一些特殊狀況會",
+      "你可以稍微的接受一點不效率"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

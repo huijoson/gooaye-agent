@@ -1,0 +1,18 @@
+{
+  "episode": 35,
+  "headings": [
+    "美國財政赤字創新高但影響不如失業人數",
+    "巴菲特賣航空股與台灣公司抖",
+    "VIX 不適合分批買進且非長期持有標的",
+    "保險金控穩定收入機率很低",
+    "航空業服務業疫情延宕慘敗",
+    "疫情是否如期結束為最大問題影響旅遊股"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1960,
+    "eval_count": 548,
+    "total_duration": 30979961166
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,31 @@
+{
+  "episode": 553,
+  "headings": [
+    "老婆國外來台不知月子中心概念與飯來張口生活",
+    "半導體高原區遇關稅訊號導致 AI 發展可能變平",
+    "台積電長鞭尾驗證時間微軟市場詮釋 OpenAI 脫離影響劇本修正",
+    "SMCI 財務預期下修與 Power Rack、CoWoS 數據不佳"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2419,
+    "eval_count": 664,
+    "total_duration": 36152816167
+  },
+  "original_headings": [
+    "老婆國外來台不知月子中心概念與飯來張口生活",
+    "半導體高原區遇關稅訊號導致 AI 發展可能變平",
+    "台積電下半年未下修驗證長鞭效應與微軟消息解讀",
+    "SMCI 財務預期下修與 Power Rack、CoWoS 數據不佳"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "台積電在下半年沒有去做下修",
+      "現我們講下半年的一個再更加修正的"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

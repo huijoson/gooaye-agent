@@ -1,0 +1,16 @@
+{
+  "episode": 447,
+  "headings": [
+    "921 垂直搖地震絕望與二十幾樓反應",
+    "特斯拉視覺優勢與 FSD12",
+    "車價持續貶損持有規劃",
+    "公司派說法與未來交易"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2162,
+    "eval_count": 429,
+    "total_duration": 38735649917
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,34 @@
+{
+  "episode": 334,
+  "headings": [
+    "極少數被騙者奉勸遠離詐騙的真心話",
+    "三分真七分假 CuLitho 工業革命二點零",
+    "2022 入場者的央行黑手印象與鮑爾影響",
+    "半信半疑中卓越表現 行情產生"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2351,
+    "eval_count": 597,
+    "total_duration": 42243912917
+  },
+  "original_headings": [
+    "極少數被騙者奉勸遠離詐騙的真心話",
+    "工業革命 2.0 假設下 CuLitho 對生產製造的巨大衝擊",
+    "2022 年進場者因童年市場黑手經驗形成的潛意識恐懼",
+    "半信半疑中觀察到卓越表現並繼續探索未知的結論"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "比較偏向三分真、七分假",
+      "提到說搞不好會是工業革命 2.0"
+    ],
+    [
+      "在 2022 進市場比較可惜一點",
+      "在 2022 年進入市場的人"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

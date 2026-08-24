@@ -1,0 +1,15 @@
+{
+  "episode": 193,
+  "headings": [
+    "市場期待台積電攻上歷史高點與聯發科天璣 2000",
+    "Server 缺貨受害股營收增",
+    "特斯拉與 Rivian 市值差距及市場樂觀程度比較"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2138,
+    "eval_count": 518,
+    "total_duration": 43466213667
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

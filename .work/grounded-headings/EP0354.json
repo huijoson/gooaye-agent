@@ -1,0 +1,16 @@
+{
+  "episode": 354,
+  "headings": [
+    "H100 打板影響鴻海多於緯創整機出貨",
+    "伺服器 EPS 數字與產值占比十幾趴以上",
+    "美光介入主因看好 HBM 在 AI server 應用與海力士優勢",
+    "特斯拉 ASIC 降低輝達依賴與速度考量"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2371,
+    "eval_count": 642,
+    "total_duration": 48617644917
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

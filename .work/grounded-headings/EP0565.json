@@ -1,0 +1,16 @@
+{
+  "episode": 565,
+  "headings": [
+    "實業投資踩坑經驗與台灣美國市場利空環伺",
+    "臉書分享聽眾留言業績變成業障",
+    "吸毒不報警做大義滅親 WWDC 節目符合預期失望",
+    "網友拿說法放諸四海 做功課才來讓對方知道"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2141,
+    "eval_count": 536,
+    "total_duration": 38124150583
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

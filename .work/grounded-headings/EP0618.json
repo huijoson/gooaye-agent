@@ -1,0 +1,31 @@
+{
+  "episode": 618,
+  "headings": [
+    "73B AI Backlog 與 53B XPU 持續增加",
+    "Broadcom Rack Level Solution 毛利率下降論述",
+    "Radiohead 演唱會爽感與 AI 晶片 packaging 短缺"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2211,
+    "eval_count": 541,
+    "total_duration": 43320277750
+  },
+  "original_headings": [
+    "Broadcom AI Backlog 73B 中 XPU 佔比與增長",
+    "Rack Level Solution 論述為真機率很高毛利率低更賺錢",
+    "AI 晶片最缺東西是 packaging 封裝技術環節"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "在這 73B 裡面有 53B 是",
+      "提到他的 AI Backlog"
+    ],
+    [],
+    [
+      "沿路上走路都在笑",
+      "晶片最缺的東西是 packag"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

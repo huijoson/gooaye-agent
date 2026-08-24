@@ -1,0 +1,28 @@
+{
+  "episode": 372,
+  "headings": [
+    "家和萬事興重要性與老司機控管能力",
+    "特斯拉產線轉換為 Highland 改款準備去庫存",
+    "車用布局可在第四季 10 月、11 月關注新車款"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1988,
+    "eval_count": 509,
+    "total_duration": 36155641583
+  },
+  "original_headings": [
+    "家和萬事興重要性等同薪水統一分配",
+    "特斯拉產線轉換為 Highland 改款準備去庫存",
+    "車用部分第四季十月十一月開始關注新車款"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "三、最近發現家和萬事興的重要性",
+      "不會有那種超出自己屁股能力的東西"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

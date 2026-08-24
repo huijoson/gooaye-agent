@@ -1,0 +1,28 @@
+{
+  "episode": 612,
+  "headings": [
+    "聖誕節燈光的溫馨感與出門交流啟發",
+    "理性角度質疑應收帳款庫存數字",
+    "離職後投入股市的投資新手信心低落求建議"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2211,
+    "eval_count": 541,
+    "total_duration": 43320277750
+  },
+  "original_headings": [
+    "聖誕節溫馨氛圍與出門看大家獲得啟發",
+    "理性角度檢視 NVIDIA 應收帳款與庫存數字異常",
+    "離職後投入股市的投資新手信心低落求建議"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "應收帳款的數字變高",
+      "在講說 NVIDIA 的應收帳款"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

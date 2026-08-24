@@ -1,0 +1,14 @@
+{
+  "episode": 538,
+  "headings": [
+    "非 AI 業務復甦未見成效與現金扣起策略",
+    "Broadcom 成為 ASIC 龍頭與 NVIDIA 估值定位",
+    "台積電美國投資計畫與矽盾現狀分析"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1892,
+    "eval_count": 508,
+    "total_duration": 53233688916
+  }
+}

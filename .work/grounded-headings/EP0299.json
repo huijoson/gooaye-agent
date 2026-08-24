@@ -1,0 +1,14 @@
+{
+  "episode": 299,
+  "headings": [
+    "日本旅遊體驗與迪士尼遊客感受分享",
+    "健康族群輪動狀態與半導體科技主軸機會",
+    "槓桿加碼時機判斷與資金控管自我計算"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2199,
+    "eval_count": 560,
+    "total_duration": 34096985208
+  }
+}

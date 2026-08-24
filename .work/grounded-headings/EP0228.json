@@ -1,0 +1,15 @@
+{
+  "episode": 228,
+  "headings": [
+    "房貸族升息年現金流壓力與不被市場嚇跑",
+    "央行一次升一碼震撼彈台灣實際感受影響",
+    "NVIDIA GPU 價格下調消息與數學遊戲把戲",
+    "三類組股票副業與高風險單親家庭投資渴望"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2292,
+    "eval_count": 504,
+    "total_duration": 38002400542
+  }
+}

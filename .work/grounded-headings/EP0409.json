@@ -1,0 +1,15 @@
+{
+  "episode": 409,
+  "headings": [
+    "Luna 聖誕節送養成功與主持人心路歷程分享",
+    "車用半導體強時沒有一人逃掉修正",
+    "馬斯克育兒論被定義為 DLC 擴充包性質"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2164,
+    "eval_count": 560,
+    "total_duration": 42399278959
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

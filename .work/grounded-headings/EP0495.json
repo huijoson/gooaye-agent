@@ -1,0 +1,28 @@
+{
+  "episode": 495,
+  "headings": [
+    "Arrow Lake DDR5 DIMM 潛力與筆電手機持股",
+    "Roblox 在線人數與 Engaged Hours 數據",
+    "賭事件跑掉快殺破五檔在所不惜"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2365,
+    "eval_count": 465,
+    "total_duration": 29919783958
+  },
+  "original_headings": [
+    "Arrow Lake DIMM 記憶體發展潛力",
+    "Roblox 在線人數與 Engaged Hours 數據",
+    "賭事件策略與一次砍掉破五檔"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "在 Arrow Lake 這一代上面",
+      "到現在一些筆電、手機"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

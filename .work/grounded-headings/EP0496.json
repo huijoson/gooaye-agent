@@ -1,0 +1,15 @@
+{
+  "episode": 496,
+  "headings": [
+    "Shure MV7 麥克風搭配 GarageBand 簡易製作",
+    "無擔保可轉債融資方式與持股量放大影響",
+    "特斯拉 CyberCab 出貨與 We Robot 活動"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2374,
+    "eval_count": 513,
+    "total_duration": 39411076833
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

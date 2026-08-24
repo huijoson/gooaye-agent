@@ -1,0 +1,31 @@
+{
+  "episode": 16,
+  "headings": [
+    "美國失業金創新高加拿大五十萬人",
+    "歐美需求下降台灣製造首當其衝醫療資源不足死亡上升",
+    "排華情緒加劇中國病毒導向論"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1930,
+    "eval_count": 420,
+    "total_duration": 43549495250
+  },
+  "original_headings": [
+    "歐美失業救濟金創新高",
+    "全球檢驗能量不足與排華情緒",
+    "川普中國病毒說法加劇歧視"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "電子股大部分都是靠外銷為生",
+      "全球的檢驗能量是不足的"
+    ],
+    [
+      "在全世界的排華、排亞情緒越來越高漲",
+      "在現在川普刻意的導向說是 Chi"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

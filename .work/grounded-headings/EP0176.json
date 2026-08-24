@@ -1,0 +1,14 @@
+{
+  "episode": 176,
+  "headings": [
+    "恆大事件影響小與非投資級債風險",
+    "專業投資人觀感與且看且走態度",
+    "GoGoRo 美國上市估值空間分析"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2150,
+    "eval_count": 418,
+    "total_duration": 34795144709
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "episode": 281,
+  "headings": [
+    "擇善固執者為社會好人與特別座概念",
+    "記憶體報價領先消費電子落底與動態分析",
+    "FOMC 波動決定大盤方向與高殖利率資金排擠",
+    "全職交易者無需診所"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2392,
+    "eval_count": 535,
+    "total_duration": 30211593375
+  },
+  "original_headings": [
+    "擇善固執者為社會好人與特別座概念",
+    "記憶體報價預警消費性電子落底時機",
+    "FOMC 會議紀錄波動與美債殖利率影響",
+    "全職交易非目的而是賺錢後不再管事"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "於去預期消費性電子產品落底的一個",
+      "根據我們有的資料去做一個分析這樣子"
+    ],
+    [
+      "在這個 FOMC 的會議紀錄宣布之後",
+      "無風險的殖利率這麼高"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,31 @@
+{
+  "episode": 610,
+  "headings": [
+    "賺到現金後更敢花在生活品質上",
+    "NVIDIA Apple 長期核心持股需深入分析",
+    "Trendforce 報告顯示景氣持續強勁"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2242,
+    "eval_count": 509,
+    "total_duration": 39139476458
+  },
+  "original_headings": [
+    "投資賺錢後更敢花錢改善生活品質",
+    "NVIDIA Apple 長期核心持股需深入分析",
+    "記憶體產業景氣持續強勁至少一到兩年"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "比以前更敢花錢在改善生活品質的東西上",
+      "在真正能改善生活品質的東西上"
+    ],
+    [],
+    [
+      "記憶體產業的景氣持續強勁",
+      "記憶體產業的這波景氣至少還會持續"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

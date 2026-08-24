@@ -1,0 +1,28 @@
+{
+  "episode": 99,
+  "headings": [
+    "本金滾動數字與台灣臉書主管",
+    "焦慮仔常追高殺低砍在最低點",
+    "旭富案例與小市值單股不超過 5% 至 10%"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2252,
+    "eval_count": 645,
+    "total_duration": 41943442792
+  },
+  "original_headings": [
+    "記者報導常將本金滾動數字作為標題吸引讀者注意",
+    "全球股市在無風險資產殖利率低點時風險資產價格合理且焦慮仔常追高殺低",
+    "旭富案例與 PolishT 提醒小市值投資需分散單一持股不超過五成或一成"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "會變成說本金從多少滾到多少",
+      "他在臉書當主管的"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,34 @@
+{
+  "episode": 546,
+  "headings": [
+    "衝動消費並非值得鼓勵的做法",
+    "指鹿為馬事件揭露關稅議題的誤導性",
+    "蘋果毛利下降 10% 與部位減碼規劃",
+    "關稅演變為火車對撞的膽小鬼賽局",
+    "指數仔 DCA 策略與老手死反彈的痛處"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 934,
+    "eval_count": 196,
+    "total_duration": 27618726666
+  },
+  "original_headings": [
+    "衝動消費並非值得鼓勵的做法",
+    "指鹿為馬事件揭露關稅議題的誤導性",
+    "蘋果毛利受影響估計達十個百分點",
+    "關稅演變為火車對撞的膽小鬼賽局",
+    "指數仔 DCA 策略與老手死反彈的痛處"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "估計在蘋果的毛利影響有",
+      "我本來這一波的規劃是想說"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

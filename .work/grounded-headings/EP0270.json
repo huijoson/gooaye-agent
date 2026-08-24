@@ -1,0 +1,15 @@
+{
+  "episode": 270,
+  "headings": [
+    "台北度假迷路經驗與家庭和諧祕方",
+    "長期投資核心價值抵抗通膨與資本成長",
+    "庫存疊加雜訊出現與 Stellantis 庫存狀況",
+    "初級市場接觸門檻高且非專業者易遭詐騙"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2198,
+    "eval_count": 513,
+    "total_duration": 34232933833
+  }
+}

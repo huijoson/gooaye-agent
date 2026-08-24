@@ -1,0 +1,17 @@
+{
+  "episode": 494,
+  "headings": [
+    "颱風假權力下放彈性決定",
+    "公開內容最後結論與 PIMIC 後續方向",
+    "庫存調整後 DDR5 PIMIC 重補貨價格變化競爭環伺",
+    "NVIDIA 中繼產品規劃被打掉風險評估",
+    "CP3 總冠軍問答 ASIC 加速器進場時機"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2047,
+    "eval_count": 360,
+    "total_duration": 49711168209
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

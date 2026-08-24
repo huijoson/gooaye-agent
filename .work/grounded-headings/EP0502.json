@@ -1,0 +1,16 @@
+{
+  "episode": 502,
+  "headings": [
+    "校外教學標的選擇與動能行情觀察",
+    "停損踩踏風險與時間彈性換取利潤策略",
+    "2025 年財報風險預判與產能跟進條件分析",
+    "AMD CSP 放量機會與 Google Big Win 算力供應"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1915,
+    "eval_count": 379,
+    "total_duration": 45301614250
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

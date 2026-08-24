@@ -1,0 +1,31 @@
+{
+  "episode": 399,
+  "headings": [
+    "群聯潘健成預測明年下半年 NAND 供不應求",
+    "油條哥帶嬰兒出國玩與人力成本壓力",
+    "工業電腦族群的消費應用機會"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2031,
+    "eval_count": 538,
+    "total_duration": 19923016625
+  },
+  "original_headings": [
+    "群聯潘健成預測明年下半年 NAND 供不應求",
+    "油條哥帶四個月大女兒出國遊玩的經驗分享",
+    "人力成本壓力下消費型工業電腦族群的轉型機會"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "癌大對於帶嬰兒出國玩有什麼建議嗎",
+      "他們都面臨了一個同樣"
+    ],
+    [
+      "台、一些消費型的工業電腦",
+      "工業電腦族群應該下一波有機會"
+    ]
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

@@ -1,0 +1,28 @@
+{
+  "episode": 13,
+  "headings": [
+    "美債價格推升導致行情崩盤買債獲利了結無人接盤",
+    "集體失智現象難以扭轉",
+    "分批投入避免恐慌性抄底"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1930,
+    "eval_count": 420,
+    "total_duration": 43549495250
+  },
+  "original_headings": [
+    "美債價格過高導致行情崩跌",
+    "集體失智現象難以扭轉",
+    "分批投入避免恐慌性抄底"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "導致了後來行情繼續地崩",
+      "買債的人要獲利了結的時候"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

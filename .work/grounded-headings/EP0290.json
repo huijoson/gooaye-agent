@@ -1,0 +1,14 @@
+{
+  "episode": 290,
+  "headings": [
+    "Naval Ravikant 推文指出租時間難以致富",
+    "聽眾提問經營秘訣與拒絕快速致富誘惑",
+    "0056 增加成分股驗證選股方法有效性"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2392,
+    "eval_count": 535,
+    "total_duration": 30211593375
+  }
+}

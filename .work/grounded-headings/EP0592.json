@@ -1,0 +1,16 @@
+{
+  "episode": 592,
+  "headings": [
+    "社群 Radiohead 聽眾黃牛票爭議",
+    "記憶體廠商聞到停產味提前處理",
+    "觀察 NAND DRAM 這一波發酵多遠",
+    "高報酬伴隨更大風險與風險敏感度"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2204,
+    "eval_count": 500,
+    "total_duration": 39307292083
+  },
+  "method": "natural_heading_with_manual_evidence_review"
+}

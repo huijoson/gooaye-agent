@@ -1,0 +1,15 @@
+{
+  "episode": 536,
+  "headings": [
+    "股價已反應三歲背詩正常現象",
+    "Tesla 歐洲銷量崩盤被市場消化完",
+    "投資菜雞黃埔軍校孟恭忠實粉絲"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1892,
+    "eval_count": 508,
+    "total_duration": 53233688916
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

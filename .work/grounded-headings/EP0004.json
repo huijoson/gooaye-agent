@@ -1,0 +1,15 @@
+{
+  "episode": 4,
+  "headings": [
+    "James 管理方法 GE 波音 5000 剩不到一半",
+    "下跌差距主流族群存在台股強勢提醒",
+    "遠見熱映三成評價與 0050 定期定額精神"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1623,
+    "eval_count": 469,
+    "total_duration": 43882260625
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

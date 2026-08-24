@@ -1,0 +1,31 @@
+{
+  "episode": 8,
+  "headings": [
+    "武漢肺炎衝擊與元大原油暴跌",
+    "武漢肺炎全球照妖鏡 Sanders 終身左派",
+    "川普代理人擂台對打後剃光 WWE 總裁頭"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1783,
+    "eval_count": 472,
+    "total_duration": 34236218333
+  },
+  "original_headings": [
+    "武漢肺炎衝擊全球政府醫療系統與經濟",
+    "民主黨左派桑德斯始終如一極端立場",
+    "川普代理人擂台對打後剃光 WWE 總裁頭"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "後續的經濟影響到底會帶來多大的衝擊",
+      "元大 S&P 原油正2"
+    ],
+    [
+      "不是只是對於中國有很大的衝擊",
+      "民主黨有名的始終如一的左派"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

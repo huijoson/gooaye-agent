@@ -1,0 +1,14 @@
+{
+  "episode": 497,
+  "headings": [
+    "MicroStrategy 買進比特幣看法與人生階段改變",
+    "ASML 跌錯殺機會與 DUV 驗證放量不確定性",
+    "AI 伺服器水冷解方發展與供應鏈小型機會"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2374,
+    "eval_count": 513,
+    "total_duration": 39411076833
+  }
+}

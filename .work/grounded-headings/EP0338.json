@@ -1,0 +1,15 @@
+{
+  "episode": 338,
+  "headings": [
+    "股期看對家生活痛苦與西班牙蟶子柳橙汁吉拿棒",
+    "春燕消息暗示蘋果砍單可能結束",
+    "AI 伺服器成長性高於整體產業增加市占"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2034,
+    "eval_count": 476,
+    "total_duration": 43189524417
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

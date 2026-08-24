@@ -1,0 +1,31 @@
+{
+  "episode": 90,
+  "headings": [
+    "賀寶芙被指為金字塔詐騙與對沖機構做空",
+    "對沖機構放空前發布報告的慣例做法",
+    "道德觀在股票市場中的重要性與局限",
+    "人生無限賽局 2020 年後最精準市場人"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1894,
+    "eval_count": 401,
+    "total_duration": 27841716000
+  },
+  "original_headings": [
+    "賀寶芙被指為金字塔詐騙與對沖機構做空",
+    "對沖機構放空前發布報告的慣例做法",
+    "道德觀在股票市場中的重要性與局限",
+    "人生無限賽局觀點下投資人的轉型機會"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [],
+    [
+      "人生是無限賽局",
+      "變成市場上最精準的人"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

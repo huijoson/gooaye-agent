@@ -1,0 +1,15 @@
+{
+  "episode": 679,
+  "headings": [
+    "通用型 AI 模型直接上陣工作可能引發巨大風險",
+    "孟恭下檔風險控制策略與空單對沖操作心得",
+    "CCL 載板漲價性鈍化封測看好後期狀態"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 3004,
+    "eval_count": 629,
+    "total_duration": 49020332625
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

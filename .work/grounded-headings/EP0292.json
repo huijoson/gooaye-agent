@@ -1,0 +1,37 @@
+{
+  "episode": 292,
+  "headings": [
+    "無法預測未來時的心理準備與日常放鬆",
+    "科技巨頭成長股思維與 Netflix 分析",
+    "錯誤復盤價值與特斯拉中國市場風險",
+    "槓桿 ETF 期貨差異與標普崩潰心態"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 986,
+    "eval_count": 176,
+    "total_duration": 32952399458
+  },
+  "original_headings": [
+    "面對不確定未來放寬心態繼續生活",
+    "科技巨頭成長股思維與 Netflix 分析",
+    "看錯後復盤內容比漲跌預測更有意義",
+    "槓桿 ETF 期貨差異討論與正二風險"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "這基本上不是一般人可以決定的",
+      "我是覺得大家真的是放寬心"
+    ],
+    [],
+    [
+      "他還可以跟你復盤說為什麼他錯了",
+      "特斯拉的中國風險大家自己要小心"
+    ],
+    [
+      "用槓桿型 ETF 和期貨的差異",
+      "你兩倍的三倍的一定一堆人受不了"
+    ]
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

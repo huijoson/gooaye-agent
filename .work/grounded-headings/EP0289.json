@@ -1,0 +1,31 @@
+{
+  "episode": 289,
+  "headings": [
+    "日本機票五萬多塊、鼻音重因打第三劑疫苗",
+    "天然氣大賺不易因烏俄戰爭封北溪二號時機錯失",
+    "大盤結算日波動與反彈 PTSD",
+    "反彈僅為暫現現象與 Netflix 推薦影片分享"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2186,
+    "eval_count": 555,
+    "total_duration": 37627977167
+  },
+  "original_headings": [
+    "日本機票價格嚇人且打第三劑疫苗影響發音",
+    "天然氣大賺不易因烏俄戰爭封北溪二號時機錯失",
+    "歐洲買高溢價導致報價下跌未傳導至公司股價",
+    "反彈僅為暫現現象與 Netflix 推薦影片分享"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "我說個股是一定有",
+      "我現在已經搞到有點像 PTSD"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

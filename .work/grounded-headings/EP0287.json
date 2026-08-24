@@ -1,0 +1,14 @@
+{
+  "episode": 287,
+  "headings": [
+    "投資風控下重視執行力而非績效表現",
+    "社會進步但人性未變及期貨英雄失敗案例",
+    "壓低東南亞 ETF 與台灣投資人盲從習性"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1749,
+    "eval_count": 396,
+    "total_duration": 37134517917
+  }
+}

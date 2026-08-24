@@ -1,0 +1,28 @@
+{
+  "episode": 688,
+  "headings": [
+    "功能性訓練改善久坐下背痛",
+    "Cerebras 產能曝光與 54V 6.1kA",
+    "孫安佐事件引發的未來自信迷思"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1946,
+    "eval_count": 328,
+    "total_duration": 36012003208
+  },
+  "original_headings": [
+    "功能性訓練改善久坐下背痛",
+    "Cerebras 產能擴張與電壓轉換計算",
+    "孫安佐事件引發的未來自信迷思"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "Cerebras 它",
+      "它就會變成是 0.4kA 這樣子"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

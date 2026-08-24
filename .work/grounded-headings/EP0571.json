@@ -1,0 +1,37 @@
+{
+  "episode": 571,
+  "headings": [
+    "小 S 女兒辦畫展與同溫層攻擊小朋友",
+    "NotebookLM 原生平台準確率",
+    "Call Option 遠期價外定位及 VC 本質",
+    "質疑出國旅遊意義並強調人生在於體驗"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 573,
+    "eval_count": 110,
+    "total_duration": 9761632166
+  },
+  "original_headings": [
+    "小 S 女兒畫展引發對網路批評與同溫層的反思",
+    "Gemini 使用頻率低卻肯定 NotebookLM 與 AI Overview",
+    "VC 本質被解讀為購買遠期價外 Call Option",
+    "質疑出國旅遊意義並強調人生在於體驗"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "真的不用待在網路上或是你的同溫層",
+      "都有看到小 S 她女兒辦畫展的新"
+    ],
+    [
+      "它的這個 AI Overview",
+      "但 NotebookLM 至少我"
+    ],
+    [
+      "期價外的 Call Option",
+      "期價外的 Call Option"
+    ],
+    []
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

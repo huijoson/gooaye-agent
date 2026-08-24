@@ -1,0 +1,15 @@
+{
+  "episode": 673,
+  "headings": [
+    "垃圾盤不會出現回檔中小",
+    "券商報告誤判被動元件市場與 OS 判斷",
+    "美光記憶體股票與首爾撞擊"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2731,
+    "eval_count": 415,
+    "total_duration": 43388024542
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

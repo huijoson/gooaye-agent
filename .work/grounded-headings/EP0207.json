@@ -1,0 +1,14 @@
+{
+  "episode": 207,
+  "headings": [
+    "NBA 足球生活回歸正常與西班牙質押股票解質困難",
+    "特斯拉交車數據亮眼及中國市場抵制下銷售佳績",
+    "晶圓廠受惠成熟製程受害與 2022 年投資環境分析"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 882,
+    "eval_count": 176,
+    "total_duration": 29040591000
+  }
+}

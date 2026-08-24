@@ -1,0 +1,15 @@
+{
+  "episode": 93,
+  "headings": [
+    "林鄭月娥銀行帳戶凍結事件與現金比例思考",
+    "Buy and Hold 策略效率評估與被動投資建議",
+    "自幹 ETF 指數 退休金買合一自救會"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1917,
+    "eval_count": 488,
+    "total_duration": 36491490542
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

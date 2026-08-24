@@ -1,0 +1,28 @@
+{
+  "episode": 96,
+  "headings": [
+    "後疫情時代飯店航空業進場時機調整",
+    "旅遊市場持續擴大趨勢與相關公司市值",
+    "感情詐騙匯錢免談《股癌》別槓桿"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1894,
+    "eval_count": 401,
+    "total_duration": 27841716000
+  },
+  "original_headings": [
+    "後疫情時代飯店航空業進場時機調整",
+    "旅遊市場持續擴大趨勢與相關公司市值",
+    "社群交友平台氾濫引發的感情詐騙提醒"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "能說現在社群交友平台氾濫到出現一",
+      "《股癌》差不多在二、三月開始錄的"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

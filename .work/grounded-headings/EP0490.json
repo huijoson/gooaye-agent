@@ -1,0 +1,16 @@
+{
+  "episode": 490,
+  "headings": [
+    "多方綜合體難定準則分享滿好體驗心得",
+    "台灣央行第七波打房行動嚴厲措施與預期效果",
+    "順德長科界霖功率半導體有望復甦台灣導線架三雄",
+    "iOS 18 Apple Intelligence 延遲推出相容性問題"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2214,
+    "eval_count": 562,
+    "total_duration": 56034433875
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

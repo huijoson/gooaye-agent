@@ -1,0 +1,31 @@
+{
+  "episode": 523,
+  "headings": [
+    "隱晦求救者與熱血動畫推薦",
+    "美國政府封鎖 AI 算力與鬼故事真相",
+    "股價休整期與績效大爆射願景"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2398,
+    "eval_count": 436,
+    "total_duration": 37431481542
+  },
+  "original_headings": [
+    "隱晦求救者與熱血動畫推薦",
+    "美國政府針對 AI 算力的封鎖影響",
+    "避免空頭循環的投資心態"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "才是真正的鬼故事所在",
+      "國政府去針對 AI 算力的一些封"
+    ],
+    [
+      "不要現在這麼快就進入下一個空頭循環",
+      "希望這世上能夠少一點無效的摩擦與爭端"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

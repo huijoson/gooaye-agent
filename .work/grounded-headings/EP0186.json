@@ -1,0 +1,31 @@
+{
+  "episode": 186,
+  "headings": [
+    "搶人潮下難得一見的人才政策",
+    "股票房地產抗通膨與特斯拉供不應求",
+    "SPAC 借殼上市模式與全倉風險"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2342,
+    "eval_count": 485,
+    "total_duration": 37808949875
+  },
+  "original_headings": [
+    "台積電預辦登機計畫介紹與投遞資格",
+    "股票房地產抗通膨資產屬性分析",
+    "SPAC 借殼上市模式與全倉風險"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "直接去應徵台積電的預辦登機計畫",
+      "這邊跟大家介紹一下預辦登機計畫"
+    ],
+    [
+      "說你是股票、房地產",
+      "換特斯拉的人很多"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

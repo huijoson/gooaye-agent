@@ -1,0 +1,15 @@
+{
+  "episode": 382,
+  "headings": [
+    "Starfield 玩家社群模改星系",
+    "CoreWeave空頭公司造謠與 Samantha 白痴",
+    "基本面分析對賺錢的重要性"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1986,
+    "eval_count": 380,
+    "total_duration": 41248341250
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

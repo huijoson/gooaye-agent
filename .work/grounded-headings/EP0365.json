@@ -1,0 +1,31 @@
+{
+  "episode": 365,
+  "headings": [
+    "真味食堂的醬蟹值得專程訪韓",
+    "CoWoS 數字較數月前上修 20% 到 30%",
+    "回答感情問題的個人意見與依賴習慣"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2085,
+    "eval_count": 534,
+    "total_duration": 38477122792
+  },
+  "original_headings": [
+    "真味食堂醬蟹美味值得跑一趟韓國",
+    "CoWoS 數字持續上調幅度達兩三成",
+    "感情依賴習慣並非真正非對方不可"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "以後為了這個真味食堂跑來韓國就值得了",
+      "一直都知道說有一家叫做真味食堂"
+    ],
+    [],
+    [
+      "我只能講我個人的意見",
+      "感情會變成一個依賴跟習慣"
+    ]
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

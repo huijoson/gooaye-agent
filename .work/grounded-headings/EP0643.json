@@ -1,0 +1,17 @@
+{
+  "episode": 643,
+  "headings": [
+    "現代人低頻噪音苦與電腦風扇關掉",
+    "禮拜一操作水位下降賣在地板上笑話",
+    "十五到二十現金油 ETF 溢價空單漲幅爽",
+    "波動率加高部位油價擺第二",
+    "台系供應鏈迎來 LPU 概念風潮"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2413,
+    "eval_count": 524,
+    "total_duration": 34940222042
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

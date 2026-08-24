@@ -1,0 +1,28 @@
+{
+  "episode": 117,
+  "headings": [
+    "資金寬鬆讓年輕買家低總價三房流動性好",
+    "美債殖利率升致風險資產重置",
+    "定期定額平攤成本享受複利"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2115,
+    "eval_count": 425,
+    "total_duration": 37756528792
+  },
+  "original_headings": [
+    "低總價三房房產流動性佳",
+    "美債殖利率升致風險資產重置",
+    "定期定額平攤成本享受複利"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "實際的去感受到資金寬鬆的感覺",
+      "記得去選低總價的"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

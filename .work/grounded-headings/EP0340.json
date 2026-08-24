@@ -1,0 +1,31 @@
+{
+  "episode": 340,
+  "headings": [
+    "大型業者不願被問及上一集獲史上最多評論",
+    "唐氏症性騷擾觀念從兩年前講到 2022 年 7 月仍被認為好笑",
+    "國安基金第八次護盤成功登場",
+    "Intel 伺服器整機業務賣給神達"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2642,
+    "eval_count": 499,
+    "total_duration": 31492219167
+  },
+  "original_headings": [
+    "司令 Maca 黑蜜紅聲音專業團隊研發",
+    "大型業者業務多不太看好",
+    "國安基金第八次護盤正式出場成功",
+    "Intel 伺服器整機業務賣給神達"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "多人會問這種大型的業者",
+      "看起來大家都覺得超好笑"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

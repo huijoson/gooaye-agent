@@ -1,0 +1,16 @@
+{
+  "episode": 552,
+  "headings": [
+    "安撫家庭小精靈古法感謝鬼魅幫忙",
+    "FreemPack 讓 6GB VRAM 即可圖生影",
+    "預載未審查 LLM Image to Video 裝置引發消費降級風險",
+    "孟恭安忠實聽眾伴隨主委迎刃而解變強道路養分"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2194,
+    "eval_count": 508,
+    "total_duration": 34341757875
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

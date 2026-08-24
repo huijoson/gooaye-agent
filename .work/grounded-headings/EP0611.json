@@ -1,0 +1,28 @@
+{
+  "episode": 611,
+  "headings": [
+    "遊戲資本全由自己資金運作無對外募資",
+    "被動元件跟記憶體仍在高檔及 AWS 鏈再放雷",
+    "台指期正二作為拉高持股水位的工具"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2125,
+    "eval_count": 500,
+    "total_duration": 40158874125
+  },
+  "original_headings": [
+    "遊戲資本全由自己資金運作無對外募資",
+    "被動元件與記憶體高檔區間盤待恐慌介入",
+    "台指期正二作為拉高持股水位的工具"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "被動元件跟記憶體方面",
+      "在 AWS 的供應鏈又再一次的放雷"
+    ],
+    []
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

@@ -1,0 +1,34 @@
+{
+  "episode": 400,
+  "headings": [
+    "單相氟化液降低液損及聯發科 IT 演講",
+    "阿里巴巴傳 NVIDIA 調整美國禁令貿易壁壘",
+    "AI 稅劇本與中國拉貨或禁令可能",
+    "H20 SXM 未被封殺則需大量採購以複製效果"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2031,
+    "eval_count": 538,
+    "total_duration": 19923016625
+  },
+  "original_headings": [
+    "單相氟化液沸點較高解決液損問題的技術優勢",
+    "阿里巴巴文件透露 NVIDIA 針對美國禁令調整策略",
+    "若走 AI 稅劇本中國拉貨與供應鏈加倍效應分析",
+    "H20 SXM 未被封殺則需大量採購以複製效果"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "se 的那個氟化液的沸點是稍微高",
+      "是他們的 IT 部門"
+    ],
+    [
+      "確實的 NVIDIA 去針對美國",
+      "讓你要用很貴的價格獲得這樣的一個東西"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

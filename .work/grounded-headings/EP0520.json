@@ -1,0 +1,15 @@
+{
+  "episode": 520,
+  "headings": [
+    "小鬼股操作經驗對主流股票邏輯影響",
+    "市場共識與成交值堆疊大型權值股",
+    "風險認知程度作為投資者成熟度指標"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2128,
+    "eval_count": 471,
+    "total_duration": 27857287959
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

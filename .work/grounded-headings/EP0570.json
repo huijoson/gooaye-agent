@@ -1,0 +1,28 @@
+{
+  "episode": 570,
+  "headings": [
+    "死亡擱淺 2 遊戲劇本觀察與下半年態度判斷",
+    "法人六月與十一月結帳及七月決勝點",
+    "RoboTaxi 錯誤持續分享現象與短期 Dip 非方法不可行"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2378,
+    "eval_count": 529,
+    "total_duration": 43609045250
+  },
+  "original_headings": [
+    "死亡擱淺 2 遊戲劇本觀察與下半年態度判斷",
+    "結帳時間點修正為六十一月與短期事件非根源性證明",
+    "RoboTaxi 錯誤持續分享現象與短期 Dip 非方法不可行"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "決勝點就在 7 月的上旬",
+      "他們在結帳時間點"
+    ],
+    []
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

@@ -1,0 +1,31 @@
+{
+  "episode": 190,
+  "headings": [
+    "航空公司原油期貨避險部位建立目的",
+    "保證金交易槓桿放大與資金滾動機制",
+    "清楚風險長榮期貨量不大",
+    "期貨未必投機可避險降稅"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2289,
+    "eval_count": 504,
+    "total_duration": 37521457500
+  },
+  "original_headings": [
+    "航空公司原油期貨避險部位建立目的",
+    "保證金交易槓桿放大與資金滾動機制",
+    "知名期貨商品交易量差異與操作難度",
+    "期貨工具本質非壞與投機避險功能"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "你今天都是完全清楚風險的",
+      "有很大的交易量之外"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

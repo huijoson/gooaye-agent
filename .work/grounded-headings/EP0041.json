@@ -1,0 +1,15 @@
+{
+  "episode": 41,
+  "headings": [
+    "一般投資人難以掌握藥效定價與正確觀念傳播",
+    "黑人窒息而死引發喬治佛洛伊德悲劇",
+    "川普戰場重整階段對中國華為貿易戰加碼影響"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1773,
+    "eval_count": 533,
+    "total_duration": 37154962041
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

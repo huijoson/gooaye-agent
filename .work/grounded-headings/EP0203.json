@@ -1,0 +1,15 @@
+{
+  "episode": 203,
+  "headings": [
+    "比特幣以太幣在無監管環境下的金融實驗優勢",
+    "美光數字優勢與台灣利基型記憶體報價差異",
+    "跳空缺口回補與技術分析統計學反身性"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1870,
+    "eval_count": 439,
+    "total_duration": 43395510416
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

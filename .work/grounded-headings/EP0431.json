@@ -1,0 +1,34 @@
+{
+  "episode": 431,
+  "headings": [
+    "及時行樂倒掉 Camillo 強迫去公園晃一晃買演唱會門票",
+    "融入當地生活降低煩躁 999 在禮拜六晚上羅馬競技場隔壁維納斯神廟",
+    "Wi-Fi 7 AI Ready NPU 端出獨顯手機市場最被低估 PC",
+    "比特幣最高風險偏好人才買來 RUT 推至新高後市場進入瘋狂情緒",
+    "英國遊客多且西班牙市場必去"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2300,
+    "eval_count": 691,
+    "total_duration": 24281188125
+  },
+  "original_headings": [
+    "羅馬餐廳倒閉與及時行樂開車逛公園買演唱會門票",
+    "融入當地生活降低煩躁感與維納斯神廟位於競技場隔壁",
+    "Wi-Fi 7 與 AI Ready 手機 PC 獨顯 NPU 搭載趨勢分析",
+    "比特幣風險偏好最高特質與推至新高後市場進入瘋狂情緒判斷",
+    "西班牙旅遊天堂吸引歐美遊客與市區漁中央市場必去體驗"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "裡面是 AI Ready 的東西",
+      "連帶的就像是 PC"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,34 @@
+{
+  "episode": 187,
+  "headings": [
+    "極端恐慌與 Telegram 群組對話量",
+    "Fomo 全進跌與川普概念大挫",
+    "NVIDIA 特斯拉與臉書實境實驗室做多邏輯差異",
+    "Facebook Reality Labs 事業群拆分與員工配置",
+    "供應鏈操作研究與大盤情緒調整策略"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1303,
+    "eval_count": 273,
+    "total_duration": 25241301917
+  },
+  "original_headings": [
+    "市場極端恐慌樂觀擺盪現象觀察",
+    "Fomo 心態下川普概念股大跌案例",
+    "NVIDIA 特斯拉與臉書實境實驗室做多邏輯差異",
+    "Facebook Reality Labs 事業群拆分與員工配置",
+    "供應鏈操作研究與大盤情緒調整策略"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "市場很常在極端的恐慌跟極端的樂觀",
+      "大家已經不怎麼聊股票"
+    ],
+    [],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

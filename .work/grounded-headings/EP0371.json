@@ -1,0 +1,15 @@
+{
+  "episode": 371,
+  "headings": [
+    "超導體概念股票當彩票買與空銅",
+    "訊凱與台達電子浸沒式液冷技術實績",
+    "杜邦子公司氟化物冷卻液爭議與歐盟角色"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2029,
+    "eval_count": 506,
+    "total_duration": 38976396958
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

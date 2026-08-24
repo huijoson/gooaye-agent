@@ -1,0 +1,15 @@
+{
+  "episode": 594,
+  "headings": [
+    "聽眾鼓勵與健康方向投入 Apple Watch",
+    "Blackwell 後 CX8 取代 PCIe Retimer",
+    "老 AI 噴發川湖秦誠 ASTERA Labs MediaTek"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2569,
+    "eval_count": 566,
+    "total_duration": 39561718500
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

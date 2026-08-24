@@ -1,0 +1,37 @@
+{
+  "episode": 76,
+  "headings": [
+    "Snowflake Palantir Unity 酒精酵素分解",
+    "Microsoft 買 Zenimax Media 關注 Orion",
+    "川普中鏢選情對中態度華為疫情部署",
+    "Boris Johnson Bolsonaro 川普確診支持度變化"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1790,
+    "eval_count": 475,
+    "total_duration": 22654220625
+  },
+  "original_headings": [
+    "Snowflake Palantir Unity IPO 公司亮點",
+    "醫生朋友談台灣酒精代謝酵素缺乏",
+    "Microsoft 收購 Zenimax Media 與 Orion",
+    "川普對中態度轉變與 Boris Johnson 案例"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "Snowflake、像是 Pal",
+      "體內缺乏某種可以分解酒精的酵素"
+    ],
+    [
+      "應該是這個 Orion",
+      "Orion 這個是一個很厲害的東西"
+    ],
+    [
+      "對於對中態度的一些分析跟討論",
+      "有對國內的疫情的一些部署上"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

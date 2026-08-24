@@ -1,0 +1,28 @@
+{
+  "episode": 265,
+  "headings": [
+    "新想法不必錄 Podcast 隨接麥克風",
+    "Intel 聯發科戰略合作對產業影響分析",
+    "國發基金投資跟單風險與教訓"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2093,
+    "eval_count": 484,
+    "total_duration": 29911792000
+  },
+  "original_headings": [
+    "Podcast 錄音音質追求過程與經驗",
+    "Intel 聯發科戰略合作對產業影響分析",
+    "國發基金投資跟單風險與教訓"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "產生一個新的想法",
+      "最早在錄 Podcast 你搞不"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

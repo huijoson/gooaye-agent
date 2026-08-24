@@ -1,0 +1,31 @@
+{
+  "episode": 248,
+  "headings": [
+    "觀察美國首富與台灣大戶的多頭邏輯",
+    "期貨槓桿風險控管與個人投資心態邏輯",
+    "被套小型成長股轉壓廣泛族群 ETF",
+    "Howard Marks 好交易觀點與中國機會"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2305,
+    "eval_count": 511,
+    "total_duration": 35823461625
+  },
+  "original_headings": [
+    "觀察美國首富與台灣大戶的多頭邏輯",
+    "使用槓桿期貨的風險控管必要之惡",
+    "被套小型成長股轉壓廣泛族群 ETF",
+    "Howard Marks 好交易觀點與中國機會"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "是要把這個風險控管放在優先的第一位",
+      "而不是說你去 copy 人家的做法"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

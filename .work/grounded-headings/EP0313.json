@@ -1,0 +1,16 @@
+{
+  "episode": 313,
+  "headings": [
+    "同事爸媽新勉勵運動開啟",
+    "大型權值股帶漲小型飆股獲利",
+    "被動元件低檔傳奇族群資金Parking",
+    "車用面板成長題材小型股票篩選"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2352,
+    "eval_count": 577,
+    "total_duration": 43201482417
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

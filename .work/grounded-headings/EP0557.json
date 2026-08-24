@@ -1,0 +1,16 @@
+{
+  "episode": 557,
+  "headings": [
+    "對膽固醇宣戰瘦瘦針與飲食控制",
+    "定期定額週期拉長 Uber 駕駛小藥",
+    "堅持既定路線避免改來改去",
+    "沙漠達沃斯派對行情小心再受傷"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2313,
+    "eval_count": 503,
+    "total_duration": 38346516250
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

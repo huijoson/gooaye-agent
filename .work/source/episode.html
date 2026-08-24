@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>股癌逐字稿</title>
+    <!-- Apply persisted theme before paint to avoid FOUC -->
+    <script>
+      (function () {
+        var t = localStorage.getItem('theme');
+        if (t === 'dark' || t === 'light') {
+          document.documentElement.setAttribute('data-theme', t);
+        }
+      })();
+    </script>
+
+    <link rel="stylesheet" href="style.css?v=20260425c">
+    <style>
+        .episode-viewer {
+            max-width: var(--content-width);
+            width: 100%;
+            margin-bottom: var(--space-5);
+        }
+        
+        /* Removed back-link styles as we're using navigation component */
+        
+        .episode-content {
+            font-family: var(--font-serif);
+            line-height: var(--line-height);
+        }
+        
+        .episode-suggestion {
+            margin-top: var(--space-2);
+            font-size: 0.9rem;
+            color: var(--muted-color);
+        }
+        
+        .episode-suggestion a[href*="linktr.ee"] {
+            text-decoration: none !important;
+            font-size: 1.1rem;
+            transition: transform 0.2s ease;
+            display: inline-block;
+        }
+        
+        .episode-suggestion a[href*="linktr.ee"]:hover {
+            transform: scale(1.2);
+            text-decoration: none !important;
+        }
+        
+        .episode-disclaimer {
+            margin: var(--space-3) 0;
+            padding: var(--space-2);
+            background: var(--tag-bg);
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--muted-color);
+            text-align: center;
+        }
+        
+        .episode-disclaimer a {
+            color: var(--muted-color);
+            text-decoration: underline;
+        }
+        
+        .episode-disclaimer a:hover {
+            color: var(--text-color);
+        }
+        
+        .episode-content h1,
+        .episode-content h2,
+        .episode-content h3 {
+            margin-top: var(--space-3);
+            margin-bottom: var(--space-2);
+            font-weight: 700;
+        }
+        
+        .episode-content h1 {
+            font-size: 1.9rem;
+        }
+        
+        .episode-content h2 {
+            font-size: 1.4rem;
+        }
+        
+        .episode-content h3 {
+            font-size: 1.15rem;
+        }
+        
+        .episode-content p {
+            margin-bottom: var(--space-2);
+        }
+        
+        .episode-content ul,
+        .episode-content ol {
+            margin-bottom: var(--space-2);
+            padding-left: 1.25rem;
+        }
+        
+        .episode-content li {
+            margin-bottom: 0.35rem;
+        }
+        
+        .episode-content blockquote {
+            border-left: 3px solid var(--muted-color);
+            padding-left: var(--space-2);
+            margin: var(--space-2) 0;
+            color: var(--muted-color);
+        }
+        
+        .episode-content code {
+            font-family: var(--font-mono);
+            font-size: 0.9em;
+            padding: 0.1em 0.3em;
+            background: var(--tag-bg);
+            border-radius: 3px;
+        }
+        
+        .episode-content pre {
+            background: var(--tag-bg);
+            padding: var(--space-2);
+            overflow-x: auto;
+            margin-bottom: var(--space-2);
+            border-radius: 4px;
+        }
+        
+        .episode-content pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        .episode-content hr {
+            border: none;
+            border-top: 1px solid var(--tag-bg);
+            margin: var(--space-3) 0;
+        }
+        
+        .episode-content a {
+            color: var(--text-color);
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 2px;
+        }
+        
+        .episode-content a:hover {
+            text-decoration-thickness: 2px;
+        }
+        
+        .episode-content img {
+            max-width: 80%;
+            max-height: 400px;
+            margin: var(--space-2) auto;
+            display: block;
+        }
+        
+        .loading-episode {
+            text-align: center;
+            color: var(--muted-color);
+            padding: var(--space-5) 0;
+        }
+        
+        .error-message {
+            color: var(--muted-color);
+            padding: var(--space-3);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div id="episode-viewer" class="episode-viewer">
+            <div class="loading-episode">Loading episode...</div>
+        </div>
+    </main>
+
+    <footer>
+        <p>
+            Fan-created transcript archive. Not affiliated with Gooaye Podcast. · 
+            <a href="#" id="disclaimer-toggle" title="版權聲明">版權聲明</a>
+        </p>
+        <div id="disclaimer-content" class="disclaimer-content" style="display: none;">
+            <div class="disclaimer-section">
+                <h3>免責與版權聲明</h3>
+                <p>本網站所提供之逐字稿內容，係依據公開可收聽之《股癌》Podcast 音訊，透過人工智慧轉譯、人工修正與格式化整理而成。原始音訊內容（包括其中的文字、語音表達與想法）之著作權，均屬《股癌》Podcast 節目製作人及相關權利人所有。</p>
+                <p>本網站對逐字稿的加工處理（如轉錄、修正與排版），僅作為學習與交流之用途，完全非商業性質，亦無意取代原節目。正確內容請以《股癌》Podcast 原始音訊為準。</p>
+                <p>如原節目製作人或相關權利人認為本網站內容有侵權之虞或不適當，本網站將於接獲通知後，立即配合修改或移除相關內容。</p>
+            </div>
+            <div class="disclaimer-section">
+                <h3>Disclaimer and Copyright Notice</h3>
+                <p>The transcripts provided on this website are derived from publicly available audio content of the "Gooaye" Podcast. They are processed through AI transcription, manual corrections, and formatting. All copyrights for the original audio content — including its text, spoken expressions, and ideas — belong to the creators and rights holders of the "Gooaye" Podcast.</p>
+                <p>Our processing of the transcripts (including transcription, correction, and formatting) is intended solely for learning and non-commercial purposes, and is not intended to replace the original program. For accurate content, please refer to the original audio of the "Gooaye" Podcast.</p>
+                <p>If the original creators or rights holders believe that any content on this website infringes upon their rights or is otherwise inappropriate, we will promptly modify or remove such content upon notification.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Theme toggle (light/dark) -->
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換深色模式" title="深色／淺色">🌗</button>
+    <script>
+      (function () {
+        var btn = document.getElementById('theme-toggle');
+        if (!btn) return;
+        var html = document.documentElement;
+        var media = window.matchMedia('(prefers-color-scheme: dark)');
+        function current() {
+          return html.getAttribute('data-theme') || (media.matches ? 'dark' : 'light');
+        }
+        function syncIcon() {
+          btn.textContent = current() === 'dark' ? '☀️' : '🌙';
+        }
+        syncIcon();
+        btn.addEventListener('click', function () {
+          var next = current() === 'dark' ? 'light' : 'dark';
+          html.setAttribute('data-theme', next);
+          localStorage.setItem('theme', next);
+          syncIcon();
+        });
+        if (media.addEventListener) {
+          media.addEventListener('change', function () {
+            if (!html.getAttribute('data-theme')) syncIcon();
+          });
+        }
+      })();
+    </script>
+
+    <script src="episode-viewer.js?v=20260425f"></script>
+</body>
+</html>

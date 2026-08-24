@@ -1,0 +1,15 @@
+{
+  "episode": 31,
+  "headings": [
+    "原油寶跌到負值與銀行吞虧損",
+    "時代力量基本薪資拉升至三萬一可行性",
+    "完美世界 Steam 註冊 GAP 流血出清"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1925,
+    "eval_count": 488,
+    "total_duration": 23459018167
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,34 @@
+{
+  "episode": 301,
+  "headings": [
+    "市場處於史上最大月線乖離看 Powell",
+    "半導體 Capex 有望超越 2022 年水準",
+    "高純度營收佔比領導地位為投資重點",
+    "軍工概念股清單含漢翔 RTX 洛克希德馬丁"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2392,
+    "eval_count": 535,
+    "total_duration": 30211593375
+  },
+  "original_headings": [
+    "市場月線乖離巨大與 Powell 講話主導行情",
+    "2024 年半導體 Capex 可能超越 2022 年",
+    "高純度營收佔比領導地位為投資重點",
+    "軍工概念股清單含漢翔 RTX 洛克希德馬丁"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "的大盤是史上最大的一個月線乖離",
+      "看 Powell 的講話就好"
+    ],
+    [
+      "不會輸 2022 年的 Capex",
+      "在 2024 年的 Capex"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

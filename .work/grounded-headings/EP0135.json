@@ -1,0 +1,31 @@
+{
+  "episode": 135,
+  "headings": [
+    "貸款先求有再求好重訓無法社群健身",
+    "評估住宅停車位電梯與環境設施",
+    "電子股法說會與聯電聯發科台郡登場",
+    "讀者提問做空 VIX 恐慌指數 ETF"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2153,
+    "eval_count": 501,
+    "total_duration": 27779694250
+  },
+  "original_headings": [
+    "貸款先求有再求好多問幾家不礙事",
+    "評估住宅停車位電梯與環境設施",
+    "電子股法說會聯電聯發科臺郡登場",
+    "讀者提問做空 VIX 恐慌指數 ETF"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "多問幾家是不礙事的",
+      "即便我老婆或是一些認識的朋友"
+    ],
+    [],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

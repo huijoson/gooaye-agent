@@ -1,0 +1,14 @@
+{
+  "episode": 279,
+  "headings": [
+    "風險控管訓練與秋口情緒觀察",
+    "頂尖分析師預測失準與 downside 考量",
+    "三分之一現金流壓力與房貸評估"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2262,
+    "eval_count": 488,
+    "total_duration": 29955591583
+  }
+}

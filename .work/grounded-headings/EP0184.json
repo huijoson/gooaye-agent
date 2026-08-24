@@ -1,0 +1,14 @@
+{
+  "episode": 184,
+  "headings": [
+    "查理蒙格巴菲特論述與黑天鵝槓鈴策略應用",
+    "Fat Tail 厚尾事件與末日基金壓崩盤風險",
+    "貨櫃航運厚尾事件與白天鵝價值驟升催化劑"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2157,
+    "eval_count": 360,
+    "total_duration": 41708682708
+  }
+}

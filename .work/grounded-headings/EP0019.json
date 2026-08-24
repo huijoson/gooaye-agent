@@ -1,0 +1,14 @@
+{
+  "episode": 19,
+  "headings": [
+    "顧立雄延緩下市說法與台幣升值影響",
+    "受薪階級魔咒與資產階級投資利多",
+    "政治民生議題與小尺度解決問題"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1774,
+    "eval_count": 493,
+    "total_duration": 37996715250
+  }
+}

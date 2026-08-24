@@ -1,0 +1,16 @@
+{
+  "episode": 508,
+  "headings": [
+    "大峽谷國家公園直升機之旅規劃與帶家人赴美",
+    "向上管理將上司當成追妹子心態與居家 PM 心得",
+    "液態金屬散熱技術應用於高密度伺服器與 Vertiv 案例",
+    "居家 PM 具現化老闆幻想指示滿足滿意"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2337,
+    "eval_count": 569,
+    "total_duration": 34566170000
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

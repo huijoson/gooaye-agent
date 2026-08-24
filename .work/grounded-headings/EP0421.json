@@ -1,0 +1,28 @@
+{
+  "episode": 421,
+  "headings": [
+    "台積電前員工龐氏騙局與下線撐爆風險",
+    "自研 ASIC 優於高資本晶圓製造",
+    "MEC 邊緣運算伺服器與 Galaxy AI 免費服務"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2234,
+    "eval_count": 535,
+    "total_duration": 28934824000
+  },
+  "original_headings": [
+    "台積電前員工龐氏騙局與下線撐爆風險",
+    "設計自家 ASIC 而非半導體製造高資本密集",
+    "MEC 邊緣運算伺服器與 Galaxy AI 免費服務"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "應該是自己去設計自家的 ASIC",
+      "他是高資本密集"
+    ],
+    []
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

@@ -1,0 +1,16 @@
+{
+  "episode": 205,
+  "headings": [
+    "主動選股搭配被動部位以穩健信心與題材切入",
+    "油車變電動車功率半導體用量增加選擇機會",
+    "避開全倉風險與莫忘初衷以免股票抱不久",
+    "換 5G 門號契機發現瞬間尋找股票未必太晚及營收佔比多"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1870,
+    "eval_count": 439,
+    "total_duration": 43395510416
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

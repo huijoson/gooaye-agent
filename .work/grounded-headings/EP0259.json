@@ -1,0 +1,15 @@
+{
+  "episode": 259,
+  "headings": [
+    "聽眾分享流浪狗故事與鼻音狀況",
+    "原物料價格下跌作為衰退鐵證分析",
+    "PCB 反彈機會與 HDI 板軟板廠比較",
+    "鋼鐵廠電價影響與指數仔長期投資觀點"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2255,
+    "eval_count": 473,
+    "total_duration": 29557005667
+  }
+}

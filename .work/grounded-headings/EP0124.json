@@ -1,0 +1,28 @@
+{
+  "episode": 124,
+  "headings": [
+    "高估值科技股必遇修正",
+    "百度與嗶哩嗶哩三月赴港二次上市",
+    "恆生科技指數採用市值編列"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2115,
+    "eval_count": 425,
+    "total_duration": 37756528792
+  },
+  "original_headings": [
+    "高估值科技股必遇修正",
+    "川普逼出港股二次上市潮",
+    "恆生科技指數採用市值編列"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "在這個港股這邊 IPO",
+      "他們有這個大量的二次上市潮"
+    ],
+    []
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

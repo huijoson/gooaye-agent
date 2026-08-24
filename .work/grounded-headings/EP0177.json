@@ -1,0 +1,34 @@
+{
+  "episode": 177,
+  "headings": [
+    "Portal 視訊通話螢幕與 iPad GarageBand 遊戲差異",
+    "德州撲克競技應用理解交易操作鬼打牆現象",
+    "策略帶狀加碼離場業績驚喜變好觀念順勢而為停利",
+    "順勢而為觀念在資金控管下的機會"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2046,
+    "eval_count": 447,
+    "total_duration": 38138776750
+  },
+  "original_headings": [
+    "Portal 智慧螢幕功能與平板差異比較",
+    "德州撲克加碼應用理解交易策略",
+    "從全進全出轉向帶狀加碼離場佈局",
+    "順勢而為觀念在資金控管下的機會"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "Portal 這種智慧螢幕",
+      "Portal 這個東西有點像是智"
+    ],
+    [],
+    [
+      "ll-out 變成帶狀加碼、帶狀",
+      "但在布局或是初階部署的上面"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

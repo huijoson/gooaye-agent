@@ -1,0 +1,34 @@
+{
+  "episode": 451,
+  "headings": [
+    "《異塵餘生》影集推薦與 Amazon Prime Video 平台",
+    "M4 晶片台積電製程與 AI PC",
+    "CPO Fiber 光電共封裝 Vertiv 開發驗證",
+    "投資詐騙仿冒警示與聽眾老弟減脂備賽祝福"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2493,
+    "eval_count": 663,
+    "total_duration": 45345993625
+  },
+  "original_headings": [
+    "《異塵餘生》影集推薦與 Amazon Prime Video 平台",
+    "iPad Pro M4 晶片台積電 N3 製程與 AI PC 時代切入",
+    "CPO 光電共封裝 Fiber 受惠對象 Vertiv 開發驗證進度",
+    "投資詐騙仿冒事件聽眾祝福老弟比賽順利減脂低碳"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "4 晶片是用台積電 N3 的製程",
+      "進入一個 AI PC 的時代"
+    ],
+    [
+      "光電共封裝後面的 Fiber（光",
+      "Vertiv 在過去幾集有跟大家更新"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

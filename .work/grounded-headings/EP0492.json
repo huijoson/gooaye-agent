@@ -1,0 +1,28 @@
+{
+  "episode": 492,
+  "headings": [
+    "新同仁 A-Gin 工作表現與法說會兩場安排",
+    "盤中倒貨經驗與釋疑意外收穫",
+    "AI PC 換機潮與 DDR5 PMIC 機會"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2151,
+    "eval_count": 393,
+    "total_duration": 39839842458
+  },
+  "original_headings": [
+    "新同仁 A-Gin 工作表現與法說會佈局",
+    "盤中倒貨經驗與釋疑意外收穫",
+    "AI PC 換機潮與 DDR5 PMIC 機會"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "在我自己的工作跟生活之中",
+      "禮拜五的我額外再請一些朋友去幫我聽"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

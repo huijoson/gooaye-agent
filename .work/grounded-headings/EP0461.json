@@ -1,0 +1,31 @@
+{
+  "episode": 461,
+  "headings": [
+    "Apple Intelligence 重新定義 AI 合作策略",
+    "達哥 Plugin 執行優勢與 LLM 理解差距",
+    "投資組合調整降低硬體部位轉向軟體",
+    "愛犬領養與軟體人才流失之痛"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2414,
+    "eval_count": 520,
+    "total_duration": 34471647083
+  },
+  "original_headings": [
+    "Apple Intelligence 重新定義 AI 合作策略",
+    "達哥 Plugin 執行優勢與 LLM 理解差距",
+    "投資組合調整降低硬體部位轉向軟體",
+    "人才流動困境與產業發展機會分析"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [],
+    [
+      "他叫我去領養 Lisa 之助的浪浪",
+      "你要想他們也有機會可以跳巨頭到被跳"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

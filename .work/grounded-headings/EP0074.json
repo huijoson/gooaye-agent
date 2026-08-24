@@ -1,0 +1,31 @@
+{
+  "episode": 74,
+  "headings": [
+    "DR 存託憑證集體漲跌現象分析",
+    "證交所處置交易時間衝浪者收手",
+    "高收益債槓桿風險與垃圾債別稱",
+    "上檔獲利有限下檔無限深淵 Tesla 暴力降價"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1446,
+    "eval_count": 343,
+    "total_duration": 34489951500
+  },
+  "original_headings": [
+    "DR 存託憑證集體漲跌現象分析",
+    "證交所處置交易衝浪行為方法",
+    "高收益債槓桿風險與垃圾債別稱",
+    "Tesla 平價車款策略與暴力降價歷史"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [],
+    [
+      "下檔是無限深淵的東西",
+      "我對 Tesla 的要求"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

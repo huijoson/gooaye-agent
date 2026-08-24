@@ -1,0 +1,15 @@
+{
+  "episode": 684,
+  "headings": [
+    "五歲生日回憶與親友祝福",
+    "黃崇仁影響與身體健康提醒",
+    "Citadel 接手部位與植物澆水反彈",
+    "1200 萬資產配置與 FIRE 生活峰值"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2568,
+    "eval_count": 486,
+    "total_duration": 51193058792
+  }
+}

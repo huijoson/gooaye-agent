@@ -1,0 +1,15 @@
+{
+  "episode": 14,
+  "headings": [
+    "股價先行指標亂放消息等好時機進場不反對",
+    "國安基金護盤方式與五千億資金上限",
+    "槓桿 ETF 轉倉損耗與新手規則認知"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1706,
+    "eval_count": 458,
+    "total_duration": 27058558208
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

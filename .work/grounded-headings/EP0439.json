@@ -1,0 +1,31 @@
+{
+  "episode": 439,
+  "headings": [
+    "美股 AI 相關股票創下歷史強季",
+    "AI 難做與熱門股先走過一波行情",
+    "小型股票流動性差與停損厭倦現象",
+    "朋友推薦隨手購買 N 次經驗"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1872,
+    "eval_count": 488,
+    "total_duration": 40125377625
+  },
+  "original_headings": [
+    "美股 AI 相關股票創下歷史強季",
+    "AI 難做與熱門股先走過一波行情",
+    "小型股票流動性差與停損厭倦現象",
+    "朋友推薦隨意買入投資策略"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [],
+    [
+      "朋友跟我講說有看到什麼東西",
+      "這已經講過 N 次了"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

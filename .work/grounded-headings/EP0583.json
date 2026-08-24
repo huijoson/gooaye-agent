@@ -1,0 +1,14 @@
+{
+  "episode": 583,
+  "headings": [
+    "肖楠資本成立緣起與台灣遊戲圈朋友加入",
+    "三句對話上車者與懂遊戲圈股東信任",
+    "近期市場熱鬧輪動與小飆股跑出來打板"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2257,
+    "eval_count": 536,
+    "total_duration": 50167193750
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "episode": 477,
+  "headings": [
+    "基本面好股票必買策略與震盪殺跌不關己事",
+    "對自己負責下單權限掌握與最差一段已過判斷",
+    "2020 年流動性危機重現精采與台積電期貨流動性消失",
+    "期貨反彈降倉與現貨部位汰換策略"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2498,
+    "eval_count": 629,
+    "total_duration": 43418499500
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

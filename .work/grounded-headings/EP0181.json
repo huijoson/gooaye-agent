@@ -1,0 +1,15 @@
+{
+  "episode": 181,
+  "headings": [
+    "特斯拉股價強勢表現與美股科技股動態",
+    "查理蒙格買入阿里巴巴的成本區間分析",
+    "台股供應鏈與停電事件差異"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2516,
+    "eval_count": 523,
+    "total_duration": 41157275208
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

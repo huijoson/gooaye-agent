@@ -1,0 +1,31 @@
+{
+  "episode": 59,
+  "headings": [
+    "航空公司倒閉經歷與努力之外的運氣",
+    "科技股瘋狂上漲與價值股低本益比相對低點",
+    "軍武股位階偏低但 NOC LMT 吃政府單",
+    "抱緊經驗定義短中長期 REITs 配息看法中性不買"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1984,
+    "eval_count": 527,
+    "total_duration": 12105086333
+  },
+  "original_headings": [
+    "航空業倒閉事件與銀座白石終身保固服務說明",
+    "科技股瘋狂上漲與價值股低本益比相對低點",
+    "軍武股位階偏低優勢與政府單據吃進標的",
+    "短中長期定義困難與 REITs 配息中性看法"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [],
+    [
+      "我現在要直接跟你定義說怎麼短中長期",
+      "老實講 REITs 的東西"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

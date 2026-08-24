@@ -1,0 +1,16 @@
+{
+  "episode": 40,
+  "headings": [
+    "香港失去獨立關稅金融中心地位後亞洲區影響",
+    "Common Law 普通法與一國兩制變數",
+    "美國制裁聲明下美股恆生期貨走勢與金融排名",
+    "散戶 ETF 恩惠與市場走勢判斷"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1773,
+    "eval_count": 533,
+    "total_duration": 37154962041
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

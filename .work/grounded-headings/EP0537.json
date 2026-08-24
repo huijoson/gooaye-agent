@@ -1,0 +1,14 @@
+{
+  "episode": 537,
+  "headings": [
+    "威航離職後規劃寶典回憶與飛行學校畫面",
+    "CoreWeave 算力租賃優勢與錢坑失敗預測",
+    "FSD 訂閱機器人投入與交車數據無需盯視觀點"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 983,
+    "eval_count": 190,
+    "total_duration": 35142137416
+  }
+}

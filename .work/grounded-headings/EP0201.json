@@ -1,0 +1,34 @@
+{
+  "episode": 201,
+  "headings": [
+    "市場情緒造成通殺局面 大家都在修正賠錢",
+    "頭重腳輕投資行為修正分析",
+    "LiveWire Harley-Davidson 電動車承襲油車外型",
+    "台灣隱形冠軍企業市場表現"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2322,
+    "eval_count": 494,
+    "total_duration": 30276641667
+  },
+  "original_headings": [
+    "市場通殺局勢與聯準會升息預期",
+    "頭重腳輕投資行為修正分析",
+    "LiveWire 電動車承襲 Harley-Davidson 風格",
+    "台灣隱形冠軍企業市場表現"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "這是一個通殺局面",
+      "屬於那一種通殺了"
+    ],
+    [],
+    [
+      "LiveWire 是做電動車",
+      "電動車是一個 3 到 5 年的大事"
+    ],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

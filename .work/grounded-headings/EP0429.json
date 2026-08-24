@@ -1,0 +1,15 @@
+{
+  "episode": 429,
+  "headings": [
+    "家長面對子女受傷的痛楚與心理衝擊",
+    "市場 meme 故事推演與合理劇本建構",
+    "中國復甦歐洲重建下的原物料與工具機",
+    "IP 股高估值邏輯與 Arm 合作新動態"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2615,
+    "eval_count": 486,
+    "total_duration": 55523099083
+  }
+}

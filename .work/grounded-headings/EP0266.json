@@ -1,0 +1,31 @@
+{
+  "episode": 266,
+  "headings": [
+    "聯發科庫存調整時間表與營收預估",
+    "手機逆風 Smart Edge 看多華碩切入 PC",
+    "五月凹市神仙難算鴕鳥心態需明負源"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2093,
+    "eval_count": 484,
+    "total_duration": 29911792000
+  },
+  "original_headings": [
+    "聯發科庫存調整時間表與營收預估",
+    "手機逆風與 Smart Edge PMIC 看多觀點",
+    "PC 市場切入機會與鴕鳥心態警示"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "Smart Edge 跟 PMIC",
+      "我猜應該是會跟台系的業者合辦"
+    ],
+    [
+      "為什麼每個跌你都要閃掉",
+      "我建議大家不要有這種鴕鳥心態"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

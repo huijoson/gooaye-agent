@@ -1,0 +1,14 @@
+{
+  "episode": 101,
+  "headings": [
+    "主動 ETF 流動性風險與新手配置建議",
+    "巨獸級主動 ETF 的潛在崩盤危機",
+    "中小型股波動特性與交易量能差異"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2338,
+    "eval_count": 432,
+    "total_duration": 50351464125
+  }
+}

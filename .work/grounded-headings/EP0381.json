@@ -1,0 +1,15 @@
+{
+  "episode": 381,
+  "headings": [
+    "多巴胺國度失落感與台積電良率優勢",
+    "供應鏈去庫存重漲價訊號與晶片組自製影響",
+    "股票市場與快樂多巴胺研究"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1986,
+    "eval_count": 380,
+    "total_duration": 41248341250
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,34 @@
+{
+  "episode": 244,
+  "headings": [
+    "股癌財富自由與主動選股交易",
+    "早就提醒的無效表態與夫妻溝通禁忌",
+    "Terra Luna 跟 UST 發生死亡螺旋崩跌"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2592,
+    "eval_count": 530,
+    "total_duration": 37870380125
+  },
+  "original_headings": [
+    "股癌財富自由生活模式觀察",
+    "主動選股職業需避免重複陳述",
+    "Terra Luna UST 死亡螺旋崩跌悲劇"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "他們聊到那些財富自由的人",
+      "特別是你要以主動選股作為你的職業"
+    ],
+    [
+      "你不可以整天說我早就跟你講了",
+      "你不可以講說我早就跟你講了"
+    ],
+    [
+      "常龐大的 Terra Luna",
+      "但近期內要維持大家的信仰"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

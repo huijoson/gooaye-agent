@@ -1,0 +1,15 @@
+{
+  "episode": 143,
+  "headings": [
+    "居家生活衝擊與 The Serpent 電影小圖示",
+    "美債殖利率下行帶動基建與科技股資金回流",
+    "GME 與 AMC 反壟斷事件再起及粗淺看法"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1933,
+    "eval_count": 514,
+    "total_duration": 41872013541
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,16 @@
+{
+  "episode": 390,
+  "headings": [
+    "小鬼股連續漲停動能派進場與基本面無關",
+    "H100 延宕轉投 B100 與緯穎油國後續觀察",
+    "油國 AI 伺服器營收不要再提練功 know-how",
+    "心理諮商師與身心科醫師區別正名"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2041,
+    "eval_count": 499,
+    "total_duration": 40181952625
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

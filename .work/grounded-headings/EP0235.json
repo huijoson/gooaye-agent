@@ -1,0 +1,16 @@
+{
+  "episode": 235,
+  "headings": [
+    "受不了全進全出與生活極端行為",
+    "蒙格透過 Daily Journal 曝險阿里巴巴",
+    "央行鷹派升息金融股跳空漲金控業狀況未好",
+    "投資金融股存錢不管發生什麼事"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2279,
+    "eval_count": 583,
+    "total_duration": 35531569042
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

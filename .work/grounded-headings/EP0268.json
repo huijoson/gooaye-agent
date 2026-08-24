@@ -1,0 +1,40 @@
+{
+  "episode": 268,
+  "headings": [
+    "卡米地 Plus 的開幕典禮與投資人幫忙推廣",
+    "定義市場共識與避免跟風標的",
+    "美國回購股票休學仔買權值 ETF",
+    "尾牙直播贊助商出錢與里長成長史"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2093,
+    "eval_count": 484,
+    "total_duration": 29911792000
+  },
+  "original_headings": [
+    "MIZUHO 司令 B 群黑紅瑪卡產品介紹",
+    "卡米地 Plus 開幕典禮推廣與體驗分享",
+    "市場共識定義與特斯拉回購股票看法",
+    "休學創業金流狀況與權值 ETF 投資"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "研發了這款司令 B 群黑紅瑪卡",
+      "後來又有贊助商跟我講說出錢給你辦"
+    ],
+    [
+      "去參加了卡米地 Plus 的開幕",
+      "這卡米地 Plus 逛一下"
+    ],
+    [
+      "你要先定義市場共識是什麼",
+      "不要去做市場共識的東西"
+    ],
+    [
+      "市場就會給予他積極正向的肯定",
+      "買權值跟 ETF"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

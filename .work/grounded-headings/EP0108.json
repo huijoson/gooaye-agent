@@ -1,0 +1,16 @@
+{
+  "episode": 108,
+  "headings": [
+    "台灣通勤第一品牌受邀與化妝品廠商贊助尾牙",
+    "GameStop 衝高背後散戶軋空與微軟合作因素",
+    "Citron 看空標的事後走勢與漲翻案例回顧",
+    "策略型 ETF 表現比較與台灣多元投資工具探討"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2402,
+    "eval_count": 547,
+    "total_duration": 33093407375
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,28 @@
+{
+  "episode": 651,
+  "headings": [
+    "Intel 或 Samsung 受惠及林哲瑄引退活動",
+    "手機廠商下修訂單與記憶體高成本拉市佔",
+    "被動元件未來循環大潮時間不確定"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2764,
+    "eval_count": 672,
+    "total_duration": 26877593625
+  },
+  "original_headings": [
+    "Intel 三星利多林哲瑄引退儀式",
+    "手機廠商下訂單記憶體高成本拉市佔",
+    "被動元件未來循環大潮時間不確定"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "它對於 Intel 或是 Sam",
+      "讓小弟去參加了林哲瑄的引退儀式"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

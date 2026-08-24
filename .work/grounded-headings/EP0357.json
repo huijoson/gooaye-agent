@@ -1,0 +1,15 @@
+{
+  "episode": 357,
+  "headings": [
+    "一年反思避免成為有毒工作者",
+    "蘇媽 HBM3 關鍵元件重要性分析",
+    "車用 AI 題材接棒與高速傳輸線材評估"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1588,
+    "eval_count": 335,
+    "total_duration": 40517327208
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

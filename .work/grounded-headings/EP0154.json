@@ -1,0 +1,28 @@
+{
+  "episode": 154,
+  "headings": [
+    "連續 20 天不開盤想把自己捶爆股性反應",
+    "活潑股票與和碩長期走勢",
+    "特斯拉漲三倍賺六百萬反求諸己"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2336,
+    "eval_count": 529,
+    "total_duration": 35368405292
+  },
+  "original_headings": [
+    "投資交易風險控管觀念讓道路走得更順遂",
+    "巴菲特與麥哲倫基金在槓桿下達高報酬率",
+    "特斯拉重壓後本金重壓賺三倍不可膨脹"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "讓整條路走得更順遂",
+      "你不回來你死掉的機會就直接飆升"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

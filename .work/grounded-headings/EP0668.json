@@ -1,0 +1,34 @@
+{
+  "episode": 668,
+  "headings": [
+    "Computex 展場黃仁勳簽名牆現象與人勳展現狀",
+    "統一記憶體池筆電成功機率與 Agentic AI 運算需求",
+    "洗籌碼好事看展意外發展",
+    "夫妻互相扶持與週一殺槓桿"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2608,
+    "eval_count": 566,
+    "total_duration": 45127071375
+  },
+  "original_headings": [
+    "Computex 展場黃仁勳簽名牆現象與人勳展現狀",
+    "統一記憶體池筆電成功機率與 Agentic AI 運算需求",
+    "夫妻互相扶持關係與犯錯可能性的日常提醒",
+    "週一殺槓桿仔清倉策略與鎖死風險處理建議"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [],
+    [
+      "這樣子去洗一下籌碼絕對是好事",
+      "你看大家還是要去敞開心胸"
+    ],
+    [
+      "是講了很多次你怎麼還是一樣會被雷",
+      "面的這些槓桿仔給清掉"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

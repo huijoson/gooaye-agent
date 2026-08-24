@@ -1,0 +1,15 @@
+{
+  "episode": 617,
+  "headings": [
+    "EMIB 封裝 HBM 使用爭議討論",
+    "Marvell 八卦與 Google 訂單消息",
+    "投資改善生活與小型軟體公司成長彈性"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1832,
+    "eval_count": 321,
+    "total_duration": 32877905208
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

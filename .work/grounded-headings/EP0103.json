@@ -1,0 +1,15 @@
+{
+  "episode": 103,
+  "headings": [
+    "散裝航運與貨櫃輪題材性比較",
+    "財報高峰股價下跌的循環案例",
+    "別跟股票談戀愛 中間財風潮要警惕"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2338,
+    "eval_count": 432,
+    "total_duration": 50351464125
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

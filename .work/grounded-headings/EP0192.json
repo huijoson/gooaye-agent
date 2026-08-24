@@ -1,0 +1,31 @@
+{
+  "episode": 192,
+  "headings": [
+    "內部人交易透過 10b5-1 方法進行",
+    "散戶共識陷阱與獲利了結時機",
+    "台積電購買力下降與通膨原因"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2342,
+    "eval_count": 485,
+    "total_duration": 37808949875
+  },
+  "original_headings": [
+    "內部人交易 10b5-1 機制說明",
+    "散戶共識陷阱與獲利了結時機",
+    "通膨導致現金購買力下降現象"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "內部人交易",
+      "一般內部人交易有兩個方法"
+    ],
+    [],
+    [
+      "感覺你的現金的購買力下降",
+      "導致你的錢購買力是往下降的"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

@@ -1,0 +1,40 @@
+{
+  "episode": 211,
+  "headings": [
+    "687 億美金交易案與魔獸世界 IP 潛力",
+    "Xbox Game Pass 推廣與 King 手遊用戶",
+    "Howard Marks《Selling Out》當頭棒喝",
+    "Buy and Hold 與長期複利指數威力"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 642,
+    "eval_count": 100,
+    "total_duration": 29740080750
+  },
+  "original_headings": [
+    "魔獸世界 IP 能量與多維擴展潛力",
+    "Xbox Game Pass 訂閱服務與 King 用戶貢獻",
+    "Howard Marks Memo《Selling Out》警示認知偏差",
+    "買入持有策略與長期複利指數威力"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "這一樁交易案花費是 687 億美金",
+      "或者說做成《魔獸世界 2.0》"
+    ],
+    [
+      "他把他的 Xbox Game P",
+      "King 這家公司帶來的"
+    ],
+    [
+      "家聊一下 Howard Mark",
+      "剛剛前面 Howard Mark"
+    ],
+    [
+      "buy and hold",
+      "相信長期複利"
+    ]
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}

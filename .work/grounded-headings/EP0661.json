@@ -1,0 +1,28 @@
+{
+  "episode": 661,
+  "headings": [
+    "皮諾可可聚餐與聽眾同學會",
+    "高低階被動元件機會與台灣廠商跟進國際情勢",
+    "漢磊與盛群財報表現及成本驅動漲價影響"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2764,
+    "eval_count": 672,
+    "total_duration": 26877593625
+  },
+  "original_headings": [
+    "台中走跳皮諾可可餐廳聽眾合照聊天",
+    "高階低階料被動元件電容國巨華新科信昌立隆電電龍國際情勢",
+    "漢磊財報數字失望盛群表現特好成本驅動漲價優勢"
+  ],
+  "repair_evidence_phrases": [
+    [
+      "了我老婆非常喜歡的餐廳——皮諾可可",
+      "有去太太的那個皮諾可可"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_with_manual_evidence_review"
+}

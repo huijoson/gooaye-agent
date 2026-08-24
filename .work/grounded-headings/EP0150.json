@@ -1,0 +1,16 @@
+{
+  "episode": 150,
+  "headings": [
+    "日月神教封測股特性與重壓風險",
+    "股性不符預期與 GG 制裁因果關係",
+    "重壓單一標的的運氣風險與減少爸爸經分享",
+    "麥當勞 McWrap 好吃節目調整市場為主"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2300,
+    "eval_count": 607,
+    "total_duration": 34285895166
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

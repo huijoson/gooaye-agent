@@ -1,0 +1,14 @@
+{
+  "episode": 139,
+  "headings": [
+    "台股創歷史大跌點與市值蒸發紀錄",
+    "熔斷潮下投資人缺乏自我檢討",
+    "景氣循環股可能掉入價值陷阱"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 1971,
+    "eval_count": 470,
+    "total_duration": 31627367709
+  }
+}

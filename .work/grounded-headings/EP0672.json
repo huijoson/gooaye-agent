@@ -1,0 +1,14 @@
+{
+  "episode": 672,
+  "headings": [
+    "Vshare IDM 自給自足滿稼動率進入漲價循環",
+    "AI agent 崛起軟體工程師從創作變成校對甚至淘汰",
+    "軟體工程師組織重整而非末日市場已做出優勝劣汰"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 3104,
+    "eval_count": 628,
+    "total_duration": 53834434875
+  }
+}

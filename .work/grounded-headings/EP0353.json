@@ -1,0 +1,16 @@
+{
+  "episode": 353,
+  "headings": [
+    "AI 法說會變化與台灣美食之島",
+    "AI 過熱現象與 GTC 演講內容變化",
+    "FOMO 仔受傷先進封裝追蹤節點",
+    "MGX 供應鏈生態與三大伺服器架構"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2255,
+    "eval_count": 494,
+    "total_duration": 30079607666
+  },
+  "method": "natural_heading_refined_from_both_excerpts"
+}

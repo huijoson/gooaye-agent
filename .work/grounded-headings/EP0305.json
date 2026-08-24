@@ -1,0 +1,31 @@
+{
+  "episode": 305,
+  "headings": [
+    "棒球棍股價直上符合娛樂條件",
+    "CPI 數字低於預期指數直線往上噴庫存積壓這麼多",
+    "大環境下必然犯錯巨大現金流卡住風險引發討論",
+    "第四季第一季完成庫存去化後營收走勢下修"
+  ],
+  "model": "qwen3.5:4b",
+  "metrics": {
+    "prompt_eval_count": 2069,
+    "eval_count": 499,
+    "total_duration": 36961581917
+  },
+  "original_headings": [
+    "棒球棍直上後發現符合個人娛樂條件",
+    "CPI 低於預期引發庫存積壓與票期展延疑慮",
+    "巨大現金流狀況恐因大環境必然現象卡住",
+    "第四季第一季完成庫存去化後營收走勢下修"
+  ],
+  "repair_evidence_phrases": [
+    [],
+    [
+      "數字開出來是低於預期的",
+      "只是為什麼前面會讓庫存積壓到這麼多"
+    ],
+    [],
+    []
+  ],
+  "method": "natural_heading_refined_from_both_excerpts"
+}
