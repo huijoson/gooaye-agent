@@ -6,8 +6,9 @@ This repository follows a **single-context** domain documentation layout.
 
 ## Locations
 
-- **Domain Model & Glossary**: [`CONTEXT.md`](file:///Users/yuhan/coding/gooaye-agent/CONTEXT.md) at the repository root.
+- **Domain Model & Glossary**: [`CONTEXT.md`](file:///Users/yuhan/coding/gooaye-agent/CONTEXT.md) at the repository root (single source of truth for domain vocabulary and module interfaces).
 - **Architectural Decision Records (ADRs)**: [`docs/adr/`](file:///Users/yuhan/coding/gooaye-agent/docs/adr/) (e.g., [`0001-progressive-gooaye-skill.md`](file:///Users/yuhan/coding/gooaye-agent/docs/adr/0001-progressive-gooaye-skill.md)).
+- **Feature Specifications**: [`docs/specs/`](file:///Users/yuhan/coding/gooaye-agent/docs/specs/) (e.g., [`spec-gooaye-skill-and-knowledge-system.md`](file:///Users/yuhan/coding/gooaye-agent/docs/specs/spec-gooaye-skill-and-knowledge-system.md)).
 
 ---
 

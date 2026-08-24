@@ -1,14 +1,14 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # ==============================================================================
-# Gooaye Skill Installer Script
+# Gooaye Skill Installer Script (POSIX Compliant)
 # ==============================================================================
 # This script installs or symlinks the Gooaye Agent Skill into Antigravity
 # global configuration or a specified target workspace directory.
 # ==============================================================================
 
-set -euo pipefail
+set -eu
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 SKILL_SOURCE_DIR="${REPO_ROOT}/.agents/skills/gooaye"
 
@@ -32,22 +32,27 @@ print_usage() {
 }
 
 MODE="global"
-COPY_MODE=false
+COPY_MODE="false"
 TARGET_DIR=""
 
-while [[ $# -gt 0 ]]; do
+while [ $# -gt 0 ]; do
     case "$1" in
         --global)
             MODE="global"
             shift
             ;;
         --target)
+            if [ $# -lt 2 ]; then
+                echo "❌ 缺少目標目錄路徑"
+                print_usage
+                exit 1
+            fi
             MODE="target"
             TARGET_DIR="$2"
             shift 2
             ;;
         --copy)
-            COPY_MODE=true
+            COPY_MODE="true"
             shift
             ;;
         -h|--help)
@@ -62,23 +67,23 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-if [[ ! -d "${SKILL_SOURCE_DIR}" ]]; then
+if [ ! -d "${SKILL_SOURCE_DIR}" ]; then
     echo "❌ 找不到來源技能目錄: ${SKILL_SOURCE_DIR}"
     exit 1
 fi
 
 install_skill() {
-    local dest_parent="$1"
-    local dest_skill_dir="${dest_parent}/gooaye"
+    dest_parent="$1"
+    dest_skill_dir="${dest_parent}/gooaye"
 
     mkdir -p "${dest_parent}"
 
-    if [[ -e "${dest_skill_dir}" || -L "${dest_skill_dir}" ]]; then
+    if [ -e "${dest_skill_dir}" ] || [ -L "${dest_skill_dir}" ]; then
         echo "⚠️  目標位置已存在: ${dest_skill_dir}，正在更新..."
         rm -rf "${dest_skill_dir}"
     fi
 
-    if [[ "${COPY_MODE}" == true ]]; then
+    if [ "${COPY_MODE}" = "true" ]; then
         cp -R "${SKILL_SOURCE_DIR}" "${dest_skill_dir}"
         echo "✅ 已複製 Gooaye 技能至: ${dest_skill_dir}"
     else
@@ -91,18 +96,18 @@ echo "=========================================="
 echo "🚀 Gooaye (股癌) 知識庫技能安裝程式"
 echo "=========================================="
 
-if [[ "${MODE}" == "global" ]]; then
+if [ "${MODE}" = "global" ]; then
     echo "📦 安裝模式: 全域安裝 (Global)"
     install_skill "${GLOBAL_GEMINI_DIR}"
     
     # 若 antigravity-cli 設定目錄存在，同步安裝/連結至該相容目錄
-    if [[ -d "${HOME}/.gemini/antigravity-cli" ]]; then
+    if [ -d "${HOME}/.gemini/antigravity-cli" ]; then
         install_skill "${GLOBAL_ANTIGRAVITY_DIR}"
     fi
     echo ""
     echo "🎉 安裝完成！現在您可以在任何 Antigravity 工作區中向 Agent 提問股癌觀點與心態健檢。"
-elif [[ "${MODE}" == "target" ]]; then
-    if [[ -z "${TARGET_DIR}" ]]; then
+elif [ "${MODE}" = "target" ]; then
+    if [ -z "${TARGET_DIR}" ]; then
         echo "❌ 請指定目標專案目錄: --target <路徑>"
         exit 1
     fi
