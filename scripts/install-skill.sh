@@ -94,13 +94,10 @@ echo "=========================================="
 if [[ "${MODE}" == "global" ]]; then
     echo "📦 安裝模式: 全域安裝 (Global)"
     install_skill "${GLOBAL_GEMINI_DIR}"
-    # 若 antigravity-cli 目錄存在，亦一併建立連結以確保完全相容
+    
+    # 若 antigravity-cli 設定目錄存在，同步安裝/連結至該相容目錄
     if [[ -d "${HOME}/.gemini/antigravity-cli" ]]; then
-        mkdir -p "${GLOBAL_ANTIGRAVITY_DIR}"
-        if [[ ! -e "${GLOBAL_ANTIGRAVITY_DIR}/gooaye" && ! -L "${GLOBAL_ANTIGRAVITY_DIR}/gooaye" ]]; then
-            ln -s "${SKILL_SOURCE_DIR}" "${GLOBAL_ANTIGRAVITY_DIR}/gooaye"
-            echo "🔗 同步連結至: ${GLOBAL_ANTIGRAVITY_DIR}/gooaye"
-        fi
+        install_skill "${GLOBAL_ANTIGRAVITY_DIR}"
     fi
     echo ""
     echo "🎉 安裝完成！現在您可以在任何 Antigravity 工作區中向 Agent 提問股癌觀點與心態健檢。"

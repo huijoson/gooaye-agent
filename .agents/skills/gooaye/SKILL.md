@@ -49,7 +49,7 @@ description: >-
 ### 輸出要求
 - **客觀嚴謹**：不加油添醋，嚴格基於逐字稿事實。
 - **標準引用格式**：
-  - 格式範例：`[EP690｜黑皮諾平替記與Google的COT轉向](file:///Users/yuhan/coding/gooaye-agent/gooaye-youtube-notes/episodes/EP0690.md)`
+  - 格式範例：`[EP690｜黑皮諾平替記與Google的COT轉向](file://<workspace-root>/gooaye-youtube-notes/episodes/EP0690.md)`（若在工作區內可直接使用相對路徑連結 `[EP690](gooaye-youtube-notes/episodes/EP0690.md)`）
   - 標明節目發布日期（如 `2026-08-22`）。
   - 列出關鍵逐字稿摘錄與脈絡總結。
 
