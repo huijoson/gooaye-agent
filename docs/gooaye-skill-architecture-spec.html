@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gooaye 雙模態漸進式 Skill 架構規格書</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #61708a;
+      --paper: #f6f8fc;
+      --panel: #ffffff;
+      --line: #dce3ee;
+      --brand: #3158d3;
+      --observed: #0f766e;
+      --proposed: #3158d3;
+      --decided: #6d28d9;
+      --open: #b45309;
+      --danger: #b42318;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font: 16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: var(--brand); }
+    header {
+      color: white;
+      background: linear-gradient(135deg, #172554, #3158d3 58%, #0f766e);
+      padding: 64px 24px 52px;
+    }
+    header .wrap, main { max-width: 1180px; margin: auto; }
+    h1 { margin: 0 0 10px; font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.1; }
+    h2 { margin-top: 0; font-size: 1.75rem; line-height: 1.25; }
+    h3 { font-size: 1.12rem; }
+    .subtitle { max-width: 820px; font-size: 1.14rem; opacity: .92; }
+    .meta, .legend, .grid, .split { display: grid; gap: 16px; }
+    .meta { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-top: 28px; }
+    .meta div { padding: 12px 14px; border: 1px solid #ffffff35; border-radius: 12px; background: #ffffff12; }
+    main { padding: 30px 22px 80px; }
+    section { scroll-margin-top: 18px; margin: 22px 0; padding: 28px; background: var(--panel); border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 10px 30px #21345a0d; }
+    .hero-answer { font-size: 1.26rem; font-weight: 700; border-left: 5px solid var(--brand); padding-left: 18px; }
+    .legend { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin: 18px 0; }
+    .tag { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: .78rem; font-weight: 750; color: white; vertical-align: middle; }
+    .observed { background: var(--observed); }
+    .proposed { background: var(--proposed); }
+    .decided { background: var(--decided); }
+    .open { background: var(--open); }
+    .grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+    .split { grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); }
+    .card { padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: #fbfcff; }
+    .card h3 { margin-top: 0; }
+    .callout { padding: 16px 18px; border-radius: 12px; background: #fff8eb; border-left: 5px solid var(--open); }
+    .risk { background: #fff5f4; border-left-color: var(--danger); }
+    table { width: 100%; border-collapse: collapse; font-size: .94rem; }
+    th, td { padding: 11px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+    th { color: #394963; background: #f3f6fb; }
+    code { padding: 2px 5px; background: #eef2f8; border-radius: 5px; }
+    .diagram { overflow-x: auto; padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: white; }
+    .appendix-title { margin-top: 52px; padding-top: 26px; border-top: 4px solid var(--ink); }
+    .small { color: var(--muted); font-size: .9rem; }
+    ul, ol { padding-left: 1.3rem; }
+    @media print {
+      body { background: white; }
+      header { padding: 28px 0; background: white; color: var(--ink); border-bottom: 2px solid var(--ink); }
+      main { padding: 0; }
+      section { break-inside: avoid; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="tag decided">已決策 (Decided)</div>
+      <h1>Gooaye 雙模態漸進式 Skill 架構規格書</h1>
+      <p class="subtitle">極低 Token 待機開銷、階梯式知識檢索與主委投資心態靈魂拷問之架構設計</p>
+      <div class="meta">
+        <div><strong>影響範圍</strong><br><code>.agents/skills/gooaye/</code>, <code>gooaye-youtube-notes/</code></div>
+        <div><strong>更新日期</strong><br>2026-08-24</div>
+        <div><strong>擁有者 / 負責模組</strong><br>Gooaye Agent Core</div>
+        <div><strong>決策狀態</strong><br>已收斂 (4 項核心決策確認)</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>如何閱讀本規格書</h2>
+      <p>本文件分為「業務與使用者視角白話摘要」與「架構師審批附錄」兩大層級。內容嚴格標註事實來源與決策狀態：</p>
+      <div class="legend">
+        <div><span class="tag observed">觀察到的事實 (Observed)</span> 程式庫既有程式碼與資料</div>
+        <div><span class="tag proposed">架構提案 (Proposed)</span> 推薦之設計</div>
+        <div><span class="tag decided">已拍板決策 (Decided)</span> 經使用者與 ADR 確認之決策</div>
+        <div><span class="tag open">待決策項目 (Open)</span> 尚待討論之開放問題</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>白話摘要 (Plain Summary)</h2>
+      <p class="hero-answer">讓 AI 助理能在不增加常態 Token 開銷（待機 &lt; 50 Tokens）的前提下，精準檢索 689 集股癌觀念並以主委風格提供務實的投資決策與風險心態拷問。</p>
+      <p>專案擁有 540+ 小時、689 集完整的股癌逐字稿與結構化觀念筆記。若直接做成 Always-on 的重型 Persona Agent 或將資料庫常駐在對話 Prompt，會導致每輪對話消耗數千 Tokens，且容易在歷史搜尋中混入未清洗的業配廣告。本架構採用 Antigravity 漸進式 Skill 體系，配合兩階段階梯檢索與雙模態分流，達到高精確度與極致 Token 節省。</p>
+      <div class="callout">
+        <strong>核心架構建議：</strong> 建立專案專屬 Skill (<code>.agents/skills/gooaye/SKILL.md</code>)。「查歷史觀點」使用客觀引述（標記集數與逐字稿），「問決策心態」切換為主委語氣（部位控制、期望值、停損紀律）。
+      </div>
+    </section>
+
+    <section>
+      <h2>改造前後對比 (Before &amp; After)</h2>
+      <div class="split">
+        <div class="card">
+          <h3>改造前：無結構掛載或全量 Prompt 注入</h3>
+          <div class="diagram">
+            <pre class="mermaid">
+flowchart TD
+    User["使用者提問"] --> Prompt["全量注入逐字稿 / 始終啟用重型 Persona"]
+    Prompt --> Bloat["Token 暴增 每輪超過 3000 Tokens"]
+    Prompt --> Noise["混入贊助商廣告與未過濾口語雜音"]
+            </pre>
+          </div>
+          <p><span class="tag observed">Observed</span> 若未經結構化分層，689 集逐字稿（約 40MB）無法直接放入上下文，粗暴檢索容易引述到廣告業配詞（如銀座白石、NordVPN）。</p>
+        </div>
+        <div class="card">
+          <h3>改造後：漸進式載入與雙模態路由</h3>
+          <div class="diagram">
+            <pre class="mermaid">
+flowchart TD
+    User["使用者提問"] --> Router{"是否涉及股癌話題？"}
+    Router -->|否| Standby["日常開發對話 待機僅約 30 tokens"]
+    Router -->|是| Skill["動態載入 Gooaye Skill"]
+    Skill --> Mode{"意圖分流 Dual-Mode"}
+    Mode -->|歷史觀點查詢| Stage1["階梯檢索: _index.md 與 episodes/"]
+    Stage1 --> Quote["客觀條列集數、日期、逐字稿引述"]
+    Mode -->|投資心態求助| Roaster["主委靈魂拷問: 部位與期望值與停損紀律"]
+            </pre>
+          </div>
+          <p><span class="tag decided">Decided</span> 平時近乎 0 成本，觸發時精準單點讀取 1~3 篇結構化筆記（每次約 800~1,500 Tokens），既省額度又免受廣告污染。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>變更範圍對照表 (Change Scope)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>檔案 / 目錄</th>
+            <th>變更型態</th>
+            <th>模組責任與變更說明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>.agents/skills/gooaye/SKILL.md</code></td>
+            <td><span class="tag proposed">新增 (Add)</span></td>
+            <td>定義 Skill 元數據、雙模態分流規則、階梯檢索 SOP 與謝孟恭人設風格指南。</td>
+          </tr>
+          <tr>
+            <td><code>CONTEXT.md</code></td>
+            <td><span class="tag decided">修改 (Modify)</span></td>
+            <td>補充「代理與技能層 (Agent &amp; Skill Layer)」領域詞彙與階梯檢索定義。</td>
+          </tr>
+          <tr>
+            <td><code>docs/adr/0001-progressive-gooaye-skill.md</code></td>
+            <td><span class="tag decided">新增 (Add)</span></td>
+            <td>記錄採用漸進式 Skill 取代 Always-on Heavy Agent 與外部向量庫的決策架構。</td>
+          </tr>
+          <tr>
+            <td><code>gooaye-youtube-notes/</code></td>
+            <td><span class="tag observed">唯讀 (Read-only)</span></td>
+            <td>689 篇結構化 Markdown 筆記與 <code>_index.md</code>，作為第一階段與第二階段檢索依據。</td>
+          </tr>
+          <tr>
+            <td><code>.work/full-transcripts/</code></td>
+            <td><span class="tag observed">唯讀 (Read-only)</span></td>
+            <td>689 篇原始逐字稿，僅作為深層上下文查證之保底依據。</td>
+          </tr>
+          <tr>
+            <td><code>.work/*.py</code></td>
+            <td><span class="tag observed">不變動 (Untouched)</span></td>
+            <td>既有筆記抽取、廣告過濾與品質修復 Python 流程維持獨立，不受 Skill 影響。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>功能影響矩陣 (Functional Impact)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>功能面相</th>
+            <th>影響類別</th>
+            <th>具體行為表現</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>一般程式碼開發 / 非股癌問題</td>
+            <td><strong>明確無影響 (Unaffected)</strong></td>
+            <td>Agent 保持標準開發助手行為，不強加股癌語氣，不浪費上下文視窗。</td>
+          </tr>
+          <tr>
+            <td>歷史觀點查證（標的 / 供應鏈 / 概念）</td>
+            <td><strong>直接影響 (Direct)</strong></td>
+            <td>自動定位集數（如 <code>[EP690](...)</code>），列出發布日期與去廣告之真實逐字稿引述。</td>
+          </tr>
+          <tr>
+            <td>投資決策 / 交易心態健檢</td>
+            <td><strong>直接影響 (Direct)</strong></td>
+            <td>以直白主委口吻進行靈魂拷問（檢驗部位大小、防抱過一座山、停損紀律）。</td>
+          </tr>
+          <tr>
+            <td>新集數筆記生成 (EP691+)</td>
+            <td><strong>明確無影響 (Unaffected)</strong></td>
+            <td>既有 <code>cli.py synthesize</code> 指令不受影響，生成的新筆記會自動納入檢索範圍。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>架構技術與白話翻譯 (Architecture Techniques)</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>漸進式揭露 (Progressive Disclosure)</h3>
+          <p><strong>白話：</strong>「菜單只寫菜名，點了才把整本食譜拿出來」。平時只載入 30 Tokens 的 Skill 摘要，點名才讀取完整規則。</p>
+        </div>
+        <div class="card">
+          <h3>兩階段階梯檢索 (Two-Stage Progressive Search)</h3>
+          <p><strong>白話：</strong>「先看書本目錄，再翻那一頁，不要整棟圖書館搬進腦袋」。先比對 <code>_index.md</code>，再讀單篇 3KB 筆記。</p>
+        </div>
+        <div class="card">
+          <h3>雙模態路由 (Dual-Mode Routing)</h3>
+          <p><strong>白話：</strong>「查法條時像法官嚴謹，談心態時像兄弟直白開罵」。事實與心態求助分開處理，避免事實被誇飾污染。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>風險與開放決策 (Risk &amp; Open Decisions)</h2>
+      <div class="callout risk">
+        <strong>最高風險 (Top Risk)：</strong> 使用者搜尋冷門或口語同義詞時（如「主委聊過賣飛嗎」），若未命中結構化章節標題，可能需退回全逐字稿 grep，增加單次查詢耗時。
+      </div>
+      <div class="callout" style="margin-top: 14px">
+        <strong>待確認項目 (Open Decision)：</strong> 目前核心架構決策已全數關閉（Closed）。後續可視使用習慣決定是否將專案 Skill 複製至個人全域 <code>~/.gemini/skills/</code>。
+      </div>
+    </section>
+
+    <h2 class="appendix-title">架構師審批附錄 (Architect Appendix)</h2>
+    <p class="small">供技術審查、介面合約驗證、依賴方向與遷移驗收之詳細規範。</p>
+
+    <section>
+      <h2>界限、所有權與非目標 (Boundary &amp; Non-Goals)</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>模組所有權 (Ownership)</h3>
+          <p>由 <code>.agents/skills/gooaye/</code> 擁有檢索意圖識別、Markdown 筆記索引解析、主委 Persona 提示詞封裝之所有權。</p>
+        </div>
+        <div class="card">
+          <h3>系統邊界 (System Seam)</h3>
+          <p>Skill 僅作為 LLM 提示指引與檢索規範，不直接修改底層 <code>gooaye-youtube-notes/</code> 任何資料檔案。</p>
+        </div>
+      </div>
+      <h3>明確非目標 (Non-Goals)</h3>
+      <ul>
+        <li><strong>不提供保證獲利或具體買賣點位建議</strong>：恪守主委「獨立思考、自負盈虧」之核心理念。</li>
+        <li><strong>不自建外部向量資料庫或嵌入微服務</strong>：避免引入額外 Python/Rust 相依套件與運維負擔。</li>
+        <li><strong>不修改現有逐字稿批次管線</strong>：不破壞既有 <code>episode_synthesizer.py</code> 與 <code>heading_quality_engine.py</code> 結構。</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>介面合約 (Interface Contract)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>操作 (Operation)</th>
+            <th>呼叫者</th>
+            <th>輸入 (Inputs)</th>
+            <th>輸出 (Outputs)</th>
+            <th>不變條件 (Invariants) &amp; 限制</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>Skill Discovery</code></td>
+            <td>Antigravity Engine</td>
+            <td>工作區掃描</td>
+            <td>Name, Description (~30 tokens)</td>
+            <td>待機時不得載入正文指令。</td>
+          </tr>
+          <tr>
+            <td><code>Archive Query</code></td>
+            <td>使用者提問</td>
+            <td>股票代號、產業概念、歷史事件</td>
+            <td>集數、發布日期、逐字稿引述、點擊連結</td>
+            <td>嚴格過濾業配贊助詞；無提及者不可捏造。</td>
+          </tr>
+          <tr>
+            <td><code>Mindset Roasting</code></td>
+            <td>使用者求助</td>
+            <td>套牢、追高、停損猶豫、槓桿迷思</td>
+            <td>主委風格靈魂拷問、風險檢查清單</td>
+            <td>必須包含部位檢視與停損期望值算式。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>依賴方向與架構約束 (Dependencies)</h2>
+      <div class="diagram">
+        <pre class="mermaid">
+flowchart LR
+    Skill["SKILL.md (.agents/skills/gooaye/)"] -->|讀取索引| Index["_index.md (全集索引)"]
+    Skill -->|單點讀取| Episodes["episodes/EPxxxx.md (單集筆記)"]
+    Skill -.->|按需保底查證| Transcripts["full-transcripts/ (原始逐字稿)"]
+    Pipeline["episode_synthesizer.py"] -->|批次生成輸出| Episodes
+        </pre>
+      </div>
+      <div class="split" style="margin-top: 16px">
+        <div class="card">
+          <h3>允許的依賴方向 (Allowed)</h3>
+          <ul>
+            <li><code>SKILL.md</code> &rarr; 讀取 <code>gooaye-youtube-notes/</code> 結構化筆記。</li>
+            <li><code>SKILL.md</code> &rarr; 依賴 Antigravity 內建檔案檢索工具 (<code>grep_search</code>, <code>view_file</code>)。</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>禁止的依賴方向 (Forbidden)</h3>
+          <ul>
+            <li><strong>禁止</strong> <code>SKILL.md</code> 逆向寫入或修改 <code>episodes/</code> 檔案。</li>
+            <li><strong>禁止</strong> 將整包 689 集逐字稿在對話起始時預載入 Context。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>遷移與驗收計畫 (Migration &amp; Verification)</h2>
+      <ol>
+        <li><strong>第一階段 (Phase 1)</strong>：建立 <code>.agents/skills/gooaye/SKILL.md</code>，填入完整的 YAML 宣告、雙模態指令與兩階段檢索 SOP。</li>
+        <li><strong>第二階段 (Phase 2)</strong>：進行「歷史查證」實測（以 EP690 Google COT 與 ASIC 為例），確認引述與 Markdown 格式精確。</li>
+        <li><strong>第三階段 (Phase 3)</strong>：進行「心態健檢」實測（以抱過一座山回吐 30% 為例），確認主委語氣到位且 Token 消耗符合預期。</li>
+      </ol>
+      <div class="callout">
+        <strong>回滾機制 (Rollback)：</strong> 若不需要此 Skill，只需刪除 <code>.agents/skills/gooaye/</code> 目錄，系統即刻回到原始通用 Agent 狀態，無任何副作用。
+      </div>
+    </section>
+
+    <section>
+      <h2>決策日誌與 ADR 關聯 (Decision Log)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>日期</th>
+            <th>狀態</th>
+            <th>決策主旨</th>
+            <th>選擇方案與理由</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2026-08-24</td>
+            <td><span class="tag decided">Decided</span></td>
+            <td>交付形態</td>
+            <td>選用專案 Workspace Skill，將待機開銷壓至 30~50 Tokens。</td>
+          </tr>
+          <tr>
+            <td>2026-08-24</td>
+            <td><span class="tag decided">Decided</span></td>
+            <td>互動模式</td>
+            <td>採用雙模態（查事實客觀引述，問心態主委靈魂拷問）。</td>
+          </tr>
+          <tr>
+            <td>2026-08-24</td>
+            <td><span class="tag decided">Decided</span></td>
+            <td>檢索路由</td>
+            <td>採用階梯檢索（優先查無廣告之 <code>episodes/</code> 筆記）。</td>
+          </tr>
+        </tbody>
+      </table>
+      <p><strong>關聯 ADR 文件：</strong> 詳見 <a href="adr/0001-progressive-gooaye-skill.md">ADR 0001: Progressive Gooaye Skill for Token-Efficient Knowledge Access</a>。</p>
+    </section>
+
+    <section>
+      <h2>程式庫證據 (Repository Evidence)</h2>
+      <ul>
+        <li><code>gooaye-youtube-notes/_index.md</code>: 收錄 689 集觀念與章節大綱總表。</li>
+        <li><code>gooaye-youtube-notes/episodes/EP0690.md:L1-L52</code>: 單集筆記結構（包含 4 個觀念章節與每章 2 條逐字稿摘錄）。</li>
+        <li><code>.work/full-transcripts/EP0690.md:L1-L60</code>: 原始逐字稿範本，包含開頭 NordVPN 贊助廣告與生活閒聊。</li>
+      </ul>
+    </section>
+  </main>
+
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict" });
+  </script>
+</body>
+</html>

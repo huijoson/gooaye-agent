@@ -93,6 +93,20 @@
 - **`CONVERSATIONAL_FRAGMENT`**：保留說話第一/第二人稱（我、你、我們、你們）、口語程度詞（滿、超）或填充詞（東西、事情、狀況、樣子、而已）之長切片。
 - **`MACHINE_GLUE`**：以連詞（與/及/對照）生硬拼接兩摘錄之長子字串，缺乏概念收斂。
 - **`SUMMARY_LEAKAGE`**：標題抄襲第三方摘要或使用僅存在於摘要而未在摘錄中出現之詞彙。
-- **`WEAK_GROUNDING`**：標題缺乏與摘錄一或摘錄二之核心詞彙重疊（Bigram 覆蓋度不足）。
-- **`BROKEN_LATIN`**：英文單字或型號遭截斷（如 `Apple Watc`、`Analysi`、`Joe Rog`）。
-- **`UNBALANCED_SYNTAX`**：括號、引號、書名號未成對閉合。
+- `WEAK_GROUNDING`：標題缺乏與摘錄一或摘錄二之核心詞彙重疊（Bigram 覆蓋度不足）。
+- `BROKEN_LATIN`：英文單字或型號遭截斷（如 `Apple Watc`、`Analysi`、`Joe Rog`）。
+- `UNBALANCED_SYNTAX`：括號、引號、書名號未成對閉合。
+
+---
+
+## 代理與技能層 (Agent & Skill Layer)
+
+### 16. Gooaye Skill (`.agents/skills/gooaye/SKILL.md`)
+- **定位**：極低 Token 待機開銷（~30 tokens）的漸進式按需技能。
+- **雙模態機制 (Dual-Mode)**：
+  - **Archive Query (客觀檢索模式)**：檢索 689 集結構化筆記，提供精確集數、章節與逐字稿引述。
+  - **Mindset Roasting (主委心態健檢模式)**：切換謝孟恭口吻，基於部位管理、停損紀律、期望值計算進行風險拷問。
+- **階梯式檢索 (Two-Stage Progressive Search)**：
+  - Stage 1: 先在 `_index.md` 與 `episodes/` 中透過語意或關鍵字定位 1–3 集。
+  - Stage 2: 僅讀取命中的 `episodes/EPxxxx.md` 筆記（~1k tokens）。
+  - Stage 3 (可選): 僅在需確認語境細節時才對 `.work/full-transcripts/` 進行定點精確檢索。
