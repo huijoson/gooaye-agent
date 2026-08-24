@@ -1,14 +1,14 @@
 # Domain Context & Glossary (CONTEXT.md)
 
-本文件定義 Gooaye 筆記處理系統的核心領域概念、模組架構與命名規範。
+本文件定義 Gooaye 筆記處理系統的核心領域概念、模組架構、職責邊界與命名規範。
 
 ---
 
 ## 核心領域實體 (Core Domain Entities)
 
-### 1. Episode (單集)
+### 1. Episode (`EpisodeMetadata`)
 - 涵蓋 YouTube 公開清單中 EP1 至 EP690（目前共 689 支影片，缺 EP232）。
-- 每集包含集數編號、YouTube 原始標題、第三方策展標題、發布日期、影片片長與完整逐字稿。
+- 每集包含集數編號、YouTube 原始標題、第三方策展標題、發布日期、發布日期來源、影片片長與完整逐字稿。
 
 ### 2. Full Transcript (完整逐字稿)
 - 取自公開非官方逐字稿網站的完整文字記錄，為所有章節觀念與條列摘錄的唯一真實依據。
@@ -16,48 +16,83 @@
 ### 3. Curated Summary (第三方摘要)
 - 來自外部索引的集數簡介。系統規則嚴格規定：第三方摘要**僅作為主題檢索提示**，禁止直接複製成筆記段落或洩漏至章節標題中。
 
-### 4. Chapter Evidence (章節摘錄)
+### 4. Chapter Evidence (`ChapterEvidence`)
 - 每章從完整逐字稿中依討論順序錨定的**兩條真實引述句**（短摘錄），保留原始脈絡並作為章節標題命名的唯一內容依據。
+- 欄位包含：`index: int`, `seed_title: str`, `excerpts: tuple[str, str]`, `position: int`。
 
-### 5. Chapter (觀念章節)
-- 結構化領域物件：包含章節序號、標題、兩條逐字稿摘錄以及在逐字稿中的字元位置。
+### 5. Chapter (`Chapter`)
+- 結構化領域物件：包含章節序號、最終解析標題、兩條逐字稿摘錄以及在逐字稿中的字元位置。
 
 ### 6. Chapter Heading (章節標題)
 - 依據該章兩段摘錄提煉之 8–32 字繁體中文標題。必須同時涵蓋兩段摘錄之核心概念，不得為口語殘句、機械黏合字串、泛稱詞或摘要抄襲。
 
-### 7. EpisodeNote (單集筆記領域物件)
+### 7. EpisodeNote (`EpisodeNote`)
 - 封裝單集完整元數據、觀念章節清單與資料來源說明，具備 `render_markdown()` 生成標準 Markdown 文件的能力。
+
+### 8. SynthesisSummary (`SynthesisSummary`)
+- 批次生成之摘要統計物件：包含全集總數、章節總數、總時長、章節分布統計與單集筆記領域物件序列。
 
 ---
 
-## 核心深模組 (Deep Modules)
+## 核心深模組與分層架構 (Deep Modules & Layered Architecture)
 
-### 8. Episode Note Synthesizer (`EpisodeNoteSynthesizer`)
-- 單集筆記合成深模組：將逐字稿前處理、廣告過濾、章節摘錄提取、標題解析與 Markdown 渲染整合為單向資料流。
-- **介面 (Interface)**：
-  - `extract_evidence(number) -> list[ChapterEvidence]`：直接從逐字稿與摘要提取內存章節摘錄，終結對磁碟 Markdown 檔案的反向正則解析。
-  - `synthesize_episode(number) -> EpisodeNote`：完整合成單集筆記領域物件。
-  - `synthesize_all(output_dir) -> SynthesisSummary`：批次生成全集筆記、`_index.md` 與 `README.md`。
+系統遵循高內聚、低耦合、深介面（Deep Interface）與單向資料流原則，拆分為以下模組：
 
-### 9. Heading Resolver (`HeadingResolver`)
-- 標題解析策略接縫 (Seam)：
-  - `CachedHeadingResolver`：磁碟 JSON 快取適配器。
-  - `DeterministicHeadingResolver`：基於品質引擎的純 Python 確定性保底解析器。
-  - `CompositeHeadingResolver`：快取優先、確定性保底的多層複合解析器。
+### 9. Transcript Processor (`transcript_processor.py`)
+- **`TranscriptSanitizer`**：負責多階段廣告過濾（開頭贊助區塊、贊助宣告、特定贊助品牌如銀座白石/Sony 耳機等之業配詞、過渡橋段）、結尾重點回顧過濾、Markdown 標題/引言清除與摘錄句標準化。
+- **`TranscriptSegmenter`**：負責逐字稿標點斷句（`segment_sentences`）、目標字數語意分塊（`make_chunks`）與第三方摘要主題種子切分（`split_seeds`）。
+- **`TranscriptFeatureExtractor`**：負責中英文字詞特徵提取（`features`）與加權重疊相似度計算（`similarity`）。
 
-### 10. Heading Quality Engine (`HeadingQualityEngine`)
+### 10. Evidence Extractor (`evidence_extractor.py`)
+- **`EvidenceExtractor`**：純內存章節摘錄抽取引擎。依據主題種子與逐字稿塊之特徵相似度排序定位候選錨點，在周邊視窗中篩選符合長度且非廣告之真實句子，並執行摘要防碰撞與章節去重，最終按逐字稿出現順序生成 `list[ChapterEvidence]`。
+
+### 11. Heading Quality Engine (`heading_quality_engine.py`)
 - 評估、診斷與修復章節標題品質的深模組。
 - **介面 (Interface)**：
   - `evaluate(heading, excerpts, summary) -> bool`：快速布林閘門。
   - `diagnose(heading, excerpts, summary) -> QualityReport`：完整瑕疵分類與 LLM 重試反饋提示。
-  - `repair(heading, excerpts, summary, used_headings) -> str`：確定性降級修復演算法。
+  - `extract_phrase_candidates(text, guide) -> list[str]`：從摘錄中提取具代表性、長度合宜且無口語/斷詞瑕疵之名詞短語候選。
+  - `repair(heading, excerpts, summary, used_headings) -> str`：多層級確定性修復演算法（弱接地修補、短語配對、乾淨 token 掃描與安全保底）。
 
-### 11. Defect Categories (標題瑕疵分類)
+### 12. Heading Resolver (`heading_resolver.py`)
+- 標題解析策略接縫 (Seam)：
+  - **`CachedHeadingResolver`**：磁碟 JSON 快取適配器，載入後由 `HeadingQualityEngine` 逐一驗證品質。
+  - **`DeterministicHeadingResolver`**：基於品質引擎的純 Python 確定性保底解析器。
+  - **`CompositeHeadingResolver`**：快取/主解析器優先，驗證未通過自動降級至確定性保底的多層複合解析器。
+  - **`OllamaHeadingResolver`**：基於本地 LLM（如 Qwen 4B）的結構化標題生成器，整合品質引擎診斷反饋重試機制。
+
+### 13. Markdown Renderer (`markdown_renderer.py`)
+- 負責標準化 Markdown 渲染輸出：
+  - `render_episode(note) -> str`：渲染單集 Markdown 文件。
+  - `render_index(notes, summary) -> str`：渲染 `_index.md` 索引文件。
+  - `render_readme(notes, summary) -> str`：渲染 `README.md` 總覽文件。
+
+### 14. Episode Note Synthesizer (`episode_synthesizer.py`)
+- 核心調度深模組：將 `EvidenceExtractor`、`HeadingResolver` 與 `MarkdownRenderer` 組合成完整單向資料流。
+- **介面 (Interface)**：
+  - `get_metadata(number) -> EpisodeMetadata`：獲取並對齊單集元數據。
+  - `extract_evidence(number) -> list[ChapterEvidence]`：抽取單集章節摘錄。
+  - `synthesize_episode(number, resolver) -> EpisodeNote`：完整合成單集筆記。
+  - `synthesize_all(output_dir, resolver, max_workers) -> SynthesisSummary`：支援多執行緒並行合成全集筆記、`_index.md` 與 `README.md`。
+  - `audit(resolver) -> dict`：對全集執行 100% 標題瑕疵診斷審計。
+
+### 15. Unified CLI (`cli.py`)
+- 整合式命令列工具：
+  - `synthesize`：批次或單集生成 Markdown 筆記（支援 `--workers`, `--resolver`, `--dry-run`）。
+  - `audit`：全集標題品質審計與瑕疵統計。
+  - `diagnose`：單一標題與摘錄品質診斷與修復測試。
+  - `doctor`：環境、數據來源與快取完整性體檢。
+
+---
+
+## 標題瑕疵分類體系 (Defect Categories)
+
 - **`FORMAT`**：長度超出 8–36 字、標點未成對（括號/書名號/引號）、殘留省略號或結尾殘句。
 - **`GENERIC_TERMS`**：包含「主題、其他、雜談、市場話題、聽眾問答、實務建議、本段重點、Q&A」等。
-- **`TRANSITION_PREFIX`**：以「另外、接著、轉向、的、了、是、個、這個、比較」等開頭。
-- **`CONVERSATIONAL_FRAGMENT`**：保留說話第一/第二人稱（我、你）、口語程度詞（滿、超）或填充詞（東西、事情、狀況、樣子、而已）之長切片。
-- **`MACHINE_GLUE`**：以連詞（與/及/對照）生硬拼接兩摘錄之子字串，缺乏概念收斂。
+- **`TRANSITION_PREFIX`**：以「另外、接著、轉向、的、了、是、個、這個、比較、甚至是在、希望大家」等開頭。
+- **`CONVERSATIONAL_FRAGMENT`**：保留說話第一/第二人稱（我、你、我們、你們）、口語程度詞（滿、超）或填充詞（東西、事情、狀況、樣子、而已）之長切片。
+- **`MACHINE_GLUE`**：以連詞（與/及/對照）生硬拼接兩摘錄之長子字串，缺乏概念收斂。
 - **`SUMMARY_LEAKAGE`**：標題抄襲第三方摘要或使用僅存在於摘要而未在摘錄中出現之詞彙。
 - **`WEAK_GROUNDING`**：標題缺乏與摘錄一或摘錄二之核心詞彙重疊（Bigram 覆蓋度不足）。
-- **`BROKEN_LATIN`**：英文單字或型號遭截斷（如 `Apple Watc`、`Analysi`）。
+- **`BROKEN_LATIN`**：英文單字或型號遭截斷（如 `Apple Watc`、`Analysi`、`Joe Rog`）。
+- **`UNBALANCED_SYNTAX`**：括號、引號、書名號未成對閉合。

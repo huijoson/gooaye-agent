@@ -6,44 +6,9 @@ from __future__ import annotations
 import math
 import re
 from collections import Counter
-from dataclasses import dataclass, field
-from enum import Enum
 from typing import Sequence
 
-
-class DefectCategory(str, Enum):
-    FORMAT = "format"
-    GENERIC_TERMS = "generic_terms"
-    TRANSITION_PREFIX = "transition_prefix"
-    CONVERSATIONAL_FRAGMENT = "conversational_fragment"
-    MACHINE_GLUE = "machine_glue"
-    SUMMARY_LEAKAGE = "summary_leakage"
-    WEAK_GROUNDING = "weak_grounding"
-    BROKEN_LATIN = "broken_latin"
-    UNBALANCED_SYNTAX = "unbalanced_syntax"
-
-
-@dataclass(frozen=True)
-class Defect:
-    category: DefectCategory
-    message: str
-    trigger: str = ""
-
-
-@dataclass(frozen=True)
-class QualityReport:
-    heading: str
-    defects: tuple[Defect, ...] = field(default_factory=tuple)
-
-    @property
-    def is_valid(self) -> bool:
-        return len(self.defects) == 0
-
-    @property
-    def feedback_message(self) -> str:
-        if self.is_valid:
-            return "合格"
-        return "；".join(d.message for d in self.defects)
+from domain import DefectCategory, Defect, QualityReport
 
 
 class HeadingQualityEngine:
@@ -58,11 +23,11 @@ class HeadingQualityEngine:
     )
 
     BAD_PREFIX_PATTERN = re.compile(
-        r"^(?:另外|另|順帶|接著|轉向|轉入|並|後半|後段|還有|同時|的|了|是|個|些|或是|應該|不一定|直接|這個|這些|一個|比較|裡面|後面|像我|像是|像|那麼|那|不是只是|剛好|大概|其實|不過)"
+        r"^(?:另外|另|順帶|接著|轉向|轉入|並|後半|後段|還有|同時|的|了|是|個|些|或是|應該|不一定|直接|這個|這些|一個|比較|裡面|後面|像我|像是|像|那麼|那|不是只是|剛好|大概|其實|不過|甚至是在|之前|上一集|順便|希望大家)"
     )
 
     FRAGMENT_SUFFIX_PATTERN = re.compile(
-        r"(?:去與|來與|說與|的與|事情與|一個與|就是與|[`]|<seg|[…]{2,}|[，,、—-]$)",
+        r"(?:去與|來與|說與|的與|事情與|一個與|就是與|的東與|[`]|<seg|[…]{2,}|[，,、—\-\s]$)",
         re.IGNORECASE,
     )
 
@@ -71,23 +36,26 @@ class HeadingQualityEngine:
     )
 
     ORAL_WORDS_PATTERN = re.compile(
-        r"(?:^|[^A-Za-z])(?:我|你|他|它|人家|別人|大家|就是|說|講|覺得|認為|搞不好|像是|這個|那個|東西|事情|狀況|樣子|的時候|而已|而且|其實|真的|蠻|滿抖|超大|超多)"
+        r"(?:^|[^A-Za-z])(?:我|你|他|她|它|你們|他們|人家|別人|大家|就是|說|講|覺得|認為|搞不好|像是|這個|那個|東西|事情|狀況|樣子|的時候|而已|而且|其實|真的|蠻|滿抖|超大|超多)"
     )
 
     SPLIT_PATTERN = re.compile(
-        r"[，。！？!?；;：:]|(?:但是|可是|不過|所以|然後|其實|當然|因為|如果|就是|等於說|換句話說|來說|的話|包含|包括|以及|而且|反正|我覺得|我認為|可能|大概|首先|再來|最後|接下來)"
+        r"[，。！？!?；;：:,、]|[—-]+|(?:但是|可是|不過|所以|然後|其實|當然|因為|如果|就是|等於說|換句話說|來說|的話|包含|包括|以及|而且|反正|我覺得|我認為|可能|大概|首先|再來|最後|接下來|有時候|現這個|希望大家|成為|作為|導致|引發|造成|使得)"
     )
 
     LEADING_TRIM_PATTERN = re.compile(
-        r"^(?:像我|像是|像|那麼|那|這個|這些|這種|有一個|一個|我們|你知道|譬如說|例如說|例如|目前|現在|今天|這次|就|都|也|還|又|會|可以|要|去)+"
+        r"^(?:我們|你們|他們|大家|人家|像我|像是|你知道|譬如說|例如說|甚至是在|已經是在|他們要去|希望大家|是來幫大家|幫大家|感謝主委|謝謝主委|感謝|謝謝|祝主委|祝大家|祝|反正總之|反正|總之|也是|就是|而且|甚至|之前|上一集|順便|已經|把那個|去把|整天|當然要|那種|這個|這些|這種|有一個|一個|那麼|像|我|你|他|她|它|們|就|都|也|還|又|會|可以|要|去|來|說|講|看|進去|寫了|把|在|成|為|讓|將|以|對|與|及|真的|或許|可能|大概|其實|不過|的|給)+",
+        re.IGNORECASE,
     )
 
     TRAILING_TRIM_PATTERN = re.compile(
-        r"(?:這樣|這件事|這個東西|的部分|的地方|的情形|的狀況|的問題|的事情|之類的|而已|啦|嘛|吧|呢|喔|啊)+$"
+        r"(?:這樣子的支持|這樣子的|這樣子|這件事|這個東西|的部分|的地方|的情形|的狀況|的問題|的事情|之類的|而已|啦|嘛|吧|呢|喔|啊|了|的|過|在|去|來|講|說|的話|的時候|之後|之前|出來|進去|起來|下去|上去|那個|這個|東|成|為|的人|之處|我們|你們|他們|大家|這樣|支持)+$",
+        re.IGNORECASE,
     )
 
     GENERIC_PARTS_PATTERN = re.compile(
-        r"^(?:跟大家分享|不知道|沒有辦法|非常重要|一樣的東西|很多東西|這是什麼|怎麼樣做|做這件事|看這件事)$"
+        r"^(?:跟大家分享|不知道|沒有辦法|非常重要|一樣的東西|很多東西|這是什麼|怎麼樣做|做這件事|看這件事|QA|Q&A|問答|雜談|其他)$",
+        re.IGNORECASE,
     )
 
     PAIRED_SYMBOLS = (
@@ -326,29 +294,45 @@ class HeadingQualityEngine:
         """Fast boolean gate for heading validity."""
         return self.diagnose(heading, excerpts, summary).is_valid
 
+    def _clean_candidate_phrase(self, raw: str) -> str:
+        """Clean leading/trailing oral phrases, punctuation, and avoid cutting Latin words."""
+        part = raw.strip(" ，、。；;：:,.-—()（）[]【】《》「」『』\"' ")
+        part = self.LEADING_TRIM_PATTERN.sub("", part).strip()
+        part = self.TRAILING_TRIM_PATTERN.sub("", part).strip()
+        part = self.LEADING_TRIM_PATTERN.sub("", part).strip()
+        part = part.strip(" ，、。；;：:,.-—()（）[]【】《》「」『』\"' ")
+
+        # Ensure quotes/brackets in phrase are balanced or stripped
+        for open_sym, close_sym in self.PAIRED_SYMBOLS:
+            if part.count(open_sym) != part.count(close_sym):
+                part = part.replace(open_sym, "").replace(close_sym, "")
+
+        return part.strip(" ，、。；;：:,.-— ")
+
     def extract_phrase_candidates(
         self,
         text: str,
         guide: str = "",
     ) -> list[str]:
         """Extract natural, meaningful candidate phrases from an excerpt for deterministic composition."""
-        raw_parts = [part.strip(" 、-—()（）[]【】") for part in self.SPLIT_PATTERN.split(text)]
+        raw_parts = [part for part in self.SPLIT_PATTERN.split(text) if part.strip()]
         candidates = []
         for raw in raw_parts:
-            part = self.LEADING_TRIM_PATTERN.sub("", raw).strip()
-            part = self.TRAILING_TRIM_PATTERN.sub("", part).strip()
+            part = self._clean_candidate_phrase(raw)
             value = self.compact(part)
             if len(value) < 3 or self.GENERIC_PARTS_PATTERN.fullmatch(part):
                 continue
-            if len(part) <= 12:
+            if len(part) <= 11:
                 candidates.append(part)
             else:
                 subparts = [
-                    p.strip()
+                    self._clean_candidate_phrase(p)
                     for p in re.split(r"(?:，|、|與|以及|還有|並且|並|而|但|卻)", part)
-                    if 3 <= len(self.compact(p.strip())) <= 12
                 ]
-                candidates.extend(subparts)
+                for sp in subparts:
+                    if 3 <= len(self.compact(sp)) <= 11 and not self.GENERIC_PARTS_PATTERN.fullmatch(sp):
+                        candidates.append(sp)
+
                 guide_value = self.compact(guide)
                 part_value = self.compact(part)
                 shared = []
@@ -364,21 +348,39 @@ class HeadingQualityEngine:
                     token = shared[0]
                     pos = part_value.find(token)
                     start = max(0, pos - 2)
-                    candidates.append(part[start : start + min(10, len(part) - start)].strip())
+                    extracted = part[start : start + min(10, len(part) - start)]
+                    cleaned_extracted = self._clean_candidate_phrase(extracted)
+                    if 3 <= len(self.compact(cleaned_extracted)) <= 11:
+                        candidates.append(cleaned_extracted)
 
-        if not candidates:
-            val = text.strip(" 。！？!?，；;：:")
-            candidates = [val[:10].rstrip("，；;：:")]
+                # Sliding window spans
+                for span_len in (4, 6, 8, 10):
+                    for start_idx in range(0, max(1, len(part) - span_len + 1), 2):
+                        sub = self._clean_candidate_phrase(part[start_idx : start_idx + span_len])
+                        if 3 <= len(self.compact(sub)) <= 11 and not self.GENERIC_PARTS_PATTERN.fullmatch(sub):
+                            candidates.append(sub)
+
+        # Latin word boundary safety
+        latin_words = re.findall(r"[A-Za-z][A-Za-z0-9.+-]*", text)
+        latin_word_map = {w[: len(w) - 1].lower(): w for w in latin_words if len(w) >= 3}
+        latin_word_map.update({w[: len(w) - 2].lower(): w for w in latin_words if len(w) >= 4})
 
         unique = []
         seen = set()
         guide_bigrams = self.bigrams(guide) if guide else set()
         for candidate in candidates:
-            candidate = candidate.strip(" ，、。；;：:-—")
+            candidate = self._clean_candidate_phrase(candidate)
+            # Fix any truncated latin word at the end/beginning
+            for trunc, full in latin_word_map.items():
+                if candidate.lower().endswith(trunc) and not candidate.lower().endswith(full.lower()):
+                    candidate = candidate[: len(candidate) - len(trunc)] + full
+
             val = self.compact(candidate)
-            if not 3 <= len(val) <= 14 or val in seen:
+            if not 3 <= len(val) <= 11 or val in seen:
                 continue
             if self.ORAL_DIRECT_PATTERN.search(candidate) or self.BAD_PREFIX_PATTERN.search(candidate):
+                continue
+            if self.GENERIC_PATTERN.search(candidate) or self.FRAGMENT_SUFFIX_PATTERN.search(candidate):
                 continue
             seen.add(val)
             unique.append(candidate)
@@ -427,8 +429,8 @@ class HeadingQualityEngine:
                 return candidate
 
         # Strategy B: Compose pairwise combinations from top phrase candidates
-        for p1 in one[:10]:
-            for p2 in two[:10]:
+        for p1 in one[:15]:
+            for p2 in two[:15]:
                 options = (
                     [p1]
                     if self.compact(p1) == self.compact(p2)
@@ -444,8 +446,43 @@ class HeadingQualityEngine:
                     if self.compact(cand) not in used and self.evaluate(cand, excerpts, summary):
                         return cand
 
-        # Fallback Strategy C: Truncate and stitch with clean connector
-        c1 = one[0] if one else excerpts[0][:8].strip()
-        c2 = two[0] if two else excerpts[1][:8].strip()
-        fallback = f"{c1}與{c2}"[: self.MAX_LENGTH]
-        return fallback
+        # Strategy C: Exhaustive n-gram scan over clean tokens from excerpts
+        clean_tokens_1 = [
+            self._clean_candidate_phrase(t)
+            for t in re.split(r"[，。！？!?；;：:,、\s]+", excerpts[0])
+        ]
+        clean_tokens_1 = [
+            t for t in clean_tokens_1
+            if 3 <= len(self.compact(t)) <= 12
+            and not self.ORAL_DIRECT_PATTERN.search(t)
+            and not self.BAD_PREFIX_PATTERN.search(t)
+            and not self.GENERIC_PATTERN.search(t)
+        ]
+        clean_tokens_2 = [
+            self._clean_candidate_phrase(t)
+            for t in re.split(r"[，。！？!?；;：:,、\s]+", excerpts[1])
+        ]
+        clean_tokens_2 = [
+            t for t in clean_tokens_2
+            if 3 <= len(self.compact(t)) <= 12
+            and not self.ORAL_DIRECT_PATTERN.search(t)
+            and not self.BAD_PREFIX_PATTERN.search(t)
+            and not self.GENERIC_PATTERN.search(t)
+        ]
+        for t1 in clean_tokens_1:
+            for t2 in clean_tokens_2:
+                for cand in (f"{t1}與{t2}", f"{t1}及{t2}", f"{t1}對照{t2}"):
+                    if self.compact(cand) not in used and self.evaluate(cand, excerpts, summary):
+                        return cand
+
+        # Strategy D: Try clean candidates with natural suffix
+        for t1 in one + clean_tokens_1:
+            for t2 in two + clean_tokens_2:
+                cand = f"{t1}與{t2}"[: self.MAX_LENGTH]
+                if self.compact(cand) not in used and self.evaluate(cand, excerpts, summary):
+                    return cand
+
+        # Fallback Strategy E: Safe guarantee
+        c1 = one[0] if one else (clean_tokens_1[0] if clean_tokens_1 else "市場重點分析")
+        c2 = two[0] if two else (clean_tokens_2[0] if clean_tokens_2 else "投資觀念探討")
+        return f"{c1}與{c2}"[: self.MAX_LENGTH]
