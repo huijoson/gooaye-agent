@@ -16,9 +16,9 @@ class MarkdownRenderer:
     """Renders structured domain notes and indices to standardized Markdown strings."""
 
     @staticmethod
-    def render_episode(note: EpisodeNote) -> str:
+    def render_episode(note: EpisodeNote, mode: str = "slim") -> str:
         """Render a single EpisodeNote into its full Markdown file text."""
-        return note.render_markdown()
+        return note.render_markdown(mode=mode)
 
     @staticmethod
     def render_readme(

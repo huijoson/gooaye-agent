@@ -24,11 +24,29 @@ class TestMarkdownRenderer(unittest.TestCase):
             archive_url="https://whatmkreallysaid.com/1",
             summary="摘要1",
         )
-        ch1 = Chapter(index=1, heading="章節標題一", excerpts=("摘錄1", "摘錄2"), position=10)
+        ch1 = Chapter(
+            index=1,
+            heading="章節標題一",
+            takeaway="台股受國際情勢影響震盪，投資人宜以現貨與長期視角應對。",
+            excerpts=("摘錄1", "摘錄2", "摘錄3", "摘錄4"),
+            position=10,
+        )
         note1 = EpisodeNote(metadata=meta1, chapters=(ch1,))
 
-        rendered_ep = MarkdownRenderer.render_episode(note1)
-        self.assertIn("EP1｜EP1 策展標題", rendered_ep)
+        rendered_slim = MarkdownRenderer.render_episode(note1, mode="slim")
+        self.assertIn("EP1｜EP1 策展標題", rendered_slim)
+        self.assertIn("- **核心觀點：** 台股受國際情勢影響震盪，投資人宜以現貨與長期視角應對。", rendered_slim)
+        self.assertIn("- 摘錄1", rendered_slim)
+        self.assertIn("- 摘錄2", rendered_slim)
+        self.assertNotIn("- 摘錄3", rendered_slim)
+
+        rendered_full = MarkdownRenderer.render_episode(note1, mode="full")
+        self.assertIn("EP1｜EP1 策展標題", rendered_full)
+        self.assertIn("- **核心觀點：** 台股受國際情勢影響震盪，投資人宜以現貨與長期視角應對。", rendered_full)
+        self.assertIn("- 摘錄1", rendered_full)
+        self.assertIn("- 摘錄2", rendered_full)
+        self.assertIn("- 摘錄3", rendered_full)
+        self.assertIn("- 摘錄4", rendered_full)
 
         summary = SynthesisSummary(
             total_episodes=1,

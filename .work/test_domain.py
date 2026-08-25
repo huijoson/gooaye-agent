@@ -34,19 +34,19 @@ class TestDomainModels(unittest.TestCase):
         ev = ChapterEvidence(
             index=1,
             seed_title="總經環境分析",
-            excerpts=("摘錄一內容", "摘錄二內容"),
+            excerpts=("摘錄一內容", "摘錄二內容", "摘錄三內容", "摘錄四內容"),
             position=150,
         )
         d = ev.to_dict()
         self.assertEqual(d["index"], 1)
         self.assertEqual(d["title"], "總經環境分析")
-        self.assertEqual(d["excerpts"], ("摘錄一內容", "摘錄二內容"))
+        self.assertEqual(d["excerpts"], ("摘錄一內容", "摘錄二內容", "摘錄三內容", "摘錄四內容"))
         self.assertEqual(d["position"], 150)
 
         restored = ChapterEvidence.from_dict(d)
         self.assertEqual(restored, ev)
 
-    def test_episode_note_render_markdown(self) -> None:
+    def test_episode_note_render_markdown_slim_and_full(self) -> None:
         meta = EpisodeMetadata(
             number=1,
             youtube_id="vid123",
@@ -60,16 +60,37 @@ class TestDomainModels(unittest.TestCase):
             archive_url="https://whatmkreallysaid.com/ep1",
             summary="測試摘要",
         )
-        ch1 = Chapter(index=1, heading="歐洲疫情與股市崩跌", excerpts=("摘錄A。", "摘錄B。"), position=10)
+        ch1 = Chapter(
+            index=1,
+            heading="歐洲疫情與股市崩跌",
+            takeaway="歐洲疫情擴散引發恐慌性拋售，投資人應嚴格控制槓桿並分批佈局。",
+            excerpts=("摘錄A。", "摘錄B。", "摘錄C。", "摘錄D。"),
+            position=10,
+        )
         note = EpisodeNote(metadata=meta, chapters=(ch1,))
-        md = note.render_markdown()
+        
+        # Test slim mode (default)
+        md_slim = note.render_markdown(mode="slim")
+        self.assertIn("episode: 1", md_slim)
+        self.assertIn('content_method: "hybrid_extractive_distilled"', md_slim)
+        self.assertIn("# EP1｜測試策展標題", md_slim)
+        self.assertIn("### 1. 歐洲疫情與股市崩跌", md_slim)
+        self.assertIn("- **核心觀點：** 歐洲疫情擴散引發恐慌性拋售，投資人應嚴格控制槓桿並分批佈局。", md_slim)
+        self.assertIn("- 摘錄A。", md_slim)
+        self.assertIn("- 摘錄B。", md_slim)
+        self.assertNotIn("- 摘錄C。", md_slim)
+        self.assertNotIn("- 摘錄D。", md_slim)
 
-        self.assertIn("episode: 1", md)
-        self.assertIn("# EP1｜測試策展標題", md)
-        self.assertIn("### 1. 歐洲疫情與股市崩跌", md)
-        self.assertIn("- 摘錄A。", md)
-        self.assertIn("- 摘錄B。", md)
-        self.assertIn("## 資料來源與整理方式", md)
+        # Test full mode
+        md_full = note.render_markdown(mode="full")
+        self.assertIn("episode: 1", md_full)
+        self.assertIn('content_method: "hybrid_extractive_distilled"', md_full)
+        self.assertIn("### 1. 歐洲疫情與股市崩跌", md_full)
+        self.assertIn("- **核心觀點：** 歐洲疫情擴散引發恐慌性拋售，投資人應嚴格控制槓桿並分批佈局。", md_full)
+        self.assertIn("- 摘錄A。", md_full)
+        self.assertIn("- 摘錄B。", md_full)
+        self.assertIn("- 摘錄C。", md_full)
+        self.assertIn("- 摘錄D。", md_full)
 
     def test_quality_report(self) -> None:
         report_ok = QualityReport(heading="正常標題長度合格")

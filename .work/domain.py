@@ -67,7 +67,7 @@ class ChapterEvidence:
     """In-memory evidence anchored from full transcript for a single chapter."""
     index: int
     seed_title: str
-    excerpts: tuple[str, str]
+    excerpts: tuple[str, ...]
     position: int = 0
 
     def to_dict(self) -> dict:
@@ -93,7 +93,8 @@ class Chapter:
     """Domain representation of a structured concept chapter."""
     index: int
     heading: str
-    excerpts: tuple[str, str]
+    takeaway: str = ""
+    excerpts: tuple[str, ...] = ()
     position: int = 0
 
 
@@ -119,11 +120,19 @@ class EpisodeNote:
     metadata: EpisodeMetadata
     chapters: tuple[Chapter, ...]
 
-    def render_markdown(self) -> str:
+    def render_markdown(self, mode: str = "slim") -> str:
         chapter_markdown = []
         for ch in self.chapters:
-            bullets = "\n".join(f"- {bullet}" for bullet in ch.excerpts)
-            chapter_markdown.append(f"### {ch.index}. {ch.heading}\n\n{bullets}")
+            lines = []
+            if ch.takeaway:
+                lines.append(f"- **核心觀點：** {ch.takeaway}")
+            
+            excerpts = ch.excerpts[:2] if mode == "slim" else ch.excerpts
+            for bullet in excerpts:
+                lines.append(f"- {bullet}")
+
+            body = "\n".join(lines)
+            chapter_markdown.append(f"### {ch.index}. {ch.heading}\n\n{body}")
 
         return f"""---
 episode: {self.metadata.number}
@@ -134,7 +143,7 @@ youtube_url: {yaml_string(self.metadata.youtube_url)}
 episode_date: {yaml_string(self.metadata.date)}
 episode_date_source: {yaml_string(self.metadata.date_source)}
 duration: {yaml_string(self.metadata.duration_str)}
-content_method: {yaml_string("extractive_from_full_transcript")}
+content_method: {yaml_string("hybrid_extractive_distilled")}
 ---
 
 # EP{self.metadata.number}｜{self.metadata.display_title}
@@ -153,7 +162,7 @@ content_method: {yaml_string("extractive_from_full_transcript")}
 - 影片資訊：[Gooaye 股癌 YouTube]({self.metadata.youtube_url})
 - 完整內容依據：[公開非官方逐字稿]({self.metadata.archive_url})
 - 頁首策展標題來自第三方逐字稿索引；YouTube 原始標題另列於上方。
-- 第三方摘要只作全文檢索提示；章節按入選摘錄在**完整逐字稿**中的實際位置排序。命名模型只接收每章兩段全文摘錄，不接收摘要；摘要只在事後用來拒絕撞句，少數未通過自動驗證的標題由人工直接依兩段摘錄覆核。條列也是全文短摘錄，而非摘要切片。
+- 第三方摘要只作全文檢索提示；章節按入選摘錄在**完整逐字稿**中的實際位置排序。命名模型只接收每章全文摘錄，不接收摘要；摘要只在事後用來拒絕撞句，少數未通過自動驗證的標題由人工直接依摘錄覆核。條列也是全文短摘錄，而非摘要切片。
 - 節目日期主要取自第三方逐字稿索引；若該欄缺漏，才使用單支 YouTube metadata。日期不宣稱等同 YouTube 上傳日。
 - 本文沒有虛構時間碼。非官方逐字稿可能有聽寫或專有名詞錯誤，請以原始影片為準。
 - 本文僅供學習與索引，不構成投資建議。

@@ -10,6 +10,10 @@ Welcome to the **gooaye-agent** codebase. This repository contains the Gooaye (è
 
 Issues are tracked in GitHub Issues for `huijoson/gooaye-agent` using the `gh` CLI. See [`docs/agents/issue-tracker.md`](file:///Users/yuhan/coding/gooaye-agent/docs/agents/issue-tracker.md).
 
+### Triage labels
+
+Canonical 5-role triage label vocabulary. See [`docs/agents/triage-labels.md`](file:///Users/yuhan/coding/gooaye-agent/docs/agents/triage-labels.md).
+
 ### Domain docs
 
 Single-context layout with [`CONTEXT.md`](file:///Users/yuhan/coding/gooaye-agent/CONTEXT.md) and [`docs/adr/`](file:///Users/yuhan/coding/gooaye-agent/docs/adr/) at the repository root. See [`docs/agents/domain.md`](file:///Users/yuhan/coding/gooaye-agent/docs/agents/domain.md).
