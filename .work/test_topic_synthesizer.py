@@ -262,3 +262,90 @@ content_method: "hybrid_extractive_distilled"
     assert len(note.chapters[0].excerpts) == 2
 
 
+def test_topic_quality_auditor(sample_episodes, tmp_path):
+    from topic_synthesizer import DEFAULT_TOPICS, TopicGuideSynthesizer, TopicQualityAuditor
+
+    episodes_dir = tmp_path / "episodes"
+    topics_dir = tmp_path / "topics"
+    episodes_dir.mkdir()
+    topics_dir.mkdir()
+
+    # Save mock episodes
+    for ep in sample_episodes:
+        ep_file = episodes_dir / f"EP{ep.metadata.number:04d}.md"
+        ep_file.write_text(ep.render_markdown(mode="slim"), encoding="utf-8")
+
+    synthesizer = TopicGuideSynthesizer()
+    synthesizer.synthesize_and_save_all(sample_episodes, topics_dir, DEFAULT_TOPICS)
+
+    auditor = TopicQualityAuditor()
+    report = auditor.audit_all_topics(topics_dir=topics_dir, episodes_dir=episodes_dir)
+
+    assert report["total_topics"] == 4
+    assert report["defect_count"] == 0
+    assert len(report["defects"]) == 0
+
+
+def test_topic_quality_auditor_detects_defect(sample_episodes, tmp_path):
+    from topic_synthesizer import TopicQualityAuditor
+
+    episodes_dir = tmp_path / "episodes"
+    topics_dir = tmp_path / "topics"
+    episodes_dir.mkdir()
+    topics_dir.mkdir()
+
+    # Create a corrupted topic guide with broken link
+    bad_md = """---
+slug: "broken-topic"
+title: "壞掉的專題"
+category: "測試"
+episodes_count: 1
+chapters_count: 1
+time_span: "2020-01-01 ~ 2020-01-02"
+content_method: "thematic_synthesis"
+---
+
+# 壞掉的專題
+
+## 4. 🔗 相關集數索引與引用列表
+
+| [EP9999](../episodes/EP9999.md) | 2020-01-01 | 第 1 章 | 虛構標題 | 虛構觀點 |
+"""
+    (topics_dir / "broken-topic.md").write_text(bad_md, encoding="utf-8")
+
+    auditor = TopicQualityAuditor()
+    report = auditor.audit_all_topics(topics_dir=topics_dir, episodes_dir=episodes_dir)
+    assert report["defect_count"] > 0
+    assert any("EP9999" in str(d) for d in report["defects"])
+
+
+def test_cli_topics_subcommand():
+    import subprocess
+    import sys
+    from pathlib import Path
+
+    # Test cli.py topics --list
+    res_list = subprocess.run(
+        [sys.executable, ".work/cli.py", "topics", "--list"],
+        capture_output=True,
+        text=True,
+        cwd=str(Path(__file__).resolve().parent.parent),
+    )
+    assert res_list.returncode == 0
+    assert "Gooaye 股癌 跨集數主題專題庫清單" in res_list.stdout
+    assert "ai-hardware-and-semiconductor" in res_list.stdout
+
+    # Test cli.py topics --audit
+    res_audit = subprocess.run(
+        [sys.executable, ".work/cli.py", "topics", "--audit"],
+        capture_output=True,
+        text=True,
+        cwd=str(Path(__file__).resolve().parent.parent),
+    )
+    assert res_audit.returncode == 0
+    assert "Audit completed" in res_audit.stdout
+    assert "100%" in res_audit.stdout or "0" in res_audit.stdout
+
+
+
+

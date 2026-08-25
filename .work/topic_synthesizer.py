@@ -501,3 +501,63 @@ class TopicGuideRenderer:
         ])
         return "\n".join(lines)
 
+
+class TopicQualityAuditor:
+    """Audits topic guide markdown files for grounded references, valid links, and structural integrity."""
+
+    def audit_topic_file(self, topic_file: Path | str, episodes_dir: Path | str) -> list[dict]:
+        """Audit a single topic guide file."""
+        path = Path(topic_file)
+        ep_dir = Path(episodes_dir)
+        defects = []
+
+        if not path.exists():
+            return [{"topic": path.name, "category": "missing_file", "message": f"File does not exist: {path}"}]
+
+        text = path.read_text(encoding="utf-8")
+
+        # 1. Check frontmatter
+        fm_match = re.match(r"^---\n(.*?)\n---", text, re.DOTALL)
+        if not fm_match:
+            defects.append({"topic": path.name, "category": "format", "message": "Missing or malformed YAML frontmatter"})
+        else:
+            fm_text = fm_match.group(1)
+            for req_key in ["slug", "title", "category", "time_span", "content_method"]:
+                if f"{req_key}:" not in fm_text:
+                    defects.append({"topic": path.name, "category": "format", "message": f"Missing required frontmatter key: {req_key}"})
+
+        # 2. Check all markdown links to episodes
+        ep_links = re.findall(r"\[([^\]]+)\]\(([^)]*episodes/EP(\d+)[^)]*)\)", text)
+        for label, link_url, ep_num_str in ep_links:
+            ep_num = int(ep_num_str)
+            target_file = ep_dir / f"EP{ep_num:04d}.md"
+            if not target_file.exists():
+                defects.append({
+                    "topic": path.name,
+                    "category": "broken_link",
+                    "target_episode": ep_num,
+                    "link_url": link_url,
+                    "message": f"Referenced episode file not found: {target_file}",
+                })
+
+        return defects
+
+    def audit_all_topics(self, topics_dir: Path | str, episodes_dir: Path | str) -> dict:
+        """Audit all topic guide files in topics directory."""
+        t_dir = Path(topics_dir)
+        ep_dir = Path(episodes_dir)
+
+        topic_files = sorted([f for f in t_dir.glob("*.md") if f.name != "README.md"])
+        all_defects = []
+
+        for tf in topic_files:
+            file_defects = self.audit_topic_file(tf, ep_dir)
+            all_defects.extend(file_defects)
+
+        return {
+            "total_topics": len(topic_files),
+            "defect_count": len(all_defects),
+            "defects": all_defects,
+        }
+
+

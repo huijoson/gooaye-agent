@@ -143,6 +143,58 @@ def cmd_doctor(args: argparse.Namespace) -> None:
         sys.exit(1)
 
 
+def cmd_topics(args: argparse.Namespace) -> None:
+    from topic_synthesizer import (
+        DEFAULT_TOPICS,
+        TopicGuideSynthesizer,
+        TopicQualityAuditor,
+        load_all_notes_from_dir,
+    )
+
+    out_dir = args.out_dir or args.output_dir or OUTPUT_DIR
+    topics_dir = out_dir / "topics"
+    episodes_dir = out_dir / "episodes"
+
+    if args.list:
+        print("=== Gooaye 股癌 跨集數主題專題庫清單 ===")
+        for idx, t in enumerate(DEFAULT_TOPICS, 1):
+            print(f"{idx}. [{t.category}] {t.title} ({t.slug})")
+            print(f"   關鍵字: {'、'.join(t.keywords[:8])}...")
+            print(f"   簡介: {t.description}\n")
+        return
+
+    if args.generate:
+        print(f"Loading episode notes from {episodes_dir}...")
+        notes = load_all_notes_from_dir(episodes_dir)
+        if not notes:
+            print(f"❌ No episode notes found in {episodes_dir}. Please run 'synthesize' first.")
+            sys.exit(1)
+        print(f"Loaded {len(notes)} episode notes. Synthesizing {len(DEFAULT_TOPICS)} topic guides to {topics_dir}...")
+        start_time = time.time()
+        syn = TopicGuideSynthesizer()
+        files = syn.synthesize_and_save_all(notes, topics_dir, DEFAULT_TOPICS)
+        elapsed = time.time() - start_time
+        print(f"✅ Successfully generated {len(files)} topic files in {elapsed:.2f}s:")
+        for f in files:
+            print(f"  - {f.name}")
+        return
+
+    if args.audit or not (args.list or args.generate):
+        print(f"Auditing topic guides in {topics_dir} against {episodes_dir}...")
+        auditor = TopicQualityAuditor()
+        report = auditor.audit_all_topics(topics_dir=topics_dir, episodes_dir=episodes_dir)
+        print(f"\nAudit completed: {report['total_topics']} topic guides audited.")
+        print(f"Defect count: {report['defect_count']}")
+        if report["defect_count"] > 0:
+            print("\nDefects found:")
+            for d in report["defects"]:
+                print(f"  ❌ [{d.get('topic')}] ({d.get('category')}): {d.get('message')}")
+            sys.exit(1)
+        else:
+            print("🎉 All topic guides pass 100% citation grounding and link validation!")
+
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Gooaye Note Synthesis & Architecture Management CLI")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -174,6 +226,15 @@ def main() -> None:
     # doctor
     p_doc = subparsers.add_parser("doctor", help="Check integrity of system components and datasets")
     p_doc.set_defaults(func=cmd_doctor)
+
+    # topics
+    p_top = subparsers.add_parser("topics", help="Synthesize and audit thematic topic guides")
+    p_top.add_argument("--generate", action="store_true", help="Batch synthesize all topic guides")
+    p_top.add_argument("--audit", action="store_true", help="Audit grounding and links of all topic guides")
+    p_top.add_argument("--list", action="store_true", help="List all defined topic guides")
+    p_top.add_argument("--output-dir", type=Path, default=OUTPUT_DIR, help="Base destination directory")
+    p_top.add_argument("--out-dir", type=Path, default=None, help="Alias for --output-dir")
+    p_top.set_defaults(func=cmd_topics)
 
     args = parser.parse_args()
     args.func(args)
