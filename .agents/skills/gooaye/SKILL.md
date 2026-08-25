@@ -39,13 +39,16 @@ description: >-
 1. **第一階段（定位集數）**：
    - 優先搜尋 `gooaye-youtube-notes/_index.md` 或使用 `grep_search` 搜尋 `gooaye-youtube-notes/episodes/` 中的章節標題與摘錄。
    - 找出最相關的 1–3 集（如 `EP0690.md`）。
-2. **第二階段（單點讀取導航筆記）**：
+2. **第一.五階段（主題專題手冊優先命中，宏觀查詢推薦）**：
+   - 若使用者提問屬於宏觀產業鏈（如 ASIC、散熱水冷、800V 電力、Apple 供應鏈）或投資心法哲學（部位管理、停損紀律、總經降息循環），優先讀取 `gooaye-youtube-notes/topics/{slug}.md`（例如 `ai-hardware-and-semiconductor.md`）。
+   - 能在 ~1,500 tokens 內快速獲取跨越多年（2020–2026）的時序演變里程碑、關鍵問答與精準章節引用清單。
+3. **第二階段（單點讀取導航筆記）**：
    - 使用 `view_file` 讀取命中的 `gooaye-youtube-notes/episodes/EPxxxx.md`（~1k tokens）。
    - 取得已清洗廣告業配的章節標題、提煉後的核心觀點（1 句判斷）與核心真實逐字稿引言。
-3. **第二.五階段（深度脈絡擴充，可選）**：
+4. **第二.五階段（深度脈絡擴充，可選）**：
    - 若導航筆記的 2 條核心金句不足以還原完整論述脈絡，讀取 `gooaye-youtube-notes/episodes/EPxxxx.full.md`。
    - 取得該集每章 4–8 條擴充真實引述與完整脈絡。
-4. **第三階段（原始音訊還原查證，可選）**：
+5. **第三階段（原始音訊還原查證，可選）**：
    - 僅在懷疑逐字稿聽寫有錯字、需核對原始語氣或未收錄片段時，才對 `.work/full-transcripts/EPxxxx.md` 進行定點搜尋。
    - **注意**：必須過濾開頭/結尾的贊助廣告詞（如 NordVPN、銀座白石、Sony 耳機等業配）。
 
@@ -90,10 +93,13 @@ description: >-
 
 | 資源 | 路徑 | 說明 |
 | :--- | :--- | :--- |
-| **全集大綱總表** | `gooaye-youtube-notes/_index.md` | 689 集完整章節大綱與關鍵字快速索引。 |
+| **全集大綱總表** | `gooaye-youtube-notes/_index.md` | 689 集完整章節大綱、主題專題導航與關鍵字快速索引。 |
+| **主題專題手冊** | `gooaye-youtube-notes/topics/{slug}.md` | 跨集數深度專題（AI硬體、主委心法、總經循環、Apple果鏈），含時序里程碑與章節索引。 |
+| **主題專題目錄** | `gooaye-youtube-notes/topics/README.md` | 四大專題指南總覽與使用指引。 |
 | **導航層筆記** | `gooaye-youtube-notes/episodes/EPxxxx.md` | 每集 6–10 章標題、1 句核心觀點與 2 條核心金句（~1k tokens）。 |
 | **深度層筆記** | `gooaye-youtube-notes/episodes/EPxxxx.full.md` | 每章 4–8 條擴充真實逐字稿引述與脈絡（深度查證用）。 |
 | **原始完整逐字稿** | `.work/full-transcripts/EPxxxx.md` | 540+ 小時原始逐字稿（僅限底層聽寫查證時定點使用）。 |
 | **漸進技能架構決策** | `docs/adr/0001-progressive-gooaye-skill.md` | 漸進式檢索與低 Token 待機設計。 |
 | **混合筆記架構決策** | `docs/adr/0002-hybrid-extractive-distilled-notes.md` | 核心觀點提煉、雙層筆記與語意章節切分決策。 |
+
 

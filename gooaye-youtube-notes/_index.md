@@ -2,6 +2,19 @@
 
 共 689 支 YouTube 公開影片、5,299 章、10,598 條逐字稿摘錄；涵蓋 EP1–EP690，公開清單唯一缺號為 EP232。章節按完整逐字稿內容順序編排，非精確時間碼。
 
+## 📚 主題專題深度指南 (Thematic Topic Guides)
+
+| 專題手冊 | 分類 | 說明 |
+|:---|:---:|:---|
+| [AI 伺服器、散熱、電力與 ASIC 自研晶片演進](topics/ai-hardware-and-semiconductor.md) | 產業與硬體架構 | 追蹤 2021 至 2026 年主委對水冷、CDU、800V 電力與 CSP 自研 ASIC 晶片之論述脈絡。 |
+| [主委投資心態、部位管理、停損紀律與期望值實戰守則](topics/investment-mindset-and-risk-control.md) | 投資心態與風險控制 | 彙整歷年部位控制、停損停利紀律、勝率/賠率期望值計算與生活化哲學。 |
+| [總體經濟循環、聯準會降息循環、房產與資產配置](topics/macro-cycle-and-asset-allocation.md) | 總體經濟與資產配置 | 整理景氣循環位階、聯準會利率政策、通膨、美股與房產資產配置。 |
+| [Apple 供應鏈、智慧型手機與消費性電子週期](topics/apple-and-consumer-electronics.md) | 消費性電子與供應鏈 | 探討 Apple 產品週期、台廠果鏈消長、折疊機與消費性電子拉貨動能。 |
+
+- 👉 [查看完整主題專題目錄與使用指引](topics/README.md)
+
+## 🗓️ 歷年集數大綱
+
 | 年份 | 集數 |
 |---:|---:|
 | 2026 | 67 |

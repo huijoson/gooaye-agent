@@ -1,11 +1,11 @@
 # Gooaye Agent & Knowledge Base (股癌知識庫與智能代理)
 
 [![Episodes](https://img.shields.io/badge/Episodes-689%20Videos-blue.svg)](gooaye-youtube-notes/_index.md)
-[![Hours](https://img.shields.io/badge/Total%20Hours-542.9%20Hours-green.svg)](gooaye-youtube-notes/README.md)
-[![Chapters](https://img.shields.io/badge/Chapters-2%2C467%20Topics-orange.svg)](gooaye-youtube-notes/_index.md)
+[![Chapters](https://img.shields.io/badge/Chapters-5%2C299%20Topics-orange.svg)](gooaye-youtube-notes/_index.md)
+[![Topic Guides](https://img.shields.io/badge/Topics-4%20Playbooks-green.svg)](gooaye-youtube-notes/topics/README.md)
 [![Skill Architecture](https://img.shields.io/badge/Antigravity-Progressive%20Skill-purple.svg)](.agents/skills/gooaye/SKILL.md)
 
-本專案將《Gooaye 股癌》YouTube 公開清單中 **689 支影片（540+ 小時）** 的完整逐字稿，經由多階段廣告清洗、語意分塊、防碰撞錨定與品質診斷引擎，整理為 **2,467 個結構化觀念章節** 與 **4,934 條精確引述**；並封裝為符合 Antigravity 規範之極低 Token 待機開銷（~30 tokens）的漸進式按需技能（Progressive Skill）。
+本專案將《Gooaye 股癌》YouTube 公開清單中 **689 支影片（540+ 小時）** 的完整逐字稿，經由雙層混合架構（Dual-Tier Hybrid Extractive-Distilled Pipeline），整理為 **5,299 個結構化觀念章節**、**單句核心觀點判斷** 與 **真實逐字稿引述**，並提煉出 **4 大跨集數主題專題手冊**；全套知識庫封裝為符合 Antigravity 規範之極低 Token 待機開銷（~30 tokens）的漸進式按需技能（Progressive Skill）。
 
 ---
 
@@ -21,26 +21,30 @@ gooaye-agent/
 ├── gooaye-youtube-notes/                    # 689 集已清洗與結構化之觀念筆記庫
 │   ├── README.md                           # 筆記資料集統計與限制說明
 │   ├── _index.md                           # 全集章節大綱與關鍵字快速檢索表 (Stage 1 索引)
-│   └── episodes/                           # EP0001.md ~ EP0690.md 結構化觀念筆記 (Stage 2 筆記)
+│   ├── topics/                             # 跨集數深度主題專題手冊 (Stage 1.5 專題)
+│   │   ├── README.md                       # 主題專題總覽與使用指引
+│   │   ├── ai-hardware-and-semiconductor.md
+│   │   ├── investment-mindset-and-risk-control.md
+│   │   ├── macro-cycle-and-asset-allocation.md
+│   │   └── apple-and-consumer-electronics.md
+│   └── episodes/                           # EP0001.md ~ EP0690.md 雙層觀念筆記 (.md 與 .full.md)
 │
 ├── docs/                                   # 系統架構規格與決策紀錄
 │   ├── adr/
-│   │   └── 0001-progressive-gooaye-skill.md # ADR：漸進式按需技能架構決策
-│   └── gooaye-skill-architecture-spec.html  # 完整架構視覺化規格說明
+│   │   ├── 0001-progressive-gooaye-skill.md # ADR：漸進式按需技能架構決策
+│   │   └── 0002-hybrid-extractive-distilled-notes.md # ADR：雙層混合筆記架構決策
+│   └── specs/                              # 系統規格書
 │
 ├── scripts/                                # 安裝與自動化管理腳本
 │   └── install-skill.sh                    # 一鍵安裝 / Symlink 技能腳本 (全域或指定專案)
 │
 ├── .work/                                  # 數據處理、合成管道與品質稽核核心引擎
-│   ├── cli.py                              # 統一命令列介面 (synthesize / audit / diagnose / doctor)
-│   ├── domain.py                           # 核心領域物件 (EpisodeMetadata, Chapter, EpisodeNote 等)
-│   ├── transcript_processor.py             # 逐字稿業配過濾、斷句與特徵提取
-│   ├── evidence_extractor.py               # 純內存章節摘錄抽取與防碰撞引擎
-│   ├── heading_quality_engine.py           # 9 大瑕疵分類診斷與多層級確定性修復引擎
-│   ├── heading_resolver.py                 # 多策略標題解析器 (Cached, Deterministic, Ollama)
+│   ├── cli.py                              # 統一命令列介面 (synthesize / audit / topics / doctor)
+│   ├── domain.py                           # 核心領域物件 (EpisodeNote, Chapter, TopicGuide 等)
 │   ├── episode_synthesizer.py              # 單集與全集批次並行合成調度器
-│   ├── markdown_renderer.py                # Markdown 渲染器
-│   ├── test_*.py                           # 完整單元測試套件
+│   ├── topic_synthesizer.py                # 跨集數主題專題合成與審計引擎
+│   ├── heading_quality_engine.py           # 標題 9 大瑕疵品質診斷引擎
+│   ├── takeaway_quality_engine.py          # 核心觀點 Takeaway 品質診斷引擎
 │   └── full-transcripts/                   # 540+ 小時原始完整逐字稿庫 (Stage 3 深度查證)
 │
 ├── CONTEXT.md                              # 系統領域概念定義、分層架構與介面規範
@@ -134,19 +138,27 @@ ln -s "$(pwd)/.agents/skills/gooaye" ~/.gemini/config/skills/gooaye
 # 1. 執行環境與數據源體檢
 python3 .work/cli.py doctor
 
-# 2. 執行全集 689 集標題品質瑕疵審計
+# 2. 執行全集 689 集標題與觀點品質審計
 python3 .work/cli.py audit
 
-# 3. 批次多執行緒合成 Markdown 筆記
+# 3. 執行四大主題專題手冊品質審計
+python3 .work/cli.py topics --audit
+
+# 4. 批次全量合成主題專題指南
+python3 .work/cli.py topics --generate
+
+# 5. 批次多執行緒合成全集雙層 Markdown 筆記
 python3 .work/cli.py synthesize --workers 8
 
-# 4. 執行核心模組單元測試
-pytest .work/test_*.py
+# 6. 執行核心模組單元測試套件
+pytest .work/
 ```
 
 ### 相關架構文件
-- [CONTEXT.md](file:///Users/yuhan/coding/gooaye-agent/CONTEXT.md)：核心領域概念、深模組介面與標題 9 大瑕疵分類標準。
+- [CONTEXT.md](file:///Users/yuhan/coding/gooaye-agent/CONTEXT.md)：核心領域概念、深模組介面與品質閘門標準。
 - [ADR 0001](file:///Users/yuhan/coding/gooaye-agent/docs/adr/0001-progressive-gooaye-skill.md)：漸進式按需技能架構決策紀錄。
+- [ADR 0002](file:///Users/yuhan/coding/gooaye-agent/docs/adr/0002-hybrid-extractive-distilled-notes.md)：雙層混合筆記架構決策紀錄。
+- [主題專題目錄](file:///Users/yuhan/coding/gooaye-agent/gooaye-youtube-notes/topics/README.md)：四大主題專題手冊。
 - [全集索引表](file:///Users/yuhan/coding/gooaye-agent/gooaye-youtube-notes/_index.md)：689 集完整章節索引。
 
 ---

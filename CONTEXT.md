@@ -90,8 +90,17 @@
 - 整合式命令列工具：
   - `synthesize`：批次或單集生成 Markdown 筆記（支援 `--workers`, `--resolver`, `--dry-run`, `--out-dir`）。
   - `audit`：全集標題與觀點品質審計與瑕疵統計。
+  - `topics`：主題專題指南批次合成（`--generate`）、接地審計（`--audit`）與清單檢視（`--list`）。
   - `diagnose`：單一標題、觀點與摘錄品質診斷與修復測試。
   - `doctor`：環境、數據來源與快取完整性體檢。
+
+### 17. Topic Guide Synthesizer & Auditor (`topic_synthesizer.py`)
+- 跨集數主題專題合成與品質審計深模組：
+  - **`TopicDefinition`**：定義主題標識、關鍵字、核心概念與分類。
+  - **`ThematicChapterRef`**：包含集數編號、日期、章節標題、Takeaway 與權重關聯評分的引用物件。
+  - **`TopicGuideSynthesizer`**：從 689 集筆記中依時序聚合相關章節、提煉年度里程碑與核心結論矩陣。
+  - **`TopicGuideRenderer`**：渲染標準主題專題 Markdown 手冊（`gooaye-youtube-notes/topics/{slug}.md`）與主題總覽索引（`topics/README.md`）。
+  - **`TopicQualityAuditor`**：100% 驗證專題手冊之章節引用存在性、發布日期對齊度與點擊連結有效性。
 
 ---
 
@@ -111,13 +120,15 @@
 
 ## 代理與技能層 (Agent & Skill Layer)
 
-### 17. Gooaye Skill (`.agents/skills/gooaye/SKILL.md`)
+### 18. Gooaye Skill (`.agents/skills/gooaye/SKILL.md`)
 - **定位**：極低 Token 待機開銷（~30 tokens）的漸進式按需技能。
 - **雙模態機制 (Dual-Mode)**：
-  - **Archive Query (客觀檢索模式)**：檢索 689 集結構化筆記，提供精確集數、章節、核心觀點與逐字稿引述。
+  - **Archive Query (客觀檢索模式)**：檢索 689 集結構化筆記與跨集數主題專題手冊，提供精確集數、章節、核心觀點與逐字稿引述。
   - **Mindset Roasting (主委心態健檢模式)**：切換謝孟恭口吻，基於部位管理、停損紀律、期望值計算進行風險拷問。
 - **階梯式檢索 (Multi-Stage Progressive Search)**：
   - Stage 1: 先在 `_index.md` 與 `episodes/` 中透過語意或關鍵字定位 1–3 集（~150KB 全域索引）。
+  - Stage 1.5: 宏觀產業與心態問題優先讀取 `topics/{slug}.md` 主題手冊（~1.5k tokens）。
   - Stage 2: 讀取命中的 `episodes/EPxxxx.md` 導航筆記（含核心觀點與精選引述，~1k tokens）。
   - Stage 2.5 (可選): 若需深入討論脈絡與完整引述，讀取 `episodes/EPxxxx.full.md` 深度筆記。
   - Stage 3 (可選): 僅在需確認底層語音還原細節時才對 `.work/full-transcripts/` 進行定點精確檢索。
+
