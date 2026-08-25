@@ -276,19 +276,20 @@ class TranscriptSegmenter:
             items: list[tuple[str, int]],
             k: int,
             cues_pattern: re.Pattern | None = None,
-            min_items_per_group: int = 2,
+            min_items_per_group: int | None = None,
         ) -> list[list[tuple[str, int]]]:
             if not items:
                 return []
-            max_k = max(1, len(items) // min_items_per_group)
+            min_items = min_items_per_group if min_items_per_group is not None else (2 if len(items) < 20 else 4)
+            max_k = max(1, len(items) // min_items)
             k = min(k, max_k)
-            if k <= 1 or len(items) <= min_items_per_group:
+            if k <= 1 or len(items) <= min_items:
                 return [items]
 
             split_candidates: list[int] = []
             if cues_pattern:
                 for idx, (s, _) in enumerate(items):
-                    if idx >= min_items_per_group and (len(items) - idx) >= min_items_per_group:
+                    if idx >= min_items and (len(items) - idx) >= min_items:
                         if cues_pattern.search(s):
                             split_candidates.append(idx)
 
@@ -299,7 +300,7 @@ class TranscriptSegmenter:
                 best_split = -1
                 min_dist = float("inf")
                 for cand in split_candidates:
-                    if cand - splits[-1] >= min_items_per_group and (len(items) - cand) >= (k - step) * min_items_per_group:
+                    if cand - splits[-1] >= min_items and (len(items) - cand) >= (k - step) * min_items:
                         dist = abs(cand - target_idx)
                         if dist < min_dist:
                             min_dist = dist
@@ -307,9 +308,9 @@ class TranscriptSegmenter:
                 if best_split != -1 and best_split not in splits:
                     splits.append(best_split)
                 else:
-                    fallback_split = splits[-1] + max(min_items_per_group, round(ideal_chunk))
-                    fallback_split = min(fallback_split, len(items) - (k - step) * min_items_per_group)
-                    if fallback_split not in splits and fallback_split - splits[-1] >= min_items_per_group:
+                    fallback_split = splits[-1] + max(min_items, round(ideal_chunk))
+                    fallback_split = min(fallback_split, len(items) - (k - step) * min_items)
+                    if fallback_split not in splits and fallback_split - splits[-1] >= min_items:
                         splits.append(fallback_split)
             splits.append(len(items))
 
@@ -318,6 +319,11 @@ class TranscriptSegmenter:
                 start, end = splits[i], splits[i + 1]
                 if start < end:
                     groups.append(items[start:end])
+
+            if len(groups) > 1 and len(items) >= 20 and (len(groups[-1]) < min_items or sum(len(s) for s, _ in groups[-1]) < 160):
+                last_group = groups.pop()
+                groups[-1].extend(last_group)
+
             return groups
 
         main_transition_cues = re.compile(

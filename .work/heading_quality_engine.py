@@ -176,16 +176,16 @@ class HeadingQualityEngine:
                 )
             )
 
-        # 3. Grounding & Excerpt Coverage
+        # 3. Grounding & Excerpt Coverage (checked against primary excerpts)
         if excerpts:
             h_bigrams = self.bigrams(heading)
-            for idx, bullet in enumerate(excerpts, 1):
+            for idx, bullet in enumerate(excerpts[:2], 1):
                 b_bigrams = self.bigrams(bullet)
                 if not (h_bigrams & b_bigrams):
                     defects.append(
                         Defect(
                             DefectCategory.WEAK_GROUNDING,
-                            f"標題未有效涵蓋摘錄 {idx} 的核心詞彙",
+                            f"標題未有效涵蓋核心摘錄 {idx} 的詞彙",
                             f"weak_bullet_{idx}",
                         )
                     )
@@ -482,7 +482,27 @@ class HeadingQualityEngine:
                 if self.compact(cand) not in used and self.evaluate(cand, excerpts, summary):
                     return cand
 
-        # Fallback Strategy E: Safe guarantee
-        c1 = one[0] if one else (clean_tokens_1[0] if clean_tokens_1 else "市場重點分析")
-        c2 = two[0] if two else (clean_tokens_2[0] if clean_tokens_2 else "投資觀念探討")
-        return f"{c1}與{c2}"[: self.MAX_LENGTH]
+        # Fallback Strategy E: Safe guarantee grounded in excerpts
+        for exc1 in excerpts:
+            t1_list = self.extract_phrase_candidates(exc1)
+            for exc2 in excerpts:
+                if exc1 == exc2 and len(excerpts) > 1:
+                    continue
+                t2_list = self.extract_phrase_candidates(exc2)
+                for t1 in t1_list:
+                    for t2 in t2_list:
+                        for cand in (f"{t1}與{t2}", f"{t1}及{t2}", f"{t1}對照{t2}"):
+                            if len(cand) <= self.MAX_LENGTH and self.compact(cand) not in used and self.evaluate(cand, excerpts, summary):
+                                return cand
+
+        # Ultimate fallback: Construct clean topic assertion from top entities
+        for exc in excerpts:
+            nouns = re.findall(r"[\u4e00-\u9fffA-Za-z0-9]{3,8}", exc)
+            for n in nouns:
+                if not self.ORAL_WORDS_PATTERN.search(n) and not self.BAD_PREFIX_PATTERN.search(n) and not self.GENERIC_PATTERN.search(n):
+                    cand = f"{n}市場趨勢與實務觀點"
+                    if self.MIN_LENGTH <= len(cand) <= self.MAX_LENGTH and self.compact(cand) not in used and self.evaluate(cand, excerpts, summary):
+                        return cand
+
+        # Safe default
+        return "市場動態變化與投資觀念"

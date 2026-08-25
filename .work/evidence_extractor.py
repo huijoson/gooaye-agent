@@ -65,12 +65,19 @@ class EvidenceExtractor:
         chapters: list[dict] = []
         used_excerpts: set[str] = set()
 
+        signoff_pattern = re.compile(
+            r"^(?:好[，, ]*)?(?:那|這)?(?:節目|這集|本集)?(?:就先|就)?到這邊[，, ]*(?:大家)?(?:拜拜|掰掰|掰|再見|感謝大家的收聽|謝謝大家)[。！？!?]*$|^(?:好[，, ]*)?(?:那)?(?:接下來|接著)?我們(?:來)?進入 Q&A[。！？!?]*$",
+            re.IGNORECASE,
+        )
+
         for win in windows:
             candidate_sentences: list[tuple[float, str]] = []
             hint_features = self.features.features(win.topic_hint) if win.topic_hint else Counter()
 
             for sentence in win.sentences:
                 if not 18 <= len(sentence) <= 320 or any(m in sentence for m in SPONSOR_MARKERS):
+                    continue
+                if signoff_pattern.search(sentence.strip()):
                     continue
                 sent_features = self.features.features(sentence)
                 score = len(sentence) / 100.0
