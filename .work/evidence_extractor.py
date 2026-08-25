@@ -24,64 +24,68 @@ class EvidenceExtractor:
         feature_extractor: TranscriptFeatureExtractor | None = None,
     ) -> None:
         self.sanitizer = sanitizer or TranscriptSanitizer()
-        self.segmenter = segmenter or TranscriptSegmenter(sanitizer=self.sanitizer)
         self.features = feature_extractor or TranscriptFeatureExtractor()
+        self.segmenter = segmenter or TranscriptSegmenter(
+            sanitizer=self.sanitizer,
+            features=self.features,
+        )
 
-    def extract(self, summary: str, transcript: str) -> list[ChapterEvidence]:
-        """Extract structured chapter evidence directly from transcript and summary."""
-        chunks = self.segmenter.make_chunks(transcript)
-        if not chunks:
+    def extract(
+        self,
+        transcript_or_summary: str = "",
+        transcript: str | None = None,
+        summary: str = "",
+        target_chapters: int = 8,
+        min_excerpts: int = 2,
+        max_excerpts: int = 6,
+    ) -> list[ChapterEvidence]:
+        """Extract structured chapter evidence directly from transcript (and optional summary)."""
+        if transcript is not None:
+            raw_summary = transcript_or_summary
+            raw_transcript = transcript
+        else:
+            raw_transcript = transcript_or_summary
+            raw_summary = summary
+
+        if not raw_transcript.strip():
             raise ValueError("Empty transcript")
 
-        chunk_features = [self.features.features(chunk) for chunk in chunks]
-        seeds = self.segmenter.split_seeds(summary)
-        assignments: list[tuple[int, str, list[tuple[float, int]]]] = []
-        used_anchors: set[int] = set()
+        windows = self.segmenter.segment_semantic_chapters(
+            transcript=raw_transcript,
+            target_count=target_chapters,
+            summary=raw_summary,
+        )
+        if not windows:
+            raise ValueError("Could not segment transcript into windows")
 
-        for seed_index, seed in enumerate(seeds):
-            seed_features = self.features.features(seed)
-            expected_pos = (seed_index + 0.5) / len(seeds)
-            ranked = []
-            for idx, chunk in enumerate(chunks):
-                score = self.features.similarity(seed_features, chunk_features[idx])
-                score -= 0.07 * abs(idx / max(1, len(chunks) - 1) - expected_pos)
-                if any(m in chunk for m in SPONSOR_MARKERS):
-                    score -= 0.25
-                ranked.append((score, idx))
-            ranked.sort(reverse=True)
-            anchor = next((idx for _, idx in ranked if idx not in used_anchors), ranked[0][1])
-            used_anchors.add(anchor)
-            assignments.append((anchor, seed, ranked[:8]))
+        cleaned_transcript = self.sanitizer.clean(raw_transcript)
+        cleaned_transcript_compact = re.sub(r"[\s\W_]+", "", cleaned_transcript.lower())
+        normalized_summary = re.sub(r"\s+", "", raw_summary)
 
-        assignments.sort(key=lambda item: item[0])
         chapters: list[dict] = []
         used_excerpts: set[str] = set()
-        normalized_summary = re.sub(r"\s+", "", summary)
-        cleaned_transcript = self.sanitizer.clean(transcript)
-        cleaned_transcript_compact = re.sub(r"[\s\W_]+", "", cleaned_transcript.lower())
 
-        for anchor, seed, ranked_chunks in assignments:
-            seed_features = self.features.features(seed)
-            candidate_indices = set()
-            for _, chunk_idx in ranked_chunks[:5]:
-                candidate_indices.update(
-                    idx
-                    for idx in (chunk_idx - 1, chunk_idx, chunk_idx + 1)
-                    if 0 <= idx < len(chunks)
-                )
-            candidate_sentences: list[tuple[float, int, str]] = []
-            for chunk_idx in sorted(candidate_indices):
-                for sentence in self.segmenter.segment_sentences(chunks[chunk_idx]):
-                    if not 24 <= len(sentence) <= 300 or any(m in sentence for m in SPONSOR_MARKERS):
-                        continue
-                    score = self.features.similarity(seed_features, self.features.features(sentence))
-                    if sentence.endswith(("？", "?")):
-                        score -= 0.04
-                    candidate_sentences.append((score, chunk_idx, sentence))
-            candidate_sentences.sort(reverse=True)
+        for win in windows:
+            candidate_sentences: list[tuple[float, str]] = []
+            hint_features = self.features.features(win.topic_hint) if win.topic_hint else Counter()
+
+            for sentence in win.sentences:
+                if not 18 <= len(sentence) <= 320 or any(m in sentence for m in SPONSOR_MARKERS):
+                    continue
+                sent_features = self.features.features(sentence)
+                score = len(sentence) / 100.0
+                if hint_features:
+                    score += self.features.similarity(hint_features, sent_features) * 2.0
+                if sentence.endswith(("？", "?")):
+                    score -= 0.1
+                if re.search(r"\d+", sentence):
+                    score += 0.05
+                candidate_sentences.append((score, sentence))
+
+            candidate_sentences.sort(key=lambda x: x[0], reverse=True)
 
             excerpts: list[str] = []
-            for _, chunk_idx, sentence in candidate_sentences:
+            for _, sentence in candidate_sentences:
                 excerpt = self.sanitizer.clean_excerpt(sentence)
                 normalized = re.sub(r"\s+", "", excerpt.rstrip("。"))
                 if normalized in normalized_summary or normalized in used_excerpts:
@@ -90,38 +94,42 @@ class EvidenceExtractor:
                     continue
                 excerpts.append(excerpt)
                 used_excerpts.add(normalized)
-                if len(excerpts) == 2:
+                if len(excerpts) >= max_excerpts:
                     break
 
-            if len(excerpts) < 2:
-                # Fallback to candidate sentences if strict uniqueness exhausted
-                for _, _, sentence in candidate_sentences:
+            if len(excerpts) < min_excerpts:
+                for _, sentence in candidate_sentences:
                     excerpt = self.sanitizer.clean_excerpt(sentence)
                     if excerpt not in excerpts:
                         excerpts.append(excerpt)
-                    if len(excerpts) == 2:
+                    if len(excerpts) >= min_excerpts:
                         break
 
-            if len(excerpts) < 2:
-                raise ValueError(f"Could not extract two distinct points for seed: {seed}")
+            if len(excerpts) < min_excerpts:
+                for s in win.sentences:
+                    clean_s = self.sanitizer.clean_excerpt(s)
+                    if clean_s and clean_s not in excerpts:
+                        excerpts.append(clean_s)
+                    if len(excerpts) >= min_excerpts:
+                        break
 
-            # Find position in cleaned transcript
             positions = []
             for e in excerpts:
                 e_compact = re.sub(r"[\s\W_]+", "", e.lower())
                 pos = cleaned_transcript_compact.find(e_compact[:20])
                 if pos == -1:
                     pos = cleaned_transcript_compact.find(e_compact[:10])
-                positions.append(pos if pos != -1 else 0)
+                positions.append(pos if pos != -1 else win.position)
 
-            pos = min(positions)
+            pos = min(positions) if positions else win.position
+            seed_title = win.topic_hint or (excerpts[0][:30] if excerpts else f"觀念焦點 {win.index}")
+
             chapters.append({
                 "position": pos,
-                "title": seed,
+                "title": seed_title,
                 "excerpts": tuple(excerpts),
             })
 
-        # Sort by position
         chapters.sort(key=lambda ch: ch["position"])
 
         return [

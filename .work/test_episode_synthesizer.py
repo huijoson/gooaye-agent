@@ -121,7 +121,7 @@ class TestEpisodeNoteSynthesizer(unittest.TestCase):
         self.assertIn("## 資料來源與整理方式", markdown)
         for ch in note.chapters:
             self.assertIn(f"### {ch.index}. {ch.heading}", markdown)
-            self.assertEqual(len(ch.excerpts), 2)
+            self.assertGreaterEqual(len(ch.excerpts), 2)
 
 
 if __name__ == "__main__":

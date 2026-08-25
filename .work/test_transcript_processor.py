@@ -63,6 +63,38 @@ class TestTranscriptProcessor(unittest.TestCase):
         self.assertTrue(sim_related > 0.3)
         self.assertTrue(sim_unrelated < 0.1)
 
+    def test_detect_qa_boundary(self) -> None:
+        text_with_qa = (
+            "前面是長篇的市場與總經討論分析。" * 30
+            + "好那接著進入 QA 的部分。第一位朋友留言問道關於美股槓桿 ETF 的配置。"
+            + "第二位朋友詢問關於台積電與先進封裝供應鏈的看法。" * 10
+        )
+        pos = self.segmenter.detect_qa_boundary(text_with_qa)
+        self.assertGreater(pos, 0)
+        self.assertIn("QA", text_with_qa[pos : pos + 30])
+
+        text_no_qa = "整集節目都在深度討論半導體設備與先進封裝產業景氣循環，完全沒有問答環節。" * 40
+        self.assertEqual(self.segmenter.detect_qa_boundary(text_no_qa), -1)
+
+    def test_segment_semantic_chapters(self) -> None:
+        text = (
+            "本集節目由廣告贊助。***"
+            + "我們首先來看全球總體經濟與聯準會利率決策會議的最新動向。" * 20
+            + "接著轉向半導體產業鏈與晶圓代工產能利用率分析。" * 20
+            + "再來討論記憶體市場庫存去化進度與報價反彈趨勢。" * 20
+            + "好那接下來進入 QA 的部分。第一位聽眾問海外券商開戶與匯款注意事項。" * 15
+            + "下一位聽眾問長期投資指數型 ETF 該如何設定再平衡週期。" * 15
+        )
+        windows = self.segmenter.segment_semantic_chapters(text, target_count=5)
+        self.assertGreaterEqual(len(windows), 4)
+        self.assertTrue(any(w.is_qa for w in windows))
+        self.assertTrue(any(not w.is_qa for w in windows))
+        for idx, w in enumerate(windows, 1):
+            self.assertEqual(w.index, idx)
+            self.assertTrue(len(w.sentences) > 0)
+            self.assertTrue(len(w.text) > 0)
+            self.assertGreaterEqual(w.position, 0)
+
 
 if __name__ == "__main__":
     unittest.main()

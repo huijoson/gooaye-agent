@@ -136,16 +136,63 @@ class TranscriptSanitizer:
         return text.rstrip("。！？!?；;") + terminal
 
 
+from dataclasses import dataclass
+
+
+@dataclass(frozen=True)
+class TextWindow:
+    """Represents a semantically coherent window of transcript text."""
+    index: int
+    text: str
+    sentences: tuple[str, ...]
+    position: int
+    is_qa: bool = False
+    topic_hint: str = ""
+
+
 class TranscriptSegmenter:
     """Segment and chunk transcript texts."""
 
-    def __init__(self, sanitizer: TranscriptSanitizer | None = None) -> None:
+    def __init__(
+        self,
+        sanitizer: TranscriptSanitizer | None = None,
+        features: TranscriptFeatureExtractor | None = None,
+    ) -> None:
         self.sanitizer = sanitizer or TranscriptSanitizer()
+        self.features = features or TranscriptFeatureExtractor()
+
+    def detect_qa_boundary(self, text: str) -> int:
+        """Detect the starting character index of the Q&A / listener feedback section."""
+        qa_patterns = (
+            re.compile(r"(?:好[，,、 ]*)?(?:我們|那我|那我先|那接著|接著|那|好啦|OK)?\s*(?:進入|進|切到|切入|開始)(?:\s*(?:QA|Q&A|Q and A|問答|留言|聽眾問答|聽眾QA|Apple Podcast|五星))", re.IGNORECASE),
+            re.compile(r"(?:好[，,、 ]*)?(?:接下來|再來|接著|最後)(?:是|看|進入|進)?\s*(?:QA|Q&A|Q and A|問答|聽眾問答|聽眾QA|Apple Podcast 留言|五星留言|留言區|留言的部分)", re.IGNORECASE),
+            re.compile(r"(?:好[，,、 ]*)?(?:來看|看|回|回覆|念|唸)(?:一下)?\s*(?:QA|Q&A|Apple Podcast|Podcast|五星吹捧|五星好評|五星留言|聽眾留言|大家(?:的)?留言)", re.IGNORECASE),
+            re.compile(r"(?:進入|進|看)?\s*Apple Podcast\s*(?:的)?(?:五星)?留言", re.IGNORECASE),
+            re.compile(r"(?:好[，,、 ]*)?第一位(?:朋友|聽眾|留言|是)[，,、 :：]", re.IGNORECASE),
+            re.compile(r"(?:好[，,、 ]*)?第一則留言[，,、 :：]", re.IGNORECASE),
+        )
+        min_pos = int(len(text) * 0.15) if len(text) > 1000 else 0
+        earliest_pos = -1
+        for pattern in qa_patterns:
+            for match in pattern.finditer(text):
+                if match.start() >= min_pos:
+                    if earliest_pos == -1 or match.start() < earliest_pos:
+                        earliest_pos = match.start()
+        return earliest_pos
 
     def segment_sentences(self, text: str) -> list[str]:
         """Clean transcript and split into distinct sentences based on punctuation."""
         cleaned = self.sanitizer.clean(text)
         return [s.strip() for s in re.split(r"(?<=[。！？!?])\s*", cleaned) if s.strip()]
+
+    def segment_sentences_with_offsets(self, cleaned: str) -> list[tuple[str, int]]:
+        """Split cleaned text into sentences with start offsets."""
+        results: list[tuple[str, int]] = []
+        for m in re.finditer(r"[^。！？!?]+[。！？!?]?", cleaned):
+            s = m.group().strip()
+            if s:
+                results.append((s, m.start()))
+        return results or ([(cleaned, 0)] if cleaned else [])
 
     def make_chunks(self, text: str, target: int = 520) -> list[str]:
         """Aggregate sentences into chunks around target character length."""
@@ -180,6 +227,158 @@ class TranscriptSegmenter:
         if len(parts) > 6:
             parts = parts[:5] + ["；".join(parts[5:])]
         return parts or [summary]
+
+    def segment_semantic_chapters(
+        self,
+        transcript: str,
+        target_count: int = 8,
+        summary: str = "",
+    ) -> list[TextWindow]:
+        """Segment transcript into semantically coherent topic windows."""
+        cleaned = self.sanitizer.clean(transcript)
+        if not cleaned:
+            return []
+
+        sent_items = self.segment_sentences_with_offsets(cleaned)
+        if not sent_items:
+            return []
+
+        summary_seeds = self.split_seeds(summary) if summary else []
+        total_sentences = len(sent_items)
+        if summary_seeds and len(summary_seeds) <= target_count and total_sentences <= len(summary_seeds) * 4:
+            effective_target = len(summary_seeds)
+        else:
+            effective_target = max(1, min(target_count, max(1, total_sentences // 2)))
+
+        qa_boundary = self.detect_qa_boundary(cleaned)
+        if qa_boundary != -1:
+            main_items = [(s, pos) for s, pos in sent_items if pos < qa_boundary]
+            qa_items = [(s, pos) for s, pos in sent_items if pos >= qa_boundary]
+        else:
+            main_items = sent_items
+            qa_items = []
+
+        if not main_items and qa_items:
+            main_items = qa_items
+            qa_items = []
+
+        if qa_items:
+            main_len = sum(len(s) for s, _ in main_items)
+            qa_len = sum(len(s) for s, _ in qa_items)
+            total_len = max(1, main_len + qa_len)
+            main_target = max(1, round(effective_target * (main_len / total_len)))
+            qa_target = max(1, effective_target - main_target)
+        else:
+            main_target = effective_target
+            qa_target = 0
+
+        def partition_items(
+            items: list[tuple[str, int]],
+            k: int,
+            cues_pattern: re.Pattern | None = None,
+            min_items_per_group: int = 2,
+        ) -> list[list[tuple[str, int]]]:
+            if not items:
+                return []
+            max_k = max(1, len(items) // min_items_per_group)
+            k = min(k, max_k)
+            if k <= 1 or len(items) <= min_items_per_group:
+                return [items]
+
+            split_candidates: list[int] = []
+            if cues_pattern:
+                for idx, (s, _) in enumerate(items):
+                    if idx >= min_items_per_group and (len(items) - idx) >= min_items_per_group:
+                        if cues_pattern.search(s):
+                            split_candidates.append(idx)
+
+            ideal_chunk = len(items) / k
+            splits = [0]
+            for step in range(1, k):
+                target_idx = int(step * ideal_chunk)
+                best_split = -1
+                min_dist = float("inf")
+                for cand in split_candidates:
+                    if cand - splits[-1] >= min_items_per_group and (len(items) - cand) >= (k - step) * min_items_per_group:
+                        dist = abs(cand - target_idx)
+                        if dist < min_dist:
+                            min_dist = dist
+                            best_split = cand
+                if best_split != -1 and best_split not in splits:
+                    splits.append(best_split)
+                else:
+                    fallback_split = splits[-1] + max(min_items_per_group, round(ideal_chunk))
+                    fallback_split = min(fallback_split, len(items) - (k - step) * min_items_per_group)
+                    if fallback_split not in splits and fallback_split - splits[-1] >= min_items_per_group:
+                        splits.append(fallback_split)
+            splits.append(len(items))
+
+            groups: list[list[tuple[str, int]]] = []
+            for i in range(len(splits) - 1):
+                start, end = splits[i], splits[i + 1]
+                if start < end:
+                    groups.append(items[start:end])
+            return groups
+
+        main_transition_cues = re.compile(
+            r"^(?:好[，,、 ]*)?(?:我們(?:第一段|首先)?(?:先)?來聊|接著|另外|再來|第二個|第三個|第四個|第五個|轉向|回到|市場方面|產業方面|操作方面|總經方面|宏觀方面|美股方面|台股方面|晶圓代工|記憶體|伺服器|AI|AI伺服器|散熱)",
+            re.IGNORECASE,
+        )
+        qa_listener_cues = re.compile(
+            r"(?:下一位|下一則|這一位|第二位|第三位|第[一二三四五六七八九十]+位|留言說|留言寫道|五星吹捧|五星好評|五星留言|留言的部分|網友問|有朋友問)",
+            re.IGNORECASE,
+        )
+
+        main_groups = partition_items(main_items, main_target, main_transition_cues)
+        qa_groups = partition_items(qa_items, qa_target, qa_listener_cues) if qa_items else []
+
+        all_groups: list[tuple[bool, list[tuple[str, int]]]] = []
+        for g in main_groups:
+            all_groups.append((False, g))
+        for g in qa_groups:
+            all_groups.append((True, g))
+
+        used_seeds: set[int] = set()
+
+        windows: list[TextWindow] = []
+        for idx, (is_qa, group) in enumerate(all_groups, 1):
+            sentences = tuple(s for s, _ in group)
+            text_block = "".join(sentences)
+            pos = group[0][1] if group else 0
+
+            topic_hint = ""
+            if summary_seeds:
+                window_features = self.features.features(text_block)
+                ranked_seeds = []
+                for s_idx, seed in enumerate(summary_seeds):
+                    score = self.features.similarity(window_features, self.features.features(seed))
+                    if s_idx in used_seeds:
+                        score -= 0.1
+                    ranked_seeds.append((score, s_idx, seed))
+                ranked_seeds.sort(reverse=True)
+                if ranked_seeds:
+                    best_score, best_idx, best_seed = ranked_seeds[0]
+                    used_seeds.add(best_idx)
+                    topic_hint = best_seed
+
+            if not topic_hint:
+                if is_qa:
+                    topic_hint = f"聽眾問答與互動交流 第{idx}部分"
+                else:
+                    topic_hint = sentences[0][:30] if sentences else ""
+
+            windows.append(
+                TextWindow(
+                    index=idx,
+                    text=text_block,
+                    sentences=sentences,
+                    position=pos,
+                    is_qa=is_qa,
+                    topic_hint=topic_hint,
+                )
+            )
+
+        return windows
 
 
 class TranscriptFeatureExtractor:
