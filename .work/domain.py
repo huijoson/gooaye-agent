@@ -177,3 +177,72 @@ class SynthesisSummary:
     total_seconds: int
     chapter_distribution: Counter[int]
     notes: tuple[EpisodeNote, ...] = field(default_factory=tuple)
+
+
+@dataclass(frozen=True)
+class TopicDefinition:
+    """Definition and keyword metadata for a thematic guide."""
+    slug: str
+    title: str
+    description: str
+    category: str
+    keywords: tuple[str, ...] = field(default_factory=tuple)
+    core_concepts: tuple[str, ...] = field(default_factory=tuple)
+
+
+@dataclass(frozen=True)
+class ThematicChapterRef:
+    """A chapter reference matched and ranked for a thematic guide."""
+    episode_number: int
+    episode_title: str
+    published_at: str
+    chapter_index: int
+    heading: str
+    takeaway: str
+    relevance_score: float
+    matched_keywords: tuple[str, ...] = field(default_factory=tuple)
+    excerpts: tuple[str, ...] = field(default_factory=tuple)
+
+
+@dataclass(frozen=True)
+class ThematicMilestone:
+    """A historical inflection point or milestone in the topic evolution."""
+    period: str
+    summary: str
+    key_episodes: tuple[int, ...] = field(default_factory=tuple)
+
+
+@dataclass(frozen=True)
+class TopicGuide:
+    """Domain representation of a synthesized thematic knowledge guide."""
+    definition: TopicDefinition
+    time_span: tuple[str, str]
+    summary_takeaways: tuple[str, ...] = field(default_factory=tuple)
+    milestones: tuple[ThematicMilestone, ...] = field(default_factory=tuple)
+    chapters: tuple[ThematicChapterRef, ...] = field(default_factory=tuple)
+    faq: tuple[tuple[str, str], ...] = field(default_factory=tuple)
+
+    @property
+    def slug(self) -> str:
+        return self.definition.slug
+
+    @property
+    def title(self) -> str:
+        return self.definition.title
+
+    @property
+    def category(self) -> str:
+        return self.definition.category
+
+    @property
+    def description(self) -> str:
+        return self.definition.description
+
+    @property
+    def episodes_count(self) -> int:
+        return len({ch.episode_number for ch in self.chapters})
+
+    @property
+    def chapters_count(self) -> int:
+        return len(self.chapters)
+

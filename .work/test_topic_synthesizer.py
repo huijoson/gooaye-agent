@@ -1,0 +1,190 @@
+"""Unit tests for Topic Domain Model, Synthesizer, and Renderer (Issue #13)."""
+
+import pytest
+from domain import (
+    Chapter,
+    EpisodeMetadata,
+    EpisodeNote,
+    ThematicChapterRef,
+    ThematicMilestone,
+    TopicDefinition,
+    TopicGuide,
+)
+from topic_synthesizer import TopicGuideRenderer, TopicGuideSynthesizer
+
+
+def make_sample_episode_note(
+    number: int,
+    date: str,
+    title: str,
+    chapters_data: list[tuple[str, str, list[str]]],
+) -> EpisodeNote:
+    metadata = EpisodeMetadata(
+        number=number,
+        youtube_id=f"yt_{number}",
+        youtube_url=f"https://youtu.be/yt_{number}",
+        youtube_title=f"Gooaye EP{number} {title}",
+        display_title=title,
+        date=date,
+        date_source="archive",
+        duration_str="45:00",
+        duration_seconds=2700,
+        archive_url=f"https://example.com/ep/{number}",
+        summary="測試摘要",
+    )
+    chapters = tuple(
+        Chapter(
+            index=i + 1,
+            heading=h,
+            takeaway=t,
+            excerpts=tuple(e),
+            position=i * 500,
+        )
+        for i, (h, t, e) in enumerate(chapters_data)
+    )
+    return EpisodeNote(metadata=metadata, chapters=chapters)
+
+
+@pytest.fixture
+def sample_episodes() -> list[EpisodeNote]:
+    return [
+        make_sample_episode_note(
+            number=100,
+            date="2021-03-15",
+            title="散熱與晶圓代工早期評估",
+            chapters_data=[
+                (
+                    "傳統伺服器氣冷散熱極限探討",
+                    "氣冷散熱在瓦數突破極限時將面臨物理瓶頸，後續需關注水冷滲透率。",
+                    ["傳統伺服器氣冷差不多到頂了", "後面瓦數再上去就要看水冷怎麼切"],
+                ),
+                (
+                    "航運股行情與心態檢視",
+                    "航運股屬於典型循環股，追高者需設好停損防範回吐。",
+                    ["航運這波就是景氣循環", "不要抱上去又抱下來"],
+                ),
+            ],
+        ),
+        make_sample_episode_note(
+            number=450,
+            date="2024-05-20",
+            title="GB200水冷架構與ASIC供應鏈",
+            chapters_data=[
+                (
+                    "GB200伺服器水冷散熱與CDU供應鏈",
+                    "GB200機櫃全面導入水冷與CDU散熱，台廠散熱供應鏈迎來實質規格升級與產值倍增。",
+                    ["GB200整個水冷架構大幅改變", "CDU跟快接頭是這波關鍵零組件"],
+                ),
+                (
+                    "Google與CSP自研ASIC晶片趨勢",
+                    "CSP大廠為降低算力成本擴大自研ASIC晶片投片，帶動客製化設計服務商機。",
+                    ["Google的TPU跟各大CSP都在做自研ASIC", "台灣的IP跟ASIC設計服務直接受惠"],
+                ),
+            ],
+        ),
+        make_sample_episode_note(
+            number=690,
+            date="2026-08-22",
+            title="黑皮諾平替記與Google的COT轉向",
+            chapters_data=[
+                (
+                    "Google自研晶片COT商業模式轉向",
+                    "Google在自研晶片架構轉向COT模式，客製化設計服務與先進封裝供應鏈重新洗牌。",
+                    ["Google在COT這塊有新的策略調整", "先進封裝跟CoWoS產能依然是兵家必爭之地"],
+                ),
+            ],
+        ),
+    ]
+
+
+@pytest.fixture
+def sample_topic_def() -> TopicDefinition:
+    return TopicDefinition(
+        slug="ai-hardware-and-semiconductor",
+        title="AI 硬體、散熱、電力與 ASIC 自研晶片演進",
+        description="追蹤 2021 至 2026 年主委對 AI 伺服器散熱（氣冷/水冷/CDU）、800V 電力與 CSP 自研 ASIC 晶片之論述脈絡。",
+        category="產業與硬體架構",
+        keywords=(
+            "ASIC", "自研晶片", "散熱", "水冷", "氣冷", "CDU", "GB200", "COT",
+            "CoWoS", "TPU", "先進封裝", "伺服器",
+        ),
+        core_concepts=("水冷散熱升級", "CSP 自研 ASIC", "先進封裝與代工"),
+    )
+
+
+def test_topic_domain_entities(sample_topic_def):
+    ref = ThematicChapterRef(
+        episode_number=450,
+        episode_title="GB200水冷架構與ASIC供應鏈",
+        published_at="2024-05-20",
+        chapter_index=1,
+        heading="GB200伺服器水冷散熱與CDU供應鏈",
+        takeaway="GB200機櫃全面導入水冷與CDU散熱，台廠散熱供應鏈迎來實質規格升級與產值倍增。",
+        relevance_score=15.0,
+        matched_keywords=("GB200", "水冷", "散熱", "CDU"),
+    )
+    milestone = ThematicMilestone(
+        period="2024: GB200與水冷全面爆發",
+        summary="GB200架構確認水冷成為主流規格，散熱零件單價與毛利顯著提升。",
+        key_episodes=(450,),
+    )
+    guide = TopicGuide(
+        definition=sample_topic_def,
+        time_span=("2021-03-15", "2026-08-22"),
+        summary_takeaways=("散熱水冷升級帶動台廠供應鏈產值擴張。",),
+        milestones=(milestone,),
+        chapters=(ref,),
+    )
+
+    assert guide.slug == "ai-hardware-and-semiconductor"
+    assert guide.title == "AI 硬體、散熱、電力與 ASIC 自研晶片演進"
+    assert len(guide.chapters) == 1
+    assert guide.chapters[0].episode_number == 450
+    assert guide.time_span == ("2021-03-15", "2026-08-22")
+
+
+def test_synthesizer_matches_and_scores_chapters(sample_topic_def, sample_episodes):
+    synthesizer = TopicGuideSynthesizer()
+    guide = synthesizer.synthesize_topic(sample_topic_def, sample_episodes)
+
+    assert guide.slug == "ai-hardware-and-semiconductor"
+    # Should match EP100 Ch1, EP450 Ch1, EP450 Ch2, EP690 Ch1 (4 chapters)
+    # Should NOT match EP100 Ch2 (航運股)
+    matched_episodes = {ch.episode_number for ch in guide.chapters}
+    assert 100 in matched_episodes
+    assert 450 in matched_episodes
+    assert 690 in matched_episodes
+    assert len(guide.chapters) == 4
+
+    # Verify chronological ordering
+    dates = [ch.published_at for ch in guide.chapters]
+    assert dates == sorted(dates)
+    assert guide.time_span == ("2021-03-15", "2026-08-22")
+
+    # Verify takeaways were extracted
+    assert len(guide.summary_takeaways) > 0
+
+
+def test_renderer_outputs_valid_markdown(sample_topic_def, sample_episodes):
+    synthesizer = TopicGuideSynthesizer()
+    guide = synthesizer.synthesize_topic(sample_topic_def, sample_episodes)
+    renderer = TopicGuideRenderer()
+    md = renderer.render(guide)
+
+    # Verify frontmatter
+    assert "slug: \"ai-hardware-and-semiconductor\"" in md
+    assert "title: \"AI 硬體、散熱、電力與 ASIC 自研晶片演進\"" in md
+    assert "category: \"產業與硬體架構\"" in md
+    assert "content_method: \"thematic_synthesis\"" in md
+
+    # Verify document structure
+    assert "# AI 硬體、散熱、電力與 ASIC 自研晶片演進" in md
+    assert "## 🎯 核心結論速覽" in md
+    assert "## ⏳ 觀點時序演進與重要里程碑" in md
+    assert "## 📚 歷年深度觀點與章節精華" in md
+    assert "## 🔗 相關集數索引與引用列表" in md
+
+    # Verify relative markdown links to episodes
+    assert "[EP100｜散熱與晶圓代工早期評估](../episodes/EP0100.md)" in md
+    assert "[EP450｜GB200水冷架構與ASIC供應鏈](../episodes/EP0450.md)" in md
+    assert "[EP690｜黑皮諾平替記與Google的COT轉向](../episodes/EP0690.md)" in md
