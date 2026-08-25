@@ -217,20 +217,16 @@ class TopicGuideSynthesizer:
 
     def score_chapter(
         self,
-        episode: EpisodeNote,
-        chapter_index: int,
-        heading: str,
-        takeaway: str,
-        excerpts: tuple[str, ...],
+        chapter: Chapter,
         keywords: tuple[str, ...],
     ) -> tuple[float, tuple[str, ...]]:
         """Score chapter relevance against topic keywords."""
         score = 0.0
         matched = set()
 
-        heading_lower = heading.lower()
-        takeaway_lower = takeaway.lower()
-        excerpts_lower = " ".join(excerpts).lower()
+        heading_lower = chapter.heading.lower()
+        takeaway_lower = chapter.takeaway.lower()
+        excerpts_lower = " ".join(chapter.excerpts).lower()
 
         for kw in keywords:
             kw_lower = kw.lower()
@@ -263,11 +259,7 @@ class TopicGuideSynthesizer:
         for ep in episodes:
             for ch in ep.chapters:
                 score, matched_kws = self.score_chapter(
-                    episode=ep,
-                    chapter_index=ch.index,
-                    heading=ch.heading,
-                    takeaway=ch.takeaway,
-                    excerpts=ch.excerpts,
+                    chapter=ch,
                     keywords=topic_def.keywords,
                 )
 
@@ -374,13 +366,19 @@ class TopicGuideRenderer:
             "- [🎯 核心結論速覽](#-核心結論速覽)",
             "- [⏳ 觀點時序演進與重要里程碑](#-觀點時序演進與重要里程碑)",
             "- [📚 歷年深度觀點與章節精華](#-歷年深度觀點與章節精華)",
+        ]
+
+        if guide.faq:
+            lines.append("- [❓ 專題精選問答](#-專題精選問答)")
+
+        lines.extend([
             "- [🔗 相關集數索引與引用列表](#-相關集數索引與引用列表)",
             "",
             "---",
             "",
             "## 🎯 核心結論速覽",
             "",
-        ]
+        ])
 
         if guide.summary_takeaways:
             for i, takeaway in enumerate(guide.summary_takeaways, 1):
@@ -428,8 +426,6 @@ class TopicGuideRenderer:
                 "",
             ])
             for ref in by_year[year]:
-                ep_str = f"EP{ref.episode_number:04d}"
-                ep_link = f"[{ref.episode_number:04d}｜{ref.episode_title}](../episodes/{ep_str}.md)"
                 kws_str = "、".join(ref.matched_keywords)
                 lines.extend([
                     f"#### [EP{ref.episode_number}｜{ref.episode_title}](../episodes/EP{ref.episode_number:04d}.md) - 第 {ref.chapter_index} 章：{ref.heading}",
@@ -443,6 +439,21 @@ class TopicGuideRenderer:
                     for excerpt in ref.excerpts[:2]:
                         lines.append(f"  - 「{excerpt}」")
                 lines.append("")
+
+        if guide.faq:
+            lines.extend([
+                "---",
+                "",
+                "## ❓ 專題精選問答",
+                "",
+            ])
+            for q, a in guide.faq:
+                lines.extend([
+                    f"### Q: {q}",
+                    "",
+                    f"{a}",
+                    "",
+                ])
 
         lines.extend([
             "---",
@@ -505,8 +516,19 @@ class TopicGuideRenderer:
 class TopicQualityAuditor:
     """Audits topic guide markdown files for grounded references, valid links, and structural integrity."""
 
+    def __init__(self):
+        self._note_cache: dict[Path, EpisodeNote] = {}
+
+    def _get_note(self, file_path: Path) -> EpisodeNote | None:
+        if file_path not in self._note_cache:
+            try:
+                self._note_cache[file_path] = load_note_from_markdown(file_path)
+            except Exception:
+                return None
+        return self._note_cache[file_path]
+
     def audit_topic_file(self, topic_file: Path | str, episodes_dir: Path | str) -> list[dict]:
-        """Audit a single topic guide file."""
+        """Audit a single topic guide file for links, dates, and chapter grounding."""
         path = Path(topic_file)
         ep_dir = Path(episodes_dir)
         defects = []
@@ -526,9 +548,14 @@ class TopicQualityAuditor:
                 if f"{req_key}:" not in fm_text:
                     defects.append({"topic": path.name, "category": "format", "message": f"Missing required frontmatter key: {req_key}"})
 
-        # 2. Check all markdown links to episodes
-        ep_links = re.findall(r"\[([^\]]+)\]\(([^)]*episodes/EP(\d+)[^)]*)\)", text)
-        for label, link_url, ep_num_str in ep_links:
+        # 2. Check all markdown links and grounded chapter data
+        # Regex to extract table rows: | [EPxxxx](../episodes/EPxxxx.md) | 2026-08-22 | 第 1 章 | Heading | Takeaway |
+        table_rows = re.findall(
+            r"\|\s*\[EP(\d+)\]\([^)]*episodes/EP\d+\.md\)\s*\|\s*([^|]+)\s*\|\s*第\s*(\d+)\s*章\s*\|\s*([^|]+)\s*\|",
+            text,
+        )
+
+        for ep_num_str, row_date, ch_idx_str, row_heading in table_rows:
             ep_num = int(ep_num_str)
             target_file = ep_dir / f"EP{ep_num:04d}.md"
             if not target_file.exists():
@@ -536,8 +563,40 @@ class TopicQualityAuditor:
                     "topic": path.name,
                     "category": "broken_link",
                     "target_episode": ep_num,
-                    "link_url": link_url,
                     "message": f"Referenced episode file not found: {target_file}",
+                })
+                continue
+
+            note = self._get_note(target_file)
+            if note is None:
+                defects.append({
+                    "topic": path.name,
+                    "category": "unparseable_episode",
+                    "target_episode": ep_num,
+                    "message": f"Failed to parse referenced episode note: {target_file}",
+                })
+                continue
+
+            # Verify date alignment
+            clean_row_date = row_date.strip()
+            if clean_row_date != note.metadata.date:
+                defects.append({
+                    "topic": path.name,
+                    "category": "date_mismatch",
+                    "target_episode": ep_num,
+                    "message": f"Date mismatch in EP{ep_num}: topic has '{clean_row_date}', episode has '{note.metadata.date}'",
+                })
+
+            # Verify chapter existence
+            ch_idx = int(ch_idx_str)
+            matched_chapter = next((c for c in note.chapters if c.index == ch_idx), None)
+            if matched_chapter is None:
+                defects.append({
+                    "topic": path.name,
+                    "category": "missing_chapter",
+                    "target_episode": ep_num,
+                    "chapter_index": ch_idx,
+                    "message": f"Chapter {ch_idx} not found in EP{ep_num}",
                 })
 
         return defects
@@ -559,5 +618,6 @@ class TopicQualityAuditor:
             "defect_count": len(all_defects),
             "defects": all_defects,
         }
+
 
 

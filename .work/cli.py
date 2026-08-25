@@ -169,10 +169,18 @@ def cmd_topics(args: argparse.Namespace) -> None:
         if not notes:
             print(f"❌ No episode notes found in {episodes_dir}. Please run 'synthesize' first.")
             sys.exit(1)
-        print(f"Loaded {len(notes)} episode notes. Synthesizing {len(DEFAULT_TOPICS)} topic guides to {topics_dir}...")
+
+        selected_topics = DEFAULT_TOPICS
+        if args.topic:
+            selected_topics = tuple(t for t in DEFAULT_TOPICS if t.slug == args.topic)
+            if not selected_topics:
+                print(f"❌ Unknown topic slug: '{args.topic}'. Use 'topics --list' to see valid slugs.")
+                sys.exit(1)
+
+        print(f"Loaded {len(notes)} episode notes. Synthesizing {len(selected_topics)} topic guides to {topics_dir}...")
         start_time = time.time()
         syn = TopicGuideSynthesizer()
-        files = syn.synthesize_and_save_all(notes, topics_dir, DEFAULT_TOPICS)
+        files = syn.synthesize_and_save_all(notes, topics_dir, selected_topics)
         elapsed = time.time() - start_time
         print(f"✅ Successfully generated {len(files)} topic files in {elapsed:.2f}s:")
         for f in files:
@@ -232,6 +240,7 @@ def main() -> None:
     p_top.add_argument("--generate", action="store_true", help="Batch synthesize all topic guides")
     p_top.add_argument("--audit", action="store_true", help="Audit grounding and links of all topic guides")
     p_top.add_argument("--list", action="store_true", help="List all defined topic guides")
+    p_top.add_argument("--topic", type=str, default=None, help="Filter for a specific topic slug")
     p_top.add_argument("--output-dir", type=Path, default=OUTPUT_DIR, help="Base destination directory")
     p_top.add_argument("--out-dir", type=Path, default=None, help="Alias for --output-dir")
     p_top.set_defaults(func=cmd_topics)
