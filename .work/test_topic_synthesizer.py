@@ -188,3 +188,77 @@ def test_renderer_outputs_valid_markdown(sample_topic_def, sample_episodes):
     assert "[EP100｜散熱與晶圓代工早期評估](../episodes/EP0100.md)" in md
     assert "[EP450｜GB200水冷架構與ASIC供應鏈](../episodes/EP0450.md)" in md
     assert "[EP690｜黑皮諾平替記與Google的COT轉向](../episodes/EP0690.md)" in md
+
+
+def test_default_topics_catalog():
+    from topic_synthesizer import DEFAULT_TOPICS
+    assert len(DEFAULT_TOPICS) == 4
+    slugs = {t.slug for t in DEFAULT_TOPICS}
+    assert "ai-hardware-and-semiconductor" in slugs
+    assert "investment-mindset-and-risk-control" in slugs
+    assert "macro-cycle-and-asset-allocation" in slugs
+    assert "apple-and-consumer-electronics" in slugs
+
+
+def test_synthesize_all_topics_and_render_readme(sample_episodes, tmp_path):
+    from topic_synthesizer import DEFAULT_TOPICS, TopicGuideSynthesizer
+
+    synthesizer = TopicGuideSynthesizer()
+    guides = synthesizer.synthesize_all_topics(sample_episodes, DEFAULT_TOPICS)
+    assert len(guides) == 4
+
+    out_files = synthesizer.synthesize_and_save_all(sample_episodes, tmp_path, DEFAULT_TOPICS)
+    assert len(out_files) == 5  # 4 topic guides + 1 README.md
+
+    readme_path = tmp_path / "README.md"
+    assert readme_path.exists()
+    readme_content = readme_path.read_text(encoding="utf-8")
+    assert "# Gooaye 股癌 跨集數主題式深度知識庫指南" in readme_content
+    assert "[AI 伺服器、散熱、電力與 ASIC 自研晶片演進](ai-hardware-and-semiconductor.md)" in readme_content
+
+
+def test_load_note_from_markdown(tmp_path):
+    from topic_synthesizer import load_note_from_markdown
+
+    md_content = """---
+episode: 1
+title: "歐洲疫情與股市崩跌"
+youtube_title: "EP1 | 國外反亞情緒 股市崩盤"
+youtube_id: "xLS-2whm8Aw"
+youtube_url: "https://www.youtube.com/watch?v=xLS-2whm8Aw"
+episode_date: "2020-02-27"
+episode_date_source: "transcript_archive"
+duration: "23:43"
+content_method: "hybrid_extractive_distilled"
+---
+
+# EP1｜歐洲疫情與股市崩跌
+
+## 章節觀念
+
+### 1. 歐洲疫情蔓延與排斥亞洲人
+
+- **核心觀點：** 歐洲當地媒體渲染造成恐慌，排斥亞洲人氣氛濃厚。
+- 去看醫生前其實是非常糾結的
+- 整個歐洲的口罩都被掃光了
+
+### 2. 股市崩跌與長下影線迷思
+
+- **核心觀點：** 長下影線不必然代表反彈，破線仍需設好停損。
+- 多的是長下影線之後繼續崩跌
+- 散戶贖回基金迫使機構賣股
+"""
+    note_file = tmp_path / "EP0001.md"
+    note_file.write_text(md_content, encoding="utf-8")
+
+    note = load_note_from_markdown(note_file)
+    assert note.metadata.number == 1
+    assert note.metadata.display_title == "歐洲疫情與股市崩跌"
+    assert note.metadata.date == "2020-02-27"
+    assert len(note.chapters) == 2
+    assert note.chapters[0].index == 1
+    assert note.chapters[0].heading == "歐洲疫情蔓延與排斥亞洲人"
+    assert note.chapters[0].takeaway == "歐洲當地媒體渲染造成恐慌，排斥亞洲人氣氛濃厚。"
+    assert len(note.chapters[0].excerpts) == 2
+
+
