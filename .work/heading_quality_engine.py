@@ -146,7 +146,8 @@ class HeadingQualityEngine:
             )
 
         # Multiple connectors check (e.g. A與B與C)
-        if sum(heading.count(conn) for conn in self.CONNECTORS) >= 2:
+        h_no_part = heading.replace("參與", "").replace("給與", "")
+        if sum(h_no_part.count(conn) for conn in self.CONNECTORS) >= 2:
             defects.append(
                 Defect(
                     DefectCategory.MACHINE_GLUE,
@@ -495,14 +496,37 @@ class HeadingQualityEngine:
                             if len(cand) <= self.MAX_LENGTH and self.compact(cand) not in used and self.evaluate(cand, excerpts, summary):
                                 return cand
 
-        # Ultimate fallback: Construct clean topic assertion from top entities
-        for exc in excerpts:
-            nouns = re.findall(r"[\u4e00-\u9fffA-Za-z0-9]{3,8}", exc)
-            for n in nouns:
-                if not self.ORAL_WORDS_PATTERN.search(n) and not self.BAD_PREFIX_PATTERN.search(n) and not self.GENERIC_PATTERN.search(n):
-                    cand = f"{n}市場趨勢與實務觀點"
-                    if self.MIN_LENGTH <= len(cand) <= self.MAX_LENGTH and self.compact(cand) not in used and self.evaluate(cand, excerpts, summary):
-                        return cand
+        # Ultimate fallback: Construct clean topic assertion from nouns in excerpts[0] and excerpts[1]
+        nouns_1 = [
+            n for n in re.findall(r"[\u4e00-\u9fffA-Za-z0-9]{3,8}", excerpts[0])
+            if not self.ORAL_WORDS_PATTERN.search(n) and not self.BAD_PREFIX_PATTERN.search(n) and not self.GENERIC_PATTERN.search(n)
+        ]
+        nouns_2 = [
+            n for n in re.findall(r"[\u4e00-\u9fffA-Za-z0-9]{3,8}", excerpts[1])
+            if not self.ORAL_WORDS_PATTERN.search(n) and not self.BAD_PREFIX_PATTERN.search(n) and not self.GENERIC_PATTERN.search(n)
+        ]
+        for n1 in nouns_1:
+            for n2 in nouns_2:
+                cand = f"{n1}與{n2}"
+                if self.MIN_LENGTH <= len(cand) <= self.MAX_LENGTH and self.compact(cand) not in used and self.evaluate(cand, excerpts, summary):
+                    return cand
+                cand_pad = f"{n1}觀念與{n2}探討"
+                if self.MIN_LENGTH <= len(cand_pad) <= self.MAX_LENGTH and self.compact(cand_pad) not in used and self.evaluate(cand_pad, excerpts, summary):
+                    return cand_pad
 
-        # Safe default
-        return "市場動態變化與投資觀念"
+        def get_clean_safe_slice(text: str) -> str:
+            cleaned = self._clean_candidate_phrase(text)
+            for _ in range(3):
+                cleaned = self.LEADING_TRIM_PATTERN.sub("", cleaned).strip()
+                cleaned = self.ORAL_DIRECT_PATTERN.sub("", cleaned).strip()
+                cleaned = self.BAD_PREFIX_PATTERN.sub("", cleaned).strip()
+            compacted = self.compact(cleaned)
+            if len(compacted) >= 3:
+                return compacted[:min(6, len(compacted))]
+            raw_comp = self.compact(text)
+            return raw_comp[:min(6, len(raw_comp))]
+
+        tok1 = get_clean_safe_slice(excerpts[0])
+        tok2 = get_clean_safe_slice(excerpts[1])
+        cand = f"{tok1}觀念與{tok2}探討"
+        return cand[: self.MAX_LENGTH]
