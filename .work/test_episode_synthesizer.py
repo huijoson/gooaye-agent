@@ -115,13 +115,44 @@ class TestEpisodeNoteSynthesizer(unittest.TestCase):
         note = self.synthesizer.synthesize_episode(1)
         self.assertEqual(note.metadata.number, 1)
         self.assertTrue(len(note.chapters) >= 3)
-        markdown = note.render_markdown()
-        self.assertIn("episode: 1", markdown)
-        self.assertIn("## 章節觀念", markdown)
-        self.assertIn("## 資料來源與整理方式", markdown)
+        markdown_slim = note.render_markdown(mode="slim")
+        markdown_full = note.render_markdown(mode="full")
+        self.assertIn("episode: 1", markdown_slim)
+        self.assertIn("## 章節觀念", markdown_slim)
+        self.assertIn("## 資料來源與整理方式", markdown_slim)
         for ch in note.chapters:
-            self.assertIn(f"### {ch.index}. {ch.heading}", markdown)
+            self.assertIn(f"### {ch.index}. {ch.heading}", markdown_slim)
+            self.assertTrue(len(ch.takeaway) >= 15)
+            self.assertIn(f"- **核心觀點：** {ch.takeaway}", markdown_slim)
+            self.assertIn(f"- **核心觀點：** {ch.takeaway}", markdown_full)
             self.assertGreaterEqual(len(ch.excerpts), 2)
+
+    def test_synthesize_all_writes_dual_tier_files(self) -> None:
+        import tempfile
+        if 1 not in self.synthesizer.episode_numbers:
+            self.skipTest("EP1 data files not present in workspace")
+        with tempfile.TemporaryDirectory() as tmpdir:
+            out_dir = Path(tmpdir)
+            summary = self.synthesizer.synthesize_all(
+                output_dir=out_dir,
+                episode_numbers=[1],
+            )
+            self.assertEqual(summary.total_episodes, 1)
+            ep_file = out_dir / "episodes/EP0001.md"
+            full_file = out_dir / "episodes/EP0001.full.md"
+            index_file = out_dir / "_index.md"
+            readme_file = out_dir / "README.md"
+            self.assertTrue(ep_file.exists())
+            self.assertTrue(full_file.exists())
+            self.assertTrue(index_file.exists())
+            self.assertTrue(readme_file.exists())
+
+            ep_content = ep_file.read_text(encoding="utf-8")
+            full_content = full_file.read_text(encoding="utf-8")
+            self.assertIn("content_method: \"hybrid_extractive_distilled\"", ep_content)
+            self.assertIn("content_method: \"hybrid_extractive_distilled\"", full_content)
+            self.assertIn("**核心觀點：**", ep_content)
+            self.assertIn("**核心觀點：**", full_content)
 
 
 if __name__ == "__main__":

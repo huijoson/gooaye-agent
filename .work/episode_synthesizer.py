@@ -45,6 +45,13 @@ from heading_resolver import (
     CompositeHeadingResolver,
     OllamaHeadingResolver,
 )
+from takeaway_quality_engine import TakeawayQualityEngine
+from takeaway_resolver import (
+    TakeawayResolver,
+    CachedTakeawayResolver,
+    DeterministicTakeawayResolver,
+    CompositeTakeawayResolver,
+)
 from markdown_renderer import MarkdownRenderer
 
 logger = logging.getLogger(__name__)
@@ -76,7 +83,9 @@ class EpisodeNoteSynthesizer:
         transcript_dir: Path = TRANSCRIPT_DIR,
         cache_dir: Path = HEADINGS_CACHE_DIR,
         resolver: HeadingResolver | None = None,
+        takeaway_resolver: TakeawayResolver | None = None,
         quality_engine: HeadingQualityEngine | None = None,
+        takeaway_quality_engine: TakeawayQualityEngine | None = None,
         sanitizer: TranscriptSanitizer | None = None,
         segmenter: TranscriptSegmenter | None = None,
         feature_extractor: TranscriptFeatureExtractor | None = None,
@@ -89,6 +98,7 @@ class EpisodeNoteSynthesizer:
         self.cache_dir = cache_dir
 
         self.quality = quality_engine or HeadingQualityEngine()
+        self.takeaway_quality = takeaway_quality_engine or TakeawayQualityEngine()
         self.sanitizer = sanitizer or TranscriptSanitizer()
         self.segmenter = segmenter or TranscriptSegmenter(sanitizer=self.sanitizer)
         self.features_extractor = feature_extractor or TranscriptFeatureExtractor()
@@ -102,6 +112,11 @@ class EpisodeNoteSynthesizer:
         self.resolver = resolver or CompositeHeadingResolver(
             cache_dir=self.cache_dir,
             quality_engine=self.quality,
+        )
+        self.takeaway_resolver = takeaway_resolver or CompositeTakeawayResolver(
+            primary=CachedTakeawayResolver(cache_dir=self.cache_dir, quality_engine=self.takeaway_quality),
+            secondary=DeterministicTakeawayResolver(quality_engine=self.takeaway_quality),
+            quality_engine=self.takeaway_quality,
         )
 
         self._channel_entries: dict[int, dict] = {}
@@ -223,7 +238,7 @@ class EpisodeNoteSynthesizer:
 
     def _extract_evidence_from_raw(self, summary: str, transcript: str) -> list[ChapterEvidence]:
         """Extract evidence from raw summary and transcript strings."""
-        return self.evidence_extractor.extract(summary, transcript)
+        return self.evidence_extractor.extract(transcript, summary=summary)
 
     def extract_evidence(self, number: int) -> list[ChapterEvidence]:
         """Extract structured chapter evidence directly from transcript and summary without parsing Markdown."""
@@ -235,19 +250,26 @@ class EpisodeNoteSynthesizer:
         self,
         number: int,
         resolver: HeadingResolver | None = None,
+        takeaway_resolver: TakeawayResolver | None = None,
     ) -> EpisodeNote:
-        """Synthesize a complete EpisodeNote domain entity."""
+        """Synthesize a complete EpisodeNote domain entity with headings and takeaways."""
         meta = self.get_metadata(number)
         raw_chapters = self.extract_evidence(number)
         active_resolver = resolver or self.resolver
+        active_takeaway_resolver = takeaway_resolver or self.takeaway_resolver
+
         headings = active_resolver.resolve(meta, raw_chapters)
+        takeaways = active_takeaway_resolver.resolve(meta, raw_chapters)
 
         chapters: list[Chapter] = []
-        for idx, (raw, heading) in enumerate(zip(raw_chapters, headings, strict=True), 1):
+        for idx, (raw, heading, takeaway) in enumerate(
+            zip(raw_chapters, headings, takeaways, strict=True), 1
+        ):
             chapters.append(
                 Chapter(
                     index=idx,
                     heading=heading,
+                    takeaway=takeaway,
                     excerpts=raw.excerpts if isinstance(raw, ChapterEvidence) else tuple(raw["excerpts"]),
                     position=raw.position if isinstance(raw, ChapterEvidence) else raw.get("position", 0),
                 )
@@ -259,26 +281,41 @@ class EpisodeNoteSynthesizer:
         self,
         output_dir: Path = OUTPUT_DIR,
         resolver: HeadingResolver | None = None,
+        takeaway_resolver: TakeawayResolver | None = None,
         max_workers: int = 1,
+        episode_numbers: Sequence[int] | None = None,
     ) -> SynthesisSummary:
-        """Batch synthesize all episode notes, write markdown files, index, and readme."""
+        """Batch synthesize all episode notes, write markdown files (slim and full), index, and readme."""
         episodes_dir = output_dir / "episodes"
         if output_dir.exists():
             shutil.rmtree(output_dir)
         episodes_dir.mkdir(parents=True, exist_ok=True)
 
         active_resolver = resolver or self.resolver
+        active_takeaway_resolver = takeaway_resolver or self.takeaway_resolver
+        target_numbers = list(episode_numbers) if episode_numbers is not None else self.episode_numbers
 
         def _process(number: int) -> EpisodeNote:
-            note = self.synthesize_episode(number, resolver=active_resolver)
-            (episodes_dir / f"EP{number:04d}.md").write_text(note.render_markdown(), encoding="utf-8")
+            note = self.synthesize_episode(
+                number,
+                resolver=active_resolver,
+                takeaway_resolver=active_takeaway_resolver,
+            )
+            (episodes_dir / f"EP{number:04d}.md").write_text(
+                note.render_markdown(mode="slim"),
+                encoding="utf-8",
+            )
+            (episodes_dir / f"EP{number:04d}.full.md").write_text(
+                note.render_markdown(mode="full"),
+                encoding="utf-8",
+            )
             return note
 
         if max_workers > 1:
             with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
-                notes = list(executor.map(_process, self.episode_numbers))
+                notes = list(executor.map(_process, target_numbers))
         else:
-            notes = [_process(number) for number in self.episode_numbers]
+            notes = [_process(number) for number in target_numbers]
 
         chapter_counts: Counter[int] = Counter()
         total_seconds = 0
@@ -300,27 +337,46 @@ class EpisodeNoteSynthesizer:
 
         return summary
 
-    def audit(self, resolver: HeadingResolver | None = None) -> dict[str, int | list[dict]]:
-        """Audit all episodes in the corpus and report any heading defects or mismatches."""
+    def audit(
+        self,
+        resolver: HeadingResolver | None = None,
+        takeaway_resolver: TakeawayResolver | None = None,
+        episode_numbers: Sequence[int] | None = None,
+    ) -> dict[str, int | list[dict]]:
+        """Audit all episodes in the corpus and report any heading or takeaway defects."""
         active_resolver = resolver or self.resolver
+        active_takeaway_resolver = takeaway_resolver or self.takeaway_resolver
+        target_numbers = list(episode_numbers) if episode_numbers is not None else self.episode_numbers
+
         total_chapters = 0
         defects_found: list[dict] = []
 
-        for number in self.episode_numbers:
+        for number in target_numbers:
             try:
                 meta = self.get_metadata(number)
                 raw_chapters = self.extract_evidence(number)
                 headings = active_resolver.resolve(meta, raw_chapters)
-                for idx, (h, ch) in enumerate(zip(headings, raw_chapters), 1):
+                takeaways = active_takeaway_resolver.resolve(meta, raw_chapters)
+
+                for idx, (h, t, ch) in enumerate(zip(headings, takeaways, raw_chapters), 1):
                     total_chapters += 1
                     excerpts = ch.excerpts if isinstance(ch, ChapterEvidence) else tuple(ch["excerpts"])
-                    report = self.quality.diagnose(h, excerpts, meta.summary)
-                    if not report.is_valid:
+                    h_report = self.quality.diagnose(h, excerpts, meta.summary)
+                    t_report = self.takeaway_quality.diagnose(t, excerpts)
+
+                    chapter_defects = []
+                    if not h_report.is_valid:
+                        chapter_defects.extend([f"Heading: {d.message}" for d in h_report.defects])
+                    if not t_report.is_valid:
+                        chapter_defects.extend([f"Takeaway: {d.message}" for d in t_report.defects])
+
+                    if chapter_defects:
                         defects_found.append({
                             "episode": number,
                             "chapter": idx,
                             "heading": h,
-                            "defects": [d.message for d in report.defects],
+                            "takeaway": t,
+                            "defects": chapter_defects,
                         })
             except Exception as e:
                 defects_found.append({
@@ -329,7 +385,7 @@ class EpisodeNoteSynthesizer:
                 })
 
         return {
-            "total_episodes": len(self.episode_numbers),
+            "total_episodes": len(target_numbers),
             "total_chapters": total_chapters,
             "defects_count": len(defects_found),
             "defects": defects_found,
