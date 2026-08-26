@@ -58,7 +58,7 @@ gooaye-agent/
 本專案支援多種安裝與整合方式，讓您在本地專案或跨所有工作區隨時調用 Gooaye 技能：
 
 ### 方式一：在本專案直接使用（免安裝）
-如果您在當前 `gooaye-agent` 專案目錄下開啟 Antigravity，Agent 會自動偵測到 [`.agents/skills/gooaye/SKILL.md`](file:///Users/yuhan/coding/gooaye-agent/.agents/skills/gooaye/SKILL.md)，**無需任何安裝即可直接提問**。
+如果您在當前 `gooaye-agent` 專案目錄下開啟 Antigravity，Agent 會自動偵測到 [`.agents/skills/gooaye/SKILL.md`](.agents/skills/gooaye/SKILL.md)，**無需任何安裝即可直接提問**。
 
 ---
 
@@ -155,11 +155,11 @@ pytest .work/
 ```
 
 ### 相關架構文件
-- [CONTEXT.md](file:///Users/yuhan/coding/gooaye-agent/CONTEXT.md)：核心領域概念、深模組介面與品質閘門標準。
-- [ADR 0001](file:///Users/yuhan/coding/gooaye-agent/docs/adr/0001-progressive-gooaye-skill.md)：漸進式按需技能架構決策紀錄。
-- [ADR 0002](file:///Users/yuhan/coding/gooaye-agent/docs/adr/0002-hybrid-extractive-distilled-notes.md)：雙層混合筆記架構決策紀錄。
-- [主題專題目錄](file:///Users/yuhan/coding/gooaye-agent/gooaye-youtube-notes/topics/README.md)：四大主題專題手冊。
-- [全集索引表](file:///Users/yuhan/coding/gooaye-agent/gooaye-youtube-notes/_index.md)：689 集完整章節索引。
+- [CONTEXT.md](CONTEXT.md)：核心領域概念、深模組介面與品質閘門標準。
+- [ADR 0001](docs/adr/0001-progressive-gooaye-skill.md)：漸進式按需技能架構決策紀錄。
+- [ADR 0002](docs/adr/0002-hybrid-extractive-distilled-notes.md)：雙層混合筆記架構決策紀錄。
+- [主題專題目錄](gooaye-youtube-notes/topics/README.md)：四大主題專題手冊。
+- [全集索引表](gooaye-youtube-notes/_index.md)：689 集完整章節索引。
 
 ---
 
@@ -167,3 +167,10 @@ pytest .work/
 
 - 本專案所有逐字稿與結構化筆記僅供學術研究、觀念索引與個人學習使用。
 - 節目內容與 AI 產生之回覆均不構成任何形式的投資建議或買賣推薦。
+
+---
+
+## 📜 授權條款 (License)
+
+本專案基於 [MIT License](LICENSE) 開源。
+
