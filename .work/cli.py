@@ -222,8 +222,8 @@ def cmd_doctor(args: argparse.Namespace) -> None:
 
 
 def cmd_topics(args: argparse.Namespace) -> None:
+    from topic_catalog import DEFAULT_TOPICS
     from topic_synthesizer import (
-        DEFAULT_TOPICS,
         TopicGuideSynthesizer,
         TopicQualityAuditor,
         load_all_notes_from_dir,

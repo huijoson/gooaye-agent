@@ -7,6 +7,7 @@ import unittest
 import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from unittest.mock import patch
 from episode_synthesizer import (
     EpisodeNoteSynthesizer,
     EpisodeMetadata,
@@ -180,9 +181,7 @@ class TestEpisodeNoteSynthesizer(unittest.TestCase):
     def test_synthesize_notes_returns_complete_summary_without_writing(self) -> None:
         if not {1, 2}.issubset(self.synthesizer.episode_numbers):
             self.skipTest("EP1 and EP2 data files not present in workspace")
-        with TemporaryDirectory() as directory:
-            tmp_path = Path(directory)
-
+        with patch.object(Path, "write_text") as write_text:
             summary = self.synthesizer.synthesize_notes(
                 max_workers=1,
                 episode_numbers=(1, 2),
@@ -191,7 +190,7 @@ class TestEpisodeNoteSynthesizer(unittest.TestCase):
             self.assertEqual([note.metadata.number for note in summary.notes], [1, 2])
             self.assertEqual(summary.total_episodes, 2)
             self.assertEqual(summary.total_chapters, sum(len(note.chapters) for note in summary.notes))
-            self.assertEqual(list(tmp_path.rglob("*.md")), [])
+            write_text.assert_not_called()
 
     def test_synthesize_all_writes_dual_tier_files(self) -> None:
         import tempfile
