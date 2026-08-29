@@ -7,6 +7,7 @@ import hashlib
 import json
 import os
 from collections import Counter
+from dataclasses import replace
 from pathlib import Path
 
 import pytest
@@ -17,6 +18,7 @@ from knowledge_base_publisher import (
     PublicationMode,
     PublicationRequest,
 )
+from topic_synthesizer import TopicGuideSynthesizer
 
 
 class FixtureEpisodeSynthesizer:
@@ -67,6 +69,18 @@ class FixtureEpisodeSynthesizer:
             chapter_distribution=Counter({1: len(notes)}),
             notes=notes,
         )
+
+
+class RewritingTopicSynthesizer:
+    def __init__(self, guide_slugs: tuple[str, ...]) -> None:
+        self.guide_slugs = guide_slugs
+
+    def synthesize_all_topics(self, notes, topics):
+        guides = TopicGuideSynthesizer().synthesize_all_topics(notes, topics)
+        return [
+            replace(guide, definition=replace(guide.definition, slug=slug))
+            for guide, slug in zip(guides, self.guide_slugs, strict=True)
+        ]
 
 
 def make_fixture_publisher(
@@ -274,6 +288,108 @@ def test_publish_rejects_the_workspace_root_before_synthesis():
         publisher.publish(PublicationRequest(destination=workspace_root))
 
     assert synthesizer.call_count == 0
+
+
+@pytest.mark.parametrize(
+    "slug",
+    (
+        "",
+        ".",
+        "..",
+        "../../outside",
+        "topic/subtopic",
+        "topic\\subtopic",
+        "/absolute",
+        "C:\\absolute",
+        "C:relative",
+        "topic/../normalized",
+    ),
+)
+def test_publish_rejects_an_invalid_topic_slug_before_writing(tmp_path, slug):
+    publisher = make_fixture_publisher(
+        episode_numbers=(1,),
+        topic_slugs=(slug,),
+    )
+    destination = tmp_path / "publication"
+
+    with pytest.raises(ValueError, match="Topic catalog slug"):
+        publisher.publish(
+            PublicationRequest(destination=destination, keep_failed_staging=True)
+        )
+
+    assert list(tmp_path.iterdir()) == []
+
+
+def test_publish_rejects_duplicate_topic_slugs_before_writing(tmp_path):
+    publisher = make_fixture_publisher(
+        episode_numbers=(1,),
+        topic_slugs=("duplicate", "duplicate"),
+    )
+    destination = tmp_path / "publication"
+
+    with pytest.raises(ValueError, match="Topic catalog slugs must be unique"):
+        publisher.publish(
+            PublicationRequest(destination=destination, keep_failed_staging=True)
+        )
+
+    assert list(tmp_path.iterdir()) == []
+
+
+@pytest.mark.parametrize(
+    "guide_slug",
+    (
+        "",
+        ".",
+        "..",
+        "../../outside",
+        "topic/subtopic",
+        "topic\\subtopic",
+        "/absolute",
+        "C:\\absolute",
+        "C:relative",
+    ),
+)
+def test_publish_rejects_an_invalid_guide_slug_before_rendering(tmp_path, guide_slug):
+    publisher = make_fixture_publisher(
+        episode_numbers=(1,),
+        topic_slugs=("only-topic",),
+    )
+    publisher.topic_synthesizer = RewritingTopicSynthesizer((guide_slug,))
+    destination = tmp_path / "publication"
+
+    with pytest.raises(ValueError, match="Topic Guide slug"):
+        publisher.publish(
+            PublicationRequest(destination=destination, keep_failed_staging=True)
+        )
+
+    assert list(tmp_path.iterdir()) == []
+
+
+@pytest.mark.parametrize(
+    ("catalog_slugs", "guide_slugs"),
+    (
+        (("only-topic",), ("different-topic",)),
+        (("topic-a", "topic-b"), ("topic-a", "topic-a")),
+    ),
+)
+def test_publish_rejects_topic_guide_catalog_mismatches_before_rendering(
+    tmp_path,
+    catalog_slugs,
+    guide_slugs,
+):
+    publisher = make_fixture_publisher(
+        episode_numbers=(1,),
+        topic_slugs=catalog_slugs,
+    )
+    publisher.topic_synthesizer = RewritingTopicSynthesizer(guide_slugs)
+    destination = tmp_path / "publication"
+
+    with pytest.raises(ValueError, match="exactly match the Topic catalog"):
+        publisher.publish(
+            PublicationRequest(destination=destination, keep_failed_staging=True)
+        )
+
+    assert list(tmp_path.iterdir()) == []
 
 
 def test_verify_accepts_a_complete_manifest_managed_publication(tmp_path):

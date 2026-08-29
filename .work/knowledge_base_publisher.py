@@ -12,7 +12,7 @@ import tempfile
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from enum import Enum
-from pathlib import Path
+from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Sequence
 from urllib.parse import unquote, urlsplit
 
@@ -105,6 +105,17 @@ class KnowledgeBasePublisher:
     def publish(self, request: PublicationRequest) -> PublicationManifest:
         """Build, verify, and install one complete publication tree."""
         destination = self._validated_destination(request)
+        catalog_slugs = self._validated_catalog_slugs()
+        summary = self.episode_synthesizer.synthesize_notes(
+            resolver=request.resolver,
+            takeaway_resolver=request.takeaway_resolver,
+            max_workers=request.max_workers,
+        )
+        guides = self.topic_synthesizer.synthesize_all_topics(
+            summary.notes,
+            self.topic_catalog,
+        )
+        self._validated_guide_slugs(guides, catalog_slugs)
         destination.parent.mkdir(parents=True, exist_ok=True)
         staging = Path(
             tempfile.mkdtemp(
@@ -114,15 +125,6 @@ class KnowledgeBasePublisher:
         )
         installed = False
         try:
-            summary = self.episode_synthesizer.synthesize_notes(
-                resolver=request.resolver,
-                takeaway_resolver=request.takeaway_resolver,
-                max_workers=request.max_workers,
-            )
-            guides = self.topic_synthesizer.synthesize_all_topics(
-                summary.notes,
-                self.topic_catalog,
-            )
             self._render_tree(staging, summary, guides)
             manifest = self._build_manifest(staging, summary)
             self._write_manifest(staging, manifest)
@@ -161,6 +163,38 @@ class KnowledgeBasePublisher:
             if report.mode is not PublicationMode.MANAGED or not report.is_valid:
                 raise ValueError("Non-empty publication destination is not a valid managed tree.")
         return destination
+
+    def _validated_catalog_slugs(self) -> tuple[str, ...]:
+        slugs = tuple(topic.slug for topic in self.topic_catalog)
+        for slug in slugs:
+            self._validate_topic_slug(slug, source="Topic catalog")
+        if len(set(slugs)) != len(slugs):
+            raise ValueError("Topic catalog slugs must be unique.")
+        return slugs
+
+    @staticmethod
+    def _validated_guide_slugs(guides, catalog_slugs: tuple[str, ...]) -> tuple[str, ...]:
+        slugs = tuple(guide.slug for guide in guides)
+        for slug in slugs:
+            KnowledgeBasePublisher._validate_topic_slug(slug, source="Topic Guide")
+        if sorted(slugs) != sorted(catalog_slugs):
+            raise ValueError("Topic Guide slugs must exactly match the Topic catalog.")
+        return slugs
+
+    @staticmethod
+    def _validate_topic_slug(slug: object, *, source: str) -> None:
+        if (
+            not isinstance(slug, str)
+            or not slug
+            or slug in {".", ".."}
+            or "\0" in slug
+            or PurePosixPath(slug).parts != (slug,)
+            or PureWindowsPath(slug).parts != (slug,)
+            or bool(PureWindowsPath(slug).drive)
+        ):
+            raise ValueError(
+                f"{source} slug must be a single normalized filename component."
+            )
 
     def _render_tree(self, stage, summary, guides) -> None:
         episodes_dir = stage / "episodes"
