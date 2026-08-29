@@ -6,7 +6,7 @@ import json
 from collections import Counter
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Sequence
+from typing import Mapping, Sequence
 
 
 def yaml_string(value: str) -> str:
@@ -112,6 +112,34 @@ class EpisodeMetadata:
     duration_seconds: int
     archive_url: str
     summary: str
+
+
+@dataclass(frozen=True)
+class EpisodeSourceSnapshot:
+    """A complete, synthesis-ready set of source data for one episode."""
+    number: int
+    youtube_id: str
+    youtube_title: str
+    published_at: str
+    duration_seconds: int
+    archive_filename: str
+    display_title: str
+    archive_date: str
+    summary: str
+    transcript: str
+    source_urls: Mapping[str, str]
+    fetched_at: str
+
+
+@dataclass(frozen=True)
+class EpisodeSourceVerification:
+    """Integrity result for a persisted episode source snapshot."""
+    number: int
+    defects: tuple[str, ...] = field(default_factory=tuple)
+
+    @property
+    def is_valid(self) -> bool:
+        return not self.defects
 
 
 @dataclass(frozen=True)
@@ -245,4 +273,3 @@ class TopicGuide:
     @property
     def chapters_count(self) -> int:
         return len(self.chapters)
-

@@ -7,6 +7,8 @@
 
 本專案將《Gooaye 股癌》YouTube 公開清單中 **689 支影片（540+ 小時）** 的完整逐字稿，經由雙層混合架構（Dual-Tier Hybrid Extractive-Distilled Pipeline），整理為 **5,299 個結構化觀念章節**、**單句核心觀點判斷** 與 **真實逐字稿引述**，並提煉出 **4 大跨集數主題專題手冊**；全套知識庫封裝為符合 Antigravity 規範之極低 Token 待機開銷（~30 tokens）的漸進式按需技能（Progressive Skill）。
 
+> 來源層已另外取得並驗證 **EP691**，目前共有 690 集可供合成；上述 689 集是已發布知識庫的統計，下載來源不會自動合成或發布。
+
 ---
 
 ## 📁 專案結構導覽 (Project Structure)
@@ -42,6 +44,9 @@ gooaye-agent/
 │   ├── cli.py                              # 統一命令列介面 (synthesize / audit / topics / doctor)
 │   ├── domain.py                           # 核心領域物件 (EpisodeNote, Chapter, TopicGuide 等)
 │   ├── episode_synthesizer.py              # 單集與全集批次並行合成調度器
+│   ├── episode_acquirer.py                 # 公開上游來源對齊與單集取得邊界
+│   ├── episode_source_repository.py        # legacy/normalized 來源、驗證與交易式取代
+│   ├── episode-sources/                    # per-episode normalized source snapshots
 │   ├── topic_synthesizer.py                # 跨集數主題專題合成與審計引擎
 │   ├── heading_quality_engine.py           # 標題 9 大瑕疵品質診斷引擎
 │   ├── takeaway_quality_engine.py          # 核心觀點 Takeaway 品質診斷引擎
@@ -135,29 +140,39 @@ ln -s "$(pwd)/.agents/skills/gooaye" ~/.gemini/config/skills/gooaye
 本專案包含完整的資料處理、抽取、標題診斷與筆記合成引擎，位於 `.work/` 目錄：
 
 ```bash
-# 1. 執行環境與數據源體檢
+# 1. 取得指定集數或最新集的完整來源 snapshot
+python3 .work/cli.py download --episode 691
+python3 .work/cli.py download --latest
+
+# 已存在且內容相同會 no-op；上游內容有變動時需顯式覆蓋
+python3 .work/cli.py download --episode 691 --force
+
+# 2. 執行環境與數據源體檢
 python3 .work/cli.py doctor
 
-# 2. 執行全集 689 集標題與觀點品質審計
+# 3. 執行全集 689 集標題與觀點品質審計
 python3 .work/cli.py audit
 
-# 3. 執行四大主題專題手冊品質審計
+# 4. 執行四大主題專題手冊品質審計
 python3 .work/cli.py topics --audit
 
-# 4. 批次全量合成主題專題指南
+# 5. 批次全量合成主題專題指南
 python3 .work/cli.py topics --generate
 
-# 5. 批次多執行緒合成全集雙層 Markdown 筆記
+# 6. 批次多執行緒合成全集雙層 Markdown 筆記
 python3 .work/cli.py synthesize --workers 8
 
-# 6. 執行核心模組單元測試套件
+# 7. 執行核心模組單元測試套件
 pytest .work/
 ```
+
+`--latest` 以 YouTube RSS 的最新官方集數為目標；若 archive 索引或逐字稿尚未齊全，命令會回報 `archive pending` 而不降級。缺少 SoundOn 集目則是來源不一致（source mismatch），會明確失敗。第一版只能取得仍在官方 RSS window 內的新集，或已有 legacy metadata 的舊集；其他集數會明確失敗。
 
 ### 相關架構文件
 - [CONTEXT.md](CONTEXT.md)：核心領域概念、深模組介面與品質閘門標準。
 - [ADR 0001](docs/adr/0001-progressive-gooaye-skill.md)：漸進式按需技能架構決策紀錄。
 - [ADR 0002](docs/adr/0002-hybrid-extractive-distilled-notes.md)：雙層混合筆記架構決策紀錄。
+- [ADR 0003](docs/adr/0003-incremental-episode-source-acquisition.md)：增量單集來源取得、驗證與取代政策。
 - [主題專題目錄](gooaye-youtube-notes/topics/README.md)：四大主題專題手冊。
 - [全集索引表](gooaye-youtube-notes/_index.md)：689 集完整章節索引。
 
@@ -173,4 +188,3 @@ pytest .work/
 ## 📜 授權條款 (License)
 
 本專案基於 [MIT License](LICENSE) 開源。
-

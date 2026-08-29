@@ -48,8 +48,9 @@ description: >-
 4. **第二.五階段（深度脈絡擴充，可選）**：
    - 若導航筆記的 2 條核心金句不足以還原完整論述脈絡，讀取 `gooaye-youtube-notes/episodes/EPxxxx.full.md`。
    - 取得該集每章 4–8 條擴充真實引述與完整脈絡。
-5. **第三階段（原始音訊還原查證，可選）**：
-   - 僅在懷疑逐字稿聽寫有錯字、需核對原始語氣或未收錄片段時，才對 `.work/full-transcripts/EPxxxx.md` 進行定點搜尋。
+5. **第三階段（底層逐字稿查證，可選）**：
+   - 僅在懷疑逐字稿聽寫有錯字、需核對語氣或未收錄片段時，才進行定點搜尋。
+   - 先查 `.work/episode-sources/EPxxxx/transcript.md`；若不存在 normalized snapshot，再查 `.work/full-transcripts/EPxxxx.md`。
    - **注意**：必須過濾開頭/結尾的贊助廣告詞（如 NordVPN、銀座白石、Sony 耳機等業配）。
 
 ### 輸出要求
@@ -98,8 +99,9 @@ description: >-
 | **主題專題目錄** | `gooaye-youtube-notes/topics/README.md` | 四大專題指南總覽與使用指引。 |
 | **導航層筆記** | `gooaye-youtube-notes/episodes/EPxxxx.md` | 每集 6–10 章標題、1 句核心觀點與 2 條核心金句（~1k tokens）。 |
 | **深度層筆記** | `gooaye-youtube-notes/episodes/EPxxxx.full.md` | 每章 4–8 條擴充真實逐字稿引述與脈絡（深度查證用）。 |
-| **原始完整逐字稿** | `.work/full-transcripts/EPxxxx.md` | 540+ 小時原始逐字稿（僅限底層聽寫查證時定點使用）。 |
+| **Normalized 完整逐字稿** | `.work/episode-sources/EPxxxx/transcript.md` | 新取得單集的優先查證來源。 |
+| **Legacy 完整逐字稿** | `.work/full-transcripts/EPxxxx.md` | 無 normalized snapshot 時的底層查證來源。 |
 | **漸進技能架構決策** | `docs/adr/0001-progressive-gooaye-skill.md` | 漸進式檢索與低 Token 待機設計。 |
 | **混合筆記架構決策** | `docs/adr/0002-hybrid-extractive-distilled-notes.md` | 核心觀點提煉、雙層筆記與語意章節切分決策。 |
-
+| **單集來源取得決策** | `docs/adr/0003-incremental-episode-source-acquisition.md` | 增量 snapshot、驗證與取代政策。 |
 

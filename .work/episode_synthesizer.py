@@ -4,15 +4,12 @@
 from __future__ import annotations
 
 import concurrent.futures
-import json
 import logging
 import re
 import shutil
 from collections import Counter
-from datetime import datetime
 from pathlib import Path
 from typing import Sequence
-from urllib.parse import quote
 
 # Domain models
 from domain import (
@@ -25,7 +22,6 @@ from domain import (
     Defect,
     QualityReport,
     yaml_string,
-    format_duration,
 )
 
 # Deep modules
@@ -53,6 +49,7 @@ from takeaway_resolver import (
     CompositeTakeawayResolver,
 )
 from markdown_renderer import MarkdownRenderer
+from episode_source_repository import EpisodeSourceRepository
 
 logger = logging.getLogger(__name__)
 
@@ -60,6 +57,7 @@ ROOT = Path(__file__).resolve().parent.parent
 CHANNEL_PATH = ROOT / ".work/channel.json"
 ARCHIVE_PATH = ROOT / ".work/source/episodes.json"
 TRANSCRIPT_DIR = ROOT / ".work/full-transcripts"
+SNAPSHOT_ROOT = ROOT / ".work/episode-sources"
 HEADINGS_CACHE_DIR = ROOT / ".work/grounded-headings"
 OUTPUT_DIR = ROOT / "gooaye-youtube-notes"
 EPISODES_DIR = OUTPUT_DIR / "episodes"
@@ -91,11 +89,19 @@ class EpisodeNoteSynthesizer:
         feature_extractor: TranscriptFeatureExtractor | None = None,
         evidence_extractor: EvidenceExtractor | None = None,
         renderer: MarkdownRenderer | None = None,
+        source_repository: EpisodeSourceRepository | None = None,
     ) -> None:
         self.channel_path = channel_path
         self.archive_path = archive_path
         self.transcript_dir = transcript_dir
         self.cache_dir = cache_dir
+        self.source_repository = source_repository or EpisodeSourceRepository(
+            snapshot_root=channel_path.parent / "episode-sources",
+            legacy_channel_path=channel_path,
+            legacy_archive_path=archive_path,
+            legacy_transcript_dir=transcript_dir,
+            archive_base_url=ARCHIVE_BASE_URL,
+        )
 
         self.quality = quality_engine or HeadingQualityEngine()
         self.takeaway_quality = takeaway_quality_engine or TakeawayQualityEngine()
@@ -119,85 +125,18 @@ class EpisodeNoteSynthesizer:
             quality_engine=self.takeaway_quality,
         )
 
-        self._channel_entries: dict[int, dict] = {}
-        self._archive_entries: dict[int, dict] = {}
-        self._load_metadata()
-
-    def _load_metadata(self) -> None:
-        """Load channel and archive metadata sources into memory lookup maps."""
-        if self.channel_path.exists():
-            channel_data = json.loads(self.channel_path.read_text(encoding="utf-8"))
-            for entry in channel_data.get("entries", []):
-                num = parse_episode_number(entry.get("title", ""))
-                if num is not None:
-                    self._channel_entries[num] = entry
-
-        if self.archive_path.exists():
-            archive_data = json.loads(self.archive_path.read_text(encoding="utf-8"))
-            for entry in archive_data:
-                num = entry.get("number")
-                if num is not None:
-                    self._archive_entries[num] = entry
-
     @property
     def episode_numbers(self) -> list[int]:
-        """List of all available episode numbers common to channel and archive indexes."""
-        return sorted(set(self._channel_entries.keys()) & set(self._archive_entries.keys()))
+        """List all episodes available through the episode source boundary."""
+        return self.source_repository.episode_numbers
 
     def get_metadata(self, number: int) -> EpisodeMetadata:
-        """Retrieve and unify structured metadata for a given episode number."""
-        channel_entry = self._channel_entries.get(number)
-        archive_entry = self._archive_entries.get(number)
-        if not channel_entry or not archive_entry:
-            raise ValueError(f"Metadata not found for EP{number}")
-
-        youtube_id = channel_entry["id"]
-        youtube_url = f"https://www.youtube.com/watch?v={youtube_id}"
-        duration_sec = round(channel_entry.get("duration") or 0)
-        duration_str = format_duration(channel_entry.get("duration"))
-        original_title = channel_entry.get("title") or f"EP{number}"
-        display_title = archive_entry.get("display_title") or archive_entry.get("title") or original_title
-
-        # Resolve episode date
-        if archive_entry.get("date"):
-            date, date_source = archive_entry["date"], "transcript_archive"
-        else:
-            meta_path = ROOT / ".work/samples" / f"{youtube_id}.metadata.json"
-            if meta_path.exists():
-                meta = json.loads(meta_path.read_text(encoding="utf-8"))
-                raw = str(meta.get("upload_date") or "")
-                if re.fullmatch(r"\d{8}", raw):
-                    date = datetime.strptime(raw, "%Y%m%d").date().isoformat()
-                    date_source = "youtube_metadata"
-                else:
-                    date, date_source = "未知", "unknown"
-            else:
-                date, date_source = "未知", "unknown"
-
-        archive_filename = archive_entry.get("filename", f"EP{number}.md")
-        archive_url = f"{ARCHIVE_BASE_URL}episode.html?file={quote(archive_filename)}"
-        summary = archive_entry.get("summary", "").strip()
-
-        return EpisodeMetadata(
-            number=number,
-            youtube_id=youtube_id,
-            youtube_url=youtube_url,
-            youtube_title=original_title,
-            display_title=display_title,
-            date=date,
-            date_source=date_source,
-            duration_str=duration_str,
-            duration_seconds=duration_sec,
-            archive_url=archive_url,
-            summary=summary,
-        )
+        """Retrieve unified metadata through the episode source boundary."""
+        return self.source_repository.get_metadata(number)
 
     def load_transcript(self, number: int) -> str:
-        """Load raw full transcript text from disk."""
-        path = self.transcript_dir / f"EP{number:04d}.md"
-        if not path.exists():
-            raise FileNotFoundError(f"Missing transcript for EP{number}: {path}")
-        return path.read_text(encoding="utf-8")
+        """Load raw full transcript text through the episode source boundary."""
+        return self.source_repository.load_transcript(number)
 
     # Static delegations for backward compatibility
     @staticmethod

@@ -4,7 +4,9 @@
 from __future__ import annotations
 
 import unittest
+import json
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from episode_synthesizer import (
     EpisodeNoteSynthesizer,
     EpisodeMetadata,
@@ -13,6 +15,8 @@ from episode_synthesizer import (
     CompositeHeadingResolver,
 )
 from heading_quality_engine import HeadingQualityEngine
+from episode_source_repository import EpisodeSourceRepository
+from domain import EpisodeSourceSnapshot
 
 
 class TestEpisodeNoteSynthesizer(unittest.TestCase):
@@ -39,6 +43,52 @@ class TestEpisodeNoteSynthesizer(unittest.TestCase):
         seeds = self.synthesizer.split_seeds(summary)
         self.assertTrue(3 <= len(seeds) <= 6)
         self.assertIn("歐洲疫情", seeds[0])
+
+    def test_source_repository_merges_real_legacy_and_normalized_sources(self) -> None:
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            channel_path = root / "channel.json"
+            archive_path = root / "episodes.json"
+            transcript_dir = root / "full-transcripts"
+            transcript_dir.mkdir()
+            channel_path.write_text(
+                json.dumps({"entries": [{"id": "xLS-2whm8Aw", "title": "EP1 | 舊集", "duration": 60}]}),
+                encoding="utf-8",
+            )
+            archive_path.write_text(
+                json.dumps([{"number": 1, "filename": "EP1.md", "title": "舊集", "date": "2020-02-27", "summary": "舊集摘要"}]),
+                encoding="utf-8",
+            )
+            (transcript_dir / "EP0001.md").write_text("# EP1\n\n舊逐字稿", encoding="utf-8")
+            repository = EpisodeSourceRepository(
+                snapshot_root=root / "episode-sources",
+                legacy_channel_path=channel_path,
+                legacy_archive_path=archive_path,
+                legacy_transcript_dir=transcript_dir,
+            )
+            repository.commit(
+                EpisodeSourceSnapshot(
+                    number=691,
+                    youtube_id="J-e9oxqLzpc",
+                    youtube_title="EP691 | birthday",
+                    published_at="2026-08-26T08:23:12+00:00",
+                    duration_seconds=2995,
+                    archive_filename="EP691.md",
+                    display_title="新集",
+                    archive_date="2026-08-26",
+                    summary="新集摘要",
+                    transcript="# EP691 新集\n\n" + "完整逐字稿" * 200,
+                    source_urls={"youtube_metadata": "https://example.test/youtube", "duration_metadata": "https://example.test/soundon", "archive_index": "https://example.test/index", "transcript": "https://example.test/transcript"},
+                    fetched_at="2026-08-28T00:00:00+00:00",
+                )
+            )
+
+            synthesizer = EpisodeNoteSynthesizer(source_repository=repository)
+
+            self.assertEqual(synthesizer.episode_numbers, [1, 691])
+            self.assertEqual(synthesizer.get_metadata(691).youtube_id, "J-e9oxqLzpc")
+            self.assertTrue(synthesizer.load_transcript(691).startswith("# EP691"))
+            self.assertTrue(synthesizer.load_transcript(1).startswith("# EP1"))
 
     def test_deterministic_heading_resolver(self) -> None:
         meta = EpisodeMetadata(

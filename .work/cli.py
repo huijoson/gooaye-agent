@@ -5,9 +5,11 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 import time
 from pathlib import Path
+from urllib.parse import urlsplit
 
 from domain import QualityReport
 from heading_quality_engine import HeadingQualityEngine
@@ -24,6 +26,76 @@ from takeaway_resolver import (
     CompositeTakeawayResolver,
 )
 from episode_synthesizer import EpisodeNoteSynthesizer, OUTPUT_DIR, HEADINGS_CACHE_DIR
+from episode_acquirer import (
+    ARCHIVE_EPISODES_URL,
+    ARCHIVE_INDEX_URL,
+    SOUNDON_FEED_URL,
+    YOUTUBE_FEED_URL,
+    EpisodeAcquirer,
+    EpisodeAcquisitionError,
+    UrlLibHttpClient,
+)
+from episode_source_repository import EpisodeSourceError, EpisodeSourceRepository
+
+
+ROOT = Path(__file__).resolve().parent.parent
+
+
+def positive_episode_number(value: str) -> int:
+    number = int(value)
+    if number <= 0:
+        raise argparse.ArgumentTypeError("episode number must be positive")
+    return number
+
+
+def cmd_download(args: argparse.Namespace) -> None:
+    work_dir = Path(os.environ.get("GOOAYE_WORK_DIR", ROOT / ".work"))
+    archive_episodes_url = os.environ.get(
+        "GOOAYE_ARCHIVE_EPISODES_URL",
+        ARCHIVE_EPISODES_URL,
+    )
+    archive_parts = urlsplit(archive_episodes_url)
+    archive_base_url = f"{archive_parts.scheme}://{archive_parts.netloc}/"
+    repository = EpisodeSourceRepository(
+        snapshot_root=work_dir / "episode-sources",
+        legacy_channel_path=work_dir / "channel.json",
+        legacy_archive_path=work_dir / "source" / "episodes.json",
+        legacy_transcript_dir=work_dir / "full-transcripts",
+        archive_base_url=archive_base_url,
+    )
+    acquirer = EpisodeAcquirer(
+        repository=repository,
+        http_client=UrlLibHttpClient(),
+        youtube_feed_url=os.environ.get(
+            "GOOAYE_YOUTUBE_FEED_URL",
+            YOUTUBE_FEED_URL,
+        ),
+        soundon_feed_url=os.environ.get(
+            "GOOAYE_SOUNDON_FEED_URL",
+            SOUNDON_FEED_URL,
+        ),
+        archive_index_url=os.environ.get(
+            "GOOAYE_ARCHIVE_INDEX_URL",
+            ARCHIVE_INDEX_URL,
+        ),
+        archive_episodes_url=archive_episodes_url,
+    )
+
+    try:
+        result = (
+            acquirer.acquire_latest(force=args.force)
+            if args.latest
+            else acquirer.acquire(args.episode, force=args.force)
+        )
+    except (EpisodeAcquisitionError, EpisodeSourceError) as exc:
+        print(f"Download failed: {exc}", file=sys.stderr)
+        raise SystemExit(1) from exc
+
+    print(f"EP{result.number} source snapshot: {result.status}")
+    print(f"youtube_id: {result.youtube_id}")
+    print(f"duration_seconds: {result.duration_seconds}")
+    print(f"Path: {result.snapshot_path}")
+    print("verification: OK")
 
 
 def cmd_synthesize(args: argparse.Namespace) -> None:
@@ -120,11 +192,17 @@ def cmd_diagnose(args: argparse.Namespace) -> None:
 
 def cmd_doctor(args: argparse.Namespace) -> None:
     synthesizer = EpisodeNoteSynthesizer()
+    repository = synthesizer.source_repository
     print("Running system doctor checks...")
     checks = [
-        ("Channel index", synthesizer.channel_path.exists(), f"Found {len(synthesizer._channel_entries)} entries"),
-        ("Archive source", synthesizer.archive_path.exists(), f"Found {len(synthesizer._archive_entries)} entries"),
-        ("Transcripts dir", synthesizer.transcript_dir.exists(), f"Found {len(list(synthesizer.transcript_dir.glob('EP*.md')))} transcripts"),
+        ("Channel index", synthesizer.channel_path.exists(), f"Found {repository.legacy_channel_count} entries"),
+        ("Archive source", synthesizer.archive_path.exists(), f"Found {repository.legacy_archive_count} entries"),
+        ("Transcripts dir", synthesizer.transcript_dir.exists(), f"Found {repository.legacy_transcript_count} transcripts"),
+        (
+            "Normalized snapshots",
+            repository.invalid_snapshot_count == 0,
+            f"Found {repository.normalized_snapshot_count} verified snapshots",
+        ),
         ("Headings cache", synthesizer.cache_dir.exists(), f"Found {len(list(synthesizer.cache_dir.glob('EP*.json')))} cached heading files"),
     ]
 
@@ -206,6 +284,29 @@ def cmd_topics(args: argparse.Namespace) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Gooaye Note Synthesis & Architecture Management CLI")
     subparsers = parser.add_subparsers(dest="command", required=True)
+
+    # download
+    p_download = subparsers.add_parser(
+        "download",
+        help="Acquire one complete episode source snapshot",
+    )
+    selector = p_download.add_mutually_exclusive_group(required=True)
+    selector.add_argument(
+        "--episode",
+        type=positive_episode_number,
+        help="Acquire a specific positive episode number",
+    )
+    selector.add_argument(
+        "--latest",
+        action="store_true",
+        help="Acquire the latest official episode; fail if its archive is pending",
+    )
+    p_download.add_argument(
+        "--force",
+        action="store_true",
+        help="Replace changed local source content; identical content remains unchanged",
+    )
+    p_download.set_defaults(func=cmd_download)
 
     # synthesize
     p_syn = subparsers.add_parser("synthesize", help="Synthesize Markdown notes")

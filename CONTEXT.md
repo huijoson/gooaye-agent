@@ -7,7 +7,7 @@
 ## 核心領域實體 (Core Domain Entities)
 
 ### 1. Episode (`EpisodeMetadata`)
-- 涵蓋 YouTube 公開清單中 EP1 至 EP690（目前共 689 支影片，缺 EP232）。
+- 正式 Knowledge Base Publication 涵蓋 YouTube 公開清單中 EP1 至 EP690（共 689 支影片，缺 EP232）。來源層另有已驗證的 EP691 normalized snapshot，因此目前可供合成的 Episode Source 共 690 集；這不表示 EP691 已發布。
 - 每集包含集數編號、YouTube 原始標題、第三方策展標題、發布日期、發布日期來源、影片片長與完整逐字稿。
 
 ### 2. Full Transcript (完整逐字稿)
@@ -38,21 +38,41 @@
 ### 9. SynthesisSummary (`SynthesisSummary`)
 - 批次生成之摘要統計物件：包含全集總數、章節總數、總時長、章節分布統計與單集筆記領域物件序列。
 
+### 10. Episode Acquisition（單集來源取得）
+- 將指定 Episode 的公開上游資料納入本地語料庫的明確邊界；成功只代表該集已形成可供合成使用的 Episode Source Snapshot，不包含筆記合成或正式發布。
+
+### 11. Episode Source Snapshot（單集來源快照）
+- 同一 Episode 的完整來源集合：官方節目 metadata、第三方策展 metadata 與 Full Transcript；三者集數必須一致並通過完整性驗證。
+- 不包含原始音訊、生成後的 Episode Note 或 Knowledge Base Publication。
+
+### 12. Knowledge Base Publication（知識庫發布）
+- 一份可獨立使用的完整知識庫發行版；同時涵蓋全部公開集數的雙層 Episode Notes、目錄登錄的所有 Topic Guides，以及可相互抵達的索引與導覽文件。
+- 指定集數或指定主題的局部產出屬於 Preview（預覽），不是 Publication，不得取代正式知識庫。
+
 ---
 
 ## 核心深模組與分層架構 (Deep Modules & Layered Architecture)
 
 系統遵循高內聚、低耦合、深介面（Deep Interface）與單向資料流原則，拆分為以下模組：
 
-### 9. Transcript Processor (`transcript_processor.py`)
+### 9. Episode Source Repository (`episode_source_repository.py`)
+- 隱藏 legacy corpus 與 `.work/episode-sources/EPxxxx/` normalized snapshots 的儲存差異，normalized snapshot 存在時優先讀取。
+- 負責 snapshot 驗證、content hash、staging directory、取代衝突、`--force` 與 rollback；不負責 HTTP 或筆記合成。
+- **介面 (Interface)**：`commit(snapshot, force=False)`、`verify(number)`、`get_metadata(number)`、`load_transcript(number)` 與 `episode_numbers`。
+
+### 10. Episode Acquirer (`episode_acquirer.py`)
+- 將 YouTube RSS 的 identity/title、SoundOn RSS 的 duration/date，以及非官方 archive 的策展 metadata/Full Transcript 對齊成一個 `EpisodeSourceSnapshot`。
+- **介面 (Interface)**：`acquire(number, force=False)` 與 `acquire_latest(force=False)`。三個必要來源未齊全時失敗，不改抓音訊轉錄、不自動合成或發布。
+
+### 11. Transcript Processor (`transcript_processor.py`)
 - **`TranscriptSanitizer`**：負責多階段廣告過濾（開頭贊助區塊、贊助宣告、特定贊助品牌如銀座白石/Sony 耳機等之業配詞、過渡橋段）、結尾重點回顧過濾、Markdown 標題/引言清除與摘錄句標準化。
 - **`TranscriptSegmenter`**：負責逐字稿標點斷句（`segment_sentences`）、目標字數語意分塊（`make_chunks`）與第三方摘要主題種子切分（`split_seeds`）。
 - **`TranscriptFeatureExtractor`**：負責中英文字詞特徵提取（`features`）與加權重疊相似度計算（`similarity`）。
 
-### 10. Evidence Extractor (`evidence_extractor.py`)
+### 12. Evidence Extractor (`evidence_extractor.py`)
 - **`EvidenceExtractor`**：純內存章節摘錄抽取引擎。依據主題種子與逐字稿塊之特徵相似度排序定位候選錨點，在周邊視窗中篩選符合長度且非廣告之真實句子，並執行摘要防碰撞與章節去重，最終按逐字稿出現順序生成 `list[ChapterEvidence]`。
 
-### 11. Heading Quality Engine (`heading_quality_engine.py`)
+### 13. Heading Quality Engine (`heading_quality_engine.py`)
 - 評估、診斷與修復章節標題品質的深模組。
 - **介面 (Interface)**：
   - `evaluate(heading, excerpts, summary) -> bool`：快速布林閘門。
@@ -60,25 +80,26 @@
   - `extract_phrase_candidates(text, guide) -> list[str]`：從摘錄中提取具代表性、長度合宜且無口語/斷詞瑕疵之名詞短語候選。
   - `repair(heading, excerpts, summary, used_headings) -> str`：多層級確定性修復演算法（弱接地修補、短語配對、乾淨 token 掃描與安全保底）。
 
-### 12. Heading Resolver (`heading_resolver.py`)
+### 14. Heading Resolver (`heading_resolver.py`)
 - 標題解析策略接縫 (Seam)：
   - **`CachedHeadingResolver`**：磁碟 JSON 快取適配器，載入後由 `HeadingQualityEngine` 逐一驗證品質。
   - **`DeterministicHeadingResolver`**：基於品質引擎的純 Python 確定性保底解析器。
   - **`CompositeHeadingResolver`**：快取/主解析器優先，驗證未通過自動降級至確定性保底的多層複合解析器。
   - **`OllamaHeadingResolver`**：基於本地 LLM（如 Qwen 4B）的結構化標題生成器，整合品質引擎診斷反饋重試機制。
 
-### 13. Takeaway Quality Engine (`takeaway_quality_engine.py`)
+### 15. Takeaway Quality Engine (`takeaway_quality_engine.py`)
 - 評估與驗證單章「核心觀點 (Takeaway)」品質的深模組。
 - 檢驗維度包括：完整陳述判斷句結構、繁體中文語法、實體名詞逐字稿接地性 (Entity Grounding)、反幻覺與反泛稱元敘述（禁止「主委分享了/探討了」等）。
 
-### 14. Markdown Renderer (`markdown_renderer.py`)
+### 16. Markdown Renderer (`markdown_renderer.py`)
 - 負責標準化 Markdown 渲染輸出：
   - `render_episode(note, mode="slim" | "full") -> str`：渲染單集導航層 (`EPxxxx.md`) 或深度層 (`EPxxxx.full.md`) Markdown 文件。
   - `render_index(notes, summary) -> str`：渲染 `_index.md` 索引文件。
   - `render_readme(notes, summary) -> str`：渲染 `README.md` 總覽文件。
 
-### 15. Episode Note Synthesizer (`episode_synthesizer.py`)
+### 17. Episode Note Synthesizer (`episode_synthesizer.py`)
 - 核心調度深模組：將 `EvidenceExtractor`、`HeadingResolver`、`TakeawayResolver` 與 `MarkdownRenderer` 組合成完整單向資料流。
+- 單集來源只透過 `EpisodeSourceRepository` 讀取，不知道 legacy/normalized 檔案佈局。
 - **介面 (Interface)**：
   - `get_metadata(number) -> EpisodeMetadata`：獲取並對齊單集元數據。
   - `extract_evidence(number) -> list[ChapterEvidence]`：抽取單集章節摘錄。
@@ -86,15 +107,16 @@
   - `synthesize_all(output_dir, resolver, max_workers) -> SynthesisSummary`：支援多執行緒並行合成全集筆記 (`EPxxxx.md` + `EPxxxx.full.md`)、`_index.md` 與 `README.md`。
   - `audit(resolver) -> dict`：對全集執行 100% 標題與核心觀點瑕疵診斷審計。
 
-### 16. Unified CLI (`cli.py`)
+### 18. Unified CLI (`cli.py`)
 - 整合式命令列工具：
+  - `download`：以 `--episode N` 或 `--latest` 取得單集完整來源 snapshot；已存在的變動內容需顯式 `--force`。
   - `synthesize`：批次或單集生成 Markdown 筆記（支援 `--workers`, `--resolver`, `--dry-run`, `--out-dir`）。
   - `audit`：全集標題與觀點品質審計與瑕疵統計。
   - `topics`：主題專題指南批次合成（`--generate`）、接地審計（`--audit`）與清單檢視（`--list`）。
   - `diagnose`：單一標題、觀點與摘錄品質診斷與修復測試。
   - `doctor`：環境、數據來源與快取完整性體檢。
 
-### 17. Topic Guide Synthesizer & Auditor (`topic_synthesizer.py`)
+### 19. Topic Guide Synthesizer & Auditor (`topic_synthesizer.py`)
 - 跨集數主題專題合成與品質審計深模組：
   - **`TopicDefinition`**：定義主題標識、關鍵字、核心概念與分類。
   - **`ThematicChapterRef`**：包含集數編號、日期、章節標題、Takeaway 與權重關聯評分的引用物件。
@@ -120,7 +142,7 @@
 
 ## 代理與技能層 (Agent & Skill Layer)
 
-### 18. Gooaye Skill (`.agents/skills/gooaye/SKILL.md`)
+### 20. Gooaye Skill (`.agents/skills/gooaye/SKILL.md`)
 - **定位**：極低 Token 待機開銷（~30 tokens）的漸進式按需技能。
 - **雙模態機制 (Dual-Mode)**：
   - **Archive Query (客觀檢索模式)**：檢索 689 集結構化筆記與跨集數主題專題手冊，提供精確集數、章節、核心觀點與逐字稿引述。
@@ -130,5 +152,4 @@
   - Stage 1.5: 宏觀產業與心態問題優先讀取 `topics/{slug}.md` 主題手冊（~1.5k tokens）。
   - Stage 2: 讀取命中的 `episodes/EPxxxx.md` 導航筆記（含核心觀點與精選引述，~1k tokens）。
   - Stage 2.5 (可選): 若需深入討論脈絡與完整引述，讀取 `episodes/EPxxxx.full.md` 深度筆記。
-  - Stage 3 (可選): 僅在需確認底層語音還原細節時才對 `.work/full-transcripts/` 進行定點精確檢索。
-
+  - Stage 3 (可選): 僅在需確認底層逐字稿細節時才定點檢索；優先讀取 `.work/episode-sources/EPxxxx/transcript.md`，無 normalized snapshot 時才讀取 `.work/full-transcripts/EPxxxx.md`。
