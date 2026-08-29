@@ -561,6 +561,35 @@ def test_partial_recovery_copy_failure_restores_from_the_intact_backup(tmp_path,
     assert snapshot_bytes(destination) == before
 
 
+def test_recovery_cleanup_failure_is_post_commit_garbage_collection(tmp_path, monkeypatch, recwarn):
+    destination = build_managed_fixture(
+        tmp_path / "publication", episodes=(1,), topics=("only-topic",)
+    )
+    publisher = make_fixture_publisher(episode_numbers=(1, 2))
+    remove_tree = __import__("knowledge_base_publisher").shutil.rmtree
+
+    def partially_remove_recovery_then_fail(path, *args, **kwargs):
+        if Path(path).name.startswith(".publication.recovery-"):
+            (Path(path) / "README.md").unlink()
+            raise OSError("fixture recovery cleanup failure")
+        return remove_tree(path, *args, **kwargs)
+
+    monkeypatch.setattr(
+        "knowledge_base_publisher.shutil.rmtree",
+        partially_remove_recovery_then_fail,
+    )
+
+    manifest = publisher.publish(PublicationRequest(destination))
+
+    assert manifest.source_episodes == (1, 2)
+    assert publisher.verify(destination).is_valid
+    residuals = list(tmp_path.glob(".publication.recovery-*"))
+    assert len(residuals) == 1
+    assert not (residuals[0] / "README.md").exists()
+    warning = recwarn.pop(RuntimeWarning)
+    assert str(residuals[0]) in str(warning.message)
+
+
 def test_publish_revalidates_destination_ownership_under_the_lock(tmp_path):
     destination = tmp_path / "publication"
     publisher = make_fixture_publisher()

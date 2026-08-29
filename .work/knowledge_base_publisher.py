@@ -12,6 +12,7 @@ import socket
 import stat
 import sys
 import tempfile
+import warnings
 from dataclasses import asdict, dataclass
 from datetime import datetime, timedelta, timezone
 from enum import Enum
@@ -588,10 +589,12 @@ class KnowledgeBasePublisher:
             try:
                 shutil.rmtree(recovery)
             except OSError as exc:
-                raise PublicationError(
-                    PublicationPhase.COMMIT,
-                    f"Publication committed but recovery cleanup failed: {exc}; residual recovery path: {recovery}",
-                ) from exc
+                warnings.warn(
+                    f"Publication committed but recovery cleanup failed: {exc}; "
+                    f"residual recovery path: {recovery}",
+                    RuntimeWarning,
+                    stacklevel=2,
+                )
 
     def verify(self, root: Path) -> PublicationVerification:
         """Read a Manifest-managed publication without changing its bytes."""
