@@ -75,8 +75,15 @@ def validate_preview_output_directory(output_dir: Path | None) -> Path:
     if destination.is_symlink():
         raise PreviewOutputError("Preview output directory must not be a symlink.")
     resolved = destination.resolve(strict=False)
-    if resolved == OUTPUT_DIR.resolve():
-        raise PreviewOutputError("Preview output directory must not be the formal publication root.")
+    formal_root = OUTPUT_DIR.resolve(strict=False)
+    try:
+        resolved.relative_to(formal_root)
+    except ValueError:
+        pass
+    else:
+        raise PreviewOutputError(
+            "Preview output directory must not be the formal publication root or a descendant."
+        )
     protected = {
         Path(resolved.anchor),
         Path.home().resolve(),
