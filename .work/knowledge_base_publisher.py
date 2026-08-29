@@ -6,14 +6,15 @@ import hashlib
 import json
 import os
 import re
+import stat
 from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
+from urllib.parse import unquote, urlsplit
 
 
 MANIFEST_FILENAME = "publication-manifest.json"
 PUBLICATION_SCHEMA_VERSION = 1
-_MARKDOWN_LINK = re.compile(r"(?<!!)\[[^]]*]\(([^)]+)\)")
 
 
 class PublicationMode(str, Enum):
@@ -82,8 +83,16 @@ class KnowledgeBasePublisher:
                 ),
             )
         manifest_path = root / MANIFEST_FILENAME
-        if not manifest_path.exists():
-            if not any(root.iterdir()):
+        try:
+            entries = _all_entries(root)
+        except OSError as exc:
+            return PublicationVerification(
+                PublicationMode.UNKNOWN,
+                (PublicationDefect("unreadable", f"Publication tree cannot be read: {exc}", str(root)),),
+            )
+        manifest_kind = entries.get(MANIFEST_FILENAME)
+        if manifest_kind is None:
+            if not entries:
                 return PublicationVerification(PublicationMode.UNKNOWN, ())
             return PublicationVerification(
                 PublicationMode.UNKNOWN,
@@ -93,6 +102,11 @@ class KnowledgeBasePublisher:
                     ),
                 ),
             )
+        if manifest_kind != "file":
+            return PublicationVerification(
+                PublicationMode.MANAGED,
+                (PublicationDefect("unsafe_path", "Manifest must be a regular file.", MANIFEST_FILENAME),),
+            )
         try:
             manifest = self._read_manifest(manifest_path)
         except _InvalidManifest as exc:
@@ -101,25 +115,46 @@ class KnowledgeBasePublisher:
                 (PublicationDefect("manifest", str(exc), MANIFEST_FILENAME),),
             )
         defects: list[PublicationDefect] = []
-        actual_paths = _regular_paths(Path(root))
+        actual_paths = {
+            path for path, kind in entries.items() if kind == "file" and path != MANIFEST_FILENAME
+        }
         manifest_paths = {artifact.path for artifact in manifest.artifacts}
-        for path in sorted(_symlink_paths(Path(root))):
-            defects.append(PublicationDefect("unsafe_path", "Publication must not contain symlinks.", path))
+        required_paths = _required_paths(manifest)
+        allowed_directories = {"episodes", "topics"}
+        for path, kind in sorted(entries.items()):
+            if path == MANIFEST_FILENAME:
+                continue
+            if kind == "symlink":
+                defects.append(PublicationDefect("unsafe_path", "Publication must not contain symlinks.", path))
+            elif (kind == "file" and path in required_paths) or (
+                kind == "directory" and path in allowed_directories
+            ):
+                continue
+            else:
+                defects.append(PublicationDefect("stale", "Entry is outside the public publication tree.", path))
+        for path in sorted(manifest_paths - required_paths):
+            defects.append(PublicationDefect("stale", "Manifest artifact is outside the public tree.", path))
         for path in sorted(actual_paths - manifest_paths):
             defects.append(PublicationDefect("stale", "File is not recorded by the Manifest.", path))
-        for path in sorted(_required_paths(manifest) - actual_paths.intersection(manifest_paths)):
+        for path in sorted(required_paths - actual_paths.intersection(manifest_paths)):
             defects.append(PublicationDefect("missing", "Required publication artifact is missing.", path))
         for artifact in manifest.artifacts:
             artifact_path = Path(root) / artifact.path
-            if not artifact_path.is_file():
-                defects.append(PublicationDefect("missing", "Manifest artifact is missing.", artifact.path))
-                continue
-            if artifact_path.stat().st_size != artifact.size_bytes:
-                defects.append(PublicationDefect("size", "Artifact byte size differs from Manifest.", artifact.path))
-            if _sha256(artifact_path) != artifact.sha256:
-                defects.append(
-                    PublicationDefect("digest", "Artifact SHA-256 differs from Manifest.", artifact.path)
-                )
+            try:
+                if _has_symlink_ancestor(root, artifact.path):
+                    continue
+                metadata = artifact_path.stat()
+                if not stat.S_ISREG(metadata.st_mode):
+                    defects.append(PublicationDefect("missing", "Manifest artifact is missing.", artifact.path))
+                    continue
+                if metadata.st_size != artifact.size_bytes:
+                    defects.append(PublicationDefect("size", "Artifact byte size differs from Manifest.", artifact.path))
+                if _sha256(artifact_path) != artifact.sha256:
+                    defects.append(
+                        PublicationDefect("digest", "Artifact SHA-256 differs from Manifest.", artifact.path)
+                    )
+            except OSError as exc:
+                defects.append(PublicationDefect("unreadable", f"Artifact cannot be read: {exc}", artifact.path))
         defects.extend(_broken_markdown_links(Path(root), actual_paths))
         return PublicationVerification(
             PublicationMode.MANAGED,
@@ -250,32 +285,34 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def _regular_paths(root: Path) -> set[str]:
-    paths: set[str] = set()
-    for directory, _, names in os.walk(root, followlinks=False):
-        current = Path(directory)
-        for name in names:
-            path = current / name
-            relative = path.relative_to(root).as_posix()
-            if relative != MANIFEST_FILENAME and path.is_file() and not path.is_symlink():
-                paths.add(relative)
-    return paths
+def _has_symlink_ancestor(root: Path, relative_path: str) -> bool:
+    path = root
+    for part in Path(relative_path).parts:
+        path /= part
+        if path.is_symlink():
+            return True
+    return False
 
 
-def _symlink_paths(root: Path) -> set[str]:
-    paths: set[str] = set()
-    for directory, directories, names in os.walk(root, followlinks=False):
-        current = Path(directory)
-        for name in directories[:]:
-            path = current / name
-            if path.is_symlink():
-                paths.add(path.relative_to(root).as_posix())
-                directories.remove(name)
-        for name in names:
-            path = current / name
-            if path.is_symlink():
-                paths.add(path.relative_to(root).as_posix())
-    return paths
+def _all_entries(root: Path) -> dict[str, str]:
+    entries: dict[str, str] = {}
+    pending = [root]
+    while pending:
+        directory = pending.pop()
+        with os.scandir(directory) as children:
+            for child in children:
+                path = Path(child.path)
+                relative = path.relative_to(root).as_posix()
+                if child.is_symlink():
+                    entries[relative] = "symlink"
+                elif child.is_dir(follow_symlinks=False):
+                    entries[relative] = "directory"
+                    pending.append(path)
+                elif child.is_file(follow_symlinks=False):
+                    entries[relative] = "file"
+                else:
+                    entries[relative] = "special"
+    return entries
 
 
 def _required_paths(manifest: PublicationManifest) -> set[str]:
@@ -289,11 +326,28 @@ def _required_paths(manifest: PublicationManifest) -> set[str]:
 
 def _broken_markdown_links(root: Path, paths: set[str]) -> list[PublicationDefect]:
     defects: list[PublicationDefect] = []
-    root_resolved = root.resolve()
+    try:
+        root_resolved = root.resolve()
+    except OSError as exc:
+        return [PublicationDefect("unreadable", f"Publication root cannot be resolved: {exc}", str(root))]
     for relative_path in sorted(path for path in paths if path.endswith(".md")):
         source = root / relative_path
-        for target in _markdown_targets(source.read_text(encoding="utf-8")):
-            resolved = (source.parent / target).resolve()
+        try:
+            text = source.read_text(encoding="utf-8")
+        except (OSError, UnicodeDecodeError) as exc:
+            defects.append(PublicationDefect("unreadable", f"Markdown cannot be read: {exc}", relative_path))
+            continue
+        try:
+            targets = _markdown_targets(text)
+        except ValueError as exc:
+            defects.append(PublicationDefect("malformed_link", f"Markdown link is malformed: {exc}", relative_path))
+            continue
+        for target in targets:
+            try:
+                resolved = (source.parent / target).resolve()
+            except OSError as exc:
+                defects.append(PublicationDefect("unreadable", f"Link target cannot be read: {exc}", relative_path))
+                continue
             try:
                 resolved.relative_to(root_resolved)
             except ValueError:
@@ -303,7 +357,14 @@ def _broken_markdown_links(root: Path, paths: set[str]) -> list[PublicationDefec
                     )
                 )
             else:
-                if not resolved.exists():
+                try:
+                    exists = resolved.exists()
+                except OSError as exc:
+                    defects.append(
+                        PublicationDefect("unreadable", f"Link target cannot be read: {exc}", relative_path)
+                    )
+                    continue
+                if not exists:
                     defects.append(
                         PublicationDefect(
                             "broken_link", f"Markdown link target is missing: {target}", relative_path
@@ -313,9 +374,173 @@ def _broken_markdown_links(root: Path, paths: set[str]) -> list[PublicationDefec
 
 
 def _markdown_targets(text: str) -> tuple[str, ...]:
-    targets: list[str] = []
-    for match in _MARKDOWN_LINK.finditer(text):
-        target = match.group(1).split(maxsplit=1)[0]
-        if target and not target.startswith(("#", "http://", "https://", "mailto:")):
-            targets.append(target.split("#", maxsplit=1)[0])
-    return tuple(target for target in targets if target)
+    definitions = _reference_definitions(text)
+    destinations: list[str] = []
+    references: list[str] = []
+    index = 0
+    while index < len(text):
+        if text[index] != "[" or _is_escaped(text, index):
+            index += 1
+            continue
+        label, after_label = _bracketed(text, index)
+        if label is None:
+            index += 1
+            continue
+        if after_label < len(text) and text[after_label] == "(":
+            destination, end = _inline_destination(text, after_label)
+            if destination is not None:
+                destinations.append(destination)
+                index = end
+                continue
+        elif after_label < len(text) and text[after_label] == "[":
+            reference, end = _bracketed(text, after_label)
+            if reference is not None:
+                references.append(_reference_key(reference or label))
+                index = end
+                continue
+        elif after_label >= len(text) or text[after_label] != ":":
+            references.append(_reference_key(label))
+        index = after_label
+
+    destinations.extend(
+        definitions[reference]
+        for reference in references
+        if reference in definitions
+    )
+    return tuple(
+        target
+        for destination in destinations
+        if (target := _local_destination(destination)) is not None
+    )
+
+
+def _reference_definitions(text: str) -> dict[str, str]:
+    definitions: dict[str, str] = {}
+    for line in text.splitlines():
+        match = re.match(r" {0,3}\[([^]]+)]:\s*(.*)$", line)
+        if match is None:
+            continue
+        destination = _definition_destination(match.group(2))
+        if destination is not None:
+            definitions[_reference_key(match.group(1))] = destination
+    return definitions
+
+
+def _definition_destination(text: str) -> str | None:
+    start = len(text) - len(text.lstrip())
+    if start == len(text):
+        return None
+    if text[start] == "<":
+        destination, _ = _angle_destination(text, start)
+        return destination
+    end = start
+    depth = 0
+    while end < len(text):
+        character = text[end]
+        if character == "\\" and end + 1 < len(text):
+            end += 2
+            continue
+        if character == "(":
+            depth += 1
+        elif character == ")" and depth:
+            depth -= 1
+        elif character.isspace() and depth == 0:
+            break
+        end += 1
+    return text[start:end] or None
+
+
+def _bracketed(text: str, start: int) -> tuple[str | None, int]:
+    index = start + 1
+    while index < len(text):
+        if text[index] == "\\" and index + 1 < len(text):
+            index += 2
+            continue
+        if text[index] == "]":
+            return text[start + 1:index], index + 1
+        index += 1
+    return None, start + 1
+
+
+def _inline_destination(text: str, opening: int) -> tuple[str | None, int]:
+    index = opening + 1
+    while index < len(text) and text[index].isspace():
+        index += 1
+    if index < len(text) and text[index] == "<":
+        return _angle_destination(text, index)
+
+    start = index
+    depth = 0
+    while index < len(text):
+        character = text[index]
+        if character == "\\" and index + 1 < len(text):
+            index += 2
+            continue
+        if character == "(":
+            depth += 1
+        elif character == ")":
+            if depth == 0:
+                return text[start:index], index + 1
+            depth -= 1
+        elif character.isspace() and depth == 0:
+            return text[start:index], index
+        index += 1
+    return None, opening + 1
+
+
+def _angle_destination(text: str, opening: int) -> tuple[str | None, int]:
+    index = opening + 1
+    while index < len(text):
+        if text[index] == "\\" and index + 1 < len(text):
+            index += 2
+            continue
+        if text[index] == ">":
+            return text[opening + 1:index], index + 1
+        index += 1
+    return None, opening + 1
+
+
+def _reference_key(label: str) -> str:
+    return " ".join(_unescape_markdown(label).split()).casefold()
+
+
+def _local_destination(destination: str) -> str | None:
+    path = unquote(_unescape_markdown(_without_fragment(destination)))
+    if not path:
+        return None
+    parsed = urlsplit(path)
+    if parsed.scheme or parsed.netloc:
+        return None
+    return parsed.path or None
+
+
+def _without_fragment(text: str) -> str:
+    index = 0
+    while index < len(text):
+        if text[index] == "\\" and index + 1 < len(text):
+            index += 2
+            continue
+        if text[index] == "#":
+            return text[:index]
+        index += 1
+    return text
+
+
+def _unescape_markdown(text: str) -> str:
+    characters: list[str] = []
+    index = 0
+    while index < len(text):
+        if text[index] == "\\" and index + 1 < len(text):
+            index += 1
+        characters.append(text[index])
+        index += 1
+    return "".join(characters)
+
+
+def _is_escaped(text: str, index: int) -> bool:
+    backslashes = 0
+    index -= 1
+    while index >= 0 and text[index] == "\\":
+        backslashes += 1
+        index -= 1
+    return backslashes % 2 == 1

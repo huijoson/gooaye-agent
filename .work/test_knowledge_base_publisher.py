@@ -5,7 +5,10 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 from pathlib import Path
+
+import pytest
 
 from knowledge_base_publisher import KnowledgeBasePublisher, PublicationMode
 
@@ -60,6 +63,25 @@ def build_managed_fixture(root: Path, *, episodes: tuple[int, ...], topics: tupl
         encoding="utf-8",
     )
     return root
+
+
+def add_manifest_artifact(root: Path, relative_path: str, content: str) -> None:
+    """Add a deliberately managed fixture file and keep its Manifest truthful."""
+    path = root / relative_path
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+    manifest_path = root / "publication-manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    encoded = content.encode("utf-8")
+    manifest["artifacts"].append(
+        {
+            "path": relative_path,
+            "size_bytes": len(encoded),
+            "sha256": hashlib.sha256(encoded).hexdigest(),
+        }
+    )
+    manifest["artifacts"].sort(key=lambda artifact: artifact["path"])
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
 
 
 def test_verify_accepts_a_complete_manifest_managed_publication(tmp_path):
@@ -204,3 +226,210 @@ def test_verify_rejects_unsorted_manifest_source_episodes(tmp_path):
     report = KnowledgeBasePublisher().verify(root)
 
     assert {defect.category for defect in report.defects} == {"manifest"}
+
+
+@pytest.mark.parametrize(
+    "relative_path",
+    ("private.txt", "episodes/junk.bin", "topics/uncatalogued.md"),
+)
+def test_verify_rejects_manifested_artifacts_outside_the_public_tree(tmp_path, relative_path):
+    root = build_managed_fixture(tmp_path / "publication", episodes=(1,), topics=("only-topic",))
+    add_manifest_artifact(root, relative_path, "managed but forbidden\n")
+
+    report = KnowledgeBasePublisher().verify(root)
+
+    assert not report.is_valid
+    assert "stale" in {defect.category for defect in report.defects}
+
+
+def test_verify_rejects_an_extra_empty_directory(tmp_path):
+    root = build_managed_fixture(tmp_path / "publication", episodes=(1,), topics=("only-topic",))
+    (root / "private").mkdir()
+
+    report = KnowledgeBasePublisher().verify(root)
+
+    assert not report.is_valid
+    assert "stale" in {defect.category for defect in report.defects}
+
+
+def test_verify_rejects_an_extra_special_entry(tmp_path):
+    root = build_managed_fixture(tmp_path / "publication", episodes=(1,), topics=("only-topic",))
+    os.mkfifo(root / "episodes" / "not-a-note")
+
+    report = KnowledgeBasePublisher().verify(root)
+
+    assert not report.is_valid
+    assert "stale" in {defect.category for defect in report.defects}
+
+
+def test_verify_rejects_a_symlinked_manifest_without_reading_its_target(tmp_path, monkeypatch):
+    root = build_managed_fixture(tmp_path / "publication", episodes=(1,), topics=("only-topic",))
+    manifest = root / "publication-manifest.json"
+    outside = tmp_path / "outside-manifest.json"
+    outside.write_text(manifest.read_text(encoding="utf-8"), encoding="utf-8")
+    manifest.unlink()
+    manifest.symlink_to(outside)
+    read_text = Path.read_text
+
+    def reject_external_read(path, *args, **kwargs):
+        if path.resolve() == outside:
+            raise AssertionError("verify read the external Manifest target")
+        return read_text(path, *args, **kwargs)
+
+    monkeypatch.setattr(Path, "read_text", reject_external_read)
+
+    report = KnowledgeBasePublisher().verify(root)
+
+    assert report.mode is PublicationMode.MANAGED
+    assert "unsafe_path" in {defect.category for defect in report.defects}
+
+
+def test_verify_rejects_a_symlinked_artifact_without_opening_its_target(tmp_path, monkeypatch):
+    root = build_managed_fixture(tmp_path / "publication", episodes=(1,), topics=("only-topic",))
+    artifact = root / "episodes/EP0001.full.md"
+    outside = tmp_path / "outside-note.md"
+    outside.write_text("# external\n", encoding="utf-8")
+    artifact.unlink()
+    artifact.symlink_to(outside)
+    open_file = Path.open
+
+    def reject_external_open(path, *args, **kwargs):
+        if path.resolve() == outside:
+            raise AssertionError("verify opened the external artifact target")
+        return open_file(path, *args, **kwargs)
+
+    monkeypatch.setattr(Path, "open", reject_external_open)
+
+    report = KnowledgeBasePublisher().verify(root)
+
+    assert not report.is_valid
+    assert "unsafe_path" in {defect.category for defect in report.defects}
+
+
+def test_verify_skips_an_artifact_below_a_symlinked_directory(tmp_path, monkeypatch):
+    root = build_managed_fixture(tmp_path / "publication", episodes=(1,), topics=("only-topic",))
+    episodes = root / "episodes"
+    outside = tmp_path / "outside-episodes"
+    episodes.rename(outside)
+    episodes.symlink_to(outside, target_is_directory=True)
+    open_file = Path.open
+
+    def reject_external_open(path, *args, **kwargs):
+        if path.resolve().is_relative_to(outside):
+            raise AssertionError("verify opened an artifact below the external directory")
+        return open_file(path, *args, **kwargs)
+
+    monkeypatch.setattr(Path, "open", reject_external_open)
+
+    report = KnowledgeBasePublisher().verify(root)
+
+    assert not report.is_valid
+    assert "unsafe_path" in {defect.category for defect in report.defects}
+
+
+def test_verify_rejects_a_special_manifest_without_reading_it(tmp_path, monkeypatch):
+    root = build_managed_fixture(tmp_path / "publication", episodes=(1,), topics=("only-topic",))
+    manifest = root / "publication-manifest.json"
+    manifest.unlink()
+    os.mkfifo(manifest)
+    read_text = Path.read_text
+
+    def reject_manifest_read(path, *args, **kwargs):
+        if path == manifest:
+            raise AssertionError("verify read the special Manifest entry")
+        return read_text(path, *args, **kwargs)
+
+    monkeypatch.setattr(Path, "read_text", reject_manifest_read)
+
+    report = KnowledgeBasePublisher().verify(root)
+
+    assert report.mode is PublicationMode.MANAGED
+    assert "unsafe_path" in {defect.category for defect in report.defects}
+
+
+def test_verify_reports_a_defect_for_non_utf8_markdown_without_raising(tmp_path):
+    root = build_managed_fixture(tmp_path / "publication", episodes=(1,), topics=("only-topic",))
+    (root / "topics/only-topic.md").write_bytes(b"\xff")
+
+    report = KnowledgeBasePublisher().verify(root)
+
+    assert not report.is_valid
+    assert "unreadable" in {defect.category for defect in report.defects}
+
+
+def test_verify_converts_artifact_stat_failures_to_defects(tmp_path, monkeypatch):
+    root = build_managed_fixture(tmp_path / "publication", episodes=(1,), topics=("only-topic",))
+    artifact = root / "topics/only-topic.md"
+    stat = Path.stat
+
+    def fail_artifact_stat(path, *args, **kwargs):
+        if path == artifact:
+            raise OSError("simulated stat failure")
+        return stat(path, *args, **kwargs)
+
+    monkeypatch.setattr(Path, "stat", fail_artifact_stat)
+
+    report = KnowledgeBasePublisher().verify(root)
+
+    assert not report.is_valid
+    assert report.defects
+
+
+def test_verify_checks_reference_style_markdown_destinations(tmp_path):
+    root = build_managed_fixture(tmp_path / "publication", episodes=(1,), topics=("only-topic",))
+    (root / "topics/only-topic.md").write_text(
+        "[outside][outside guide]\n\n[outside guide]: ../../outside.md\n",
+        encoding="utf-8",
+    )
+
+    report = KnowledgeBasePublisher().verify(root)
+
+    assert "unsafe_path" in {defect.category for defect in report.defects}
+
+
+def test_verify_accepts_angle_bracket_destinations_with_spaces(tmp_path):
+    root = build_managed_fixture(tmp_path / "publication", episodes=(1,), topics=("only topic",))
+    (root / "topics/README.md").write_text("[topic](<only topic.md>)\n", encoding="utf-8")
+
+    report = KnowledgeBasePublisher().verify(root)
+
+    assert "broken_link" not in {defect.category for defect in report.defects}
+
+
+def test_verify_decodes_escaped_markdown_destinations(tmp_path):
+    root = build_managed_fixture(tmp_path / "publication", episodes=(1,), topics=("only-topic",))
+    (root / "topics/only-topic.md").write_text(
+        "[full](../episodes/EP0001\\.full.md)\n",
+        encoding="utf-8",
+    )
+
+    report = KnowledgeBasePublisher().verify(root)
+
+    assert "broken_link" not in {defect.category for defect in report.defects}
+
+
+def test_verify_accepts_balanced_parentheses_in_markdown_destinations(tmp_path):
+    root = build_managed_fixture(tmp_path / "publication", episodes=(1,), topics=("topic(one)",))
+
+    report = KnowledgeBasePublisher().verify(root)
+
+    assert report.is_valid
+
+
+def test_verify_decodes_percent_encoded_paths_before_containment_checking(tmp_path):
+    root = build_managed_fixture(tmp_path / "publication", episodes=(1,), topics=("only-topic",))
+    (root / "topics/only-topic.md").write_text("[outside](%2e%2e/%2e%2e/outside.md)\n", encoding="utf-8")
+
+    report = KnowledgeBasePublisher().verify(root)
+
+    assert "unsafe_path" in {defect.category for defect in report.defects}
+
+
+def test_verify_converts_malformed_markdown_destinations_to_defects(tmp_path):
+    root = build_managed_fixture(tmp_path / "publication", episodes=(1,), topics=("only-topic",))
+    (root / "topics/only-topic.md").write_text("[bad](//[)\n", encoding="utf-8")
+
+    report = KnowledgeBasePublisher().verify(root)
+
+    assert not report.is_valid
+    assert report.defects
