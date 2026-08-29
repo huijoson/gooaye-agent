@@ -6,15 +6,26 @@ import hashlib
 import json
 import os
 import re
+import shutil
 import stat
-from dataclasses import dataclass
+import tempfile
+from dataclasses import asdict, dataclass
+from datetime import datetime, timezone
 from enum import Enum
 from pathlib import Path
+from typing import Sequence
 from urllib.parse import unquote, urlsplit
+
+from domain import TopicDefinition
+from episode_synthesizer import EpisodeNoteSynthesizer
+from markdown_renderer import MarkdownRenderer
+from topic_catalog import DEFAULT_TOPICS
+from topic_synthesizer import TopicGuideRenderer, TopicGuideSynthesizer
 
 
 MANIFEST_FILENAME = "publication-manifest.json"
 PUBLICATION_SCHEMA_VERSION = 1
+WORKSPACE_ROOT = Path(__file__).resolve().parent.parent
 
 
 class PublicationMode(str, Enum):
@@ -28,6 +39,15 @@ class PublicationArtifact:
     path: str
     size_bytes: int
     sha256: str
+
+
+@dataclass(frozen=True)
+class PublicationRequest:
+    destination: Path
+    resolver: object | None = None
+    takeaway_resolver: object | None = None
+    max_workers: int = 1
+    keep_failed_staging: bool = False
 
 
 @dataclass(frozen=True)
@@ -66,7 +86,163 @@ class _InvalidManifest(ValueError):
 
 
 class KnowledgeBasePublisher:
-    """Own the public, non-mutating publication verification seam."""
+    """Own complete Knowledge Base Publication rendering and verification."""
+
+    def __init__(
+        self,
+        episode_synthesizer: EpisodeNoteSynthesizer | None = None,
+        topic_synthesizer: TopicGuideSynthesizer | None = None,
+        markdown_renderer: MarkdownRenderer | None = None,
+        topic_renderer: TopicGuideRenderer | None = None,
+        topic_catalog: Sequence[TopicDefinition] = DEFAULT_TOPICS,
+    ) -> None:
+        self.episode_synthesizer = episode_synthesizer or EpisodeNoteSynthesizer()
+        self.topic_synthesizer = topic_synthesizer or TopicGuideSynthesizer()
+        self.markdown_renderer = markdown_renderer or MarkdownRenderer()
+        self.topic_renderer = topic_renderer or TopicGuideRenderer()
+        self.topic_catalog = tuple(topic_catalog)
+
+    def publish(self, request: PublicationRequest) -> PublicationManifest:
+        """Build, verify, and install one complete publication tree."""
+        destination = self._validated_destination(request)
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        staging = Path(
+            tempfile.mkdtemp(
+                prefix=f".{destination.name}.staging-",
+                dir=destination.parent,
+            )
+        )
+        installed = False
+        try:
+            summary = self.episode_synthesizer.synthesize_notes(
+                resolver=request.resolver,
+                takeaway_resolver=request.takeaway_resolver,
+                max_workers=request.max_workers,
+            )
+            guides = self.topic_synthesizer.synthesize_all_topics(
+                summary.notes,
+                self.topic_catalog,
+            )
+            self._render_tree(staging, summary, guides)
+            manifest = self._build_manifest(staging, summary)
+            self._write_manifest(staging, manifest)
+            verification = self.verify(staging)
+            if not verification.is_valid:
+                details = "; ".join(
+                    f"{defect.category}: {defect.path or defect.message}"
+                    for defect in verification.defects
+                )
+                raise ValueError(f"Staged publication failed verification: {details}")
+            self._install(staging, destination)
+            installed = True
+            return manifest
+        finally:
+            if not installed and not request.keep_failed_staging and staging.exists():
+                shutil.rmtree(staging)
+
+    def _validated_destination(self, request: PublicationRequest) -> Path:
+        if isinstance(request.max_workers, bool) or request.max_workers < 1:
+            raise ValueError("Publication max_workers must be a positive integer.")
+        destination = Path(request.destination)
+        if destination.is_symlink():
+            raise ValueError("Publication destination must not be a symlink.")
+        resolved = destination.resolve(strict=False)
+        dangerous = {
+            Path(resolved.anchor),
+            Path.home().resolve(),
+            WORKSPACE_ROOT,
+        }
+        if resolved in dangerous:
+            raise ValueError("Publication destination is a protected directory.")
+        if destination.exists() and not destination.is_dir():
+            raise ValueError("Publication destination must be a directory.")
+        if destination.exists() and any(destination.iterdir()):
+            report = self.verify(destination)
+            if report.mode is not PublicationMode.MANAGED or not report.is_valid:
+                raise ValueError("Non-empty publication destination is not a valid managed tree.")
+        return destination
+
+    def _render_tree(self, stage, summary, guides) -> None:
+        episodes_dir = stage / "episodes"
+        topics_dir = stage / "topics"
+        episodes_dir.mkdir()
+        topics_dir.mkdir()
+        for note in summary.notes:
+            stem = f"EP{note.metadata.number:04d}"
+            (episodes_dir / f"{stem}.md").write_text(
+                self.markdown_renderer.render_episode(note, mode="slim"),
+                encoding="utf-8",
+            )
+            (episodes_dir / f"{stem}.full.md").write_text(
+                self.markdown_renderer.render_episode(note, mode="full"),
+                encoding="utf-8",
+            )
+        (stage / "README.md").write_text(
+            self.markdown_renderer.render_readme(summary.notes, summary),
+            encoding="utf-8",
+        )
+        (stage / "_index.md").write_text(
+            self.markdown_renderer.render_index(
+                summary.notes,
+                summary,
+                topics=self.topic_catalog,
+            ),
+            encoding="utf-8",
+        )
+        for guide in guides:
+            (topics_dir / f"{guide.slug}.md").write_text(
+                self.topic_renderer.render(guide),
+                encoding="utf-8",
+            )
+        (topics_dir / "README.md").write_text(
+            self.topic_renderer.render_topics_readme(guides),
+            encoding="utf-8",
+        )
+
+    def _build_manifest(self, stage, summary) -> PublicationManifest:
+        artifacts = tuple(
+            PublicationArtifact(
+                path=path.relative_to(stage).as_posix(),
+                size_bytes=path.stat().st_size,
+                sha256=_sha256(path),
+            )
+            for path in sorted(stage.rglob("*"))
+            if path.is_file()
+        )
+        return PublicationManifest(
+            schema_version=PUBLICATION_SCHEMA_VERSION,
+            created_at=datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+            source_episodes=tuple(sorted(note.metadata.number for note in summary.notes)),
+            topic_catalog=tuple(sorted(topic.slug for topic in self.topic_catalog)),
+            total_chapters=summary.total_chapters,
+            total_seconds=summary.total_seconds,
+            artifacts=artifacts,
+        )
+
+    @staticmethod
+    def _write_manifest(stage: Path, manifest: PublicationManifest) -> None:
+        (stage / MANIFEST_FILENAME).write_text(
+            json.dumps(asdict(manifest), ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+
+    @staticmethod
+    def _install(stage: Path, destination: Path) -> None:
+        backup: Path | None = None
+        if destination.exists() and any(destination.iterdir()):
+            backup = Path(
+                tempfile.mkdtemp(
+                    prefix=f".{destination.name}.backup-",
+                    dir=destination.parent,
+                )
+            )
+            backup.rmdir()
+            os.replace(destination, backup)
+        elif destination.exists():
+            destination.rmdir()
+        os.replace(stage, destination)
+        if backup is not None:
+            shutil.rmtree(backup)
 
     def verify(self, root: Path) -> PublicationVerification:
         """Read a Manifest-managed publication without changing its bytes."""

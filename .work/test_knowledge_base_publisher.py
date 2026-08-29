@@ -6,11 +6,88 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+from collections import Counter
 from pathlib import Path
 
 import pytest
 
-from knowledge_base_publisher import KnowledgeBasePublisher, PublicationMode
+from domain import Chapter, EpisodeMetadata, EpisodeNote, SynthesisSummary, TopicDefinition
+from knowledge_base_publisher import (
+    KnowledgeBasePublisher,
+    PublicationMode,
+    PublicationRequest,
+)
+
+
+class FixtureEpisodeSynthesizer:
+    def __init__(
+        self,
+        episode_numbers: tuple[int, ...],
+        *,
+        reject_second_call: bool = False,
+    ) -> None:
+        self.episode_numbers = episode_numbers
+        self.reject_second_call = reject_second_call
+        self.call_count = 0
+
+    def synthesize_notes(self, **kwargs) -> SynthesisSummary:
+        self.call_count += 1
+        if self.reject_second_call and self.call_count > 1:
+            raise AssertionError("Episode notes were synthesized more than once")
+        notes = tuple(
+            EpisodeNote(
+                metadata=EpisodeMetadata(
+                    number=number,
+                    youtube_id=f"video-{number}",
+                    youtube_url=f"https://youtube.test/watch?v=video-{number}",
+                    youtube_title=f"Fixture YouTube title {number}",
+                    display_title=f"Fixture episode {number}",
+                    date=f"202{number}-01-0{number}",
+                    date_source="fixture",
+                    duration_str="1:00",
+                    duration_seconds=60,
+                    archive_url=f"https://archive.test/EP{number}",
+                    summary=f"Fixture summary {number}",
+                ),
+                chapters=(
+                    Chapter(
+                        index=1,
+                        heading=f"Only topic heading {number}",
+                        takeaway=f"Only topic takeaway {number}",
+                        excerpts=(f"Only topic evidence {number}",),
+                    ),
+                ),
+            )
+            for number in self.episode_numbers
+        )
+        return SynthesisSummary(
+            total_episodes=len(notes),
+            total_chapters=len(notes),
+            total_seconds=len(notes) * 60,
+            chapter_distribution=Counter({1: len(notes)}),
+            notes=notes,
+        )
+
+
+def make_fixture_publisher(
+    *,
+    episode_numbers: tuple[int, ...],
+    topic_slugs: tuple[str, ...],
+) -> KnowledgeBasePublisher:
+    topics = tuple(
+        TopicDefinition(
+            slug=slug,
+            title=f"Topic {slug}",
+            description=f"Fixture guide for {slug}.",
+            category="fixture",
+            keywords=("Only topic",),
+        )
+        for slug in topic_slugs
+    )
+    return KnowledgeBasePublisher(
+        episode_synthesizer=FixtureEpisodeSynthesizer(episode_numbers),
+        topic_catalog=topics,
+    )
 
 
 def snapshot_bytes(root: Path) -> dict[str, bytes]:
@@ -82,6 +159,121 @@ def add_manifest_artifact(root: Path, relative_path: str, content: str) -> None:
     )
     manifest["artifacts"].sort(key=lambda artifact: artifact["path"])
     manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+
+def test_publish_builds_and_verifies_one_complete_tree(tmp_path):
+    publisher = make_fixture_publisher(episode_numbers=(1, 2), topic_slugs=("only-topic",))
+    destination = tmp_path / "publication"
+
+    manifest = publisher.publish(PublicationRequest(destination=destination))
+    report = publisher.verify(destination)
+
+    assert report.is_valid
+    assert manifest.source_episodes == (1, 2)
+    assert manifest.topic_catalog == ("only-topic",)
+    assert sorted(
+        path.relative_to(destination).as_posix()
+        for path in destination.rglob("*")
+        if path.is_file()
+    ) == [
+        "README.md",
+        "_index.md",
+        "episodes/EP0001.full.md",
+        "episodes/EP0001.md",
+        "episodes/EP0002.full.md",
+        "episodes/EP0002.md",
+        "publication-manifest.json",
+        "topics/README.md",
+        "topics/only-topic.md",
+    ]
+
+
+def test_publish_derives_topic_guides_from_one_in_memory_source_batch(tmp_path):
+    synthesizer = FixtureEpisodeSynthesizer((1,), reject_second_call=True)
+    topic = TopicDefinition(
+        slug="only-topic",
+        title="Only Topic",
+        description="One fixture Topic Guide.",
+        category="fixture",
+        keywords=("Only topic",),
+    )
+    publisher = KnowledgeBasePublisher(
+        episode_synthesizer=synthesizer,
+        topic_catalog=(topic,),
+    )
+    destination = tmp_path / "publication"
+
+    publisher.publish(PublicationRequest(destination=destination))
+
+    topic_guide = (destination / "topics/only-topic.md").read_text(encoding="utf-8")
+    assert synthesizer.call_count == 1
+    assert "../episodes/EP0001.md" in topic_guide
+    assert "2021-01-01" in topic_guide
+    assert "Only topic heading 1" in topic_guide
+    assert "Only topic takeaway 1" in topic_guide
+
+
+def test_publish_replaces_stale_artifacts_and_repeats_without_sibling_debris(tmp_path):
+    destination = tmp_path / "publication"
+    publisher_a = make_fixture_publisher(
+        episode_numbers=(1,),
+        topic_slugs=("topic-a",),
+    )
+    publisher_a.publish(PublicationRequest(destination=destination))
+
+    publisher_b = make_fixture_publisher(
+        episode_numbers=(1, 2),
+        topic_slugs=("topic-b",),
+    )
+    manifest_b = publisher_b.publish(PublicationRequest(destination=destination))
+
+    expected_files = {artifact.path for artifact in manifest_b.artifacts}
+    expected_files.add("publication-manifest.json")
+    actual_files = {
+        path.relative_to(destination).as_posix()
+        for path in destination.rglob("*")
+        if path.is_file()
+    }
+    assert actual_files == expected_files
+    assert not (destination / "topics/topic-a.md").exists()
+
+    repeated_publisher_b = make_fixture_publisher(
+        episode_numbers=(1, 2),
+        topic_slugs=("topic-b",),
+    )
+    repeated_publisher_b.publish(PublicationRequest(destination=destination))
+
+    assert repeated_publisher_b.verify(destination).is_valid
+    assert list(tmp_path.glob(".publication.staging-*")) == []
+    assert list(tmp_path.glob(".publication.backup-*")) == []
+
+
+@pytest.mark.parametrize("max_workers", (0, -1))
+def test_publish_rejects_non_positive_workers_before_writing(tmp_path, max_workers):
+    publisher = make_fixture_publisher(
+        episode_numbers=(1,),
+        topic_slugs=("only-topic",),
+    )
+    destination = tmp_path / "publication"
+
+    with pytest.raises(ValueError, match="positive integer"):
+        publisher.publish(
+            PublicationRequest(destination=destination, max_workers=max_workers)
+        )
+
+    assert not destination.exists()
+    assert list(tmp_path.iterdir()) == []
+
+
+def test_publish_rejects_the_workspace_root_before_synthesis():
+    synthesizer = FixtureEpisodeSynthesizer((1,))
+    publisher = KnowledgeBasePublisher(episode_synthesizer=synthesizer)
+    workspace_root = Path(__file__).resolve().parent.parent
+
+    with pytest.raises(ValueError, match="protected directory"):
+        publisher.publish(PublicationRequest(destination=workspace_root))
+
+    assert synthesizer.call_count == 0
 
 
 def test_verify_accepts_a_complete_manifest_managed_publication(tmp_path):
