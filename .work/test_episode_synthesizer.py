@@ -192,7 +192,7 @@ class TestEpisodeNoteSynthesizer(unittest.TestCase):
             self.assertEqual(summary.total_chapters, sum(len(note.chapters) for note in summary.notes))
             write_text.assert_not_called()
 
-    def test_synthesize_all_writes_dual_tier_files(self) -> None:
+    def test_synthesize_all_preview_writes_only_dual_tier_episode_files(self) -> None:
         import tempfile
         if 1 not in self.synthesizer.episode_numbers:
             self.skipTest("EP1 data files not present in workspace")
@@ -205,12 +205,11 @@ class TestEpisodeNoteSynthesizer(unittest.TestCase):
             self.assertEqual(summary.total_episodes, 1)
             ep_file = out_dir / "episodes/EP0001.md"
             full_file = out_dir / "episodes/EP0001.full.md"
-            index_file = out_dir / "_index.md"
-            readme_file = out_dir / "README.md"
             self.assertTrue(ep_file.exists())
             self.assertTrue(full_file.exists())
-            self.assertTrue(index_file.exists())
-            self.assertTrue(readme_file.exists())
+            self.assertFalse((out_dir / "_index.md").exists())
+            self.assertFalse((out_dir / "README.md").exists())
+            self.assertFalse((out_dir / "publication-manifest.json").exists())
 
             ep_content = ep_file.read_text(encoding="utf-8")
             full_content = full_file.read_text(encoding="utf-8")

@@ -26,6 +26,12 @@ from takeaway_resolver import (
     CompositeTakeawayResolver,
 )
 from episode_synthesizer import EpisodeNoteSynthesizer, OUTPUT_DIR, HEADINGS_CACHE_DIR
+from knowledge_base_publisher import (
+    KnowledgeBasePublisher,
+    PublicationError,
+    PublicationMode,
+    PublicationRequest,
+)
 from episode_acquirer import (
     ARCHIVE_EPISODES_URL,
     ARCHIVE_INDEX_URL,
@@ -41,11 +47,66 @@ from episode_source_repository import EpisodeSourceError, EpisodeSourceRepositor
 ROOT = Path(__file__).resolve().parent.parent
 
 
+class PreviewDestinationError(ValueError):
+    """A command-line Preview destination is missing or unsafe."""
+
+
 def positive_episode_number(value: str) -> int:
     number = int(value)
     if number <= 0:
         raise argparse.ArgumentTypeError("episode number must be positive")
     return number
+
+
+def select_heading_resolver(strategy: str, quality_engine: HeadingQualityEngine):
+    """Build the selected heading strategy once for a synthesis operation."""
+    if strategy == "deterministic":
+        return DeterministicHeadingResolver(quality_engine=quality_engine)
+    if strategy == "cache":
+        return CachedHeadingResolver(cache_dir=HEADINGS_CACHE_DIR, quality_engine=quality_engine)
+    if strategy == "ollama":
+        return OllamaHeadingResolver(quality_engine=quality_engine)
+    return CompositeHeadingResolver(cache_dir=HEADINGS_CACHE_DIR, quality_engine=quality_engine)
+
+
+def preview_output_directory(output_dir: Path | None) -> Path:
+    """Validate the intentionally isolated directory used for non-formal previews."""
+    if output_dir is None:
+        raise PreviewDestinationError("Preview output directory must be provided explicitly.")
+    destination = Path(output_dir)
+    if destination.is_symlink():
+        raise PreviewDestinationError("Preview output directory must not be a symlink.")
+    resolved = destination.resolve(strict=False)
+    if resolved == OUTPUT_DIR.resolve():
+        raise PreviewDestinationError("Preview output directory must not be the formal publication root.")
+    protected = {
+        Path(resolved.anchor),
+        Path.home().resolve(),
+        ROOT.resolve(),
+    }
+    if resolved in protected:
+        raise PreviewDestinationError("Preview output directory is a protected broad destination.")
+    if destination.exists() and not destination.is_dir():
+        raise PreviewDestinationError("Preview output directory must be a directory.")
+    if destination.exists() and any(destination.iterdir()):
+        raise PreviewDestinationError("Preview output directory must be new or empty.")
+    return destination
+
+
+def _requested_output_dir(args: argparse.Namespace) -> Path | None:
+    return args.out_dir if getattr(args, "out_dir", None) is not None else args.output_dir
+
+
+def _publication_error(error: PublicationError) -> None:
+    print(f"Publish failed; phase: {error.phase.value}; {error}", file=sys.stderr)
+    for defect in error.defects:
+        category = getattr(defect, "category", "defect")
+        message = getattr(defect, "message", str(defect))
+        path = getattr(defect, "path", "")
+        suffix = f" ({path})" if path else ""
+        print(f"  - {category}: {message}{suffix}", file=sys.stderr)
+    if error.staging_path is not None:
+        print(f"Retained staging path: {error.staging_path}", file=sys.stderr)
 
 
 def cmd_download(args: argparse.Namespace) -> None:
@@ -99,19 +160,6 @@ def cmd_download(args: argparse.Namespace) -> None:
 
 
 def cmd_synthesize(args: argparse.Namespace) -> None:
-    synthesizer = EpisodeNoteSynthesizer()
-    out_dir = args.out_dir or args.output_dir
-
-    # Select heading resolver
-    if args.resolver == "deterministic":
-        resolver = DeterministicHeadingResolver(quality_engine=synthesizer.quality)
-    elif args.resolver == "cache":
-        resolver = CachedHeadingResolver(cache_dir=HEADINGS_CACHE_DIR, quality_engine=synthesizer.quality)
-    elif args.resolver == "ollama":
-        resolver = OllamaHeadingResolver(quality_engine=synthesizer.quality)
-    else:
-        resolver = CompositeHeadingResolver(cache_dir=HEADINGS_CACHE_DIR, quality_engine=synthesizer.quality)
-
     target_episodes = []
     if args.episode:
         target_episodes = [args.episode]
@@ -119,14 +167,23 @@ def cmd_synthesize(args: argparse.Namespace) -> None:
         target_episodes = args.episodes
 
     if len(target_episodes) == 1 and args.dry_run:
+        synthesizer = EpisodeNoteSynthesizer()
+        resolver = select_heading_resolver(args.resolver, synthesizer.quality)
         note = synthesizer.synthesize_episode(target_episodes[0], resolver=resolver)
         print("=== SLIM NAVIGATION LAYER ===")
         print(note.render_markdown(mode="slim"))
         print("\n=== FULL DEEP CONTEXT LAYER ===")
         print(note.render_markdown(mode="full"))
-    elif target_episodes:
+        return
+    if args.dry_run:
+        raise ValueError("--dry-run requires exactly one --episode.")
+
+    out_dir = preview_output_directory(_requested_output_dir(args))
+    synthesizer = EpisodeNoteSynthesizer()
+    resolver = select_heading_resolver(args.resolver, synthesizer.quality)
+    if target_episodes:
         start_time = time.time()
-        print(f"Synthesizing {len(target_episodes)} specified episodes to {out_dir} (workers={args.workers})...")
+        print(f"Synthesizing {len(target_episodes)} episodes to Preview {out_dir} (workers={args.workers})...")
         summary = synthesizer.synthesize_all(
             output_dir=out_dir,
             resolver=resolver,
@@ -138,7 +195,7 @@ def cmd_synthesize(args: argparse.Namespace) -> None:
         print(f"Chapter distribution: {dict(sorted(summary.chapter_distribution.items()))}")
     else:
         start_time = time.time()
-        print(f"Synthesizing all {len(synthesizer.episode_numbers)} episodes to {out_dir} using {args.resolver} resolver (workers={args.workers})...")
+        print(f"Synthesizing available episode sources to Preview {out_dir} using {args.resolver} resolver (workers={args.workers})...")
         summary = synthesizer.synthesize_all(
             output_dir=out_dir,
             resolver=resolver,
@@ -147,6 +204,65 @@ def cmd_synthesize(args: argparse.Namespace) -> None:
         elapsed = time.time() - start_time
         print(f"Successfully generated {summary.total_episodes} notes ({summary.total_chapters} chapters) in {elapsed:.2f}s.")
         print(f"Chapter distribution: {dict(sorted(summary.chapter_distribution.items()))}")
+
+
+def cmd_publish(args: argparse.Namespace) -> None:
+    publisher = KnowledgeBasePublisher()
+    quality_engine = getattr(publisher.episode_synthesizer, "quality", None)
+    if quality_engine is None:
+        quality_engine = HeadingQualityEngine()
+    resolver = select_heading_resolver(args.resolver, quality_engine)
+    request = PublicationRequest(
+        destination=args.output_dir,
+        resolver=resolver,
+        max_workers=args.workers,
+        keep_failed_staging=args.keep_failed_staging,
+    )
+    started = time.monotonic()
+    try:
+        publisher.publish(request)
+    except PublicationError as error:
+        _publication_error(error)
+        raise SystemExit(1) from error
+    publish_elapsed = time.monotonic() - started
+
+    verify_started = time.monotonic()
+    verification = publisher.verify(args.output_dir)
+    verify_elapsed = time.monotonic() - verify_started
+    if verification.mode not in {PublicationMode.MANAGED, PublicationMode.LEGACY} or not verification.is_valid:
+        for defect in verification.defects:
+            print(f"  - {defect.category}: {defect.message} ({defect.path})", file=sys.stderr)
+        print("Publish failed; phase: verify; installed publication did not verify.", file=sys.stderr)
+        raise SystemExit(1)
+
+    print(f"publish duration: {publish_elapsed:.2f}s")
+    print(f"verify duration: {verify_elapsed:.2f}s")
+    print("commit: OK")
+    print(f"artifacts: {verification.artifact_count}")
+    print(f"episodes: {verification.episode_count}")
+    print(f"topics: {verification.topic_count}")
+    print(f"root: {Path(args.output_dir).resolve(strict=False)}")
+    print("verification: OK")
+
+
+def cmd_verify(args: argparse.Namespace) -> None:
+    verification = KnowledgeBasePublisher().verify(args.output_dir)
+    lines = [
+        f"mode: {verification.mode.value}",
+        f"artifacts: {verification.artifact_count}",
+        f"episodes: {verification.episode_count}",
+        f"topics: {verification.topic_count}",
+        f"defects: {len(verification.defects)}",
+    ]
+    valid = verification.mode in {PublicationMode.MANAGED, PublicationMode.LEGACY} and verification.is_valid
+    if valid:
+        print("\n".join(lines))
+        print("verification: OK")
+        return
+    print("\n".join(lines), file=sys.stderr)
+    for defect in verification.defects:
+        print(f"  - {defect.category}: {defect.message} ({defect.path})", file=sys.stderr)
+    raise SystemExit(1)
 
 
 def cmd_audit(args: argparse.Namespace) -> None:
@@ -226,12 +342,7 @@ def cmd_topics(args: argparse.Namespace) -> None:
     from topic_synthesizer import (
         TopicGuideSynthesizer,
         TopicQualityAuditor,
-        load_all_notes_from_dir,
     )
-
-    out_dir = args.out_dir or args.output_dir or OUTPUT_DIR
-    topics_dir = out_dir / "topics"
-    episodes_dir = out_dir / "episodes"
 
     if args.list:
         print("=== Gooaye 股癌 跨集數主題專題庫清單 ===")
@@ -242,11 +353,8 @@ def cmd_topics(args: argparse.Namespace) -> None:
         return
 
     if args.generate:
-        print(f"Loading episode notes from {episodes_dir}...")
-        notes = load_all_notes_from_dir(episodes_dir)
-        if not notes:
-            print(f"❌ No episode notes found in {episodes_dir}. Please run 'synthesize' first.")
-            sys.exit(1)
+        out_dir = preview_output_directory(_requested_output_dir(args))
+        topics_dir = out_dir / "topics"
 
         selected_topics = DEFAULT_TOPICS
         if args.topic:
@@ -255,16 +363,21 @@ def cmd_topics(args: argparse.Namespace) -> None:
                 print(f"❌ Unknown topic slug: '{args.topic}'. Use 'topics --list' to see valid slugs.")
                 sys.exit(1)
 
-        print(f"Loaded {len(notes)} episode notes. Synthesizing {len(selected_topics)} topic guides to {topics_dir}...")
+        synthesizer = EpisodeNoteSynthesizer()
+        summary = synthesizer.synthesize_notes()
+        print(f"Synthesizing {len(selected_topics)} Preview topic guides from {len(summary.notes)} in-memory notes to {topics_dir}...")
         start_time = time.time()
         syn = TopicGuideSynthesizer()
-        files = syn.synthesize_and_save_all(notes, topics_dir, selected_topics)
+        files = syn.synthesize_and_save_all(summary.notes, topics_dir, selected_topics)
         elapsed = time.time() - start_time
         print(f"✅ Successfully generated {len(files)} topic files in {elapsed:.2f}s:")
         for f in files:
             print(f"  - {f.name}")
         return
 
+    out_dir = _requested_output_dir(args) or OUTPUT_DIR
+    topics_dir = out_dir / "topics"
+    episodes_dir = out_dir / "episodes"
     if args.audit or not (args.list or args.generate):
         print(f"Auditing topic guides in {topics_dir} against {episodes_dir}...")
         auditor = TopicQualityAuditor()
@@ -312,12 +425,25 @@ def main() -> None:
     p_syn = subparsers.add_parser("synthesize", help="Synthesize Markdown notes")
     p_syn.add_argument("--episode", type=int, help="Synthesize a single episode number")
     p_syn.add_argument("--episodes", type=int, nargs="+", help="Synthesize multiple episode numbers")
-    p_syn.add_argument("--output-dir", type=Path, default=OUTPUT_DIR, help="Destination directory for notes")
+    p_syn.add_argument("--output-dir", type=Path, default=None, help="Explicit new or empty Preview destination")
     p_syn.add_argument("--out-dir", type=Path, default=None, help="Alias for --output-dir")
     p_syn.add_argument("--resolver", choices=["composite", "cache", "deterministic", "ollama"], default="composite", help="Heading resolution strategy")
     p_syn.add_argument("--workers", type=int, default=8, help="Number of worker threads for batch generation")
     p_syn.add_argument("--dry-run", action="store_true", help="Print markdown to stdout instead of writing to disk")
     p_syn.set_defaults(func=cmd_synthesize)
+
+    # publish
+    p_publish = subparsers.add_parser("publish", help="Build and transactionally install a complete Knowledge Base Publication")
+    p_publish.add_argument("--output-dir", type=Path, required=True, help="Publication destination directory")
+    p_publish.add_argument("--resolver", choices=["composite", "cache", "deterministic", "ollama"], default="composite", help="Heading resolution strategy")
+    p_publish.add_argument("--workers", type=int, default=8, help="Number of worker threads for synthesis")
+    p_publish.add_argument("--keep-failed-staging", action="store_true", help="Retain a failed staging tree for inspection")
+    p_publish.set_defaults(func=cmd_publish)
+
+    # verify
+    p_verify = subparsers.add_parser("verify", help="Read-only verification of a Knowledge Base Publication")
+    p_verify.add_argument("--output-dir", type=Path, required=True, help="Publication destination directory")
+    p_verify.set_defaults(func=cmd_verify)
 
     # audit
     p_audit = subparsers.add_parser("audit", help="Audit heading and takeaway quality across the corpus")
@@ -342,12 +468,15 @@ def main() -> None:
     p_top.add_argument("--audit", action="store_true", help="Audit grounding and links of all topic guides")
     p_top.add_argument("--list", action="store_true", help="List all defined topic guides")
     p_top.add_argument("--topic", type=str, default=None, help="Filter for a specific topic slug")
-    p_top.add_argument("--output-dir", type=Path, default=OUTPUT_DIR, help="Base destination directory")
+    p_top.add_argument("--output-dir", type=Path, default=None, help="Explicit new or empty Preview destination for --generate")
     p_top.add_argument("--out-dir", type=Path, default=None, help="Alias for --output-dir")
     p_top.set_defaults(func=cmd_topics)
 
     args = parser.parse_args()
-    args.func(args)
+    try:
+        args.func(args)
+    except PreviewDestinationError as error:
+        parser.error(str(error))
 
 
 if __name__ == "__main__":

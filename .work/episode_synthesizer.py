@@ -6,7 +6,6 @@ from __future__ import annotations
 import concurrent.futures
 import logging
 import re
-import shutil
 from collections import Counter
 from pathlib import Path
 from typing import Sequence
@@ -50,7 +49,6 @@ from takeaway_resolver import (
 )
 from markdown_renderer import MarkdownRenderer
 from episode_source_repository import EpisodeSourceRepository
-from topic_catalog import DEFAULT_TOPICS
 
 logger = logging.getLogger(__name__)
 
@@ -225,7 +223,7 @@ class EpisodeNoteSynthesizer:
         max_workers: int = 1,
         episode_numbers: Sequence[int] | None = None,
     ) -> SynthesisSummary:
-        """Batch synthesize all episode notes, write markdown files (slim and full), index, and readme."""
+        """Write an isolated Preview of episode notes without publication-level indexes."""
         summary = self.synthesize_notes(
             resolver=resolver,
             takeaway_resolver=takeaway_resolver,
@@ -234,8 +232,6 @@ class EpisodeNoteSynthesizer:
         )
 
         episodes_dir = output_dir / "episodes"
-        if output_dir.exists():
-            shutil.rmtree(output_dir)
         episodes_dir.mkdir(parents=True, exist_ok=True)
 
         for note in summary.notes:
@@ -248,12 +244,6 @@ class EpisodeNoteSynthesizer:
                 note.render_markdown(mode="full"),
                 encoding="utf-8",
             )
-
-        (output_dir / "README.md").write_text(self.renderer.render_readme(summary.notes, summary), encoding="utf-8")
-        (output_dir / "_index.md").write_text(
-            self.renderer.render_index(summary.notes, summary, topics=DEFAULT_TOPICS),
-            encoding="utf-8",
-        )
 
         return summary
 
