@@ -799,7 +799,7 @@ class KnowledgeBasePublisher:
             path for path, kind in entries.items() if kind == "file" and path.endswith(".md")
         }
         defects.extend(_broken_markdown_links(root, markdown_paths))
-        if all(entries.get(path) == "file" for path in expected_topic_paths) and entries.get("episodes") == "directory":
+        if not defects:
             try:
                 audit = TopicQualityAuditor().audit_all_topics(root / "topics", root / "episodes")
             except (OSError, UnicodeDecodeError) as exc:
@@ -989,17 +989,48 @@ def _topic_audit_defects(audit: object) -> list[PublicationDefect]:
                 "topics",
             )
         ]
+    total_topics = audit.get("total_topics")
+    defect_count = audit.get("defect_count")
     defects = audit.get("defects")
+    publication_defects: list[PublicationDefect] = []
+    if (
+        isinstance(total_topics, bool)
+        or not isinstance(total_topics, int)
+        or total_topics != len(DEFAULT_TOPICS)
+    ):
+        publication_defects.append(
+            PublicationDefect(
+                "grounding",
+                "Topic Guide audit returned an inconsistent total_topics value.",
+                "topics",
+            )
+        )
+    if isinstance(defect_count, bool) or not isinstance(defect_count, int):
+        publication_defects.append(
+            PublicationDefect(
+                "grounding",
+                "Topic Guide audit returned a malformed defect_count value.",
+                "topics",
+            )
+        )
     if not isinstance(defects, list):
-        return [
+        publication_defects.append(
             PublicationDefect(
                 "grounding",
                 "Topic Guide audit returned malformed defects.",
                 "topics",
             )
-        ]
+        )
+        return publication_defects
 
-    publication_defects: list[PublicationDefect] = []
+    if isinstance(defect_count, int) and not isinstance(defect_count, bool) and defect_count != len(defects):
+        publication_defects.append(
+            PublicationDefect(
+                "grounding",
+                "Topic Guide audit defect_count does not match its defects.",
+                "topics",
+            )
+        )
     for defect in defects:
         if not isinstance(defect, dict):
             publication_defects.append(

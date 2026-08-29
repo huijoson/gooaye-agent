@@ -128,6 +128,11 @@ class MalformedTopicQualityAuditor:
         return self.result
 
 
+class FailingTopicQualityAuditor:
+    def audit_all_topics(self, topics_dir, episodes_dir):
+        raise AssertionError("unsafe legacy tree must not invoke TopicQualityAuditor")
+
+
 class DestinationMutatingMarkdownRenderer(MarkdownRenderer):
     def __init__(self, destination: Path) -> None:
         self.destination = destination
@@ -364,6 +369,14 @@ def test_verify_reports_an_unreadable_legacy_topic_guide_without_raising(tmp_pat
         {"defects": [{"message": "missing topic name"}]},
         {"defects": [{"topic": 123, "message": "numeric topic"}]},
         {"defects": [{"topic": "ai-hardware-and-semiconductor.md", "message": 123}]},
+        {"total_topics": True, "defect_count": 0, "defects": []},
+        {"total_topics": "4", "defect_count": 0, "defects": []},
+        {"total_topics": None, "defect_count": 0, "defects": []},
+        {"total_topics": 3, "defect_count": 0, "defects": []},
+        {"total_topics": len(DEFAULT_TOPICS), "defect_count": True, "defects": []},
+        {"total_topics": len(DEFAULT_TOPICS), "defect_count": "0", "defects": []},
+        {"total_topics": len(DEFAULT_TOPICS), "defect_count": None, "defects": []},
+        {"total_topics": len(DEFAULT_TOPICS), "defect_count": 1, "defects": []},
     ),
     ids=(
         "none",
@@ -373,6 +386,14 @@ def test_verify_reports_an_unreadable_legacy_topic_guide_without_raising(tmp_pat
         "missing-topic",
         "numeric-topic",
         "numeric-message",
+        "bool-total",
+        "string-total",
+        "null-total",
+        "wrong-total",
+        "bool-defect-count",
+        "string-defect-count",
+        "null-defect-count",
+        "mismatched-defect-count",
     ),
 )
 def test_verify_reports_malformed_legacy_topic_auditor_results_without_raising(
@@ -391,6 +412,46 @@ def test_verify_reports_malformed_legacy_topic_auditor_results_without_raising(
     assert report.mode is PublicationMode.LEGACY
     assert not report.is_valid
     assert "grounding" in {defect.category for defect in report.defects}
+
+
+@pytest.mark.parametrize(
+    "mutation",
+    (
+        lambda root, outside: (root / "topics/rogue.md").symlink_to(outside),
+        lambda root, outside: os.mkfifo(root / "topics/rogue.md"),
+        lambda root, outside: (
+            (root / "episodes/EP0001.md").unlink(),
+            (root / "episodes/EP0001.md").symlink_to(outside),
+        ),
+    ),
+    ids=("extra-topic-symlink", "extra-topic-fifo", "referenced-episode-symlink"),
+)
+def test_verify_rejects_unsafe_legacy_tree_before_topic_auditing(
+    tmp_path,
+    monkeypatch,
+    mutation,
+):
+    root = build_legacy_fixture(tmp_path / "legacy", episodes=(1, 2), topics=DEFAULT_TOPICS)
+    outside = tmp_path / "outside.md"
+    outside.write_text("# outside\n", encoding="utf-8")
+    mutation(root, outside)
+    read_text = Path.read_text
+
+    def reject_outside_read(path, *args, **kwargs):
+        if Path(path).resolve() == outside:
+            raise AssertionError("verify read outside the legacy publication")
+        return read_text(path, *args, **kwargs)
+
+    monkeypatch.setattr(
+        "knowledge_base_publisher.TopicQualityAuditor",
+        lambda: FailingTopicQualityAuditor(),
+    )
+    monkeypatch.setattr(Path, "read_text", reject_outside_read)
+    report = KnowledgeBasePublisher().verify(root)
+
+    assert report.mode is PublicationMode.LEGACY
+    assert not report.is_valid
+    assert {defect.category for defect in report.defects} & {"stale", "unsafe_path"}
 
 
 def add_manifest_artifact(root: Path, relative_path: str, content: str) -> None:

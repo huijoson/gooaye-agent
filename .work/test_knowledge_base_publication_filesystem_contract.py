@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import os
 import tempfile
+import time
 from pathlib import Path
 
 import pytest
@@ -39,11 +40,14 @@ def test_mnt_c_publication_lock_rename_rollback_and_cleanup_contract(monkeypatch
         held_lock = _PublicationLock(destination)
         held_lock.acquire()
         try:
+            started = time.monotonic()
             with pytest.raises(PublicationError) as locked:
                 make_fixture_publisher().publish(PublicationRequest(destination))
+            elapsed = time.monotonic() - started
         finally:
             held_lock.release()
         assert locked.value.phase is PublicationPhase.LOCK
+        assert elapsed < 1.0
 
         publisher_b = make_fixture_publisher(
             episode_numbers=(1, 2),
