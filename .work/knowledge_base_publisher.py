@@ -5,6 +5,7 @@ from __future__ import annotations
 import fcntl
 import hashlib
 import json
+import logging
 import os
 import re
 import shutil
@@ -12,7 +13,6 @@ import socket
 import stat
 import sys
 import tempfile
-import warnings
 from dataclasses import asdict, dataclass
 from datetime import datetime, timedelta, timezone
 from enum import Enum
@@ -30,6 +30,7 @@ from topic_synthesizer import TopicGuideRenderer, TopicGuideSynthesizer
 MANIFEST_FILENAME = "publication-manifest.json"
 PUBLICATION_SCHEMA_VERSION = 1
 WORKSPACE_ROOT = Path(__file__).resolve().parent.parent
+LOGGER = logging.getLogger(__name__)
 
 
 class PublicationMode(str, Enum):
@@ -589,11 +590,11 @@ class KnowledgeBasePublisher:
             try:
                 shutil.rmtree(recovery)
             except OSError as exc:
-                warnings.warn(
-                    f"Publication committed but recovery cleanup failed: {exc}; "
-                    f"residual recovery path: {recovery}",
-                    RuntimeWarning,
-                    stacklevel=2,
+                LOGGER.warning(
+                    "Publication committed but recovery cleanup failed: %s; "
+                    "residual recovery path: %s",
+                    exc,
+                    recovery,
                 )
 
     def verify(self, root: Path) -> PublicationVerification:

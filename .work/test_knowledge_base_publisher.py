@@ -5,10 +5,12 @@ from __future__ import annotations
 
 import hashlib
 import json
+import logging
 import os
 import socket
 import threading
 import time
+import warnings
 from collections import Counter
 from contextlib import contextmanager
 from dataclasses import replace
@@ -561,7 +563,7 @@ def test_partial_recovery_copy_failure_restores_from_the_intact_backup(tmp_path,
     assert snapshot_bytes(destination) == before
 
 
-def test_recovery_cleanup_failure_is_post_commit_garbage_collection(tmp_path, monkeypatch, recwarn):
+def test_recovery_cleanup_failure_is_post_commit_garbage_collection(tmp_path, monkeypatch, caplog):
     destination = build_managed_fixture(
         tmp_path / "publication", episodes=(1,), topics=("only-topic",)
     )
@@ -578,16 +580,18 @@ def test_recovery_cleanup_failure_is_post_commit_garbage_collection(tmp_path, mo
         "knowledge_base_publisher.shutil.rmtree",
         partially_remove_recovery_then_fail,
     )
+    caplog.set_level(logging.WARNING, logger="knowledge_base_publisher")
 
-    manifest = publisher.publish(PublicationRequest(destination))
+    with warnings.catch_warnings():
+        warnings.simplefilter("error")
+        manifest = publisher.publish(PublicationRequest(destination))
 
     assert manifest.source_episodes == (1, 2)
     assert publisher.verify(destination).is_valid
     residuals = list(tmp_path.glob(".publication.recovery-*"))
     assert len(residuals) == 1
     assert not (residuals[0] / "README.md").exists()
-    warning = recwarn.pop(RuntimeWarning)
-    assert str(residuals[0]) in str(warning.message)
+    assert str(residuals[0]) in caplog.text
 
 
 def test_publish_revalidates_destination_ownership_under_the_lock(tmp_path):
