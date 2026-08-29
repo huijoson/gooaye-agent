@@ -50,6 +50,7 @@ from takeaway_resolver import (
 )
 from markdown_renderer import MarkdownRenderer
 from episode_source_repository import EpisodeSourceRepository
+from topic_catalog import DEFAULT_TOPICS
 
 logger = logging.getLogger(__name__)
 
@@ -225,21 +226,20 @@ class EpisodeNoteSynthesizer:
         episode_numbers: Sequence[int] | None = None,
     ) -> SynthesisSummary:
         """Batch synthesize all episode notes, write markdown files (slim and full), index, and readme."""
+        summary = self.synthesize_notes(
+            resolver=resolver,
+            takeaway_resolver=takeaway_resolver,
+            max_workers=max_workers,
+            episode_numbers=episode_numbers,
+        )
+
         episodes_dir = output_dir / "episodes"
         if output_dir.exists():
             shutil.rmtree(output_dir)
         episodes_dir.mkdir(parents=True, exist_ok=True)
 
-        active_resolver = resolver or self.resolver
-        active_takeaway_resolver = takeaway_resolver or self.takeaway_resolver
-        target_numbers = list(episode_numbers) if episode_numbers is not None else self.episode_numbers
-
-        def _process(number: int) -> EpisodeNote:
-            note = self.synthesize_episode(
-                number,
-                resolver=active_resolver,
-                takeaway_resolver=active_takeaway_resolver,
-            )
+        for note in summary.notes:
+            number = note.metadata.number
             (episodes_dir / f"EP{number:04d}.md").write_text(
                 note.render_markdown(mode="slim"),
                 encoding="utf-8",
@@ -248,7 +248,33 @@ class EpisodeNoteSynthesizer:
                 note.render_markdown(mode="full"),
                 encoding="utf-8",
             )
-            return note
+
+        (output_dir / "README.md").write_text(self.renderer.render_readme(summary.notes, summary), encoding="utf-8")
+        (output_dir / "_index.md").write_text(
+            self.renderer.render_index(summary.notes, summary, topics=DEFAULT_TOPICS),
+            encoding="utf-8",
+        )
+
+        return summary
+
+    def synthesize_notes(
+        self,
+        resolver: HeadingResolver | None = None,
+        takeaway_resolver: TakeawayResolver | None = None,
+        max_workers: int = 1,
+        episode_numbers: Sequence[int] | None = None,
+    ) -> SynthesisSummary:
+        """Batch synthesize EpisodeNotes in memory without writing publication files."""
+        active_resolver = resolver or self.resolver
+        active_takeaway_resolver = takeaway_resolver or self.takeaway_resolver
+        target_numbers = list(episode_numbers) if episode_numbers is not None else self.episode_numbers
+
+        def _process(number: int) -> EpisodeNote:
+            return self.synthesize_episode(
+                number,
+                resolver=active_resolver,
+                takeaway_resolver=active_takeaway_resolver,
+            )
 
         if max_workers > 1:
             with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
@@ -256,25 +282,14 @@ class EpisodeNoteSynthesizer:
         else:
             notes = [_process(number) for number in target_numbers]
 
-        chapter_counts: Counter[int] = Counter()
-        total_seconds = 0
-        for note in notes:
-            chapter_counts[len(note.chapters)] += 1
-            total_seconds += note.metadata.duration_seconds
-
-        total_chapters = sum(len(note.chapters) for note in notes)
-        summary = SynthesisSummary(
+        chapter_counts: Counter[int] = Counter(len(note.chapters) for note in notes)
+        return SynthesisSummary(
             total_episodes=len(notes),
-            total_chapters=total_chapters,
-            total_seconds=total_seconds,
+            total_chapters=sum(len(note.chapters) for note in notes),
+            total_seconds=sum(note.metadata.duration_seconds for note in notes),
             chapter_distribution=chapter_counts,
             notes=tuple(notes),
         )
-
-        (output_dir / "README.md").write_text(self.renderer.render_readme(notes, summary), encoding="utf-8")
-        (output_dir / "_index.md").write_text(self.renderer.render_index(notes, summary), encoding="utf-8")
-
-        return summary
 
     def audit(
         self,

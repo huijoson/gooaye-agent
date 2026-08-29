@@ -191,7 +191,10 @@ def test_renderer_outputs_valid_markdown(sample_topic_def, sample_episodes):
 
 
 def test_default_topics_catalog():
-    from topic_synthesizer import DEFAULT_TOPICS
+    from topic_catalog import DEFAULT_TOPICS
+    from topic_synthesizer import DEFAULT_TOPICS as synthesizer_topics
+
+    assert synthesizer_topics is DEFAULT_TOPICS
     assert len(DEFAULT_TOPICS) == 4
     slugs = {t.slug for t in DEFAULT_TOPICS}
     assert "ai-hardware-and-semiconductor" in slugs
@@ -345,7 +348,5 @@ def test_cli_topics_subcommand():
     assert res_audit.returncode == 0
     assert "Audit completed" in res_audit.stdout
     assert "100%" in res_audit.stdout or "0" in res_audit.stdout
-
-
 
 

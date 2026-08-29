@@ -177,6 +177,22 @@ class TestEpisodeNoteSynthesizer(unittest.TestCase):
             self.assertIn(f"- **核心觀點：** {ch.takeaway}", markdown_full)
             self.assertGreaterEqual(len(ch.excerpts), 2)
 
+    def test_synthesize_notes_returns_complete_summary_without_writing(self) -> None:
+        if not {1, 2}.issubset(self.synthesizer.episode_numbers):
+            self.skipTest("EP1 and EP2 data files not present in workspace")
+        with TemporaryDirectory() as directory:
+            tmp_path = Path(directory)
+
+            summary = self.synthesizer.synthesize_notes(
+                max_workers=1,
+                episode_numbers=(1, 2),
+            )
+
+            self.assertEqual([note.metadata.number for note in summary.notes], [1, 2])
+            self.assertEqual(summary.total_episodes, 2)
+            self.assertEqual(summary.total_chapters, sum(len(note.chapters) for note in summary.notes))
+            self.assertEqual(list(tmp_path.rglob("*.md")), [])
+
     def test_synthesize_all_writes_dual_tier_files(self) -> None:
         import tempfile
         if 1 not in self.synthesizer.episode_numbers:

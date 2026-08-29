@@ -7,7 +7,7 @@ from collections import defaultdict
 from datetime import datetime
 from typing import Sequence
 
-from domain import EpisodeNote, SynthesisSummary
+from domain import EpisodeNote, SynthesisSummary, TopicDefinition
 
 CHANNEL_URL = "https://www.youtube.com/@Gooaye/videos"
 
@@ -64,6 +64,7 @@ class MarkdownRenderer:
     def render_index(
         notes: Sequence[EpisodeNote],
         summary: SynthesisSummary,
+        topics: Sequence[TopicDefinition] = (),
     ) -> str:
         """Render the _index.md directory file."""
         grouped: dict[str, list[EpisodeNote]] = defaultdict(list)
@@ -80,10 +81,12 @@ class MarkdownRenderer:
             "",
             "| 專題手冊 | 分類 | 說明 |",
             "|:---|:---:|:---|",
-            "| [AI 伺服器、散熱、電力與 ASIC 自研晶片演進](topics/ai-hardware-and-semiconductor.md) | 產業與硬體架構 | 追蹤 2021 至 2026 年主委對水冷、CDU、800V 電力與 CSP 自研 ASIC 晶片之論述脈絡。 |",
-            "| [主委投資心態、部位管理、停損紀律與期望值實戰守則](topics/investment-mindset-and-risk-control.md) | 投資心態與風險控制 | 彙整歷年部位控制、停損停利紀律、勝率/賠率期望值計算與生活化哲學。 |",
-            "| [總體經濟循環、聯準會降息循環、房產與資產配置](topics/macro-cycle-and-asset-allocation.md) | 總體經濟與資產配置 | 整理景氣循環位階、聯準會利率政策、通膨、美股與房產資產配置。 |",
-            "| [Apple 供應鏈、智慧型手機與消費性電子週期](topics/apple-and-consumer-electronics.md) | 消費性電子與供應鏈 | 探討 Apple 產品週期、台廠果鏈消長、折疊機與消費性電子拉貨動能。 |",
+        ]
+        lines.extend(
+            f"| [{topic.title}](topics/{topic.slug}.md) | {topic.category} | {topic.description} |"
+            for topic in topics
+        )
+        lines.extend([
             "",
             "- 👉 [查看完整主題專題目錄與使用指引](topics/README.md)",
             "",
@@ -91,7 +94,7 @@ class MarkdownRenderer:
             "",
             "| 年份 | 集數 |",
             "|---:|---:|",
-        ]
+        ])
         for year in sorted(grouped, reverse=True):
             lines.append(f"| {year} | {len(grouped[year])} |")
 

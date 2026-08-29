@@ -5,11 +5,35 @@ from __future__ import annotations
 
 import unittest
 from collections import Counter
-from domain import EpisodeMetadata, Chapter, EpisodeNote, SynthesisSummary
+from domain import EpisodeMetadata, Chapter, EpisodeNote, SynthesisSummary, TopicDefinition
 from markdown_renderer import MarkdownRenderer
 
 
 class TestMarkdownRenderer(unittest.TestCase):
+    def test_index_renders_only_the_supplied_topic_catalog(self) -> None:
+        topic = TopicDefinition(
+            slug="only-topic",
+            title="Only Topic",
+            description="One explicit catalog entry.",
+            category="test",
+        )
+        summary = SynthesisSummary(
+            total_episodes=0,
+            total_chapters=0,
+            total_seconds=0,
+            chapter_distribution=Counter(),
+            notes=(),
+        )
+
+        rendered = MarkdownRenderer.render_index(
+            (),
+            summary,
+            topics=(topic,),
+        )
+
+        self.assertIn("topics/only-topic.md", rendered)
+        self.assertNotIn("topics/ai-hardware-and-semiconductor.md", rendered)
+
     def test_render_episode_and_index(self) -> None:
         meta1 = EpisodeMetadata(
             number=1,
