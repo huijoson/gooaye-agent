@@ -25,7 +25,13 @@ from takeaway_resolver import (
     DeterministicTakeawayResolver,
     CompositeTakeawayResolver,
 )
-from episode_synthesizer import EpisodeNoteSynthesizer, OUTPUT_DIR, HEADINGS_CACHE_DIR
+from episode_synthesizer import (
+    EpisodeNoteSynthesizer,
+    HEADINGS_CACHE_DIR,
+    OUTPUT_DIR,
+    PreviewOutputError,
+    validate_preview_output_directory,
+)
 from knowledge_base_publisher import (
     KnowledgeBasePublisher,
     PublicationError,
@@ -47,10 +53,6 @@ from episode_source_repository import EpisodeSourceError, EpisodeSourceRepositor
 ROOT = Path(__file__).resolve().parent.parent
 
 
-class PreviewDestinationError(ValueError):
-    """A command-line Preview destination is missing or unsafe."""
-
-
 def positive_episode_number(value: str) -> int:
     number = int(value)
     if number <= 0:
@@ -70,27 +72,8 @@ def select_heading_resolver(strategy: str, quality_engine: HeadingQualityEngine)
 
 
 def preview_output_directory(output_dir: Path | None) -> Path:
-    """Validate the intentionally isolated directory used for non-formal previews."""
-    if output_dir is None:
-        raise PreviewDestinationError("Preview output directory must be provided explicitly.")
-    destination = Path(output_dir)
-    if destination.is_symlink():
-        raise PreviewDestinationError("Preview output directory must not be a symlink.")
-    resolved = destination.resolve(strict=False)
-    if resolved == OUTPUT_DIR.resolve():
-        raise PreviewDestinationError("Preview output directory must not be the formal publication root.")
-    protected = {
-        Path(resolved.anchor),
-        Path.home().resolve(),
-        ROOT.resolve(),
-    }
-    if resolved in protected:
-        raise PreviewDestinationError("Preview output directory is a protected broad destination.")
-    if destination.exists() and not destination.is_dir():
-        raise PreviewDestinationError("Preview output directory must be a directory.")
-    if destination.exists() and any(destination.iterdir()):
-        raise PreviewDestinationError("Preview output directory must be new or empty.")
-    return destination
+    """Compatibility alias for the shared Preview destination guard."""
+    return validate_preview_output_directory(output_dir)
 
 
 def _requested_output_dir(args: argparse.Namespace) -> Path | None:
@@ -475,7 +458,7 @@ def main() -> None:
     args = parser.parse_args()
     try:
         args.func(args)
-    except PreviewDestinationError as error:
+    except PreviewOutputError as error:
         parser.error(str(error))
 
 

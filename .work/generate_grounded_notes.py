@@ -6,16 +6,24 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from episode_synthesizer import EpisodeNoteSynthesizer, OUTPUT_DIR
+from episode_synthesizer import (
+    EpisodeNoteSynthesizer,
+    PreviewOutputError,
+    validate_preview_output_directory,
+)
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Generate grounded Markdown notes for Gooaye YouTube episodes")
-    parser.add_argument("--output-dir", type=Path, default=OUTPUT_DIR, help="Output directory for generated notes")
+    parser = argparse.ArgumentParser(description="Generate an isolated grounded-note Preview")
+    parser.add_argument("--output-dir", type=Path, required=True, help="New or empty Preview directory")
     args = parser.parse_args()
+    try:
+        output_dir = validate_preview_output_directory(args.output_dir)
+    except PreviewOutputError as error:
+        parser.error(str(error))
 
     synthesizer = EpisodeNoteSynthesizer()
-    summary = synthesizer.synthesize_all(output_dir=args.output_dir)
+    summary = synthesizer.synthesize_all(output_dir=output_dir)
 
     print(f"Generated {summary.total_episodes} grounded notes")
     print(f"Chapter distribution: {dict(sorted(summary.chapter_distribution.items()))}")

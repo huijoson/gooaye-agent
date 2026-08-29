@@ -59,9 +59,36 @@ TRANSCRIPT_DIR = ROOT / ".work/full-transcripts"
 SNAPSHOT_ROOT = ROOT / ".work/episode-sources"
 HEADINGS_CACHE_DIR = ROOT / ".work/grounded-headings"
 OUTPUT_DIR = ROOT / "gooaye-youtube-notes"
-EPISODES_DIR = OUTPUT_DIR / "episodes"
 CHANNEL_URL = "https://www.youtube.com/@Gooaye/videos"
 ARCHIVE_BASE_URL = "https://whatmkreallysaid.com/"
+
+
+class PreviewOutputError(ValueError):
+    """A compatibility writer was not given an isolated Preview destination."""
+
+
+def validate_preview_output_directory(output_dir: Path | None) -> Path:
+    """Reject implicit, formal, and broad destinations before any Preview write."""
+    if output_dir is None:
+        raise PreviewOutputError("Preview output directory must be provided explicitly.")
+    destination = Path(output_dir)
+    if destination.is_symlink():
+        raise PreviewOutputError("Preview output directory must not be a symlink.")
+    resolved = destination.resolve(strict=False)
+    if resolved == OUTPUT_DIR.resolve():
+        raise PreviewOutputError("Preview output directory must not be the formal publication root.")
+    protected = {
+        Path(resolved.anchor),
+        Path.home().resolve(),
+        ROOT.resolve(),
+    }
+    if resolved in protected:
+        raise PreviewOutputError("Preview output directory is a protected broad destination.")
+    if destination.exists() and not destination.is_dir():
+        raise PreviewOutputError("Preview output directory must be a directory.")
+    if destination.exists() and any(destination.iterdir()):
+        raise PreviewOutputError("Preview output directory must be new or empty.")
+    return destination
 
 
 def parse_episode_number(title: str) -> int | None:
@@ -217,13 +244,14 @@ class EpisodeNoteSynthesizer:
 
     def synthesize_all(
         self,
-        output_dir: Path = OUTPUT_DIR,
+        output_dir: Path | None = None,
         resolver: HeadingResolver | None = None,
         takeaway_resolver: TakeawayResolver | None = None,
         max_workers: int = 1,
         episode_numbers: Sequence[int] | None = None,
     ) -> SynthesisSummary:
         """Write an isolated Preview of episode notes without publication-level indexes."""
+        output_dir = validate_preview_output_directory(output_dir)
         summary = self.synthesize_notes(
             resolver=resolver,
             takeaway_resolver=takeaway_resolver,

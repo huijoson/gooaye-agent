@@ -1,21 +1,16 @@
 #!/usr/bin/env python3
-"""Generate one Markdown concept note per public Gooaye YouTube episode."""
+"""Retired summary-note writer; pure rendering helpers remain for compatibility."""
 
 from __future__ import annotations
 
 import json
 import re
-import shutil
 from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
 from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parent.parent
-CHANNEL_PATH = ROOT / ".work/channel.json"
-ARCHIVE_PATH = ROOT / ".work/source/episodes.json"
-OUTPUT_DIR = ROOT / "gooaye-youtube-notes"
-EPISODES_DIR = OUTPUT_DIR / "episodes"
 CHANNEL_URL = "https://www.youtube.com/@Gooaye/videos"
 ARCHIVE_URL = "https://whatmkreallysaid.com/"
 
@@ -228,50 +223,10 @@ def render_index(rows: list[dict]) -> str:
 
 
 def main() -> None:
-    channel = json.loads(CHANNEL_PATH.read_text(encoding="utf-8"))
-    archives = json.loads(ARCHIVE_PATH.read_text(encoding="utf-8"))
-    by_number = {item["number"]: item for item in archives}
-
-    mapped: list[tuple[int, dict, dict]] = []
-    for entry in channel.get("entries", []):
-        number = episode_number(entry.get("title", ""))
-        if number is None:
-            raise ValueError(f"Cannot parse episode number: {entry.get('title')!r}")
-        if number not in by_number:
-            raise ValueError(f"No content record for EP{number}")
-        mapped.append((number, entry, by_number[number]))
-
-    numbers = [number for number, _, _ in mapped]
-    if len(numbers) != len(set(numbers)):
-        raise ValueError("Duplicate episode numbers in YouTube list")
-
-    if OUTPUT_DIR.exists():
-        shutil.rmtree(OUTPUT_DIR)
-    EPISODES_DIR.mkdir(parents=True)
-
-    rows = []
-    for number, entry, archive in sorted(mapped):
-        date = format_upload_date(entry, archive)
-        duration = format_duration(entry.get("duration"))
-        title = archive.get("display_title") or archive.get("title") or entry.get("title")
-        path = EPISODES_DIR / f"EP{number:04d}.md"
-        path.write_text(render_episode(number, entry, archive), encoding="utf-8")
-        rows.append(
-            {
-                "number": number,
-                "date": date,
-                "duration": duration,
-                "title": title,
-                "youtube_id": entry["id"],
-            }
-        )
-
-    total_seconds = round(sum((entry.get("duration") or 0) for _, entry, _ in mapped))
-    (OUTPUT_DIR / "README.md").write_text(render_readme(rows, total_seconds), encoding="utf-8")
-    (OUTPUT_DIR / "_index.md").write_text(render_index(rows), encoding="utf-8")
-    print(f"Generated {len(rows)} episode notes in {EPISODES_DIR}")
-    print(f"Episode range: EP{min(numbers)}–EP{max(numbers)}")
-    print(f"Missing public episode numbers: {sorted(set(range(min(numbers), max(numbers) + 1)) - set(numbers))}")
+    raise SystemExit(
+        "generate_notes.py is retired: use `python3 .work/cli.py publish --output-dir PATH` "
+        "for a formal publication or `synthesize --output-dir PATH` for an isolated Preview."
+    )
 
 
 if __name__ == "__main__":

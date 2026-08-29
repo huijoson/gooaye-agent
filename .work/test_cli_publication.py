@@ -26,6 +26,35 @@ from knowledge_base_publisher import (
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
+def formal_tree_bytes(root: Path) -> dict[str, bytes]:
+    return {
+        path.relative_to(root).as_posix(): path.read_bytes()
+        for path in sorted(root.rglob("*"))
+        if path.is_file()
+    }
+
+
+def formal_tree_status() -> str:
+    result = subprocess.run(
+        ["git", "status", "--short", "--", "gooaye-youtube-notes"],
+        capture_output=True,
+        text=True,
+        cwd=REPO_ROOT,
+        check=True,
+    )
+    return result.stdout
+
+
+@pytest.fixture(scope="module", autouse=True)
+def formal_tree_guard():
+    """Keep this module hermetic even if a negative command regresses."""
+    before = formal_tree_bytes(cli.OUTPUT_DIR)
+    status_before = formal_tree_status()
+    yield
+    assert formal_tree_bytes(cli.OUTPUT_DIR) == before
+    assert formal_tree_status() == status_before
+
+
 def run_cli(args: list[str]) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
         [sys.executable, ".work/cli.py", *args],
@@ -56,18 +85,36 @@ def test_verify_has_only_an_output_destination() -> None:
     assert "--workers" not in result.stdout
 
 
-def test_preview_requires_an_explicit_isolated_destination() -> None:
-    result = run_cli(["synthesize", "--episode", "1"])
+def test_preview_requires_an_explicit_isolated_destination(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    class MustNotConstructSynthesizer:
+        def __init__(self) -> None:
+            raise AssertionError("unsafe Preview command constructed a writer collaborator")
 
-    assert result.returncode != 0
-    assert "Preview output directory" in result.stderr
+    monkeypatch.setattr(cli, "EpisodeNoteSynthesizer", MustNotConstructSynthesizer)
+    monkeypatch.setattr(sys, "argv", ["cli.py", "synthesize", "--episode", "1"])
+
+    with pytest.raises(SystemExit) as error:
+        cli.main()
+
+    assert error.value.code == 2
 
 
-def test_topic_preview_requires_an_explicit_isolated_destination() -> None:
-    result = run_cli(["topics", "--generate"])
+def test_topic_preview_requires_an_explicit_isolated_destination(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    class MustNotConstructSynthesizer:
+        def __init__(self) -> None:
+            raise AssertionError("unsafe topic Preview command constructed a writer collaborator")
 
-    assert result.returncode != 0
-    assert "Preview output directory" in result.stderr
+    monkeypatch.setattr(cli, "EpisodeNoteSynthesizer", MustNotConstructSynthesizer)
+    monkeypatch.setattr(sys, "argv", ["cli.py", "topics", "--generate"])
+
+    with pytest.raises(SystemExit) as error:
+        cli.main()
+
+    assert error.value.code == 2
 
 
 class FixturePublisher:
