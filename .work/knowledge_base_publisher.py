@@ -24,7 +24,7 @@ from domain import TopicDefinition
 from episode_synthesizer import EpisodeNoteSynthesizer
 from markdown_renderer import MarkdownRenderer
 from topic_catalog import DEFAULT_TOPICS
-from topic_synthesizer import TopicGuideRenderer, TopicGuideSynthesizer
+from topic_synthesizer import TopicGuideRenderer, TopicGuideSynthesizer, TopicQualityAuditor
 
 
 MANIFEST_FILENAME = "publication-manifest.json"
@@ -163,7 +163,10 @@ class _PublicationLock:
         try:
             self._write_state(active=False)
         finally:
-            self._close()
+            try:
+                self._retire_path()
+            finally:
+                self._close()
 
     def _acquire_existing(self) -> None:
         descriptor = os.open(self.path, os.O_RDWR | os.O_NOFOLLOW)
@@ -257,6 +260,43 @@ class _PublicationLock:
         except OSError:
             return False
         return (metadata.st_dev, metadata.st_ino) == self._identity
+
+    def _retire_path(self) -> None:
+        """Remove our lock without ever unlinking a replacement pathname."""
+        identity = self._identity
+        if identity is None:
+            return
+        descriptor, retired_name = tempfile.mkstemp(
+            prefix=f".{self.destination.name}.retired-",
+            dir=self.path.parent,
+        )
+        os.close(descriptor)
+        retired = Path(retired_name)
+        moved = False
+        try:
+            os.replace(self.path, retired)
+            moved = True
+            try:
+                metadata = retired.lstat()
+            except FileNotFoundError:
+                self._close()
+                metadata = retired.lstat()
+            if (metadata.st_dev, metadata.st_ino) == identity:
+                retired.unlink()
+                return
+            try:
+                os.link(retired, self.path, follow_symlinks=False)
+            except FileExistsError as exc:
+                raise OSError(
+                    f"Publication lock was replaced; preserved displaced lock at {retired}."
+                ) from exc
+            retired.unlink()
+        finally:
+            if not moved:
+                try:
+                    retired.unlink()
+                except FileNotFoundError:
+                    pass
 
     def _write_state(self, *, active: bool) -> None:
         if self._descriptor is None:
@@ -396,8 +436,8 @@ class KnowledgeBasePublisher:
             raise ValueError("Publication destination must be a directory.")
         if destination.exists() and any(destination.iterdir()):
             report = self.verify(destination)
-            if report.mode is not PublicationMode.MANAGED or not report.is_valid:
-                raise ValueError("Non-empty publication destination is not a valid managed tree.")
+            if report.mode not in {PublicationMode.MANAGED, PublicationMode.LEGACY} or not report.is_valid:
+                raise ValueError("Non-empty publication destination is not a valid owned tree.")
         return destination
 
     def _validated_catalog_slugs(self) -> tuple[str, ...]:
@@ -598,7 +638,7 @@ class KnowledgeBasePublisher:
                 )
 
     def verify(self, root: Path) -> PublicationVerification:
-        """Read a Manifest-managed publication without changing its bytes."""
+        """Read a Manifest-managed or structurally complete legacy publication."""
         root = Path(root)
         if not root.exists():
             return PublicationVerification(PublicationMode.UNKNOWN, ())
@@ -623,14 +663,7 @@ class KnowledgeBasePublisher:
         if manifest_kind is None:
             if not entries:
                 return PublicationVerification(PublicationMode.UNKNOWN, ())
-            return PublicationVerification(
-                PublicationMode.UNKNOWN,
-                (
-                    PublicationDefect(
-                        "ownership", "Non-empty root has no publication Manifest.", str(root)
-                    ),
-                ),
-            )
+            return self._verify_legacy(root, entries)
         if manifest_kind != "file":
             return PublicationVerification(
                 PublicationMode.MANAGED,
@@ -691,6 +724,100 @@ class KnowledgeBasePublisher:
             artifact_count=len(manifest.artifacts),
             episode_count=len(manifest.source_episodes),
             topic_count=len(manifest.topic_catalog),
+        )
+
+    @staticmethod
+    def _verify_legacy(root: Path, entries: dict[str, str]) -> PublicationVerification:
+        """Recognize only the fixed pre-Manifest publication layout without writing it."""
+        required_roots = {"README.md", "_index.md", "episodes", "topics"}
+        if not required_roots.issubset(entries):
+            return PublicationVerification(
+                PublicationMode.UNKNOWN,
+                (
+                    PublicationDefect(
+                        "ownership",
+                        "Non-empty root has neither a Manifest nor a complete legacy layout.",
+                        str(root),
+                    ),
+                ),
+            )
+
+        defects: list[PublicationDefect] = []
+        expected_topic_paths = {"topics/README.md"} | {
+            f"topics/{topic.slug}.md" for topic in DEFAULT_TOPICS
+        }
+        allowed_roots = required_roots
+        for path, kind in sorted(entries.items()):
+            if path in {"episodes", "topics"}:
+                if kind != "directory":
+                    defects.append(PublicationDefect("missing", "Required legacy directory is missing.", path))
+                continue
+            if "/" not in path:
+                if path not in allowed_roots:
+                    defects.append(PublicationDefect("stale", "Entry is outside the legacy publication tree.", path))
+                elif kind != "file":
+                    defects.append(PublicationDefect("missing", "Required legacy file is missing.", path))
+                continue
+            if path.startswith("episodes/"):
+                continue
+            if path in expected_topic_paths:
+                if kind != "file":
+                    defects.append(PublicationDefect("missing", "Required Topic Guide is missing.", path))
+            else:
+                defects.append(PublicationDefect("stale", "Entry is outside the legacy publication tree.", path))
+
+        for path in sorted(expected_topic_paths):
+            if entries.get(path) != "file":
+                defects.append(PublicationDefect("missing", "Required Topic Guide is missing.", path))
+
+        slim_numbers: set[int] = set()
+        full_numbers: set[int] = set()
+        for path, kind in sorted(entries.items()):
+            if not path.startswith("episodes/"):
+                continue
+            match = re.fullmatch(r"episodes/EP(\d{4})\.md", path)
+            full_match = re.fullmatch(r"episodes/EP(\d{4})\.full\.md", path)
+            if kind != "file" or (match is None and full_match is None):
+                defects.append(PublicationDefect("stale", "Unexpected legacy episode entry.", path))
+                continue
+            if match is not None:
+                slim_numbers.add(int(match.group(1)))
+            else:
+                full_numbers.add(int(full_match.group(1)))
+        if not slim_numbers or not full_numbers:
+            defects.append(PublicationDefect("missing", "Legacy episodes must include slim/full pairs.", "episodes"))
+        for number in sorted(slim_numbers - full_numbers):
+            defects.append(
+                PublicationDefect("missing", "Legacy full Episode Note is missing.", f"episodes/EP{number:04d}.full.md")
+            )
+        for number in sorted(full_numbers - slim_numbers):
+            defects.append(
+                PublicationDefect("missing", "Legacy slim Episode Note is missing.", f"episodes/EP{number:04d}.md")
+            )
+
+        markdown_paths = {
+            path for path, kind in entries.items() if kind == "file" and path.endswith(".md")
+        }
+        defects.extend(_broken_markdown_links(root, markdown_paths))
+        if all(entries.get(path) == "file" for path in expected_topic_paths) and entries.get("episodes") == "directory":
+            try:
+                audit = TopicQualityAuditor().audit_all_topics(root / "topics", root / "episodes")
+            except (OSError, UnicodeDecodeError) as exc:
+                defects.append(
+                    PublicationDefect(
+                        "unreadable",
+                        f"Topic Guides cannot be audited: {exc}",
+                        "topics",
+                    )
+                )
+            else:
+                defects.extend(_topic_audit_defects(audit))
+        return PublicationVerification(
+            PublicationMode.LEGACY,
+            tuple(defects),
+            artifact_count=len(markdown_paths),
+            episode_count=len(slim_numbers),
+            topic_count=len(DEFAULT_TOPICS),
         )
 
     @staticmethod
@@ -853,6 +980,51 @@ def _required_paths(manifest: PublicationManifest) -> set[str]:
     return paths
 
 
+def _topic_audit_defects(audit: object) -> list[PublicationDefect]:
+    if not isinstance(audit, dict):
+        return [
+            PublicationDefect(
+                "grounding",
+                "Topic Guide audit returned a malformed result.",
+                "topics",
+            )
+        ]
+    defects = audit.get("defects")
+    if not isinstance(defects, list):
+        return [
+            PublicationDefect(
+                "grounding",
+                "Topic Guide audit returned malformed defects.",
+                "topics",
+            )
+        ]
+
+    publication_defects: list[PublicationDefect] = []
+    for defect in defects:
+        if not isinstance(defect, dict):
+            publication_defects.append(
+                PublicationDefect(
+                    "grounding",
+                    "Topic Guide audit returned a malformed defect.",
+                    "topics",
+                )
+            )
+            continue
+        topic = defect.get("topic")
+        message = defect.get("message")
+        if not isinstance(topic, str) or not topic or not isinstance(message, str):
+            publication_defects.append(
+                PublicationDefect(
+                    "grounding",
+                    "Topic Guide audit returned a malformed defect.",
+                    "topics",
+                )
+            )
+            continue
+        publication_defects.append(PublicationDefect("grounding", message, f"topics/{topic}"))
+    return publication_defects
+
+
 def _broken_markdown_links(root: Path, paths: set[str]) -> list[PublicationDefect]:
     defects: list[PublicationDefect] = []
     try:
@@ -1012,7 +1184,17 @@ def _inline_destination(text: str, opening: int) -> tuple[str | None, int]:
                 return text[start:index], index + 1
             depth -= 1
         elif character.isspace() and depth == 0:
-            return text[start:index], index
+            closing = index
+            while closing < len(text):
+                if text[closing] == "\\" and closing + 1 < len(text):
+                    closing += 2
+                    continue
+                if text[closing] == ")":
+                    return text[start:index], closing + 1
+                if text[closing] in "\r\n":
+                    return None, opening + 1
+                closing += 1
+            return None, opening + 1
         index += 1
     return None, opening + 1
 

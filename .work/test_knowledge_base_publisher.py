@@ -31,6 +31,7 @@ from knowledge_base_publisher import (
     _PublicationLock,
 )
 from markdown_renderer import MarkdownRenderer
+from topic_catalog import DEFAULT_TOPICS
 from topic_synthesizer import TopicGuideSynthesizer
 
 
@@ -119,6 +120,14 @@ class BrokenLinkMarkdownRenderer(MarkdownRenderer):
         return "# Publication\n\n[missing](missing.md)\n"
 
 
+class MalformedTopicQualityAuditor:
+    def __init__(self, result) -> None:
+        self.result = result
+
+    def audit_all_topics(self, topics_dir, episodes_dir):
+        return self.result
+
+
 class DestinationMutatingMarkdownRenderer(MarkdownRenderer):
     def __init__(self, destination: Path) -> None:
         self.destination = destination
@@ -196,6 +205,14 @@ def no_sibling_staging_or_backup(destination: Path) -> bool:
     )
 
 
+def no_sibling_publication_debris(destination: Path) -> bool:
+    return (
+        no_sibling_staging_or_backup(destination)
+        and not (destination.parent / f".{destination.name}.publication.lock").exists()
+        and not list(destination.parent.glob(f".{destination.name}.retired-*"))
+    )
+
+
 def build_managed_fixture(root: Path, *, episodes: tuple[int, ...], topics: tuple[str, ...]) -> Path:
     """Build a minimal complete managed publication with a truthful manifest."""
     artifacts = {
@@ -237,6 +254,143 @@ def build_managed_fixture(root: Path, *, episodes: tuple[int, ...], topics: tupl
         encoding="utf-8",
     )
     return root
+
+
+def build_legacy_fixture(
+    root: Path,
+    *,
+    episodes: tuple[int, ...],
+    topics: tuple[TopicDefinition, ...],
+) -> Path:
+    """Build a pre-Manifest complete publication using the public publisher seam."""
+    publisher = KnowledgeBasePublisher(
+        episode_synthesizer=FixtureEpisodeSynthesizer(episodes),
+        topic_catalog=topics,
+    )
+    publisher.publish(PublicationRequest(root))
+    (root / "publication-manifest.json").unlink()
+    return root
+
+
+def test_verify_recognizes_a_complete_legacy_tree_without_writing(tmp_path):
+    root = build_legacy_fixture(tmp_path / "legacy", episodes=(1, 2), topics=DEFAULT_TOPICS)
+    before = snapshot_bytes(root)
+
+    report = KnowledgeBasePublisher().verify(root)
+
+    assert report.is_valid
+    assert report.mode is PublicationMode.LEGACY
+    assert report.episode_count == 2
+    assert report.topic_count == len(DEFAULT_TOPICS)
+    assert snapshot_bytes(root) == before
+
+
+@pytest.mark.parametrize(
+    ("mutation", "expected_category"),
+    (
+        (lambda root: (root / "episodes/EP0002.full.md").unlink(), "missing"),
+        (lambda root: (root / "topics/ai-hardware-and-semiconductor.md").unlink(), "missing"),
+        (
+            lambda root: (root / "README.md").write_text(
+                (root / "README.md").read_text(encoding="utf-8") + "\n[broken](missing.md)\n",
+                encoding="utf-8",
+            ),
+            "broken_link",
+        ),
+        (
+            lambda root: (root / "personal.txt").write_text("do not own", encoding="utf-8"),
+            "stale",
+        ),
+        (
+            lambda root: (root / "topics/ai-hardware-and-semiconductor.md").write_text(
+                (root / "topics/ai-hardware-and-semiconductor.md").read_text(encoding="utf-8")
+                + "\n| [EP0001](../episodes/EP0001.md) | 2021-01-01 | 第 99 章 | corrupt |\n",
+                encoding="utf-8",
+            ),
+            "grounding",
+        ),
+    ),
+    ids=("missing-full", "missing-topic", "broken-link", "unexpected-root", "ungrounded-topic"),
+)
+def test_verify_rejects_incomplete_or_near_miss_legacy_trees(
+    tmp_path, mutation, expected_category
+):
+    root = build_legacy_fixture(tmp_path / "legacy", episodes=(1, 2), topics=DEFAULT_TOPICS)
+
+    mutation(root)
+    report = KnowledgeBasePublisher().verify(root)
+
+    assert report.mode is PublicationMode.UNKNOWN or not report.is_valid
+    assert expected_category in {defect.category for defect in report.defects}
+
+
+def test_publish_replaces_a_valid_legacy_publication(tmp_path):
+    destination = build_legacy_fixture(
+        tmp_path / "legacy",
+        episodes=(1, 2),
+        topics=DEFAULT_TOPICS,
+    )
+    publisher = KnowledgeBasePublisher(
+        episode_synthesizer=FixtureEpisodeSynthesizer((1, 2, 3)),
+        topic_catalog=DEFAULT_TOPICS,
+    )
+
+    publisher.publish(PublicationRequest(destination))
+
+    report = publisher.verify(destination)
+    assert report.is_valid
+    assert report.mode is PublicationMode.MANAGED
+    assert report.episode_count == 3
+
+
+def test_verify_reports_an_unreadable_legacy_topic_guide_without_raising(tmp_path):
+    root = build_legacy_fixture(tmp_path / "legacy", episodes=(1, 2), topics=DEFAULT_TOPICS)
+    (root / "topics/ai-hardware-and-semiconductor.md").write_bytes(b"\xff")
+
+    report = KnowledgeBasePublisher().verify(root)
+
+    assert report.mode is PublicationMode.LEGACY
+    assert not report.is_valid
+    assert "unreadable" in {defect.category for defect in report.defects}
+
+
+@pytest.mark.parametrize(
+    "audit_result",
+    (
+        None,
+        [],
+        {"defects": None},
+        {"defects": [None]},
+        {"defects": [{"message": "missing topic name"}]},
+        {"defects": [{"topic": 123, "message": "numeric topic"}]},
+        {"defects": [{"topic": "ai-hardware-and-semiconductor.md", "message": 123}]},
+    ),
+    ids=(
+        "none",
+        "list",
+        "defects-none",
+        "none-defect",
+        "missing-topic",
+        "numeric-topic",
+        "numeric-message",
+    ),
+)
+def test_verify_reports_malformed_legacy_topic_auditor_results_without_raising(
+    tmp_path,
+    monkeypatch,
+    audit_result,
+):
+    root = build_legacy_fixture(tmp_path / "legacy", episodes=(1, 2), topics=DEFAULT_TOPICS)
+
+    monkeypatch.setattr(
+        "knowledge_base_publisher.TopicQualityAuditor",
+        lambda: MalformedTopicQualityAuditor(audit_result),
+    )
+    report = KnowledgeBasePublisher().verify(root)
+
+    assert report.mode is PublicationMode.LEGACY
+    assert not report.is_valid
+    assert "grounding" in {defect.category for defect in report.defects}
 
 
 def add_manifest_artifact(root: Path, relative_path: str, content: str) -> None:
@@ -362,7 +516,7 @@ def test_same_host_dead_stale_lock_is_recovered(tmp_path):
 
     make_fixture_publisher().publish(PublicationRequest(destination))
 
-    assert json.loads(lock.read_text(encoding="utf-8"))["active"] is False
+    assert not lock.exists()
     assert KnowledgeBasePublisher().verify(destination).is_valid
 
 
@@ -396,23 +550,94 @@ def test_lock_release_never_unlinks_an_interleaved_replacement(tmp_path, monkeyp
     destination = tmp_path / "publication"
     lock = _PublicationLock(destination)
     lock.acquire()
-    write = os.write
     replacement_written = False
+    replace = os.replace
 
-    def replace_during_release(descriptor, data):
+    def replace_during_release(source, target):
         nonlocal replacement_written
-        if not replacement_written:
+        if Path(source) == lock.path and Path(target).name.startswith(
+            ".publication.retired-"
+        ):
             displaced = tmp_path / "displaced-lock"
             lock.path.rename(displaced)
             lock.path.write_text("replacement owner", encoding="utf-8")
             replacement_written = True
-        return write(descriptor, data)
+        return replace(source, target)
 
-    monkeypatch.setattr(os, "write", replace_during_release)
+    monkeypatch.setattr(os, "replace", replace_during_release)
     lock.release()
 
     assert replacement_written
     assert lock.path.read_text(encoding="utf-8") == "replacement owner"
+
+
+def test_lock_release_removes_its_own_lock_without_retired_debris(tmp_path):
+    destination = tmp_path / "publication"
+    lock = _PublicationLock(destination)
+    lock.acquire()
+
+    lock.release()
+
+    assert not lock.path.exists()
+    assert list(tmp_path.glob(".publication.retired-*")) == []
+
+
+def test_lock_release_preserves_replacement_when_restore_path_is_taken(
+    tmp_path, monkeypatch
+):
+    destination = tmp_path / "publication"
+    lock = _PublicationLock(destination)
+    lock.acquire()
+    replace = os.replace
+
+    def replace_replacement_during_release(source, target):
+        if Path(source) == lock.path and Path(target).name.startswith(
+            ".publication.retired-"
+        ):
+            lock.path.unlink()
+            lock.path.write_text("replacement owner", encoding="utf-8")
+        return replace(source, target)
+
+    monkeypatch.setattr(os, "replace", replace_replacement_during_release)
+
+    lock.release()
+
+    assert lock.path.read_text(encoding="utf-8") == "replacement owner"
+    assert list(tmp_path.glob(".publication.retired-*")) == []
+
+
+def test_lock_release_preserves_displaced_replacement_when_restore_conflicts(
+    tmp_path, monkeypatch
+):
+    destination = tmp_path / "publication"
+    lock = _PublicationLock(destination)
+    lock.acquire()
+    replace = os.replace
+    link = os.link
+
+    def replace_replacement_during_release(source, target):
+        if Path(source) == lock.path and Path(target).name.startswith(
+            ".publication.retired-"
+        ):
+            lock.path.unlink()
+            lock.path.write_text("replacement owner", encoding="utf-8")
+        return replace(source, target)
+
+    def conflict_during_restore(source, target, *args, **kwargs):
+        if Path(source).name.startswith(".publication.retired-") and Path(target) == lock.path:
+            lock.path.write_text("conflicting newer owner", encoding="utf-8")
+        return link(source, target, *args, **kwargs)
+
+    monkeypatch.setattr(os, "replace", replace_replacement_during_release)
+    monkeypatch.setattr(os, "link", conflict_during_restore)
+
+    with pytest.raises(OSError, match="preserved displaced lock"):
+        lock.release()
+
+    assert lock.path.read_text(encoding="utf-8") == "conflicting newer owner"
+    retired = list(tmp_path.glob(".publication.retired-*"))
+    assert len(retired) == 1
+    assert retired[0].read_text(encoding="utf-8") == "replacement owner"
 
 
 def test_stale_recovery_never_unlinks_an_interleaved_replacement(tmp_path, monkeypatch):
@@ -473,12 +698,12 @@ def test_lock_cleanup_failure_never_hides_the_primary_render_error(tmp_path, mon
     publisher.markdown_renderer = RaisingMarkdownRenderer()
     unlink = Path.unlink
 
-    def fail_lock_unlink(path, *args, **kwargs):
-        if path.name.endswith(".publication.lock"):
+    def fail_retired_lock_unlink(path, *args, **kwargs):
+        if path.name.startswith(".publication.retired-"):
             raise OSError("fixture lock cleanup failure")
         return unlink(path, *args, **kwargs)
 
-    monkeypatch.setattr(Path, "unlink", fail_lock_unlink)
+    monkeypatch.setattr(Path, "unlink", fail_retired_lock_unlink)
 
     with pytest.raises(PublicationError) as raised:
         publisher.publish(PublicationRequest(destination))
@@ -1332,6 +1557,18 @@ def test_verify_accepts_balanced_parentheses_in_markdown_destinations(tmp_path):
     report = KnowledgeBasePublisher().verify(root)
 
     assert report.is_valid
+
+
+def test_verify_does_not_treat_unclosed_prose_as_a_local_markdown_link(tmp_path):
+    root = build_managed_fixture(tmp_path / "publication", episodes=(1,), topics=("only-topic",))
+    (root / "topics/only-topic.md").write_text(
+        "The contact is [info@example.com]( spoken aloud, not a link.\n",
+        encoding="utf-8",
+    )
+
+    report = KnowledgeBasePublisher().verify(root)
+
+    assert "broken_link" not in {defect.category for defect in report.defects}
 
 
 def test_verify_decodes_percent_encoded_paths_before_containment_checking(tmp_path):
