@@ -7,10 +7,12 @@ import json
 import os
 import re
 import shutil
+import socket
 import stat
+import sys
 import tempfile
 from dataclasses import asdict, dataclass
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from enum import Enum
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Sequence
@@ -32,6 +34,35 @@ class PublicationMode(str, Enum):
     MANAGED = "managed"
     LEGACY = "legacy"
     UNKNOWN = "unknown"
+
+
+class PublicationPhase(str, Enum):
+    """The publication boundary at which an operation failed."""
+
+    OWNERSHIP = "ownership"
+    LOCK = "lock"
+    SYNTHESIS = "synthesis"
+    RENDER = "render"
+    MANIFEST = "manifest"
+    VERIFY = "verify"
+    COMMIT = "commit"
+
+
+class PublicationError(RuntimeError):
+    """A publication failure with its phase and safe diagnostic context."""
+
+    def __init__(
+        self,
+        phase: PublicationPhase,
+        message: str,
+        *,
+        defects: Sequence[object] = (),
+        staging_path: Path | None = None,
+    ) -> None:
+        super().__init__(message)
+        self.phase = phase
+        self.defects = tuple(defects)
+        self.staging_path = staging_path
 
 
 @dataclass(frozen=True)
@@ -85,6 +116,94 @@ class _InvalidManifest(ValueError):
     pass
 
 
+class _PublicationLock:
+    """An exclusive sibling lock which is safe to recover only when stale."""
+
+    _SCHEMA_VERSION = 1
+    _STALE_AFTER = timedelta(hours=24)
+
+    def __init__(self, destination: Path) -> None:
+        self.destination = destination.resolve(strict=False)
+        self.path = destination.parent / f".{destination.name}.publication.lock"
+        self._identity: tuple[int, int] | None = None
+
+    def acquire(self) -> None:
+        for attempt in range(2):
+            try:
+                descriptor = os.open(
+                    self.path,
+                    os.O_CREAT | os.O_EXCL | os.O_WRONLY,
+                    0o600,
+                )
+            except FileExistsError:
+                if attempt == 0 and self._recover_stale_lock():
+                    continue
+                raise
+            try:
+                payload = {
+                    "schema_version": self._SCHEMA_VERSION,
+                    "destination": str(self.destination),
+                    "pid": os.getpid(),
+                    "hostname": socket.gethostname(),
+                    "created_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+                }
+                os.write(descriptor, json.dumps(payload, sort_keys=True).encode("utf-8"))
+                metadata = os.fstat(descriptor)
+                self._identity = (metadata.st_dev, metadata.st_ino)
+            except BaseException:
+                os.close(descriptor)
+                self.path.unlink(missing_ok=True)
+                raise
+            else:
+                os.close(descriptor)
+                return
+
+    def release(self) -> None:
+        if self._identity is None:
+            return
+        try:
+            metadata = self.path.stat(follow_symlinks=False)
+        except FileNotFoundError:
+            return
+        if (metadata.st_dev, metadata.st_ino) == self._identity:
+            self.path.unlink()
+
+    def _recover_stale_lock(self) -> bool:
+        try:
+            if not stat.S_ISREG(self.path.lstat().st_mode):
+                return False
+            payload = json.loads(self.path.read_text(encoding="utf-8"))
+            if not isinstance(payload, dict):
+                return False
+            if set(payload) != {"schema_version", "destination", "pid", "hostname", "created_at"}:
+                return False
+            if payload["schema_version"] != self._SCHEMA_VERSION:
+                return False
+            if not isinstance(payload["pid"], int) or isinstance(payload["pid"], bool):
+                return False
+            if payload["pid"] < 1 or payload["hostname"] != socket.gethostname():
+                return False
+            if (
+                not isinstance(payload["destination"], str)
+                or payload["destination"] != str(self.destination)
+                or not isinstance(payload["created_at"], str)
+            ):
+                return False
+            created_at = datetime.fromisoformat(payload["created_at"].replace("Z", "+00:00"))
+            if created_at.tzinfo is None or datetime.now(timezone.utc) - created_at < self._STALE_AFTER:
+                return False
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError, TypeError):
+            return False
+        try:
+            os.kill(payload["pid"], 0)
+        except ProcessLookupError:
+            self.path.unlink()
+            return True
+        except (PermissionError, OSError):
+            return False
+        return False
+
+
 class KnowledgeBasePublisher:
     """Own complete Knowledge Base Publication rendering and verification."""
 
@@ -104,43 +223,87 @@ class KnowledgeBasePublisher:
 
     def publish(self, request: PublicationRequest) -> PublicationManifest:
         """Build, verify, and install one complete publication tree."""
-        destination = self._validated_destination(request)
-        catalog_slugs = self._validated_catalog_slugs()
-        summary = self.episode_synthesizer.synthesize_notes(
-            resolver=request.resolver,
-            takeaway_resolver=request.takeaway_resolver,
-            max_workers=request.max_workers,
-        )
-        guides = self.topic_synthesizer.synthesize_all_topics(
-            summary.notes,
-            self.topic_catalog,
-        )
-        self._validated_guide_slugs(guides, catalog_slugs)
-        destination.parent.mkdir(parents=True, exist_ok=True)
-        staging = Path(
-            tempfile.mkdtemp(
-                prefix=f".{destination.name}.staging-",
-                dir=destination.parent,
-            )
-        )
-        installed = False
         try:
-            self._render_tree(staging, summary, guides)
-            manifest = self._build_manifest(staging, summary)
-            self._write_manifest(staging, manifest)
-            verification = self.verify(staging)
-            if not verification.is_valid:
-                details = "; ".join(
-                    f"{defect.category}: {defect.path or defect.message}"
-                    for defect in verification.defects
+            destination = self._validated_destination(request)
+        except ValueError as exc:
+            raise PublicationError(PublicationPhase.OWNERSHIP, str(exc)) from exc
+        catalog_slugs = self._validated_catalog_slugs()
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        lock = _PublicationLock(destination)
+        try:
+            lock.acquire()
+        except OSError as exc:
+            raise PublicationError(PublicationPhase.LOCK, f"Publication destination is locked: {exc}") from exc
+        try:
+            try:
+                summary = self.episode_synthesizer.synthesize_notes(
+                    resolver=request.resolver,
+                    takeaway_resolver=request.takeaway_resolver,
+                    max_workers=request.max_workers,
                 )
-                raise ValueError(f"Staged publication failed verification: {details}")
-            self._install(staging, destination)
-            installed = True
-            return manifest
+                guides = self.topic_synthesizer.synthesize_all_topics(
+                    summary.notes,
+                    self.topic_catalog,
+                )
+            except Exception as exc:
+                raise PublicationError(PublicationPhase.SYNTHESIS, str(exc)) from exc
+            self._validated_guide_slugs(guides, catalog_slugs)
+            staging = Path(
+                tempfile.mkdtemp(
+                    prefix=f".{destination.name}.staging-",
+                    dir=destination.parent,
+                )
+            )
+            installed = False
+            try:
+                try:
+                    self._render_tree(staging, summary, guides)
+                except Exception as exc:
+                    raise PublicationError(PublicationPhase.RENDER, str(exc)) from exc
+                try:
+                    manifest = self._build_manifest(staging, summary)
+                    self._write_manifest(staging, manifest)
+                except Exception as exc:
+                    raise PublicationError(PublicationPhase.MANIFEST, str(exc)) from exc
+                try:
+                    verification = self.verify(staging)
+                    if not verification.is_valid:
+                        details = "; ".join(
+                            f"{defect.category}: {defect.path or defect.message}"
+                            for defect in verification.defects
+                        )
+                        raise PublicationError(
+                            PublicationPhase.VERIFY,
+                            f"Staged publication failed verification: {details}",
+                            defects=verification.defects,
+                        )
+                except PublicationError:
+                    raise
+                except Exception as exc:
+                    raise PublicationError(PublicationPhase.VERIFY, str(exc)) from exc
+                self._install(staging, destination)
+                installed = True
+                return manifest
+            except PublicationError as error:
+                if request.keep_failed_staging:
+                    error.staging_path = staging
+                raise
+            finally:
+                if not installed and not request.keep_failed_staging:
+                    try:
+                        shutil.rmtree(staging)
+                    except OSError:
+                        pass
         finally:
-            if not installed and not request.keep_failed_staging and staging.exists():
-                shutil.rmtree(staging)
+            primary_error = sys.exception()
+            try:
+                lock.release()
+            except OSError as cleanup_error:
+                if primary_error is None:
+                    raise PublicationError(
+                        PublicationPhase.LOCK,
+                        f"Publication lock cleanup failed: {cleanup_error}",
+                    ) from cleanup_error
 
     def _validated_destination(self, request: PublicationRequest) -> Path:
         if isinstance(request.max_workers, bool) or request.max_workers < 1:
@@ -260,23 +423,61 @@ class KnowledgeBasePublisher:
             encoding="utf-8",
         )
 
-    @staticmethod
-    def _install(stage: Path, destination: Path) -> None:
+    def _install(self, stage: Path, destination: Path) -> None:
         backup: Path | None = None
-        if destination.exists() and any(destination.iterdir()):
-            backup = Path(
-                tempfile.mkdtemp(
-                    prefix=f".{destination.name}.backup-",
-                    dir=destination.parent,
+        moved_existing = False
+        try:
+            if destination.exists():
+                backup = Path(
+                    tempfile.mkdtemp(
+                        prefix=f".{destination.name}.backup-",
+                        dir=destination.parent,
+                    )
                 )
-            )
-            backup.rmdir()
-            os.replace(destination, backup)
-        elif destination.exists():
-            destination.rmdir()
-        os.replace(stage, destination)
+                backup.rmdir()
+                os.replace(destination, backup)
+                moved_existing = True
+            os.replace(stage, destination)
+            verification = self.verify(destination)
+            if not verification.is_valid:
+                details = "; ".join(
+                    f"{defect.category}: {defect.path or defect.message}"
+                    for defect in verification.defects
+                )
+                raise ValueError(f"Installed publication failed verification: {details}")
+        except Exception as primary_error:
+            rollback_error: Exception | None = None
+            if moved_existing and backup is not None:
+                try:
+                    if destination.exists():
+                        os.replace(destination, stage)
+                    os.replace(backup, destination)
+                except Exception as exc:
+                    rollback_error = exc
+            message = f"Publication commit failed: {primary_error}"
+            if rollback_error is not None:
+                backup_path = str(backup) if backup is not None else "unknown"
+                message += f"; rollback failed: {rollback_error}; recoverable backup: {backup_path}"
+            raise PublicationError(PublicationPhase.COMMIT, message) from primary_error
         if backup is not None:
-            shutil.rmtree(backup)
+            try:
+                shutil.rmtree(backup)
+            except OSError as exc:
+                rollback_error: Exception | None = None
+                try:
+                    os.replace(destination, stage)
+                    os.replace(backup, destination)
+                except Exception as rollback_exc:
+                    rollback_error = rollback_exc
+                message = f"Publication backup cleanup failed: {exc}"
+                if rollback_error is not None:
+                    message += f"; rollback failed: {rollback_error}; recoverable backup: {backup}"
+                else:
+                    message += "; previous publication was restored"
+                raise PublicationError(
+                    PublicationPhase.COMMIT,
+                    message,
+                ) from exc
 
     def verify(self, root: Path) -> PublicationVerification:
         """Read a Manifest-managed publication without changing its bytes."""

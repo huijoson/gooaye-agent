@@ -6,8 +6,13 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import socket
+import threading
+import time
 from collections import Counter
+from contextlib import contextmanager
 from dataclasses import replace
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import pytest
@@ -15,9 +20,14 @@ import pytest
 from domain import Chapter, EpisodeMetadata, EpisodeNote, SynthesisSummary, TopicDefinition
 from knowledge_base_publisher import (
     KnowledgeBasePublisher,
+    PublicationDefect,
+    PublicationError,
     PublicationMode,
+    PublicationPhase,
     PublicationRequest,
+    PublicationVerification,
 )
+from markdown_renderer import MarkdownRenderer
 from topic_synthesizer import TopicGuideSynthesizer
 
 
@@ -27,15 +37,23 @@ class FixtureEpisodeSynthesizer:
         episode_numbers: tuple[int, ...],
         *,
         reject_second_call: bool = False,
+        block_during_synthesis: bool = False,
     ) -> None:
         self.episode_numbers = episode_numbers
         self.reject_second_call = reject_second_call
+        self.block_during_synthesis = block_during_synthesis
         self.call_count = 0
+        self.synthesis_started = threading.Event()
+        self.continue_synthesis = threading.Event()
 
     def synthesize_notes(self, **kwargs) -> SynthesisSummary:
         self.call_count += 1
         if self.reject_second_call and self.call_count > 1:
             raise AssertionError("Episode notes were synthesized more than once")
+        if self.block_during_synthesis and self.call_count == 1:
+            self.synthesis_started.set()
+            if not self.continue_synthesis.wait(timeout=5):
+                raise TimeoutError("Fixture synthesis was not released")
         notes = tuple(
             EpisodeNote(
                 metadata=EpisodeMetadata(
@@ -83,10 +101,26 @@ class RewritingTopicSynthesizer:
         ]
 
 
+class RaisingEpisodeSynthesizer:
+    def synthesize_notes(self, **kwargs):
+        raise OSError("fixture synthesis failure")
+
+
+class RaisingMarkdownRenderer(MarkdownRenderer):
+    def render_episode(self, note, mode="slim"):
+        raise OSError("fixture render failure")
+
+
+class BrokenLinkMarkdownRenderer(MarkdownRenderer):
+    def render_readme(self, notes, summary):
+        return "# Publication\n\n[missing](missing.md)\n"
+
+
 def make_fixture_publisher(
     *,
-    episode_numbers: tuple[int, ...],
-    topic_slugs: tuple[str, ...],
+    episode_numbers: tuple[int, ...] = (1,),
+    topic_slugs: tuple[str, ...] = ("only-topic",),
+    block_during_synthesis: bool = False,
 ) -> KnowledgeBasePublisher:
     topics = tuple(
         TopicDefinition(
@@ -99,9 +133,34 @@ def make_fixture_publisher(
         for slug in topic_slugs
     )
     return KnowledgeBasePublisher(
-        episode_synthesizer=FixtureEpisodeSynthesizer(episode_numbers),
+        episode_synthesizer=FixtureEpisodeSynthesizer(
+            episode_numbers,
+            block_during_synthesis=block_during_synthesis,
+        ),
         topic_catalog=topics,
     )
+
+
+@contextmanager
+def publisher_held_in_background(publisher, request):
+    errors = []
+
+    def run() -> None:
+        try:
+            publisher.publish(request)
+        except BaseException as error:
+            errors.append(error)
+
+    worker = threading.Thread(target=run)
+    worker.start()
+    assert publisher.episode_synthesizer.synthesis_started.wait(timeout=2)
+    try:
+        yield
+    finally:
+        publisher.episode_synthesizer.continue_synthesis.set()
+        worker.join(timeout=5)
+    assert not worker.is_alive()
+    assert not errors
 
 
 def snapshot_bytes(root: Path) -> dict[str, bytes]:
@@ -111,6 +170,12 @@ def snapshot_bytes(root: Path) -> dict[str, bytes]:
         for path in sorted(root.rglob("*"))
         if path.is_file()
     }
+
+
+def no_sibling_staging_or_backup(destination: Path) -> bool:
+    return not list(destination.parent.glob(f".{destination.name}.staging-*")) and not list(
+        destination.parent.glob(f".{destination.name}.backup-*")
+    )
 
 
 def build_managed_fixture(root: Path, *, episodes: tuple[int, ...], topics: tuple[str, ...]) -> Path:
@@ -173,6 +238,397 @@ def add_manifest_artifact(root: Path, relative_path: str, content: str) -> None:
     )
     manifest["artifacts"].sort(key=lambda artifact: artifact["path"])
     manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+
+
+def test_publication_error_exposes_its_phase_and_diagnostics(tmp_path):
+    defect = object()
+    staging = tmp_path / ".publication.staging-fixture"
+
+    error = PublicationError(
+        PublicationPhase.VERIFY,
+        "fixture verification failure",
+        defects=(defect,),
+        staging_path=staging,
+    )
+
+    assert str(error) == "fixture verification failure"
+    assert error.phase is PublicationPhase.VERIFY
+    assert error.defects == (defect,)
+    assert error.staging_path == staging
+
+
+def test_second_publisher_fails_fast_while_destination_is_locked(tmp_path):
+    destination = tmp_path / "publication"
+    publisher = make_fixture_publisher(block_during_synthesis=True)
+
+    with publisher_held_in_background(publisher, PublicationRequest(destination)):
+        started = time.monotonic()
+        with pytest.raises(PublicationError) as raised:
+            publisher.publish(PublicationRequest(destination))
+
+    assert raised.value.phase is PublicationPhase.LOCK
+    assert time.monotonic() - started < 1.0
+
+
+def test_stale_lock_for_another_destination_remains_locked(tmp_path):
+    destination = tmp_path / "publication"
+    lock = tmp_path / ".publication.publication.lock"
+    lock.write_text(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "destination": str((tmp_path / "other").resolve()),
+                "pid": 999_999_999,
+                "hostname": socket.gethostname(),
+                "created_at": (datetime.now(timezone.utc) - timedelta(hours=25))
+                .isoformat()
+                .replace("+00:00", "Z"),
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(PublicationError) as raised:
+        make_fixture_publisher().publish(PublicationRequest(destination))
+
+    assert raised.value.phase is PublicationPhase.LOCK
+    assert lock.exists()
+    assert not destination.exists()
+
+
+def test_symlinked_stale_lock_remains_locked_without_reading_its_target(tmp_path):
+    destination = tmp_path / "publication"
+    lock = tmp_path / ".publication.publication.lock"
+    outside = tmp_path / "outside-lock.json"
+    outside.write_text(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "destination": str(destination.resolve()),
+                "pid": 999_999_999,
+                "hostname": socket.gethostname(),
+                "created_at": (datetime.now(timezone.utc) - timedelta(hours=25))
+                .isoformat()
+                .replace("+00:00", "Z"),
+            }
+        ),
+        encoding="utf-8",
+    )
+    lock.symlink_to(outside)
+
+    with pytest.raises(PublicationError) as raised:
+        make_fixture_publisher().publish(PublicationRequest(destination))
+
+    assert raised.value.phase is PublicationPhase.LOCK
+    assert lock.is_symlink()
+    assert outside.exists()
+
+
+def test_same_host_dead_stale_lock_is_recovered(tmp_path):
+    destination = tmp_path / "publication"
+    lock = tmp_path / ".publication.publication.lock"
+    lock.write_text(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "destination": str(destination.resolve()),
+                "pid": 999_999_999,
+                "hostname": socket.gethostname(),
+                "created_at": (datetime.now(timezone.utc) - timedelta(hours=25))
+                .isoformat()
+                .replace("+00:00", "Z"),
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    make_fixture_publisher().publish(PublicationRequest(destination))
+
+    assert not lock.exists()
+    assert KnowledgeBasePublisher().verify(destination).is_valid
+
+
+def test_failed_stage_cleanup_never_hides_the_primary_render_error(tmp_path, monkeypatch):
+    destination = tmp_path / "publication"
+    publisher = make_fixture_publisher()
+    publisher.markdown_renderer = RaisingMarkdownRenderer()
+    remove_tree = __import__("knowledge_base_publisher").shutil.rmtree
+
+    def fail_stage_cleanup(path, *args, **kwargs):
+        if Path(path).name.startswith(".publication.staging-"):
+            raise OSError("fixture cleanup failure")
+        return remove_tree(path, *args, **kwargs)
+
+    monkeypatch.setattr("knowledge_base_publisher.shutil.rmtree", fail_stage_cleanup)
+
+    with pytest.raises(PublicationError) as raised:
+        publisher.publish(PublicationRequest(destination))
+
+    assert raised.value.phase is PublicationPhase.RENDER
+
+
+def test_lock_cleanup_failure_never_hides_the_primary_render_error(tmp_path, monkeypatch):
+    destination = tmp_path / "publication"
+    publisher = make_fixture_publisher()
+    publisher.markdown_renderer = RaisingMarkdownRenderer()
+    unlink = Path.unlink
+
+    def fail_lock_unlink(path, *args, **kwargs):
+        if path.name.endswith(".publication.lock"):
+            raise OSError("fixture lock cleanup failure")
+        return unlink(path, *args, **kwargs)
+
+    monkeypatch.setattr(Path, "unlink", fail_lock_unlink)
+
+    with pytest.raises(PublicationError) as raised:
+        publisher.publish(PublicationRequest(destination))
+
+    assert raised.value.phase is PublicationPhase.RENDER
+
+
+def test_stage_cleanup_probe_failure_never_hides_the_primary_render_error(tmp_path, monkeypatch):
+    destination = tmp_path / "publication"
+    publisher = make_fixture_publisher()
+    publisher.markdown_renderer = RaisingMarkdownRenderer()
+    exists = Path.exists
+
+    def fail_stage_exists(path):
+        if path.name.startswith(".publication.staging-"):
+            raise OSError("fixture stage probe failure")
+        return exists(path)
+
+    monkeypatch.setattr(Path, "exists", fail_stage_exists)
+
+    with pytest.raises(PublicationError) as raised:
+        publisher.publish(PublicationRequest(destination))
+
+    assert raised.value.phase is PublicationPhase.RENDER
+
+
+def test_installed_verification_failure_restores_the_existing_publication(tmp_path):
+    destination = build_managed_fixture(
+        tmp_path / "publication", episodes=(1,), topics=("only-topic",)
+    )
+    publisher = make_fixture_publisher()
+    verify = publisher.verify
+    destination_checks = 0
+
+    def fail_only_installed_root(root):
+        nonlocal destination_checks
+        if Path(root) == destination:
+            destination_checks += 1
+        if destination_checks == 2:
+            return PublicationVerification(
+                PublicationMode.MANAGED,
+                (PublicationDefect("fixture", "installed verification failure"),),
+            )
+        return verify(root)
+
+    publisher.verify = fail_only_installed_root
+    before = snapshot_bytes(destination)
+
+    with pytest.raises(PublicationError) as raised:
+        publisher.publish(PublicationRequest(destination))
+
+    assert raised.value.phase is PublicationPhase.COMMIT
+    assert snapshot_bytes(destination) == before
+    assert no_sibling_staging_or_backup(destination)
+
+
+def test_backup_cleanup_failure_restores_the_existing_publication(tmp_path, monkeypatch):
+    destination = build_managed_fixture(
+        tmp_path / "publication", episodes=(1,), topics=("only-topic",)
+    )
+    publisher = make_fixture_publisher()
+    remove_tree = __import__("knowledge_base_publisher").shutil.rmtree
+
+    def fail_backup_cleanup(path, *args, **kwargs):
+        if Path(path).name.startswith(".publication.backup-"):
+            raise OSError("fixture backup cleanup failure")
+        return remove_tree(path, *args, **kwargs)
+
+    monkeypatch.setattr("knowledge_base_publisher.shutil.rmtree", fail_backup_cleanup)
+    before = snapshot_bytes(destination)
+
+    with pytest.raises(PublicationError) as raised:
+        publisher.publish(PublicationRequest(destination))
+
+    assert raised.value.phase is PublicationPhase.COMMIT
+    assert snapshot_bytes(destination) == before
+    assert no_sibling_staging_or_backup(destination)
+
+
+def test_synthesis_failure_preserves_the_existing_publication(tmp_path):
+    destination = build_managed_fixture(
+        tmp_path / "publication", episodes=(1,), topics=("only-topic",)
+    )
+    publisher = KnowledgeBasePublisher(
+        episode_synthesizer=RaisingEpisodeSynthesizer(),
+        topic_catalog=(
+            TopicDefinition(
+                slug="only-topic",
+                title="Only topic",
+                description="Fixture topic.",
+                category="fixture",
+                keywords=("Only topic",),
+            ),
+        ),
+    )
+    before = snapshot_bytes(destination)
+
+    with pytest.raises(PublicationError) as raised:
+        publisher.publish(PublicationRequest(destination))
+
+    assert raised.value.phase is PublicationPhase.SYNTHESIS
+    assert snapshot_bytes(destination) == before
+    assert no_sibling_staging_or_backup(destination)
+
+
+def test_render_failure_preserves_the_existing_publication(tmp_path):
+    destination = build_managed_fixture(
+        tmp_path / "publication", episodes=(1,), topics=("only-topic",)
+    )
+    publisher = make_fixture_publisher()
+    publisher.markdown_renderer = RaisingMarkdownRenderer()
+    before = snapshot_bytes(destination)
+
+    with pytest.raises(PublicationError) as raised:
+        publisher.publish(PublicationRequest(destination))
+
+    assert raised.value.phase is PublicationPhase.RENDER
+    assert snapshot_bytes(destination) == before
+    assert no_sibling_staging_or_backup(destination)
+
+
+def test_manifest_failure_preserves_the_existing_publication(tmp_path, monkeypatch):
+    destination = build_managed_fixture(
+        tmp_path / "publication", episodes=(1,), topics=("only-topic",)
+    )
+    publisher = make_fixture_publisher()
+    write_text = Path.write_text
+
+    def fail_staged_manifest(path, *args, **kwargs):
+        if path.name == "publication-manifest.json" and path.parent.name.startswith(
+            ".publication.staging-"
+        ):
+            raise OSError("fixture Manifest write failure")
+        return write_text(path, *args, **kwargs)
+
+    monkeypatch.setattr(Path, "write_text", fail_staged_manifest)
+    before = snapshot_bytes(destination)
+
+    with pytest.raises(PublicationError) as raised:
+        publisher.publish(PublicationRequest(destination))
+
+    assert raised.value.phase is PublicationPhase.MANIFEST
+    assert snapshot_bytes(destination) == before
+    assert no_sibling_staging_or_backup(destination)
+
+
+def test_verification_failure_preserves_the_existing_publication(tmp_path):
+    destination = build_managed_fixture(
+        tmp_path / "publication", episodes=(1,), topics=("only-topic",)
+    )
+    publisher = make_fixture_publisher()
+    publisher.markdown_renderer = BrokenLinkMarkdownRenderer()
+    before = snapshot_bytes(destination)
+
+    with pytest.raises(PublicationError) as raised:
+        publisher.publish(PublicationRequest(destination))
+
+    assert raised.value.phase is PublicationPhase.VERIFY
+    assert raised.value.defects
+    assert snapshot_bytes(destination) == before
+    assert no_sibling_staging_or_backup(destination)
+
+
+def test_install_failure_restores_the_existing_publication(tmp_path, monkeypatch):
+    destination = build_managed_fixture(
+        tmp_path / "publication", episodes=(1,), topics=("only-topic",)
+    )
+    publisher = make_fixture_publisher()
+    replace = os.replace
+
+    def fail_stage_install(source, target):
+        if Path(source).name.startswith(".publication.staging-"):
+            raise OSError("fixture install failure")
+        return replace(source, target)
+
+    monkeypatch.setattr(os, "replace", fail_stage_install)
+    before = snapshot_bytes(destination)
+
+    with pytest.raises(PublicationError) as raised:
+        publisher.publish(PublicationRequest(destination))
+
+    assert raised.value.phase is PublicationPhase.COMMIT
+    assert snapshot_bytes(destination) == before
+    assert no_sibling_staging_or_backup(destination)
+
+
+@pytest.mark.parametrize("keep_failed_staging", (False, True))
+def test_failed_render_retains_staging_only_when_requested(tmp_path, keep_failed_staging):
+    destination = build_managed_fixture(
+        tmp_path / "publication", episodes=(1,), topics=("only-topic",)
+    )
+    publisher = make_fixture_publisher()
+    publisher.markdown_renderer = RaisingMarkdownRenderer()
+    before = snapshot_bytes(destination)
+
+    with pytest.raises(PublicationError) as raised:
+        publisher.publish(
+            PublicationRequest(destination, keep_failed_staging=keep_failed_staging)
+        )
+
+    staging = raised.value.staging_path
+    if keep_failed_staging:
+        assert staging is not None and staging.exists()
+        assert staging.parent == destination.parent
+        assert staging != destination
+    else:
+        assert staging is None or not staging.exists()
+    assert snapshot_bytes(destination) == before
+
+
+@pytest.mark.parametrize("target_kind", ("filesystem-root", "home", "repository", "symlink", "unknown"))
+def test_publish_rejects_unowned_destinations_before_lock_or_staging(tmp_path, target_kind):
+    if target_kind == "filesystem-root":
+        destination = Path("/")
+    elif target_kind == "home":
+        destination = Path.home()
+    elif target_kind == "repository":
+        destination = Path(__file__).resolve().parent.parent
+    elif target_kind == "symlink":
+        owned = tmp_path / "owned"
+        owned.mkdir()
+        destination = tmp_path / "linked"
+        destination.symlink_to(owned, target_is_directory=True)
+    else:
+        destination = tmp_path / "unknown"
+        destination.mkdir()
+        (destination / "personal.txt").write_text("do not own", encoding="utf-8")
+    synthesizer = FixtureEpisodeSynthesizer((1,))
+    publisher = KnowledgeBasePublisher(episode_synthesizer=synthesizer)
+    before = (
+        os.readlink(destination)
+        if destination.is_symlink()
+        else snapshot_bytes(destination)
+        if destination.is_dir() and destination.parent == tmp_path
+        else None
+    )
+
+    with pytest.raises(PublicationError) as raised:
+        publisher.publish(PublicationRequest(destination))
+
+    assert raised.value.phase is PublicationPhase.OWNERSHIP
+    assert synthesizer.call_count == 0
+    assert (
+        os.readlink(destination)
+        if destination.is_symlink()
+        else snapshot_bytes(destination)
+        if destination.is_dir() and destination.parent == tmp_path
+        else None
+    ) == before
+    assert not (destination.parent / f".{destination.name}.publication.lock").exists()
 
 
 def test_publish_builds_and_verifies_one_complete_tree(tmp_path):
@@ -270,11 +726,12 @@ def test_publish_rejects_non_positive_workers_before_writing(tmp_path, max_worke
     )
     destination = tmp_path / "publication"
 
-    with pytest.raises(ValueError, match="positive integer"):
+    with pytest.raises(PublicationError, match="positive integer") as raised:
         publisher.publish(
             PublicationRequest(destination=destination, max_workers=max_workers)
         )
 
+    assert raised.value.phase is PublicationPhase.OWNERSHIP
     assert not destination.exists()
     assert list(tmp_path.iterdir()) == []
 
@@ -284,9 +741,10 @@ def test_publish_rejects_the_workspace_root_before_synthesis():
     publisher = KnowledgeBasePublisher(episode_synthesizer=synthesizer)
     workspace_root = Path(__file__).resolve().parent.parent
 
-    with pytest.raises(ValueError, match="protected directory"):
+    with pytest.raises(PublicationError, match="protected directory") as raised:
         publisher.publish(PublicationRequest(destination=workspace_root))
 
+    assert raised.value.phase is PublicationPhase.OWNERSHIP
     assert synthesizer.call_count == 0
 
 
