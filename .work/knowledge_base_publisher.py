@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import fcntl
 import hashlib
 import json
 import os
@@ -116,8 +117,17 @@ class _InvalidManifest(ValueError):
     pass
 
 
+class _InstalledVerificationFailure(ValueError):
+    def __init__(self, defects: Sequence[PublicationDefect]) -> None:
+        self.defects = tuple(defects)
+        details = "; ".join(
+            f"{defect.category}: {defect.path or defect.message}" for defect in self.defects
+        )
+        super().__init__(f"Installed publication failed verification: {details}")
+
+
 class _PublicationLock:
-    """An exclusive sibling lock which is safe to recover only when stale."""
+    """A sibling lock held by a descriptor, never removed by a pathname race."""
 
     _SCHEMA_VERSION = 1
     _STALE_AFTER = timedelta(hours=24)
@@ -126,82 +136,143 @@ class _PublicationLock:
         self.destination = destination.resolve(strict=False)
         self.path = destination.parent / f".{destination.name}.publication.lock"
         self._identity: tuple[int, int] | None = None
+        self._descriptor: int | None = None
 
     def acquire(self) -> None:
-        for attempt in range(2):
-            try:
-                descriptor = os.open(
-                    self.path,
-                    os.O_CREAT | os.O_EXCL | os.O_WRONLY,
-                    0o600,
-                )
-            except FileExistsError:
-                if attempt == 0 and self._recover_stale_lock():
-                    continue
-                raise
-            try:
-                payload = {
-                    "schema_version": self._SCHEMA_VERSION,
-                    "destination": str(self.destination),
-                    "pid": os.getpid(),
-                    "hostname": socket.gethostname(),
-                    "created_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-                }
-                os.write(descriptor, json.dumps(payload, sort_keys=True).encode("utf-8"))
-                metadata = os.fstat(descriptor)
-                self._identity = (metadata.st_dev, metadata.st_ino)
-            except BaseException:
-                os.close(descriptor)
-                self.path.unlink(missing_ok=True)
-                raise
-            else:
-                os.close(descriptor)
-                return
+        try:
+            descriptor = os.open(
+                self.path,
+                os.O_CREAT | os.O_EXCL | os.O_WRONLY,
+                0o600,
+            )
+        except FileExistsError:
+            self._acquire_existing()
+            return
+        try:
+            self._hold(descriptor)
+            self._write_state(active=True)
+        except BaseException:
+            self._close_descriptor(descriptor)
+            raise
 
     def release(self) -> None:
-        if self._identity is None:
+        if self._descriptor is None:
             return
         try:
-            metadata = self.path.stat(follow_symlinks=False)
-        except FileNotFoundError:
-            return
-        if (metadata.st_dev, metadata.st_ino) == self._identity:
-            self.path.unlink()
+            self._write_state(active=False)
+        finally:
+            self._close()
 
-    def _recover_stale_lock(self) -> bool:
+    def _acquire_existing(self) -> None:
+        descriptor = os.open(self.path, os.O_RDWR | os.O_NOFOLLOW)
         try:
-            if not stat.S_ISREG(self.path.lstat().st_mode):
+            self._hold(descriptor)
+            payload = self._read_payload()
+            if not self._can_reclaim(payload) or not self._path_matches_identity():
+                raise FileExistsError(self.path)
+            self._write_state(active=True)
+        except BaseException:
+            self._close_descriptor(descriptor)
+            raise
+
+    def _hold(self, descriptor: int) -> None:
+        metadata = os.fstat(descriptor)
+        if not stat.S_ISREG(metadata.st_mode):
+            raise FileExistsError(self.path)
+        try:
+            fcntl.flock(descriptor, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError as exc:
+            raise FileExistsError(self.path) from exc
+        self._descriptor = descriptor
+        self._identity = (metadata.st_dev, metadata.st_ino)
+
+    def _close(self) -> None:
+        if self._descriptor is None:
+            return
+        descriptor = self._descriptor
+        self._descriptor = None
+        self._identity = None
+        try:
+            fcntl.flock(descriptor, fcntl.LOCK_UN)
+        finally:
+            os.close(descriptor)
+
+    def _close_descriptor(self, descriptor: int) -> None:
+        if self._descriptor == descriptor:
+            self._close()
+        else:
+            os.close(descriptor)
+
+    def _read_payload(self) -> dict[str, object] | None:
+        if self._descriptor is None:
+            return None
+        size = os.fstat(self._descriptor).st_size
+        if size < 1 or size > 16_384:
+            return None
+        os.lseek(self._descriptor, 0, os.SEEK_SET)
+        try:
+            payload = json.loads(os.read(self._descriptor, size).decode("utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            return None
+        return payload if isinstance(payload, dict) else None
+
+    def _can_reclaim(self, payload: dict[str, object] | None) -> bool:
+        if payload is None:
+            return False
+        expected = {"schema_version", "destination", "pid", "hostname", "created_at"}
+        fields = set(payload)
+        if fields != expected and fields != expected | {"active"}:
+            return False
+        if payload["schema_version"] != self._SCHEMA_VERSION:
+            return False
+        if not isinstance(payload["pid"], int) or isinstance(payload["pid"], bool):
+            return False
+        if payload["pid"] < 1 or payload["hostname"] != socket.gethostname():
+            return False
+        if payload["destination"] != str(self.destination) or not isinstance(payload["created_at"], str):
+            return False
+        if fields == expected | {"active"}:
+            if not isinstance(payload["active"], bool):
                 return False
-            payload = json.loads(self.path.read_text(encoding="utf-8"))
-            if not isinstance(payload, dict):
-                return False
-            if set(payload) != {"schema_version", "destination", "pid", "hostname", "created_at"}:
-                return False
-            if payload["schema_version"] != self._SCHEMA_VERSION:
-                return False
-            if not isinstance(payload["pid"], int) or isinstance(payload["pid"], bool):
-                return False
-            if payload["pid"] < 1 or payload["hostname"] != socket.gethostname():
-                return False
-            if (
-                not isinstance(payload["destination"], str)
-                or payload["destination"] != str(self.destination)
-                or not isinstance(payload["created_at"], str)
-            ):
-                return False
+            if not payload["active"]:
+                return True
+        try:
             created_at = datetime.fromisoformat(payload["created_at"].replace("Z", "+00:00"))
             if created_at.tzinfo is None or datetime.now(timezone.utc) - created_at < self._STALE_AFTER:
                 return False
-        except (OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError, TypeError):
-            return False
-        try:
             os.kill(payload["pid"], 0)
         except ProcessLookupError:
-            self.path.unlink()
             return True
-        except (PermissionError, OSError):
+        except (PermissionError, OSError, OverflowError, ValueError, TypeError):
             return False
         return False
+
+    def _path_matches_identity(self) -> bool:
+        if self._identity is None:
+            return False
+        try:
+            metadata = self.path.lstat()
+        except OSError:
+            return False
+        return (metadata.st_dev, metadata.st_ino) == self._identity
+
+    def _write_state(self, *, active: bool) -> None:
+        if self._descriptor is None:
+            raise OSError("Publication lock is not held.")
+        payload = {
+            "schema_version": self._SCHEMA_VERSION,
+            "destination": str(self.destination),
+            "pid": os.getpid(),
+            "hostname": socket.gethostname(),
+            "created_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+            "active": active,
+        }
+        encoded = json.dumps(payload, sort_keys=True).encode("utf-8")
+        os.ftruncate(self._descriptor, 0)
+        os.lseek(self._descriptor, 0, os.SEEK_SET)
+        view = memoryview(encoded)
+        while view:
+            view = view[os.write(self._descriptor, view):]
 
 
 class KnowledgeBasePublisher:
@@ -281,7 +352,7 @@ class KnowledgeBasePublisher:
                     raise
                 except Exception as exc:
                     raise PublicationError(PublicationPhase.VERIFY, str(exc)) from exc
-                self._install(staging, destination)
+                self._install(staging, destination, request)
                 installed = True
                 return manifest
             except PublicationError as error:
@@ -423,7 +494,16 @@ class KnowledgeBasePublisher:
             encoding="utf-8",
         )
 
-    def _install(self, stage: Path, destination: Path) -> None:
+    def _install(
+        self,
+        stage: Path,
+        destination: Path,
+        request: PublicationRequest,
+    ) -> None:
+        try:
+            self._validated_destination(request)
+        except ValueError as exc:
+            raise PublicationError(PublicationPhase.OWNERSHIP, str(exc)) from exc
         backup: Path | None = None
         moved_existing = False
         try:
@@ -440,11 +520,7 @@ class KnowledgeBasePublisher:
             os.replace(stage, destination)
             verification = self.verify(destination)
             if not verification.is_valid:
-                details = "; ".join(
-                    f"{defect.category}: {defect.path or defect.message}"
-                    for defect in verification.defects
-                )
-                raise ValueError(f"Installed publication failed verification: {details}")
+                raise _InstalledVerificationFailure(verification.defects)
         except Exception as primary_error:
             rollback_error: Exception | None = None
             if moved_existing and backup is not None:
@@ -458,10 +534,26 @@ class KnowledgeBasePublisher:
             if rollback_error is not None:
                 backup_path = str(backup) if backup is not None else "unknown"
                 message += f"; rollback failed: {rollback_error}; recoverable backup: {backup_path}"
-            raise PublicationError(PublicationPhase.COMMIT, message) from primary_error
+            defects = (
+                primary_error.defects
+                if isinstance(primary_error, _InstalledVerificationFailure)
+                else ()
+            )
+            raise PublicationError(
+                PublicationPhase.COMMIT,
+                message,
+                defects=defects,
+            ) from primary_error
         if backup is not None:
+            recovery = Path(
+                tempfile.mkdtemp(
+                    prefix=f".{destination.name}.recovery-",
+                    dir=destination.parent,
+                )
+            )
+            recovery.rmdir()
             try:
-                shutil.rmtree(backup)
+                shutil.copytree(backup, recovery, copy_function=shutil.copy2)
             except OSError as exc:
                 rollback_error: Exception | None = None
                 try:
@@ -469,14 +561,36 @@ class KnowledgeBasePublisher:
                     os.replace(backup, destination)
                 except Exception as rollback_exc:
                     rollback_error = rollback_exc
-                message = f"Publication backup cleanup failed: {exc}"
+                message = f"Publication recovery copy failed: {exc}"
                 if rollback_error is not None:
                     message += f"; rollback failed: {rollback_error}; recoverable backup: {backup}"
+                else:
+                    message += "; previous publication was restored"
+                raise PublicationError(PublicationPhase.COMMIT, message) from exc
+            try:
+                shutil.rmtree(backup)
+            except OSError as exc:
+                rollback_error: Exception | None = None
+                try:
+                    os.replace(destination, stage)
+                    os.replace(recovery, destination)
+                except Exception as rollback_exc:
+                    rollback_error = rollback_exc
+                message = f"Publication backup cleanup failed: {exc}"
+                if rollback_error is not None:
+                    message += f"; rollback failed: {rollback_error}; recoverable backup: {recovery}"
                 else:
                     message += "; previous publication was restored"
                 raise PublicationError(
                     PublicationPhase.COMMIT,
                     message,
+                ) from exc
+            try:
+                shutil.rmtree(recovery)
+            except OSError as exc:
+                raise PublicationError(
+                    PublicationPhase.COMMIT,
+                    f"Publication committed but recovery cleanup failed: {exc}; residual recovery path: {recovery}",
                 ) from exc
 
     def verify(self, root: Path) -> PublicationVerification:

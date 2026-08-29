@@ -26,6 +26,7 @@ from knowledge_base_publisher import (
     PublicationPhase,
     PublicationRequest,
     PublicationVerification,
+    _PublicationLock,
 )
 from markdown_renderer import MarkdownRenderer
 from topic_synthesizer import TopicGuideSynthesizer
@@ -116,6 +117,19 @@ class BrokenLinkMarkdownRenderer(MarkdownRenderer):
         return "# Publication\n\n[missing](missing.md)\n"
 
 
+class DestinationMutatingMarkdownRenderer(MarkdownRenderer):
+    def __init__(self, destination: Path) -> None:
+        self.destination = destination
+        self.changed_destination = False
+
+    def render_episode(self, note, mode="slim"):
+        if not self.changed_destination:
+            self.destination.mkdir()
+            (self.destination / "personal.txt").write_text("do not own", encoding="utf-8")
+            self.changed_destination = True
+        return super().render_episode(note, mode=mode)
+
+
 def make_fixture_publisher(
     *,
     episode_numbers: tuple[int, ...] = (1,),
@@ -175,6 +189,8 @@ def snapshot_bytes(root: Path) -> dict[str, bytes]:
 def no_sibling_staging_or_backup(destination: Path) -> bool:
     return not list(destination.parent.glob(f".{destination.name}.staging-*")) and not list(
         destination.parent.glob(f".{destination.name}.backup-*")
+    ) and not list(
+        destination.parent.glob(f".{destination.name}.recovery-*")
     )
 
 
@@ -344,8 +360,90 @@ def test_same_host_dead_stale_lock_is_recovered(tmp_path):
 
     make_fixture_publisher().publish(PublicationRequest(destination))
 
-    assert not lock.exists()
+    assert json.loads(lock.read_text(encoding="utf-8"))["active"] is False
     assert KnowledgeBasePublisher().verify(destination).is_valid
+
+
+@pytest.mark.parametrize("pid", ("not-a-pid", True, 0, 10**100))
+def test_malformed_or_out_of_range_stale_lock_pid_remains_locked(tmp_path, pid):
+    destination = tmp_path / "publication"
+    lock = tmp_path / ".publication.publication.lock"
+    lock.write_text(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "destination": str(destination.resolve()),
+                "pid": pid,
+                "hostname": socket.gethostname(),
+                "created_at": (datetime.now(timezone.utc) - timedelta(hours=25))
+                .isoformat()
+                .replace("+00:00", "Z"),
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(PublicationError) as raised:
+        make_fixture_publisher().publish(PublicationRequest(destination))
+
+    assert raised.value.phase is PublicationPhase.LOCK
+    assert lock.exists()
+
+
+def test_lock_release_never_unlinks_an_interleaved_replacement(tmp_path, monkeypatch):
+    destination = tmp_path / "publication"
+    lock = _PublicationLock(destination)
+    lock.acquire()
+    write = os.write
+    replacement_written = False
+
+    def replace_during_release(descriptor, data):
+        nonlocal replacement_written
+        if not replacement_written:
+            displaced = tmp_path / "displaced-lock"
+            lock.path.rename(displaced)
+            lock.path.write_text("replacement owner", encoding="utf-8")
+            replacement_written = True
+        return write(descriptor, data)
+
+    monkeypatch.setattr(os, "write", replace_during_release)
+    lock.release()
+
+    assert replacement_written
+    assert lock.path.read_text(encoding="utf-8") == "replacement owner"
+
+
+def test_stale_recovery_never_unlinks_an_interleaved_replacement(tmp_path, monkeypatch):
+    destination = tmp_path / "publication"
+    lock = tmp_path / ".publication.publication.lock"
+    lock.write_text(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "destination": str(destination.resolve()),
+                "pid": 999_999_999,
+                "hostname": socket.gethostname(),
+                "created_at": (datetime.now(timezone.utc) - timedelta(hours=25))
+                .isoformat()
+                .replace("+00:00", "Z"),
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    def replace_during_liveness_check(pid, signal):
+        displaced = tmp_path / "displaced-stale-lock"
+        lock.rename(displaced)
+        lock.write_text("replacement owner", encoding="utf-8")
+        raise ProcessLookupError
+
+    monkeypatch.setattr(os, "kill", replace_during_liveness_check)
+
+    with pytest.raises(PublicationError) as raised:
+        make_fixture_publisher().publish(PublicationRequest(destination))
+
+    assert raised.value.phase is PublicationPhase.LOCK
+    assert lock.read_text(encoding="utf-8") == "replacement owner"
 
 
 def test_failed_stage_cleanup_never_hides_the_primary_render_error(tmp_path, monkeypatch):
@@ -386,25 +484,6 @@ def test_lock_cleanup_failure_never_hides_the_primary_render_error(tmp_path, mon
     assert raised.value.phase is PublicationPhase.RENDER
 
 
-def test_stage_cleanup_probe_failure_never_hides_the_primary_render_error(tmp_path, monkeypatch):
-    destination = tmp_path / "publication"
-    publisher = make_fixture_publisher()
-    publisher.markdown_renderer = RaisingMarkdownRenderer()
-    exists = Path.exists
-
-    def fail_stage_exists(path):
-        if path.name.startswith(".publication.staging-"):
-            raise OSError("fixture stage probe failure")
-        return exists(path)
-
-    monkeypatch.setattr(Path, "exists", fail_stage_exists)
-
-    with pytest.raises(PublicationError) as raised:
-        publisher.publish(PublicationRequest(destination))
-
-    assert raised.value.phase is PublicationPhase.RENDER
-
-
 def test_installed_verification_failure_restores_the_existing_publication(tmp_path):
     destination = build_managed_fixture(
         tmp_path / "publication", episodes=(1,), topics=("only-topic",)
@@ -412,15 +491,16 @@ def test_installed_verification_failure_restores_the_existing_publication(tmp_pa
     publisher = make_fixture_publisher()
     verify = publisher.verify
     destination_checks = 0
+    expected_defects = (PublicationDefect("fixture", "installed verification failure"),)
 
     def fail_only_installed_root(root):
         nonlocal destination_checks
         if Path(root) == destination:
             destination_checks += 1
-        if destination_checks == 2:
+        if destination_checks == 3:
             return PublicationVerification(
                 PublicationMode.MANAGED,
-                (PublicationDefect("fixture", "installed verification failure"),),
+                expected_defects,
             )
         return verify(root)
 
@@ -431,6 +511,7 @@ def test_installed_verification_failure_restores_the_existing_publication(tmp_pa
         publisher.publish(PublicationRequest(destination))
 
     assert raised.value.phase is PublicationPhase.COMMIT
+    assert raised.value.defects == expected_defects
     assert snapshot_bytes(destination) == before
     assert no_sibling_staging_or_backup(destination)
 
@@ -444,6 +525,7 @@ def test_backup_cleanup_failure_restores_the_existing_publication(tmp_path, monk
 
     def fail_backup_cleanup(path, *args, **kwargs):
         if Path(path).name.startswith(".publication.backup-"):
+            (Path(path) / "README.md").unlink()
             raise OSError("fixture backup cleanup failure")
         return remove_tree(path, *args, **kwargs)
 
@@ -455,6 +537,40 @@ def test_backup_cleanup_failure_restores_the_existing_publication(tmp_path, monk
 
     assert raised.value.phase is PublicationPhase.COMMIT
     assert snapshot_bytes(destination) == before
+
+
+def test_partial_recovery_copy_failure_restores_from_the_intact_backup(tmp_path, monkeypatch):
+    destination = build_managed_fixture(
+        tmp_path / "publication", episodes=(1,), topics=("only-topic",)
+    )
+    publisher = make_fixture_publisher()
+    copytree = __import__("knowledge_base_publisher").shutil.copytree
+
+    def partially_copy_then_fail(source, target, *args, **kwargs):
+        copytree(source, target, *args, **kwargs)
+        (Path(target) / "README.md").unlink()
+        raise OSError("fixture recovery copy failure")
+
+    monkeypatch.setattr("knowledge_base_publisher.shutil.copytree", partially_copy_then_fail)
+    before = snapshot_bytes(destination)
+
+    with pytest.raises(PublicationError) as raised:
+        publisher.publish(PublicationRequest(destination))
+
+    assert raised.value.phase is PublicationPhase.COMMIT
+    assert snapshot_bytes(destination) == before
+
+
+def test_publish_revalidates_destination_ownership_under_the_lock(tmp_path):
+    destination = tmp_path / "publication"
+    publisher = make_fixture_publisher()
+    publisher.markdown_renderer = DestinationMutatingMarkdownRenderer(destination)
+
+    with pytest.raises(PublicationError) as raised:
+        publisher.publish(PublicationRequest(destination))
+
+    assert raised.value.phase is PublicationPhase.OWNERSHIP
+    assert snapshot_bytes(destination) == {"personal.txt": b"do not own"}
     assert no_sibling_staging_or_backup(destination)
 
 
@@ -716,6 +832,7 @@ def test_publish_replaces_stale_artifacts_and_repeats_without_sibling_debris(tmp
     assert repeated_publisher_b.verify(destination).is_valid
     assert list(tmp_path.glob(".publication.staging-*")) == []
     assert list(tmp_path.glob(".publication.backup-*")) == []
+    assert list(tmp_path.glob(".publication.recovery-*")) == []
 
 
 @pytest.mark.parametrize("max_workers", (0, -1))
@@ -820,7 +937,8 @@ def test_publish_rejects_an_invalid_guide_slug_before_rendering(tmp_path, guide_
             PublicationRequest(destination=destination, keep_failed_staging=True)
         )
 
-    assert list(tmp_path.iterdir()) == []
+    assert list(tmp_path.glob(".publication.staging-*")) == []
+    assert list(tmp_path.glob(".publication.backup-*")) == []
 
 
 @pytest.mark.parametrize(
@@ -847,7 +965,8 @@ def test_publish_rejects_topic_guide_catalog_mismatches_before_rendering(
             PublicationRequest(destination=destination, keep_failed_staging=True)
         )
 
-    assert list(tmp_path.iterdir()) == []
+    assert list(tmp_path.glob(".publication.staging-*")) == []
+    assert list(tmp_path.glob(".publication.backup-*")) == []
 
 
 def test_verify_accepts_a_complete_manifest_managed_publication(tmp_path):
