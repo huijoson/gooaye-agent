@@ -1,15 +1,15 @@
 # 全集索引
 
-共 689 支 YouTube 公開影片、5,299 章、10,598 條逐字稿摘錄；涵蓋 EP1–EP690，公開清單唯一缺號為 EP232。章節按完整逐字稿內容順序編排，非精確時間碼。
+共 690 支 YouTube 公開影片、5,307 章、10,614 條逐字稿摘錄；涵蓋 EP1–EP690，公開清單唯一缺號為 EP232。章節按完整逐字稿內容順序編排，非精確時間碼。
 
 ## 📚 主題專題深度指南 (Thematic Topic Guides)
 
 | 專題手冊 | 分類 | 說明 |
 |:---|:---:|:---|
-| [AI 伺服器、散熱、電力與 ASIC 自研晶片演進](topics/ai-hardware-and-semiconductor.md) | 產業與硬體架構 | 追蹤 2021 至 2026 年主委對水冷、CDU、800V 電力與 CSP 自研 ASIC 晶片之論述脈絡。 |
-| [主委投資心態、部位管理、停損紀律與期望值實戰守則](topics/investment-mindset-and-risk-control.md) | 投資心態與風險控制 | 彙整歷年部位控制、停損停利紀律、勝率/賠率期望值計算與生活化哲學。 |
-| [總體經濟循環、聯準會降息循環、房產與資產配置](topics/macro-cycle-and-asset-allocation.md) | 總體經濟與資產配置 | 整理景氣循環位階、聯準會利率政策、通膨、美股與房產資產配置。 |
-| [Apple 供應鏈、智慧型手機與消費性電子週期](topics/apple-and-consumer-electronics.md) | 消費性電子與供應鏈 | 探討 Apple 產品週期、台廠果鏈消長、折疊機與消費性電子拉貨動能。 |
+| [AI 伺服器、散熱、電力與 ASIC 自研晶片演進](topics/ai-hardware-and-semiconductor.md) | 產業與硬體架構 | 追蹤 2021 至 2026 年主委對 AI 伺服器散熱（氣冷/水冷/CDU）、800V 高壓電力、CSP 自研 ASIC 晶片與 CoWoS 先進封裝之論述脈絡與產業轉折。 |
+| [主委投資心態、部位管理、停損紀律與期望值實戰守則](topics/investment-mindset-and-risk-control.md) | 投資心態與風險控制 | 彙整謝孟恭（主委）歷年關於交易心態、部位控制、停損停利紀律、勝率/賠率期望值計算與生活化哲學之精華觀念。 |
+| [總體經濟循環、聯準會降息循環、房產與資產配置](topics/macro-cycle-and-asset-allocation.md) | 總體經濟與資產配置 | 整理主委對景氣循環位階、聯準會（Fed）利率政策、通膨與 CPI、美股與台股資產配置以及台灣房地產市場之觀點演進。 |
+| [Apple 供應鏈、智慧型手機與消費性電子週期](topics/apple-and-consumer-electronics.md) | 消費性電子與供應鏈 | 探討 Apple iPhone、Vision Pro、Mac/iPad 產品週期、台廠果鏈供應商消長、折疊機與消費性電子拉貨動能演變。 |
 
 - 👉 [查看完整主題專題目錄與使用指引](topics/README.md)
 
@@ -17,7 +17,7 @@
 
 | 年份 | 集數 |
 |---:|---:|
-| 2026 | 67 |
+| 2026 | 68 |
 | 2025 | 105 |
 | 2024 | 104 |
 | 2023 | 104 |
@@ -29,6 +29,7 @@
 
 | 集數 | 日期 | 片長 | 章節 | 標題 | YouTube |
 |---:|:---:|---:|---:|---|:---:|
+| [EP691](episodes/EP0691.md) | 2026-08-26 | 49:55 | 8 | 北海道敲門驚魂與人人一個Jarvis | [觀看](https://www.youtube.com/watch?v=J-e9oxqLzpc) |
 | [EP690](episodes/EP0690.md) | 2026-08-22 | 49:59 | 7 | 黑皮諾平替記與Google的COT轉向 | [觀看](https://www.youtube.com/watch?v=4DuhZyepr08) |
 | [EP689](episodes/EP0689.md) | 2026-08-19 | 50:56 | 8 | 乖寶寶點數與房間裡的大象 | [觀看](https://www.youtube.com/watch?v=sI5DUiG42Q8) |
 | [EP688](episodes/EP0688.md) | 2026-08-15 | 51:29 | 7 | 下背痛探索記與800V電力革命 | [觀看](https://www.youtube.com/watch?v=PD_IMPvMBc0) |

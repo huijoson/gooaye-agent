@@ -7,7 +7,7 @@
 ## 核心領域實體 (Core Domain Entities)
 
 ### 1. Episode (`EpisodeMetadata`)
-- 正式 Knowledge Base Publication 涵蓋 YouTube 公開清單中 EP1 至 EP690（共 689 支影片，缺 EP232）。來源層另有已驗證的 EP691 normalized snapshot，因此目前可供合成的 Episode Source 共 690 集；這不表示 EP691 已發布。
+- 正式 Knowledge Base Publication 涵蓋 EP1 至 EP691（共 690 集，缺 EP232）。先前 legacy release 只涵蓋 689 支影片；目前的第 690 集 EP691 是已驗證並發布的 Episode Source。
 - 每集包含集數編號、YouTube 原始標題、第三方策展標題、發布日期、發布日期來源、影片片長與完整逐字稿。
 
 ### 2. Full Transcript (完整逐字稿)
@@ -46,8 +46,12 @@
 - 不包含原始音訊、生成後的 Episode Note 或 Knowledge Base Publication。
 
 ### 12. Knowledge Base Publication（知識庫發布）
-- 一份可獨立使用的完整知識庫發行版；同時涵蓋全部公開集數的雙層 Episode Notes、目錄登錄的所有 Topic Guides，以及可相互抵達的索引與導覽文件。
-- 指定集數或指定主題的局部產出屬於 Preview（預覽），不是 Publication，不得取代正式知識庫。
+- 一份可獨立使用的完整知識庫發行版；目前涵蓋 690 集雙層 Episode Notes、四份 Topic Guides、索引與導覽文件，並以 SHA-256 Manifest 識別其完整內容。
+- 與 689-video legacy release 有明確區別；只有完整 corpus 才是 Publication。
+
+### 13. Preview（預覽）
+- 指定 Episode 或 Topic 的局部、顯式、隔離產出，用於檢查結果但不構成正式知識庫發布。
+- 不得位於 Knowledge Base Publication 根目錄或其任何子目錄，亦不得取代 Publication。
 
 ---
 
@@ -115,6 +119,12 @@
   - `topics`：主題專題指南批次合成（`--generate`）、接地審計（`--audit`）與清單檢視（`--list`）。
   - `diagnose`：單一標題、觀點與摘錄品質診斷與修復測試。
   - `doctor`：環境、數據來源與快取完整性體檢。
+  - `publish`：唯一正式發布入口；建立、驗證並交易式安裝完整 Manifest-managed Knowledge Base Publication。
+  - `verify`：唯讀驗證 legacy 或 Manifest-managed Knowledge Base Publication 的結構、完整性與 digest。
+
+### 21. Knowledge Base Publisher (`knowledge_base_publisher.py`)
+- 正式 Publication 的唯一生命週期深模組；從同一批記憶體中的 Episode Notes 與 Topic Guides 建立完整 sibling staging tree、寫入 Manifest、驗證後才交易式替換目的地。
+- **介面 (Interface)**：`publish(request) -> PublicationManifest` 與 `verify(root) -> PublicationVerification`；失敗時保留舊的完整 Publication，未知的非空目的地一律拒絕。
 
 ### 19. Topic Guide Synthesizer & Auditor (`topic_synthesizer.py`)
 - 跨集數主題專題合成與品質審計深模組：
