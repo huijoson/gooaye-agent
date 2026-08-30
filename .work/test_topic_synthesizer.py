@@ -217,6 +217,7 @@ def test_synthesize_all_topics_and_render_readme(sample_episodes, tmp_path):
     assert readme_path.exists()
     readme_content = readme_path.read_text(encoding="utf-8")
     assert "# Gooaye 股癌 跨集數主題式深度知識庫指南" in readme_content
+    assert "3 集全量逐字稿與 5 個結構化章節觀點" in readme_content
     assert "[AI 伺服器、散熱、電力與 ASIC 自研晶片演進](ai-hardware-and-semiconductor.md)" in readme_content
 
 
@@ -348,5 +349,4 @@ def test_cli_topics_subcommand():
     assert res_audit.returncode == 0
     assert "Audit completed" in res_audit.stdout
     assert "100%" in res_audit.stdout or "0" in res_audit.stdout
-
 

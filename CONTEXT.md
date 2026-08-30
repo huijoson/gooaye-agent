@@ -130,7 +130,7 @@
 - 跨集數主題專題合成與品質審計深模組：
   - **`TopicDefinition`**：定義主題標識、關鍵字、核心概念與分類。
   - **`ThematicChapterRef`**：包含集數編號、日期、章節標題、Takeaway 與權重關聯評分的引用物件。
-  - **`TopicGuideSynthesizer`**：從 689 集筆記中依時序聚合相關章節、提煉年度里程碑與核心結論矩陣。
+  - **`TopicGuideSynthesizer`**：從目前 690 集 Manifest-managed Publication 的筆記中依時序聚合相關章節、提煉年度里程碑與核心結論矩陣。
   - **`TopicGuideRenderer`**：渲染標準主題專題 Markdown 手冊（`gooaye-youtube-notes/topics/{slug}.md`）與主題總覽索引（`topics/README.md`）。
   - **`TopicQualityAuditor`**：100% 驗證專題手冊之章節引用存在性、發布日期對齊度與點擊連結有效性。
 
@@ -155,7 +155,7 @@
 ### 20. Gooaye Skill (`.agents/skills/gooaye/SKILL.md`)
 - **定位**：極低 Token 待機開銷（~30 tokens）的漸進式按需技能。
 - **雙模態機制 (Dual-Mode)**：
-  - **Archive Query (客觀檢索模式)**：檢索 689 集結構化筆記與跨集數主題專題手冊，提供精確集數、章節、核心觀點與逐字稿引述。
+  - **Archive Query (客觀檢索模式)**：檢索目前 690 集 Manifest-managed Publication 的結構化筆記與跨集數主題專題手冊，提供精確集數、章節、核心觀點與逐字稿引述。
   - **Mindset Roasting (主委心態健檢模式)**：切換謝孟恭口吻，基於部位管理、停損紀律、期望值計算進行風險拷問。
 - **階梯式檢索 (Multi-Stage Progressive Search)**：
   - Stage 1: 先在 `_index.md` 與 `episodes/` 中透過語意或關鍵字定位 1–3 集（~150KB 全域索引）。

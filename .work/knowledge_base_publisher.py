@@ -505,7 +505,7 @@ class KnowledgeBasePublisher:
                 encoding="utf-8",
             )
         (topics_dir / "README.md").write_text(
-            self.topic_renderer.render_topics_readme(guides),
+            self.topic_renderer.render_topics_readme(guides, summary.notes),
             encoding="utf-8",
         )
 

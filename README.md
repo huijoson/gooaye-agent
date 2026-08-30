@@ -1,7 +1,7 @@
 # Gooaye Agent & Knowledge Base (股癌知識庫與智能代理)
 
 [![Episodes](https://img.shields.io/badge/Episodes-690%20Videos-blue.svg)](gooaye-youtube-notes/_index.md)
-[![Chapters](https://img.shields.io/badge/Chapters-5%2C307%20Topics-orange.svg)](gooaye-youtube-notes/_index.md)
+[![Chapters](https://img.shields.io/badge/Chapters-5%2C306%20Topics-orange.svg)](gooaye-youtube-notes/_index.md)
 [![Topic Guides](https://img.shields.io/badge/Topics-4%20Playbooks-green.svg)](gooaye-youtube-notes/topics/README.md)
 [![Skill Architecture](https://img.shields.io/badge/Antigravity-Progressive%20Skill-purple.svg)](.agents/skills/gooaye/SKILL.md)
 

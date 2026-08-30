@@ -69,6 +69,27 @@ class TestEvidenceExtractor(unittest.TestCase):
             self.assertTrue(ev.seed_title != "")
             self.assertTrue(all(len(e) >= 10 for e in ev.excerpts))
 
+    def test_extract_evidence_excludes_trailing_git_trailer_and_keeps_preceding_evidence(self) -> None:
+        transcript = """
+市場對半導體庫存去化的速度仍有分歧，但資本支出回升將先反映在設備與材料需求。
+投資人應該保留足夠現金，等待報價與終端需求同步改善再提高部位。
+---
+Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
+"""
+
+        evidence = self.extractor.extract(
+            "半導體庫存去化與資本支出回升。",
+            transcript,
+            target_chapters=1,
+            min_excerpts=1,
+            max_excerpts=3,
+        )
+        excerpts = "\n".join(excerpt for chapter in evidence for excerpt in chapter.excerpts)
+
+        self.assertIn("半導體庫存去化", excerpts)
+        self.assertNotIn("Co-Authored-By", excerpts)
+        self.assertNotIn("Claude Sonnet", excerpts)
+
 
 if __name__ == "__main__":
     unittest.main()

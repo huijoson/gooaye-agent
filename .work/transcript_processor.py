@@ -30,6 +30,20 @@ SPONSOR_MARKERS = (
     "ADAC 認證",
 )
 
+VCS_TRAILER_TOKENS = (
+    "Co-authored-by",
+    "Signed-off-by",
+    "Reviewed-by",
+    "Acked-by",
+    "Tested-by",
+    "Reported-by",
+    "Helped-by",
+    "Suggested-by",
+    "Fixes",
+    "Resolves",
+    "See-also",
+)
+
 
 class TranscriptSanitizer:
     """Sanitize raw transcript texts by removing sponsors, recaps, and noise formatting."""
@@ -102,7 +116,18 @@ class TranscriptSanitizer:
         if recap_positions:
             text = text[: min(recap_positions)]
 
-        # 5. Clean markdown headers, lines, blockquotes, boldings, and URLs
+        # 5. Strip a source-control trailer appended after a Markdown separator.
+        # Restrict this to the trailing separator-and-trailer shape so ordinary
+        # transcript sentences containing a colon remain untouched.
+        trailer_tokens = "|".join(re.escape(token) for token in VCS_TRAILER_TOKENS)
+        text = re.sub(
+            rf"\n[ \t]*(?:---|\*{{3,}})[ \t]*\n(?:[ \t]*\n)*(?:[ \t]*(?:{trailer_tokens}):[^\n]*(?:\n|$))+\s*$",
+            "",
+            text,
+            flags=re.IGNORECASE,
+        )
+
+        # 6. Clean markdown headers, lines, blockquotes, boldings, and URLs
         text = re.sub(r"^#{1,6}\s+.*$", "", text, flags=re.M)
         text = re.sub(r"^\s*(?:-{3,}|\*{3,})\s*$", "", text, flags=re.M)
         text = re.sub(r"^\s*>\s?", "", text, flags=re.M)

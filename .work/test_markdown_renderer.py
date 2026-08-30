@@ -88,6 +88,42 @@ class TestMarkdownRenderer(unittest.TestCase):
         self.assertIn("# 全集索引", index)
         self.assertIn("[EP1](episodes/EP0001.md)", index)
 
+    def test_readme_and_index_derive_range_and_chapter_range_from_notes(self) -> None:
+        notes = []
+        for number, chapter_count in ((7, 2), (12, 4)):
+            metadata = EpisodeMetadata(
+                number=number,
+                youtube_id=f"id{number}",
+                youtube_url=f"https://youtube.com/watch?v=id{number}",
+                youtube_title=f"EP{number} 標題",
+                display_title=f"EP{number} 策展標題",
+                date="2026-01-01",
+                date_source="fixture",
+                duration_str="1:00",
+                duration_seconds=60,
+                archive_url="https://example.test",
+                summary="摘要",
+            )
+            chapters = tuple(
+                Chapter(index=index, heading=f"章節 {index}", excerpts=("可驗證的逐字稿證據。",))
+                for index in range(1, chapter_count + 1)
+            )
+            notes.append(EpisodeNote(metadata=metadata, chapters=chapters))
+        summary = SynthesisSummary(
+            total_episodes=2,
+            total_chapters=6,
+            total_seconds=120,
+            chapter_distribution=Counter({2: 1, 4: 1}),
+            notes=tuple(notes),
+        )
+
+        readme = MarkdownRenderer.render_readme(notes, summary)
+        index = MarkdownRenderer.render_index(notes, summary)
+
+        self.assertIn("涵蓋 EP7–EP12", readme)
+        self.assertIn("每份 `episodes/EPxxxx.md` 包含 YAML metadata、YouTube 原始資訊、2–4 個觀念章節", readme)
+        self.assertIn("涵蓋 EP7–EP12", index)
+
 
 if __name__ == "__main__":
     unittest.main()

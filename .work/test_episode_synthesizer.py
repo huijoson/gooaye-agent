@@ -39,6 +39,19 @@ class TestEpisodeNoteSynthesizer(unittest.TestCase):
         self.assertIn("這週美股大盤波動非常劇烈", cleaned)
         self.assertIn("通膨數據", cleaned)
 
+    def test_current_corpus_git_trailers_never_become_last_chapter_evidence(self) -> None:
+        for episode, meaningful_tail in ((588, "Wishlist"), (589, "復魔星 FMX")):
+            with self.subTest(episode=episode):
+                note = self.synthesizer.synthesize_episode(episode)
+                rendered = note.render_markdown(mode="full")
+                last_chapter_evidence = "\n".join(note.chapters[-1].excerpts)
+
+                self.assertIn(meaningful_tail, rendered)
+                self.assertNotIn("Co-Authored-By", rendered)
+                self.assertNotIn("noreply@anthropic.com", rendered)
+                self.assertNotIn("Claude Sonnet", rendered)
+                self.assertNotIn("Co-Authored-By", last_chapter_evidence)
+
     def test_split_seeds(self) -> None:
         summary = "本集探討歐洲疫情擴散引發全球消費緊縮；分析外資在台股匯率與期貨佈局動向；最後提醒投資人注意技術面空頭排列特徵。"
         seeds = self.synthesizer.split_seeds(summary)

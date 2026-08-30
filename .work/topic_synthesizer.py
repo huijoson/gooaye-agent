@@ -158,7 +158,7 @@ class TopicGuideSynthesizer:
 
         # Render and write README.md for topics
         readme_path = out_path / "README.md"
-        readme_content = self.renderer.render_topics_readme(guides)
+        readme_content = self.renderer.render_topics_readme(guides, episodes)
         readme_path.write_text(readme_content, encoding="utf-8")
         saved_files.append(readme_path)
 
@@ -425,12 +425,16 @@ class TopicGuideRenderer:
         return "\n".join(lines)
 
     @staticmethod
-    def render_topics_readme(guides: Sequence[TopicGuide]) -> str:
+    def render_topics_readme(
+        guides: Sequence[TopicGuide],
+        notes: Sequence[EpisodeNote],
+    ) -> str:
         """Render top-level README.md for the topics directory."""
+        total_chapters = sum(len(note.chapters) for note in notes)
         lines = [
             "# Gooaye 股癌 跨集數主題式深度知識庫指南",
             "",
-            "本目錄收錄依據 689 集全量逐字稿與 5,299 個結構化章節觀點提煉之**跨集數主題專題手冊 (Thematic Topic Guides)**。",
+            f"本目錄收錄依據 {len(notes):,} 集全量逐字稿與 {total_chapters:,} 個結構化章節觀點提煉之**跨集數主題專題手冊 (Thematic Topic Guides)**。",
             "打破單集時間限制，將主委自 2020 至 2026 年歷次對關鍵產業、硬體架構、總體經濟與交易哲學之核心觀點依時序脈絡整合。",
             "",
             "- [回全集索引](../_index.md)",
@@ -567,5 +571,4 @@ class TopicQualityAuditor:
             "defect_count": len(all_defects),
             "defects": all_defects,
         }
-
 

@@ -1,6 +1,6 @@
 # 全集索引
 
-共 690 支 YouTube 公開影片、5,307 章、10,614 條逐字稿摘錄；涵蓋 EP1–EP690，公開清單唯一缺號為 EP232。章節按完整逐字稿內容順序編排，非精確時間碼。
+共 690 支 YouTube 公開影片、5,306 章、10,612 條逐字稿摘錄；涵蓋 EP1–EP691。章節按完整逐字稿內容順序編排，非精確時間碼。
 
 ## 📚 主題專題深度指南 (Thematic Topic Guides)
 
@@ -136,7 +136,7 @@
 | [EP592](episodes/EP0592.md) | 2025-09-13 | 50:01 | 8 | Radiohead搶票與國巨收購茂達解析 | [觀看](https://www.youtube.com/watch?v=QUzua8_18A4) |
 | [EP591](episodes/EP0591.md) | 2025-09-10 | 49:59 | 7 | 兒子住院與NVIDIA新品CPX解析 | [觀看](https://www.youtube.com/watch?v=L5l0pukriUE) |
 | [EP590](episodes/EP0590.md) | 2025-09-06 | 50:01 | 8 | 從生命階段到Broadcom的投資觀察 | [觀看](https://www.youtube.com/watch?v=SlWhFntpiMg) |
-| [EP589](episodes/EP0589.md) | 2025-09-03 | 49:58 | 7 | 市場震盪中的持股輪動與家庭關係修復 | [觀看](https://www.youtube.com/watch?v=xguRfYLeMDQ) |
+| [EP589](episodes/EP0589.md) | 2025-09-03 | 49:58 | 6 | 市場震盪中的持股輪動與家庭關係修復 | [觀看](https://www.youtube.com/watch?v=xguRfYLeMDQ) |
 | [EP588](episodes/EP0588.md) | 2025-08-30 | 49:46 | 7 | 從育兒軍備競賽到技術分析的投資哲學 | [觀看](https://www.youtube.com/watch?v=sI6dtcvbs60) |
 | [EP587](episodes/EP0587.md) | 2025-08-27 | 50:01 | 8 | 🍯 中年男子的自我觀察與市場機會 | [觀看](https://www.youtube.com/watch?v=_K5LixQneaI) |
 | [EP586](episodes/EP0586.md) | 2025-08-23 | 50:08 | 8 | 🐐 親子成長與投資心態 | [觀看](https://www.youtube.com/watch?v=mKmxcR0-qf8) |

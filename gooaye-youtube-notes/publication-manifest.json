@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "created_at": "2026-08-30T04:44:31.909262Z",
+  "created_at": "2026-08-30T05:07:34.499527Z",
   "source_episodes": [
     1,
     2,
@@ -699,18 +699,18 @@
     "investment-mindset-and-risk-control",
     "macro-cycle-and-asset-allocation"
   ],
-  "total_chapters": 5307,
+  "total_chapters": 5306,
   "total_seconds": 1957494,
   "artifacts": [
     {
       "path": "README.md",
-      "size_bytes": 2288,
-      "sha256": "8969a8101ee0c7a37301017df14e36eb5c441aec539cab0b1699787d047eba29"
+      "size_bytes": 2262,
+      "sha256": "98ddc98fdb3272e060f96fe2c3d28b7bbe0b14f4590afcff4b1b7d5dfb02a5bf"
     },
     {
       "path": "_index.md",
-      "size_bytes": 111569,
-      "sha256": "a029f8bdea1af4efb2a75e862bdd9b689b47519deb7cbb20491c40e0db62616d"
+      "size_bytes": 111533,
+      "sha256": "89fa4914150f08c7c5e7bbeb25adecf149c389ec7ef5778d85e284a8e2450a84"
     },
     {
       "path": "episodes/EP0001.full.md",
@@ -6574,23 +6574,23 @@
     },
     {
       "path": "episodes/EP0588.full.md",
-      "size_bytes": 13306,
-      "sha256": "fd5482055f91169cb6b853eaa1a6b3c596adfa305c6adf8de82305f0fc52a646"
+      "size_bytes": 13369,
+      "sha256": "c67f47954c59d20632e8bdead607790b096dd0ac49d8a8d7c15e4f177fa3e8b6"
     },
     {
       "path": "episodes/EP0588.md",
-      "size_bytes": 7147,
-      "sha256": "59ea88432bcca28e807d50b944c1ad56ea251284c71bca16268c18e8756e6c3f"
+      "size_bytes": 7282,
+      "sha256": "0067bd37b8f6c24d1683490569e87e24eb358bf772dd84d001247a52e265bc22"
     },
     {
       "path": "episodes/EP0589.full.md",
-      "size_bytes": 12857,
-      "sha256": "57db12a3afcfaf4622579502f093d4551ce45f99de100c0e83c0703099012333"
+      "size_bytes": 12556,
+      "sha256": "bea5b23ea1cf902c636453248894611e538d99b15f7726d0eb6b05b1dc745ef8"
     },
     {
       "path": "episodes/EP0589.md",
-      "size_bytes": 7102,
-      "sha256": "2a4a7d1b1ebfe5e940c177a0e3bfa3e7c3da861c5fb6b5f73aec4c5d21494fda"
+      "size_bytes": 6858,
+      "sha256": "a6bd2b05570b9764106514ee75b30a373fae6e48dfd42ac1557b21509e74c947"
     },
     {
       "path": "episodes/EP0590.full.md",
@@ -7615,7 +7615,7 @@
     {
       "path": "topics/README.md",
       "size_bytes": 2538,
-      "sha256": "7d7695c5c71341d4c26df2c48ef89fab6e1a74bf6cb58594ed77c80a9c4f150e"
+      "sha256": "102946fa853aef86447b683363049ae1c39e590a45bd324c29f3b498cfdb341a"
     },
     {
       "path": "topics/ai-hardware-and-semiconductor.md",

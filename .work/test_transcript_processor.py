@@ -29,6 +29,22 @@ class TestTranscriptProcessor(unittest.TestCase):
         self.assertNotIn("專屬優惠碼", cleaned)
         self.assertIn("聯準會降息預期持續發酵", cleaned)
 
+    def test_trailing_git_trailer_after_separator_is_removed_without_losing_transcript(self) -> None:
+        text = """
+最後一段討論半導體供應鏈的庫存調整與資本支出，投資人仍應保留風險緩衝。
+---
+
+Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
+Signed-off-by: Example Maintainer <maintainer@example.test>
+"""
+
+        cleaned = self.sanitizer.clean(text)
+
+        self.assertIn("最後一段討論半導體供應鏈", cleaned)
+        self.assertNotIn("Co-Authored-By", cleaned)
+        self.assertNotIn("noreply@anthropic.com", cleaned)
+        self.assertNotIn("Signed-off-by", cleaned)
+
     def test_clean_excerpt(self) -> None:
         raw = "我覺得那時候看到行情走跌，其實心裡非常糾結。"
         cleaned = self.sanitizer.clean_excerpt(raw)

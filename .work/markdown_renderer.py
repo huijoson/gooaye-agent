@@ -16,6 +16,19 @@ class MarkdownRenderer:
     """Renders structured domain notes and indices to standardized Markdown strings."""
 
     @staticmethod
+    def _corpus_ranges(notes: Sequence[EpisodeNote]) -> tuple[str, str]:
+        numbers = [note.metadata.number for note in notes]
+        chapter_counts = [len(note.chapters) for note in notes]
+        episode_range = f"EP{min(numbers)}–EP{max(numbers)}" if numbers else "無集數"
+        if not chapter_counts:
+            chapter_range = "0"
+        elif min(chapter_counts) == max(chapter_counts):
+            chapter_range = str(chapter_counts[0])
+        else:
+            chapter_range = f"{min(chapter_counts)}–{max(chapter_counts)}"
+        return episode_range, chapter_range
+
+    @staticmethod
     def render_episode(note: EpisodeNote, mode: str = "slim") -> str:
         """Render a single EpisodeNote into its full Markdown file text."""
         return note.render_markdown(mode=mode)
@@ -31,10 +44,11 @@ class MarkdownRenderer:
         years = sorted({note.metadata.date[:4] for note in notes if re.match(r"\d{4}-", note.metadata.date)})
         dist_str = "、".join(f"{count} 章：{episodes} 集" for count, episodes in sorted(summary.chapter_distribution.items()))
         year_range = f"{years[0]}–{years[-1]}" if years else "2020–2026"
+        episode_range, chapter_range = MarkdownRenderer._corpus_ranges(notes)
 
         return f"""# Gooaye 股癌 YouTube 全集章節觀念整理
 
-本資料夾收錄 **{len(notes)} 支目前公開的 YouTube 影片**，涵蓋 EP1–EP690（YouTube 公開清單沒有 EP232），合計約 **{hours:.1f} 小時**。全集共 **{summary.total_chapters:,} 章**、**{2 * summary.total_chapters:,} 條逐字稿摘錄**；每集各有一份 Markdown，以完整逐字稿為內容依據，整理成依討論順序排列的章節觀念。
+本資料夾收錄 **{len(notes)} 支目前公開的 YouTube 影片**，涵蓋 {episode_range}，合計約 **{hours:.1f} 小時**。全集共 **{summary.total_chapters:,} 章**、**{2 * summary.total_chapters:,} 條逐字稿摘錄**；每集各有一份 Markdown，以完整逐字稿為內容依據，整理成依討論順序排列的章節觀念。
 
 - [全集索引](_index.md)
 - [逐集筆記](episodes/)
@@ -44,7 +58,7 @@ class MarkdownRenderer:
 
 ## 檔案格式
 
-每份 `episodes/EPxxxx.md` 包含 YAML metadata、YouTube 原始資訊、3–6 個觀念章節，以及來源與方法說明。每章兩個條列均取自完整逐字稿中的相關段落，並限制為短篇摘錄，方便回查原音。頁首使用的 `display_title`／策展標題來自第三方逐字稿索引，YouTube 原始標題則獨立保留於 metadata 與內文。
+每份 `episodes/EPxxxx.md` 包含 YAML metadata、YouTube 原始資訊、{chapter_range} 個觀念章節，以及來源與方法說明。每章兩個條列均取自完整逐字稿中的相關段落，並限制為短篇摘錄，方便回查原音。頁首使用的 `display_title`／策展標題來自第三方逐字稿索引，YouTube 原始標題則獨立保留於 metadata 與內文。
 
 ## 整理方式與限制
 
@@ -53,7 +67,7 @@ class MarkdownRenderer:
 - 各章標題由該章入選的兩段完整逐字稿摘錄重新命名：命名模型的輸入不含第三方 `summary`；`summary` 只在產生後用來拒絕撞句，少數未通過自動驗證者由人工直接依兩段摘錄覆核。章序依入選摘錄在逐字稿中的實際位置排列。
 - 這些章節是主題／觀念索引，不是精確時間碼。
 - 日期主要來自第三方逐字稿索引，不宣稱已逐集核對 YouTube 上傳日期；唯一缺日期的 EP162 使用單支 YouTube metadata 補為 2021-07-31。
-- 公開 YouTube 清單共有 {len(notes)} 支，集數缺 EP232；只收錄實際出現在頻道公開清單中的影片。
+- 公開 YouTube 清單共有 {len(notes)} 支，集數範圍為 {episode_range}；只收錄實際出現在頻道公開清單中的影片。
 - 非官方逐字稿與抽取結果可能有聽寫或專有名詞錯誤，正確內容以原始影片為準。
 - 所有內容僅供學習與索引，不構成投資建議。
 
@@ -67,6 +81,7 @@ class MarkdownRenderer:
         topics: Sequence[TopicDefinition] = (),
     ) -> str:
         """Render the _index.md directory file."""
+        episode_range, _ = MarkdownRenderer._corpus_ranges(notes)
         grouped: dict[str, list[EpisodeNote]] = defaultdict(list)
         for note in sorted(notes, key=lambda n: n.metadata.number, reverse=True):
             year = note.metadata.date[:4] if re.match(r"\d{4}-", note.metadata.date) else "日期未知"
@@ -75,7 +90,7 @@ class MarkdownRenderer:
         lines = [
             "# 全集索引",
             "",
-            f"共 {len(notes)} 支 YouTube 公開影片、{summary.total_chapters:,} 章、{2 * summary.total_chapters:,} 條逐字稿摘錄；涵蓋 EP1–EP690，公開清單唯一缺號為 EP232。章節按完整逐字稿內容順序編排，非精確時間碼。",
+            f"共 {len(notes)} 支 YouTube 公開影片、{summary.total_chapters:,} 章、{2 * summary.total_chapters:,} 條逐字稿摘錄；涵蓋 {episode_range}。章節按完整逐字稿內容順序編排，非精確時間碼。",
             "",
             "## 📚 主題專題深度指南 (Thematic Topic Guides)",
             "",
