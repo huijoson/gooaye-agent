@@ -141,10 +141,10 @@ class TopicGuideSynthesizer:
         output_dir: Path | str,
         topics: Sequence[TopicDefinition] = DEFAULT_TOPICS,
     ) -> list[Path]:
-        """Synthesize all topics and write markdown files + README.md to disk."""
-        from pathlib import Path
+        """Synthesize all topics and write markdown files + README.md to an isolated preview destination."""
+        from episode_synthesizer import validate_preview_output_directory
 
-        out_path = Path(output_dir)
+        out_path = validate_preview_output_directory(output_dir)
         out_path.mkdir(parents=True, exist_ok=True)
 
         guides = self.synthesize_all_topics(episodes, topics)
@@ -497,9 +497,29 @@ class TopicQualityAuditor:
             defects.append({"topic": path.name, "category": "format", "message": "Missing or malformed YAML frontmatter"})
         else:
             fm_text = fm_match.group(1)
+            fm_dict: dict[str, str] = {}
+            for line in fm_text.splitlines():
+                if ":" in line:
+                    key, val = line.split(":", 1)
+                    fm_dict[key.strip()] = val.strip().strip("\"'")
+
             for req_key in ["slug", "title", "category", "time_span", "content_method"]:
-                if f"{req_key}:" not in fm_text:
-                    defects.append({"topic": path.name, "category": "format", "message": f"Missing required frontmatter key: {req_key}"})
+                if req_key not in fm_dict or not fm_dict[req_key]:
+                    defects.append({"topic": path.name, "category": "format", "message": f"Missing or empty required frontmatter key: {req_key}"})
+
+            if "slug" in fm_dict and fm_dict["slug"] != path.stem:
+                defects.append({
+                    "topic": path.name,
+                    "category": "slug_mismatch",
+                    "message": f"Frontmatter slug '{fm_dict['slug']}' does not match file stem '{path.stem}'",
+                })
+
+            if "content_method" in fm_dict and fm_dict["content_method"] != "thematic_synthesis":
+                defects.append({
+                    "topic": path.name,
+                    "category": "format",
+                    "message": f"Unexpected content_method '{fm_dict['content_method']}' in frontmatter",
+                })
 
         # 2. Check all markdown links and grounded chapter data
         # Regex to extract table rows: | [EPxxxx](../episodes/EPxxxx.md) | 2026-08-22 | 第 1 章 | Heading | Takeaway |
@@ -507,6 +527,13 @@ class TopicQualityAuditor:
             r"\|\s*\[EP(\d+)\]\([^)]*episodes/EP\d+\.md\)\s*\|\s*([^|]+)\s*\|\s*第\s*(\d+)\s*章\s*\|\s*([^|]+)\s*\|",
             text,
         )
+
+        if not table_rows:
+            defects.append({
+                "topic": path.name,
+                "category": "empty_grounding",
+                "message": f"Topic Guide {path.name} contains zero grounded chapter reference rows.",
+            })
 
         for ep_num_str, row_date, ch_idx_str, row_heading in table_rows:
             ep_num = int(ep_num_str)

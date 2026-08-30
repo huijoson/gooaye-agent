@@ -350,3 +350,66 @@ def test_cli_topics_subcommand():
     assert "Audit completed" in res_audit.stdout
     assert "100%" in res_audit.stdout or "0" in res_audit.stdout
 
+
+def test_topic_guide_synthesizer_rejects_formal_root_and_descendants(sample_episodes):
+    from episode_synthesizer import OUTPUT_DIR, PreviewOutputError
+    from topic_synthesizer import TopicGuideSynthesizer
+
+    synthesizer = TopicGuideSynthesizer()
+
+    with pytest.raises(PreviewOutputError):
+        synthesizer.synthesize_and_save_all(sample_episodes, OUTPUT_DIR)
+
+    with pytest.raises(PreviewOutputError):
+        synthesizer.synthesize_and_save_all(sample_episodes, OUTPUT_DIR / "topics")
+
+
+def test_topic_quality_auditor_rejects_rowless_and_mismatched_slug(tmp_path):
+    from topic_synthesizer import TopicQualityAuditor
+
+    episodes_dir = tmp_path / "episodes"
+    topics_dir = tmp_path / "topics"
+    episodes_dir.mkdir()
+    topics_dir.mkdir()
+
+    # 1. Rowless / empty grounding topic guide
+    rowless_md = """---
+slug: "empty-topic"
+title: "空專題"
+category: "測試"
+episodes_count: 0
+chapters_count: 0
+time_span: "2020-01-01 ~ 2020-01-02"
+content_method: "thematic_synthesis"
+---
+
+# 空專題
+"""
+    (topics_dir / "empty-topic.md").write_text(rowless_md, encoding="utf-8")
+
+    auditor = TopicQualityAuditor()
+    report = auditor.audit_all_topics(topics_dir=topics_dir, episodes_dir=episodes_dir)
+    assert report["defect_count"] > 0
+    assert any(d.get("category") == "empty_grounding" for d in report["defects"])
+
+    # 2. Slug mismatch
+    (topics_dir / "empty-topic.md").unlink()
+    slug_mismatch_md = """---
+slug: "wrong-slug"
+title: "錯誤 Slug 專題"
+category: "測試"
+episodes_count: 1
+chapters_count: 1
+time_span: "2020-01-01 ~ 2020-01-02"
+content_method: "thematic_synthesis"
+---
+
+# 錯誤 Slug 專題
+| [EP0001](../episodes/EP0001.md) | 2020-01-01 | 第 1 章 | 標題 | 觀點 |
+"""
+    (topics_dir / "mismatched-topic.md").write_text(slug_mismatch_md, encoding="utf-8")
+    report = auditor.audit_all_topics(topics_dir=topics_dir, episodes_dir=episodes_dir)
+    assert report["defect_count"] > 0
+    assert any(d.get("category") == "slug_mismatch" for d in report["defects"])
+
+

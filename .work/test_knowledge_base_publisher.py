@@ -76,9 +76,9 @@ class FixtureEpisodeSynthesizer:
                 chapters=(
                     Chapter(
                         index=1,
-                        heading=f"Only topic heading {number}",
-                        takeaway=f"Only topic takeaway {number}",
-                        excerpts=(f"Only topic evidence {number}",),
+                        heading=f"Only topic heading {number} 散熱 水冷 ASIC 停損 總經 蘋果 Apple",
+                        takeaway=f"Only topic takeaway {number} 散熱 水冷 ASIC 停損 總經 蘋果 Apple",
+                        excerpts=(f"Only topic evidence {number} 散熱 水冷 ASIC 停損 總經 蘋果 Apple",),
                     ),
                 ),
             )
@@ -832,14 +832,14 @@ def test_partial_recovery_copy_failure_restores_from_the_intact_backup(tmp_path,
         tmp_path / "publication", episodes=(1,), topics=("only-topic",)
     )
     publisher = make_fixture_publisher()
-    copytree = __import__("knowledge_base_publisher").shutil.copytree
+    copy_tree = __import__("knowledge_base_publisher")._copy_tree
 
-    def partially_copy_then_fail(source, target, *args, **kwargs):
-        copytree(source, target, *args, **kwargs)
+    def partially_copy_then_fail(source, target):
+        copy_tree(source, target)
         (Path(target) / "README.md").unlink()
         raise OSError("fixture recovery copy failure")
 
-    monkeypatch.setattr("knowledge_base_publisher.shutil.copytree", partially_copy_then_fail)
+    monkeypatch.setattr("knowledge_base_publisher._copy_tree", partially_copy_then_fail)
     before = snapshot_bytes(destination)
 
     with pytest.raises(PublicationError) as raised:
@@ -1649,3 +1649,88 @@ def test_verify_converts_malformed_markdown_destinations_to_defects(tmp_path):
 
     assert not report.is_valid
     assert report.defects
+
+
+def test_nested_destination_under_formal_root_is_rejected():
+    formal_root = Path(__file__).resolve().parent.parent / "gooaye-youtube-notes"
+    nested_dest = formal_root / "nested"
+
+    with pytest.raises(PublicationError) as raised:
+        KnowledgeBasePublisher().publish(PublicationRequest(nested_dest))
+
+    assert raised.value.phase is PublicationPhase.OWNERSHIP
+    assert "formal publication root" in str(raised.value)
+
+
+def test_nested_destination_under_existing_publication_is_rejected(tmp_path):
+    parent_pub = build_managed_fixture(tmp_path / "parent_pub", episodes=(1,), topics=("only-topic",))
+    before_bytes = snapshot_bytes(parent_pub)
+    nested_dest = parent_pub / "nested"
+
+    with pytest.raises(PublicationError) as raised:
+        make_fixture_publisher().publish(PublicationRequest(nested_dest))
+
+    assert raised.value.phase is PublicationPhase.OWNERSHIP
+    assert "inside an existing publication" in str(raised.value)
+    assert snapshot_bytes(parent_pub) == before_bytes
+    assert KnowledgeBasePublisher().verify(parent_pub).is_valid
+
+
+def test_held_destination_lock_fails_fast_without_verifying_existing_destination(tmp_path, monkeypatch):
+    destination = build_managed_fixture(tmp_path / "publication", episodes=(1,), topics=("only-topic",))
+    lock = _PublicationLock(destination)
+    lock.acquire()
+    try:
+        def fail_if_verify_called(self, root):
+            raise AssertionError("verify must not be called when destination is locked")
+
+        monkeypatch.setattr(KnowledgeBasePublisher, "verify", fail_if_verify_called)
+
+        with pytest.raises(PublicationError) as raised:
+            make_fixture_publisher().publish(PublicationRequest(destination))
+
+        assert raised.value.phase is PublicationPhase.LOCK
+    finally:
+        lock.release()
+
+
+def test_committed_publication_with_lock_release_failure_succeeds_with_warning(tmp_path, monkeypatch, caplog):
+    destination = tmp_path / "publication"
+    publisher = make_fixture_publisher(episode_numbers=(1,))
+
+    def fail_release(self):
+        raise OSError("lock release simulation failure")
+
+    monkeypatch.setattr(_PublicationLock, "release", fail_release)
+    caplog.set_level(logging.WARNING, logger="knowledge_base_publisher")
+
+    manifest = publisher.publish(PublicationRequest(destination))
+
+    assert manifest.source_episodes == (1,)
+    assert publisher.verify(destination).is_valid
+    assert "lock cleanup failed" in caplog.text
+
+
+def test_destination_swap_before_rename_is_detected_and_restored(tmp_path, monkeypatch):
+    destination = build_managed_fixture(tmp_path / "publication", episodes=(1,), topics=("only-topic",))
+    before_bytes = snapshot_bytes(destination)
+    publisher = make_fixture_publisher(episode_numbers=(1, 2))
+
+    orig_replace = os.replace
+
+    def swap_destination_on_backup_rename(source, target):
+        # Simulate an external writer swapping destination with an unowned dir just as backup happens
+        res = orig_replace(source, target)
+        if Path(target).name.startswith(".publication.backup-"):
+            # Corrupt the moved backup so it's not a valid publication
+            (Path(target) / "README.md").unlink()
+        return res
+
+    monkeypatch.setattr(os, "replace", swap_destination_on_backup_rename)
+
+    with pytest.raises(PublicationError) as raised:
+        publisher.publish(PublicationRequest(destination))
+
+    assert raised.value.phase is PublicationPhase.OWNERSHIP
+    assert "not an owned publication" in str(raised.value) or "identity changed" in str(raised.value)
+

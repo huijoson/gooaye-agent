@@ -33,6 +33,15 @@ WORKSPACE_ROOT = Path(__file__).resolve().parent.parent
 LOGGER = logging.getLogger(__name__)
 
 
+def _get_identity(path: Path) -> tuple[int, int] | None:
+    try:
+        st = path.stat()
+        return (st.st_dev, st.st_ino)
+    except OSError:
+        return None
+
+
+
 class PublicationMode(str, Enum):
     MANAGED = "managed"
     LEGACY = "legacy"
@@ -317,6 +326,18 @@ class _PublicationLock:
             view = view[os.write(self._descriptor, view):]
 
 
+def _copy_tree(src: Path, dst: Path) -> None:
+    """Copy directory tree safely without failing on filesystem metadata permissions."""
+    dst.mkdir(parents=True, exist_ok=True)
+    for root, dirs, files in os.walk(src):
+        rel_root = Path(root).relative_to(src)
+        target_dir = dst / rel_root
+        for d in dirs:
+            (target_dir / d).mkdir(parents=True, exist_ok=True)
+        for f in files:
+            shutil.copyfile(Path(root) / f, target_dir / f)
+
+
 class KnowledgeBasePublisher:
     """Own complete Knowledge Base Publication rendering and verification."""
 
@@ -337,7 +358,7 @@ class KnowledgeBasePublisher:
     def publish(self, request: PublicationRequest) -> PublicationManifest:
         """Build, verify, and install one complete publication tree."""
         try:
-            destination = self._validated_destination(request)
+            destination = self._validate_destination_path(request)
         except ValueError as exc:
             raise PublicationError(PublicationPhase.OWNERSHIP, str(exc)) from exc
         catalog_slugs = self._validated_catalog_slugs()
@@ -347,7 +368,12 @@ class KnowledgeBasePublisher:
             lock.acquire()
         except OSError as exc:
             raise PublicationError(PublicationPhase.LOCK, f"Publication destination is locked: {exc}") from exc
+        installed = False
         try:
+            try:
+                self._validate_destination_ownership(destination)
+            except ValueError as exc:
+                raise PublicationError(PublicationPhase.OWNERSHIP, str(exc)) from exc
             try:
                 summary = self.episode_synthesizer.synthesize_notes(
                     resolver=request.resolver,
@@ -367,7 +393,6 @@ class KnowledgeBasePublisher:
                     dir=destination.parent,
                 )
             )
-            installed = False
             try:
                 try:
                     self._render_tree(staging, summary, guides)
@@ -413,12 +438,20 @@ class KnowledgeBasePublisher:
                 lock.release()
             except OSError as cleanup_error:
                 if primary_error is None:
-                    raise PublicationError(
-                        PublicationPhase.LOCK,
-                        f"Publication lock cleanup failed: {cleanup_error}",
-                    ) from cleanup_error
+                    if installed:
+                        LOGGER.warning(
+                            "Publication committed but lock cleanup failed: %s; "
+                            "residual lock path: %s",
+                            cleanup_error,
+                            lock.path,
+                        )
+                    else:
+                        raise PublicationError(
+                            PublicationPhase.LOCK,
+                            f"Publication lock cleanup failed: {cleanup_error}",
+                        ) from cleanup_error
 
-    def _validated_destination(self, request: PublicationRequest) -> Path:
+    def _validate_destination_path(self, request: PublicationRequest) -> Path:
         if isinstance(request.max_workers, bool) or request.max_workers < 1:
             raise ValueError("Publication max_workers must be a positive integer.")
         destination = Path(request.destination)
@@ -428,16 +461,39 @@ class KnowledgeBasePublisher:
         dangerous = {
             Path(resolved.anchor),
             Path.home().resolve(),
-            WORKSPACE_ROOT,
+            WORKSPACE_ROOT.resolve(),
         }
         if resolved in dangerous:
             raise ValueError("Publication destination is a protected directory.")
+        formal_root = (WORKSPACE_ROOT / "gooaye-youtube-notes").resolve(strict=False)
+        try:
+            rel = resolved.relative_to(formal_root)
+            if rel.parts:
+                raise ValueError("Publication destination must not be inside the formal publication root.")
+        except ValueError as exc:
+            if "must not be inside" in str(exc):
+                raise
+        for parent in resolved.parents:
+            if parent in dangerous or parent == Path(resolved.anchor):
+                break
+            if parent.exists() and parent.is_dir():
+                if (parent / MANIFEST_FILENAME).exists() or ((parent / "episodes").is_dir() and (parent / "topics").is_dir()):
+                    report = self.verify(parent)
+                    if report.mode in {PublicationMode.MANAGED, PublicationMode.LEGACY} and report.is_valid:
+                        raise ValueError(f"Publication destination must not be inside an existing publication: {parent}")
         if destination.exists() and not destination.is_dir():
             raise ValueError("Publication destination must be a directory.")
+        return destination
+
+    def _validate_destination_ownership(self, destination: Path) -> None:
         if destination.exists() and any(destination.iterdir()):
             report = self.verify(destination)
             if report.mode not in {PublicationMode.MANAGED, PublicationMode.LEGACY} or not report.is_valid:
                 raise ValueError("Non-empty publication destination is not a valid owned tree.")
+
+    def _validated_destination(self, request: PublicationRequest) -> Path:
+        destination = self._validate_destination_path(request)
+        self._validate_destination_ownership(destination)
         return destination
 
     def _validated_catalog_slugs(self) -> tuple[str, ...]:
@@ -543,13 +599,15 @@ class KnowledgeBasePublisher:
         request: PublicationRequest,
     ) -> None:
         try:
-            self._validated_destination(request)
+            self._validate_destination_path(request)
+            self._validate_destination_ownership(destination)
         except ValueError as exc:
             raise PublicationError(PublicationPhase.OWNERSHIP, str(exc)) from exc
         backup: Path | None = None
         moved_existing = False
         try:
             if destination.exists():
+                before_identity = _get_identity(destination)
                 backup = Path(
                     tempfile.mkdtemp(
                         prefix=f".{destination.name}.backup-",
@@ -559,6 +617,34 @@ class KnowledgeBasePublisher:
                 backup.rmdir()
                 os.replace(destination, backup)
                 moved_existing = True
+                after_identity = _get_identity(backup)
+                if before_identity is not None and after_identity != before_identity:
+                    try:
+                        os.replace(backup, destination)
+                    except Exception:
+                        pass
+                    raise PublicationError(
+                        PublicationPhase.OWNERSHIP,
+                        "Destination identity changed before commit.",
+                    )
+                backup_verif = self.verify(backup)
+                if (
+                    backup_verif.mode not in {PublicationMode.MANAGED, PublicationMode.LEGACY}
+                    or not backup_verif.is_valid
+                ):
+                    try:
+                        os.replace(backup, destination)
+                    except Exception:
+                        pass
+                    raise PublicationError(
+                        PublicationPhase.OWNERSHIP,
+                        "Displaced destination is not an owned publication.",
+                    )
+            elif destination.exists():
+                raise PublicationError(
+                    PublicationPhase.OWNERSHIP,
+                    "Destination appeared before commit.",
+                )
             os.replace(stage, destination)
             verification = self.verify(destination)
             if not verification.is_valid:
@@ -572,6 +658,8 @@ class KnowledgeBasePublisher:
                     os.replace(backup, destination)
                 except Exception as exc:
                     rollback_error = exc
+            if isinstance(primary_error, PublicationError):
+                raise
             message = f"Publication commit failed: {primary_error}"
             if rollback_error is not None:
                 backup_path = str(backup) if backup is not None else "unknown"
@@ -595,7 +683,7 @@ class KnowledgeBasePublisher:
             )
             recovery.rmdir()
             try:
-                shutil.copytree(backup, recovery, copy_function=shutil.copy2)
+                _copy_tree(backup, recovery)
             except OSError as exc:
                 rollback_error: Exception | None = None
                 try:
