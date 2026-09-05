@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "episode": 693,
+  "official": {
+    "youtube_id": "TsMMO08ub_Q",
+    "youtube_title": "EP693 | 🍖",
+    "published_at": "2026-09-02T09:30:16+00:00",
+    "duration_seconds": 2985
+  },
+  "archive": {
+    "filename": "EP693_十公里初體驗與輝達插旗發哥.md",
+    "display_title": "十公里初體驗與輝達插旗發哥",
+    "date": "2026-09-02",
+    "summary": "九月備賽月開跑，主委的十公里初體驗與訓練菜單。市場端的重磅是輝達史上最大 ECB 插旗聯發科：從 NVHBM、DGX Spark 到 N1X 的佈局，為什麼大家都想從博通身上吃肉、Hock 的處境又是什麼。Q&A 聊紙片人加碼哲學、離開熱門公司的暗淡無光、WoW 掛網蹲始祖幼龍的執念，收尾提醒做好風控、不用想太多。"
+  },
+  "transcript": {
+    "path": "transcript.md",
+    "size_bytes": 58534,
+    "sha256": "45d69eab038378b548d8f1c4cdd149ea3f11b55f165a1cc5373d8abd5875239f"
+  },
+  "provenance": {
+    "source_urls": {
+      "archive_index": "https://whatmkreallysaid.com/episodes.json",
+      "duration_metadata": "https://feeds.soundon.fm/podcasts/954689a5-3096-43a4-a80b-7810b219cef3.xml",
+      "transcript": "https://whatmkreallysaid.com/episodes/EP693_%E5%8D%81%E5%85%AC%E9%87%8C%E5%88%9D%E9%AB%94%E9%A9%97%E8%88%87%E8%BC%9D%E9%81%94%E6%8F%92%E6%97%97%E7%99%BC%E5%93%A5.md",
+      "youtube_metadata": "https://www.youtube.com/feeds/videos.xml?channel_id=UC23rnlQU_qE3cec9x709peA"
+    },
+    "fetched_at": "2026-09-05T01:24:20.624595+00:00"
+  },
+  "content_sha256": "026ea2b5e1be8d738069c4f31010dc2fe1fd105071f57fe2812ec210456d924a"
+}

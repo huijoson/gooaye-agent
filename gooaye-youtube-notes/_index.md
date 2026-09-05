@@ -1,6 +1,6 @@
 # 全集索引
 
-共 690 支 YouTube 公開影片、5,306 章、10,612 條逐字稿摘錄；涵蓋 EP1–EP691。章節按完整逐字稿內容順序編排，非精確時間碼。
+共 692 支 YouTube 公開影片、5,321 章、10,642 條逐字稿摘錄；涵蓋 EP1–EP693。章節按完整逐字稿內容順序編排，非精確時間碼。
 
 ## 📚 主題專題深度指南 (Thematic Topic Guides)
 
@@ -17,7 +17,7 @@
 
 | 年份 | 集數 |
 |---:|---:|
-| 2026 | 68 |
+| 2026 | 70 |
 | 2025 | 105 |
 | 2024 | 104 |
 | 2023 | 104 |
@@ -29,6 +29,8 @@
 
 | 集數 | 日期 | 片長 | 章節 | 標題 | YouTube |
 |---:|:---:|---:|---:|---|:---:|
+| [EP693](episodes/EP0693.md) | 2026-09-02 | 49:45 | 8 | 十公里初體驗與輝達插旗發哥 | [觀看](https://www.youtube.com/watch?v=TsMMO08ub_Q) |
+| [EP692](episodes/EP0692.md) | 2026-08-29 | 49:59 | 7 | 玩具多巴胺論與供應鏈卡位戰 | [觀看](https://www.youtube.com/watch?v=ohoIGtJ3Bwc) |
 | [EP691](episodes/EP0691.md) | 2026-08-26 | 49:55 | 8 | 北海道敲門驚魂與人人一個Jarvis | [觀看](https://www.youtube.com/watch?v=J-e9oxqLzpc) |
 | [EP690](episodes/EP0690.md) | 2026-08-22 | 49:59 | 7 | 黑皮諾平替記與Google的COT轉向 | [觀看](https://www.youtube.com/watch?v=4DuhZyepr08) |
 | [EP689](episodes/EP0689.md) | 2026-08-19 | 50:56 | 8 | 乖寶寶點數與房間裡的大象 | [觀看](https://www.youtube.com/watch?v=sI5DUiG42Q8) |

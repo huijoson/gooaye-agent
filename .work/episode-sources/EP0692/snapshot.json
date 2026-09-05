@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "episode": 692,
+  "official": {
+    "youtube_id": "ohoIGtJ3Bwc",
+    "youtube_title": "EP692 | 🍺",
+    "published_at": "2026-08-29T09:15:08+00:00",
+    "duration_seconds": 2999
+  },
+  "archive": {
+    "filename": "EP692_玩具多巴胺論與供應鏈卡位戰.md",
+    "display_title": "玩具多巴胺論與供應鏈卡位戰",
+    "date": "2026-08-29",
+    "summary": "台啤雲泡生啤酒進場贊助，聊札幌家庭客行程、Sassicaia 與 Takahiko 的酒緣，以及買玩具的多巴胺經濟學。市場端從 Anthropic 攜手 Salesforce、Marvell 的處境，講到 NVIDIA 的採購地位如何重塑供應鏈卡位戰，記憶體與台股的機會在哪。Q&A 有外商七年不分紅要不要回台積的掙扎、中產階級長照醫療的焦慮，收尾推薦 X 上值得追蹤的人 —— 特別是 Gavin Baker。"
+  },
+  "transcript": {
+    "path": "transcript.md",
+    "size_bytes": 60971,
+    "sha256": "2f9a668df92ae36106a9c92ef5b7841295be9b650bafe505d8ce59b4fd4d7686"
+  },
+  "provenance": {
+    "source_urls": {
+      "archive_index": "https://whatmkreallysaid.com/episodes.json",
+      "duration_metadata": "https://feeds.soundon.fm/podcasts/954689a5-3096-43a4-a80b-7810b219cef3.xml",
+      "transcript": "https://whatmkreallysaid.com/episodes/EP692_%E7%8E%A9%E5%85%B7%E5%A4%9A%E5%B7%B4%E8%83%BA%E8%AB%96%E8%88%87%E4%BE%9B%E6%87%89%E9%8F%88%E5%8D%A1%E4%BD%8D%E6%88%B0.md",
+      "youtube_metadata": "https://www.youtube.com/feeds/videos.xml?channel_id=UC23rnlQU_qE3cec9x709peA"
+    },
+    "fetched_at": "2026-09-05T01:24:26.410656+00:00"
+  },
+  "content_sha256": "6930b6cf16175a7350ac5bca750869e70d7806d60ef12ede5df192305875cdda"
+}
