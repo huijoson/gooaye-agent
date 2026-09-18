@@ -6,7 +6,7 @@ description: >-
 
 # Gooaye (股癌) 知識庫與投資心態技能
 
-本 Skill 封裝了《Gooaye 股癌》692 集（545+ 小時）的完整觀念資料庫與主委的投資決策思維體系。
+本 Skill 封裝了《Gooaye 股癌》693 集（545+ 小時）的完整觀念資料庫與主委的投資決策思維體系。
 
 ---
 
@@ -94,7 +94,7 @@ description: >-
 
 | 資源 | 路徑 | 說明 |
 | :--- | :--- | :--- |
-| **全集大綱總表** | `gooaye-youtube-notes/_index.md` | 692 集完整章節大綱、主題專題導航與關鍵字快速索引。 |
+| **全集大綱總表** | `gooaye-youtube-notes/_index.md` | 693 集完整章節大綱、主題專題導航與關鍵字快速索引。 |
 | **主題專題手冊** | `gooaye-youtube-notes/topics/{slug}.md` | 跨集數深度專題（AI硬體、主委心法、總經循環、Apple果鏈），含時序里程碑與章節索引。 |
 | **主題專題目錄** | `gooaye-youtube-notes/topics/README.md` | 四大專題指南總覽與使用指引。 |
 | **導航層筆記** | `gooaye-youtube-notes/episodes/EPxxxx.md` | 每集 6–10 章標題、1 句核心觀點與 2 條核心金句（~1k tokens）。 |

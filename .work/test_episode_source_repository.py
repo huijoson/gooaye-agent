@@ -412,3 +412,42 @@ def test_legacy_metadata_keeps_youtube_sample_date_fallback(tmp_path: Path) -> N
 
     assert metadata.date == "2020-02-27"
     assert metadata.date_source == "youtube_metadata"
+
+
+def test_legacy_metadata_falls_back_when_channel_entry_missing(tmp_path: Path) -> None:
+    channel_path = tmp_path / "channel.json"
+    archive_path = tmp_path / "episodes.json"
+    transcript_dir = tmp_path / "full-transcripts"
+    transcript_dir.mkdir()
+    channel_path.write_text(json.dumps({"entries": []}), encoding="utf-8")
+    archive_path.write_text(
+        json.dumps(
+            [
+                {
+                    "number": 232,
+                    "filename": "EP232_🧙.md",
+                    "title": "🧙",
+                    "display_title": "🧙 育兒碎碎念與市場現象分析",
+                    "date": "2022-04-02",
+                    "summary": "育兒心得與市場分析。",
+                }
+            ]
+        ),
+        encoding="utf-8",
+    )
+    (transcript_dir / "EP0232.md").write_text("# EP232 完整逐字稿", encoding="utf-8")
+    repository = make_repository(tmp_path)
+
+    assert repository.episode_numbers == [232]
+    meta = repository.get_metadata(232)
+    assert meta.number == 232
+    assert meta.youtube_id == ""
+    assert meta.youtube_url == "https://www.youtube.com/@Gooaye/videos"
+    assert meta.youtube_title == "EP232 | 🧙"
+    assert meta.display_title == "🧙 育兒碎碎念與市場現象分析"
+    assert meta.date == "2022-04-02"
+    assert meta.date_source == "transcript_archive"
+    assert meta.duration_seconds == 0
+    assert meta.duration_str == "未知"
+    assert repository.load_transcript(232) == "# EP232 完整逐字稿"
+

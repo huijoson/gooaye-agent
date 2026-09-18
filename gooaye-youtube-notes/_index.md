@@ -1,6 +1,6 @@
 # 全集索引
 
-共 692 支 YouTube 公開影片、5,321 章、10,642 條逐字稿摘錄；涵蓋 EP1–EP693。章節按完整逐字稿內容順序編排，非精確時間碼。
+共 693 支 YouTube 公開影片、5,328 章、10,656 條逐字稿摘錄；涵蓋 EP1–EP693。章節按完整逐字稿內容順序編排，非精確時間碼。
 
 ## 📚 主題專題深度指南 (Thematic Topic Guides)
 
@@ -21,7 +21,7 @@
 | 2025 | 105 |
 | 2024 | 104 |
 | 2023 | 104 |
-| 2022 | 104 |
+| 2022 | 105 |
 | 2021 | 104 |
 | 2020 | 101 |
 
@@ -510,6 +510,7 @@
 | [EP235](episodes/EP0235.md) | 2022-04-13 | 49:46 | 7 | 🦔 資金配置與風險管理的投資智慧 | [觀看](https://www.youtube.com/watch?v=_2QBm9H5d64) |
 | [EP234](episodes/EP0234.md) | 2022-04-09 | 52:38 | 8 | 🕴️ 市場恐慌與投資心態調整 | [觀看](https://www.youtube.com/watch?v=NYsNPay1OzI) |
 | [EP233](episodes/EP0233.md) | 2022-04-06 | 47:52 | 8 | 🛵 騎士精神與投資心法 | [觀看](https://www.youtube.com/watch?v=aySAUQcGrog) |
+| [EP232](episodes/EP0232.md) | 2022-04-02 | 未知 | 7 | 🧙 育兒碎碎念與市場現象分析 | [觀看](https://www.youtube.com/@Gooaye/videos) |
 | [EP231](episodes/EP0231.md) | 2022-05-30 | 51:14 | 8 | 👽 散戶心態與投資自主性 | [觀看](https://www.youtube.com/watch?v=Ebd4V6HyuSI) |
 | [EP230](episodes/EP0230.md) | 2022-05-26 | 52:53 | 7 | 🀅 烏克蘭戰爭、IC設計競爭與市場瘋狂 | [觀看](https://www.youtube.com/watch?v=4wcXypELb9E) |
 | [EP229](episodes/EP0229.md) | 2022-05-23 | 50:02 | 7 | 🙏 股市與生活的理性思考 | [觀看](https://www.youtube.com/watch?v=6rzEi1hCriw) |

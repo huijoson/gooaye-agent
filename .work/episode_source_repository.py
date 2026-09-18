@@ -497,7 +497,14 @@ class EpisodeSourceRepository:
         self._load_legacy()
         assert self._legacy_channel_entries is not None
         assert self._legacy_archive_entries is not None
-        legacy = set(self._legacy_channel_entries) & set(self._legacy_archive_entries)
+        legacy = {
+            number
+            for number in self._legacy_archive_entries
+            if (
+                number in self._legacy_channel_entries
+                or (self.legacy_transcript_dir / f"EP{number:04d}.md").exists()
+            )
+        }
         return sorted(legacy | self._normalized_numbers())
 
     @property
@@ -573,11 +580,25 @@ class EpisodeSourceRepository:
         assert self._legacy_archive_entries is not None
         channel_entry = self._legacy_channel_entries.get(number)
         archive_entry = self._legacy_archive_entries.get(number)
-        if not channel_entry or not archive_entry:
+        if not archive_entry or (
+            not channel_entry
+            and not (self.legacy_transcript_dir / f"EP{number:04d}.md").exists()
+        ):
             raise ValueError(f"Metadata not found for EP{number}")
-        youtube_id = channel_entry["id"]
-        duration_seconds = round(channel_entry.get("duration") or 0)
-        original_title = channel_entry.get("title") or f"EP{number}"
+
+        if channel_entry:
+            youtube_id = channel_entry["id"]
+            duration_seconds = round(channel_entry.get("duration") or 0)
+            original_title = channel_entry.get("title") or f"EP{number}"
+            duration_str = format_duration(channel_entry.get("duration"))
+            youtube_url = f"https://www.youtube.com/watch?v={youtube_id}"
+        else:
+            youtube_id = ""
+            duration_seconds = 0
+            original_title = f"EP{number} | {archive_entry.get('title', '')}"
+            duration_str = "未知"
+            youtube_url = "https://www.youtube.com/@Gooaye/videos"
+
         display_title = (
             archive_entry.get("display_title")
             or archive_entry.get("title")
@@ -587,7 +608,7 @@ class EpisodeSourceRepository:
         archive_date = archive_entry.get("date")
         if archive_date:
             date_value, date_source = archive_date, "transcript_archive"
-        else:
+        elif channel_entry:
             sample_path = (
                 self.legacy_channel_path.parent
                 / "samples"
@@ -606,15 +627,17 @@ class EpisodeSourceRepository:
                     date_value, date_source = "未知", "unknown"
             else:
                 date_value, date_source = "未知", "unknown"
+        else:
+            date_value, date_source = "未知", "unknown"
         return EpisodeMetadata(
             number=number,
             youtube_id=youtube_id,
-            youtube_url=f"https://www.youtube.com/watch?v={youtube_id}",
+            youtube_url=youtube_url,
             youtube_title=original_title,
             display_title=display_title,
             date=date_value,
             date_source=date_source,
-            duration_str=format_duration(channel_entry.get("duration")),
+            duration_str=duration_str,
             duration_seconds=duration_seconds,
             archive_url=(
                 f"{self.archive_base_url}episode.html?file={quote(archive_filename)}"
