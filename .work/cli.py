@@ -48,6 +48,8 @@ from episode_acquirer import (
     UrlLibHttpClient,
 )
 from episode_source_repository import EpisodeSourceError, EpisodeSourceRepository
+from cold_transcript_exporter import sync_cold_transcript
+
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -140,6 +142,17 @@ def cmd_download(args: argparse.Namespace) -> None:
     print(f"duration_seconds: {result.duration_seconds}")
     print(f"Path: {result.snapshot_path}")
     print("verification: OK")
+
+    default_transcripts_dir = (
+        ROOT / "transcripts"
+        if work_dir == ROOT / ".work"
+        else work_dir.parent / "transcripts"
+    )
+    transcripts_dir = Path(
+        os.environ.get("GOOAYE_TRANSCRIPTS_DIR", default_transcripts_dir)
+    )
+    sync_cold_transcript(result.number, repository, transcripts_dir)
+
 
 
 def cmd_synthesize(args: argparse.Namespace) -> None:

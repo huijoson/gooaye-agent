@@ -53,6 +53,11 @@
 - 指定 Episode 或 Topic 的局部、顯式、隔離產出，用於檢查結果但不構成正式知識庫發布。
 - 不得位於 Knowledge Base Publication 根目錄或其任何子目錄，亦不得取代 Publication。
 
+### 14. Cold Transcript Archive（永久逐字稿封存庫）
+- 位於專案根目錄 `transcripts/` 的獨立且完整的全集原始逐字稿集合（`EPxxxx.md` 與 `README.md` 索引）。
+- 專門作為防範外部非官方逐字稿網站下線或資料失聯的獨立永久冷封存層，具備完整 YAML Frontmatter 與一字一句的原始逐字內容。
+- 獨立於 `.work/` 內部處理管線與 `gooaye-youtube-notes/` 結構化發布知識庫之外。
+
 ---
 
 ## 核心深模組與分層架構 (Deep Modules & Layered Architecture)
