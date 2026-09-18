@@ -3,9 +3,10 @@
 [![Episodes](https://img.shields.io/badge/Episodes-693%20Videos-blue.svg)](gooaye-youtube-notes/_index.md)
 [![Chapters](https://img.shields.io/badge/Chapters-5%2C328%20Topics-orange.svg)](gooaye-youtube-notes/_index.md)
 [![Topic Guides](https://img.shields.io/badge/Topics-4%20Playbooks-green.svg)](gooaye-youtube-notes/topics/README.md)
+[![Cold Transcripts](https://img.shields.io/badge/Transcripts-693%20Verbatim-red.svg)](transcripts/README.md)
 [![Skill Architecture](https://img.shields.io/badge/Antigravity-Progressive%20Skill-purple.svg)](.agents/skills/gooaye/SKILL.md)
 
-本專案將《Gooaye 股癌》目前可用的 **693 集 Episode Source**（EP1–EP693 全套完整無缺漏；545+ 小時）經由雙層混合架構（Dual-Tier Hybrid Extractive-Distilled Pipeline），整理為結構化觀念章節、單句核心觀點判斷與真實逐字稿引述，並提煉出 **4 大跨集數主題專題手冊**；全套知識庫封裝為符合 Antigravity 規範之極低 Token 待機開銷（~30 tokens）的漸進式按需技能（Progressive Skill）。
+本專案將《Gooaye 股癌》目前可用的 **693 集 Episode Source**（EP1–EP693 全套完整無缺漏；545+ 小時）經由雙層混合架構（Dual-Tier Hybrid Extractive-Distilled Pipeline），整理為結構化觀念章節、單句核心觀點判斷與真實逐字稿引述，並提煉出 **4 大跨集數主題專題手冊**；全套知識庫封裝為符合 Antigravity 規範之極低 Token 待機開銷（~30 tokens）的漸進式按需技能（Progressive Skill）。此外，專案亦設立獨立之 **永久完整逐字稿冷封存庫（Cold Transcript Archive）**，防止外部站點失聯。
 
 > 先前的 legacy release 僅有 **689 支影片**；目前正式 Knowledge Base Publication 為 693 集（EP232 已自逐字稿庫補齊）。`download` 只建立或驗證 Episode Source Snapshot，絕不自動合成或發布。
 
@@ -20,6 +21,10 @@ gooaye-agent/
 │       └── gooaye/
 │           └── SKILL.md                    # Gooaye 漸進式雙模態技能主定義檔
 │
+├── transcripts/                            # 693 集完整逐字稿永久封存庫 (Cold Archive)
+│   ├── README.md                           # 全集逐字稿索引表與元數據導覽
+│   └── EP0001.md ~ EP0693.md               # 100% 原始一字一句逐字稿全文 (含 YAML Frontmatter)
+│
 ├── gooaye-youtube-notes/                    # 693 集受 Manifest 管理的正式知識庫
 │   ├── README.md                           # 筆記資料集統計與限制說明
 │   ├── _index.md                           # 全集章節大綱與關鍵字快速檢索表 (Stage 1 索引)
@@ -30,19 +35,24 @@ gooaye-agent/
 │   │   ├── investment-mindset-and-risk-control.md
 │   │   ├── macro-cycle-and-asset-allocation.md
 │   │   └── apple-and-consumer-electronics.md
-│   └── episodes/                           # EP0001.md ~ EP0693.md（缺 EP0232）雙層觀念筆記
+│   └── episodes/                           # EP0001.md ~ EP0693.md 雙層觀念筆記（全套完整無缺漏）
 │
 ├── docs/                                   # 系統架構規格與決策紀錄
 │   ├── adr/
 │   │   ├── 0001-progressive-gooaye-skill.md # ADR：漸進式按需技能架構決策
-│   │   └── 0002-hybrid-extractive-distilled-notes.md # ADR：雙層混合筆記架構決策
+│   │   ├── 0002-hybrid-extractive-distilled-notes.md # ADR：雙層混合筆記架構決策
+│   │   ├── 0003-incremental-episode-source-acquisition.md # ADR：增量單集來源取得
+│   │   ├── 0004-transactional-knowledge-base-publication.md # ADR：交易式知識庫發布
+│   │   └── 0005-cold-transcript-archive.md # ADR：永久完整逐字稿冷封存庫決策
 │   └── specs/                              # 系統規格書
 │
 ├── scripts/                                # 安裝與自動化管理腳本
-│   └── install-skill.sh                    # 一鍵安裝 / Symlink 技能腳本 (全域或指定專案)
+│   ├── install-skill.sh                    # 一鍵安裝 / Symlink 技能腳本 (全域或指定專案)
+│   └── export_cold_transcripts.py          # 匯出 / 同步全集永久逐字稿庫腳本
 │
 ├── .work/                                  # 數據處理、合成管道與品質稽核核心引擎
-│   ├── cli.py                              # 統一命令列介面 (synthesize / audit / topics / doctor)
+│   ├── cli.py                              # 統一命令列介面 (download / synthesize / audit / publish 等)
+│   ├── cold_transcript_exporter.py         # 冷封存逐字稿格式化與自動同步模組
 │   ├── domain.py                           # 核心領域物件 (EpisodeNote, Chapter, TopicGuide 等)
 │   ├── episode_synthesizer.py              # 單集與全集批次並行合成調度器
 │   ├── episode_acquirer.py                 # 公開上游來源對齊與單集取得邊界
@@ -166,11 +176,15 @@ python3 .work/cli.py verify --output-dir gooaye-youtube-notes
 # 7. 僅產生隔離 Preview；不得指定正式發布根目錄或其子目錄
 python3 .work/cli.py synthesize --episode 693 --output-dir /tmp/gooaye-preview-693 --resolver composite
 
-# 8. 執行核心模組單元測試套件
+# 8. 匯出或更新獨立完整逐字稿永久封存庫 (transcripts/)
+python3 scripts/export_cold_transcripts.py --all
+python3 scripts/export_cold_transcripts.py --episode 693
+
+# 9. 執行核心模組單元測試套件
 pytest .work/
 ```
 
-`--latest` 以 YouTube RSS 的最新官方集數為目標；若 archive 索引或逐字稿尚未齊全，命令會回報 `archive pending` 而不降級。缺少 SoundOn 集目則是來源不一致（source mismatch），會明確失敗。第一版只能取得仍在官方 RSS window 內的新集，或已有 legacy metadata 的舊集；其他集數會明確失敗。
+`--latest` 以 YouTube RSS 的最新官方集數為目標；若 archive 索引或逐字稿尚未齊全，命令會回報 `archive pending` 而不降級。缺少 SoundOn 集目則是來源不一致（source mismatch），會明確失敗。第一版只能取得仍在官方 RSS window 內的新集，或已有 legacy metadata 的舊集；其他集數會明確失敗。每次成功執行 `download` 都會自動將新集數的完整逐字稿同步匯出至 `transcripts/` 封存庫。
 
 `publish` 是正式 Publication 的唯一寫入入口：它在同層 staging 目錄完整建立 693 集筆記與四份 Topic Guide、寫入 SHA-256 Manifest、驗證整個圖後，才在目的地鎖定期間交易式取代舊根目錄。請預留至少 **兩倍既有發布目錄大小加 100 MiB** 的可用空間；發布失敗會保留先前完整版本並清理暫存 sibling。`verify` 只讀取並驗證現有 legacy 或 Manifest-managed 根目錄。Preview 是局部、顯式且隔離的產出，永遠不能取代正式 Publication。
 
@@ -180,6 +194,8 @@ pytest .work/
 - [ADR 0002](docs/adr/0002-hybrid-extractive-distilled-notes.md)：雙層混合筆記架構決策紀錄。
 - [ADR 0003](docs/adr/0003-incremental-episode-source-acquisition.md)：增量單集來源取得、驗證與取代政策。
 - [ADR 0004](docs/adr/0004-transactional-knowledge-base-publication.md)：完整知識庫的交易式發布與 Manifest 管理政策。
+- [ADR 0005](docs/adr/0005-cold-transcript-archive.md)：永久完整逐字稿冷封存庫（Cold Archive）架構決策紀錄。
+- [完整逐字稿封存庫](transcripts/README.md)：693 集一字不漏完整逐字稿索引。
 - [主題專題目錄](gooaye-youtube-notes/topics/README.md)：四大主題專題手冊。
 - [全集索引表](gooaye-youtube-notes/_index.md)：693 集完整章節索引。
 
