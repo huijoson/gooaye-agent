@@ -10,6 +10,12 @@
 
 > 先前的 legacy release 僅有 **689 支影片**；目前正式 Knowledge Base Publication 為 693 集（EP232 已自逐字稿庫補齊）。`download` 只建立或驗證 Episode Source Snapshot，絕不自動合成或發布。
 
+> [!NOTE]
+> **最新集數與收錄狀態說明 (Episode Status & Sync Tracking)**：
+> - **本專案知識庫與冷封存庫**：完整收錄 **EP1–EP693**（全套 693 集無缺漏，涵蓋至 2026-09-02 之 EP693）。
+> - **官方節目最新發布進度**：官方 SoundOn / YouTube 目前已更新至 **EP698**（2026-09-19 最新集：`EP698 | 🎮`）。
+> - **待釋出狀態 (Archive Pending)**：依據 [ADR 0003](docs/adr/0003-incremental-episode-source-acquisition.md) 之三方來源對齊原則，EP694～EP698 須待第三方逐字稿來源站（`whatmkreallysaid.com`）釋出逐字稿後，方能進行無損快照取得與發布；執行 `python3 .work/cli.py download --latest` 可隨時偵測並全自動雙軌同步。
+
 ---
 
 ## 📁 專案結構導覽 (Project Structure)
