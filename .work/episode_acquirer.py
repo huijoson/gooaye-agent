@@ -49,6 +49,14 @@ class UrlLibHttpClient:
 
     def __init__(self, timeout_seconds: float = 20) -> None:
         self.timeout_seconds = timeout_seconds
+        self.ssl_context = None
+        try:
+            import certifi
+            import ssl
+
+            self.ssl_context = ssl.create_default_context(cafile=certifi.where())
+        except Exception:
+            pass
 
     def get(self, url: str, accept: str) -> HttpResponse:
         request = Request(
@@ -58,8 +66,11 @@ class UrlLibHttpClient:
                 "User-Agent": "gooaye-agent-episode-acquirer/1",
             },
         )
+        open_kwargs: dict[str, object] = {"timeout": self.timeout_seconds}
+        if self.ssl_context is not None:
+            open_kwargs["context"] = self.ssl_context
         try:
-            response = urlopen(request, timeout=self.timeout_seconds)
+            response = urlopen(request, **open_kwargs)
         except HTTPError as exc:
             return HttpResponse(
                 url=exc.geturl(),

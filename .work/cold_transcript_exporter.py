@@ -66,6 +66,8 @@ def render_readme_index(episodes: Sequence[EpisodeMetadata]) -> str:
         f"- **涵蓋時間：** {first_ep.date} 至 {last_ep.date}",
         "- **規格：** 包含標準 YAML Frontmatter 元數據與 100% 原始完整逐字內容",
         "- **存放定位：** 獨立於 `.work/` 處理管線與 `gooaye-youtube-notes/` 雙層導航筆記發布目錄之外",
+        "- **最新追蹤：** 官方節目目前已發布至 EP698；未收錄集數待第三方逐字稿庫釋出後，執行 `cli.py download --latest` 即自動同步。",
+
         "",
         "## 集數索引表",
         "",
