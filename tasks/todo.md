@@ -51,7 +51,9 @@
 - [x] 確認變更、遠端與分支；fetch origin。
 - [x] 執行測試、發布驗證與主題審計。
 - [x] 檢查提交檔案（獨立審查無阻擋問題）。
-- [ ] commit 並 push；核對遠端。
+- [x] commit 並 push；核對遠端。
 - 風險與回復：沿用既有發布結果；若需回復，以 revert 本次 commit 處理，不改寫歷史。
 
 驗證結果：pytest 285 passed / 2 skipped；verify 699 episodes / 1405 artifacts / 0 defects；topics --audit 0 defects；doctor 通過；git diff --check 與新增檔案 secret-pattern scan 通過。
+
+上傳結果：版本提交 `26348ee` 已推送至 origin/main，git ls-remote 與本地 HEAD 一致。
