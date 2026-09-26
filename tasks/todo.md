@@ -109,5 +109,5 @@
 - 驗收：EP700 來源、ASR 證據、冷封存、正式發布及文件提交至 origin/main；遠端 commit 與本地一致。
 - [x] 檢查變更範圍、分支與遠端；fetch origin。
 - [x] 確認驗證與提交檔案：verify 700 集 / 1407 artifacts / 0 defects、topics audit 0 defects、diff check 與8份新增檔案 secret-pattern/size scan 通過；沿用本次更新已通過的 pytest 285 passed / 2 skipped。
-- [ ] 提交並 push；核對遠端與工作區狀態（完成狀態以遠端 HEAD 與 Git 工作區查核為準）。
+- [x] EP700 更新提交 `d000cc8` 已 push 至 origin/main；git ls-remote 與本地 HEAD 一致，工作區乾淨。
 - 風險與回復：低風險資料更新，原始音訊不提交；以 revert 回復，不改寫歷史。
