@@ -33,7 +33,8 @@ def format_cold_transcript(meta: EpisodeMetadata, raw_transcript: str) -> str:
         f"youtube_url: {yaml_string(meta.youtube_url)}",
         f"episode_date: {yaml_string(meta.date)}",
         f"duration: {yaml_string(meta.duration_str)}",
-        f"source: {yaml_string('whatmkreallysaid.com')}",
+        f"source: {yaml_string('official_audio_asr' if meta.transcription else 'whatmkreallysaid.com')}",
+        *[f"transcription_{key}: {yaml_string(value)}" for key, value in sorted(meta.transcription.items())],
         "---",
         "",
         f"# EP{meta.number}｜{meta.display_title}",
@@ -42,6 +43,9 @@ def format_cold_transcript(meta: EpisodeMetadata, raw_transcript: str) -> str:
         f"- **節目日期：** {meta.date}",
         f"- **片長：** {meta.duration_str}",
     ]
+    if meta.transcription:
+        fm_lines.append("- **轉錄方式：** 官方音訊自動語音辨識，未經逐句人工校對；專有名詞與數字請回聽確認。")
+        fm_lines.append(f"- **原始音訊：** [官方節目音訊]({meta.transcription['audio_url']})")
     if meta.youtube_url:
         fm_lines.append(f"- **影片：** [YouTube]({meta.youtube_url})")
     if meta.archive_url:
@@ -64,9 +68,9 @@ def render_readme_index(episodes: Sequence[EpisodeMetadata]) -> str:
         "",
         f"- **總集數：** {len(episodes)} 集 (EP{first_ep.number:04d} - EP{last_ep.number:04d})",
         f"- **涵蓋時間：** {first_ep.date} 至 {last_ep.date}",
-        "- **規格：** 包含標準 YAML Frontmatter 元數據與 100% 原始完整逐字內容",
+        "- **規格：** 包含標準 YAML Frontmatter；第三方逐字稿保留原文，自動語音轉錄另列音訊與模型來源。",
         "- **存放定位：** 獨立於 `.work/` 處理管線與 `gooaye-youtube-notes/` 雙層導航筆記發布目錄之外",
-        "- **最新追蹤：** 官方節目目前已發布至 EP698；未收錄集數待第三方逐字稿庫釋出後，執行 `cli.py download --latest` 即自動同步。",
+        "- **來源：** 各集記錄逐字稿來源；自動轉錄不代表已逐句人工校對。",
 
         "",
         "## 集數索引表",
@@ -76,8 +80,9 @@ def render_readme_index(episodes: Sequence[EpisodeMetadata]) -> str:
     ]
     for m in episodes:
         yt_link = f"[YouTube]({m.youtube_url})" if m.youtube_url else "-"
+        title = m.display_title.replace("|", "\\|").replace("\n", " ")
         lines.append(
-            f"| EP{m.number:04d} | {m.date} | {m.duration_str} | {m.display_title} | [EP{m.number:04d}.md](EP{m.number:04d}.md) | {yt_link} |"
+            f"| EP{m.number:04d} | {m.date} | {m.duration_str} | {title} | [EP{m.number:04d}.md](EP{m.number:04d}.md) | {yt_link} |"
         )
     lines.append("")
     return "\n".join(lines)

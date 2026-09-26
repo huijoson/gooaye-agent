@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "episode": 696,
+  "official": {
+    "youtube_id": "Z3zbWLhUS-w",
+    "youtube_title": "EP696 | 🎖️",
+    "published_at": "2026-09-12T07:28:48+00:00",
+    "duration_seconds": 3151
+  },
+  "archive": {
+    "filename": "EP0696.md",
+    "display_title": "EP696 | 🎖️",
+    "date": "2026-09-12",
+    "summary": "官方節目音訊自動語音辨識；主題與引述依完整轉錄文字抽取。"
+  },
+  "transcript": {
+    "path": "transcript.md",
+    "size_bytes": 57800,
+    "sha256": "e83ee7f1c01e2c1f915ed43b87d9e6d19af953068a70fc3f65d1c010095501a4",
+    "transcription": {
+      "model_revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "transcribed_at": "2026-09-24T13:21:05.617886+00:00",
+      "review_status": "machine_transcribed_not_manually_verified",
+      "asr_result_sha256": "277bba825d6e65c73a3087b762cbf890222ec0cc51897df96e8b33c1620ab4a6",
+      "asr_result_path": ".work/asr-transcripts/EP0696.json",
+      "normalization": "opencc-python-reimplemented 0.1.7 s2twp; original text retained in ASR JSON",
+      "content_start_line": "32",
+      "engine": "mlx-whisper",
+      "model": "mlx-community/whisper-large-v3-turbo",
+      "audio_url": "https://rss.soundon.fm/rssf/954689a5-3096-43a4-a80b-7810b219cef3/feedurl/8001cf1a-4104-4db2-b349-447f2866da76/rssFileVip.mp3?timestamp=1789326332440",
+      "audio_sha256": "cc96c1883f14f529dbf13b67359e864c27af993da5a3ce9ee5226a4888d9e4e3"
+    }
+  },
+  "provenance": {
+    "source_urls": {
+      "audio": "https://rss.soundon.fm/rssf/954689a5-3096-43a4-a80b-7810b219cef3/feedurl/8001cf1a-4104-4db2-b349-447f2866da76/rssFileVip.mp3?timestamp=1789326332440",
+      "duration_metadata": "https://feeds.soundon.fm/podcasts/954689a5-3096-43a4-a80b-7810b219cef3.xml",
+      "transcript": "https://rss.soundon.fm/rssf/954689a5-3096-43a4-a80b-7810b219cef3/feedurl/8001cf1a-4104-4db2-b349-447f2866da76/rssFileVip.mp3?timestamp=1789326332440",
+      "youtube_metadata": "https://www.youtube.com/feeds/videos.xml?channel_id=UC23rnlQU_qE3cec9x709peA"
+    },
+    "fetched_at": "2026-09-25T02:50:50.537978+00:00"
+  },
+  "content_sha256": "ebc27984a8e9b0cabb2fd312ad9d2cf7028f31ff413ce3f17031a9ae55ae092e"
+}

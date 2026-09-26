@@ -6,7 +6,7 @@ description: >-
 
 # Gooaye (股癌) 知識庫與投資心態技能
 
-本 Skill 封裝了《Gooaye 股癌》693 集（545+ 小時）的完整觀念資料庫與主委的投資決策思維體系。
+本 Skill 封裝了《Gooaye 股癌》699 集（550+ 小時）的完整觀念資料庫與主委的投資決策思維體系。
 
 ---
 
@@ -54,6 +54,7 @@ description: >-
    - **注意**：必須過濾開頭/結尾的贊助廣告詞（如 NordVPN、銀座白石、Sony 耳機等業配）。
 
 ### 輸出要求
+- **機器轉錄來源**：EP694–EP699 為官方 SoundOn 音訊的本機 ASR，尚未人工校對。引用時註明此狀態；人名、股票代號、數字或精確措辭存疑時，依 `.work/asr-transcripts/EPxxxx.json` 的時間段核對原音，無法核對則標示不確定。
 - **客觀嚴謹**：不加油添醋，嚴格基於逐字稿事實與核心觀點。
 - **標準引用格式**：
   - 格式範例：`[EP690｜黑皮諾平替記與Google的COT轉向](file://<workspace-root>/gooaye-youtube-notes/episodes/EP0690.md)`（若在工作區內可直接使用相對路徑連結 `[EP690](gooaye-youtube-notes/episodes/EP690.md)`）
@@ -94,7 +95,7 @@ description: >-
 
 | 資源 | 路徑 | 說明 |
 | :--- | :--- | :--- |
-| **全集大綱總表** | `gooaye-youtube-notes/_index.md` | 693 集完整章節大綱、主題專題導航與關鍵字快速索引。 |
+| **全集大綱總表** | `gooaye-youtube-notes/_index.md` | 699 集完整章節大綱、主題專題導航與關鍵字快速索引。 |
 | **主題專題手冊** | `gooaye-youtube-notes/topics/{slug}.md` | 跨集數深度專題（AI硬體、主委心法、總經循環、Apple果鏈），含時序里程碑與章節索引。 |
 | **主題專題目錄** | `gooaye-youtube-notes/topics/README.md` | 四大專題指南總覽與使用指引。 |
 | **導航層筆記** | `gooaye-youtube-notes/episodes/EPxxxx.md` | 每集 6–10 章標題、1 句核心觀點與 2 條核心金句（~1k tokens）。 |

@@ -112,6 +112,7 @@ class EpisodeMetadata:
     duration_seconds: int
     archive_url: str
     summary: str
+    transcription: Mapping[str, str] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -129,6 +130,7 @@ class EpisodeSourceSnapshot:
     transcript: str
     source_urls: Mapping[str, str]
     fetched_at: str
+    transcription: Mapping[str, str] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -162,6 +164,13 @@ class EpisodeNote:
             body = "\n".join(lines)
             chapter_markdown.append(f"### {ch.index}. {ch.heading}\n\n{body}")
 
+        source_description = self._source_description()
+        asr_frontmatter = ""
+        if self.metadata.transcription:
+            asr_frontmatter = "source: \"official_audio_asr\"\n" + "".join(
+                f"transcription_{key}: {yaml_string(value)}\n"
+                for key, value in sorted(self.metadata.transcription.items())
+            )
         return f"""---
 episode: {self.metadata.number}
 title: {yaml_string(self.metadata.display_title)}
@@ -172,7 +181,7 @@ episode_date: {yaml_string(self.metadata.date)}
 episode_date_source: {yaml_string(self.metadata.date_source)}
 duration: {yaml_string(self.metadata.duration_str)}
 content_method: {yaml_string("hybrid_extractive_distilled")}
----
+{asr_frontmatter}---
 
 # EP{self.metadata.number}｜{self.metadata.display_title}
 
@@ -188,13 +197,24 @@ content_method: {yaml_string("hybrid_extractive_distilled")}
 ## 資料來源與整理方式
 
 - 影片資訊：[Gooaye 股癌 YouTube]({self.metadata.youtube_url})
-- 完整內容依據：[公開非官方逐字稿]({self.metadata.archive_url})
+{source_description}
+- 本文僅供學習與索引，不構成投資建議。
+"""
+
+    def _source_description(self) -> str:
+        if self.metadata.transcription:
+            details = self.metadata.transcription
+            return (
+                f"- 完整內容依據：[官方節目音訊]({details['audio_url']}) 的自動語音轉錄。\n"
+                f"- 轉錄引擎：{details['engine']}；模型：{details['model']}。\n"
+                "- 頁首標題與節目日期來自官方節目 metadata；沒有使用第三方策展摘要。\n"
+                "- 章節與條列依自動轉錄文字抽取；未經逐句人工校對，專有名詞或數字可能辨識錯誤，請以原始音訊為準。"
+            )
+        return f"""- 完整內容依據：[公開非官方逐字稿]({self.metadata.archive_url})
 - 頁首策展標題來自第三方逐字稿索引；YouTube 原始標題另列於上方。
 - 第三方摘要只作全文檢索提示；章節按入選摘錄在**完整逐字稿**中的實際位置排序。命名模型只接收每章全文摘錄，不接收摘要；摘要只在事後用來拒絕撞句，少數未通過自動驗證的標題由人工直接依摘錄覆核。條列也是全文短摘錄，而非摘要切片。
 - 節目日期主要取自第三方逐字稿索引；若該欄缺漏，才使用單支 YouTube metadata。日期不宣稱等同 YouTube 上傳日。
-- 本文沒有虛構時間碼。非官方逐字稿可能有聽寫或專有名詞錯誤，請以原始影片為準。
-- 本文僅供學習與索引，不構成投資建議。
-"""
+- 本文沒有虛構時間碼。非官方逐字稿可能有聽寫或專有名詞錯誤，請以原始影片為準。"""
 
 
 @dataclass(frozen=True)

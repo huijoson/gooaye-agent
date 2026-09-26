@@ -212,10 +212,63 @@ class EpisodeNoteSynthesizer:
         """Extract evidence from raw summary and transcript strings."""
         return self.evidence_extractor.extract(transcript, summary=summary)
 
+    @staticmethod
+    def _prepare_asr_transcript(transcript: str, meta: EpisodeMetadata) -> str:
+        """Bound unpunctuated ASR passages for extraction, preserving stored text.
+
+        Line boundaries come from ASR segments. Punctuation added here is an
+        extraction boundary, not a claim about exact spoken sentence structure.
+        An explicitly reviewed one-based content_start_line can exclude intro ads.
+        """
+        lines = transcript.splitlines()
+        start = meta.transcription.get("content_start_line")
+        if start is not None:
+            try:
+                line_number = int(start)
+            except (TypeError, ValueError) as exc:
+                raise ValueError("ASR content_start_line must be a one-based line number") from exc
+            if not 1 <= line_number <= len(lines):
+                raise ValueError("ASR content_start_line is outside the transcript")
+            lines = lines[line_number - 1:]
+
+        paragraphs: list[str] = []
+        pending = ""
+
+        def flush() -> None:
+            nonlocal pending
+            if pending:
+                paragraphs.append(pending if pending[-1] in "。！？!?" else pending + "。")
+                pending = ""
+
+        for line in lines:
+            line = line.strip()
+            if not line or line.startswith("#"):
+                flush()
+                continue
+            if re.fullmatch(r"(?:-{3,}|\*{3,})", line):
+                flush()
+                paragraphs.append(line)
+                continue
+            # Preserve existing sentence punctuation; split very long ASR
+            # segments only when no natural sentence boundary was emitted.
+            for sentence in re.split(r"(?<=[。！？!?])", line):
+                sentence = sentence.strip()
+                for offset in range(0, len(sentence), 140):
+                    fragment = sentence[offset:offset + 140]
+                    if pending and len(pending) + len(fragment) + 1 > 140:
+                        flush()
+                    pending = f"{pending} {fragment}" if pending else fragment
+                    if pending[-1] in "。！？!?" or len(pending) >= 100:
+                        flush()
+        flush()
+        return "\n".join(paragraphs)
+
     def extract_evidence(self, number: int) -> list[ChapterEvidence]:
         """Extract structured chapter evidence directly from transcript and summary without parsing Markdown."""
         meta = self.get_metadata(number)
         transcript = self.load_transcript(number)
+        if meta.transcription:
+            transcript = self._prepare_asr_transcript(transcript, meta)
         return self._extract_evidence_from_raw(meta.summary, transcript)
 
     def synthesize_episode(

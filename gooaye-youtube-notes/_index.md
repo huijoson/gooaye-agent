@@ -1,6 +1,6 @@
 # 全集索引
 
-共 693 支 YouTube 公開影片、5,328 章、10,656 條逐字稿摘錄；涵蓋 EP1–EP693。章節按完整逐字稿內容順序編排，非精確時間碼。
+共 699 支 YouTube 公開影片、5,376 章、10,752 條逐字稿摘錄；涵蓋 EP1–EP699。章節按完整逐字稿內容順序編排，非精確時間碼。
 
 ## 📚 主題專題深度指南 (Thematic Topic Guides)
 
@@ -17,7 +17,7 @@
 
 | 年份 | 集數 |
 |---:|---:|
-| 2026 | 70 |
+| 2026 | 76 |
 | 2025 | 105 |
 | 2024 | 104 |
 | 2023 | 104 |
@@ -29,6 +29,12 @@
 
 | 集數 | 日期 | 片長 | 章節 | 標題 | YouTube |
 |---:|:---:|---:|---:|---|:---:|
+| [EP699](episodes/EP0699.md) | 2026-09-23 | 50:34 | 8 | EP699 \| 🪻 | [觀看](https://www.youtube.com/watch?v=bAT7nrf5yhk) |
+| [EP698](episodes/EP0698.md) | 2026-09-19 | 52:28 | 8 | EP698 \| 🎮 | [觀看](https://www.youtube.com/watch?v=0bYgYas0lc4) |
+| [EP697](episodes/EP0697.md) | 2026-09-16 | 49:58 | 8 | EP697 \| 🔥 | [觀看](https://www.youtube.com/watch?v=SbKGDWhpGhY) |
+| [EP696](episodes/EP0696.md) | 2026-09-12 | 52:31 | 8 | EP696 \| 🎖️ | [觀看](https://www.youtube.com/watch?v=Z3zbWLhUS-w) |
+| [EP695](episodes/EP0695.md) | 2026-09-09 | 49:55 | 8 | EP695 \| 🍊 | [觀看](https://www.youtube.com/watch?v=OcTI4yvvn2I) |
+| [EP694](episodes/EP0694.md) | 2026-09-05 | 50:40 | 8 | EP694 \| 🥖 | [觀看](https://www.youtube.com/watch?v=aOwBYre2B5k) |
 | [EP693](episodes/EP0693.md) | 2026-09-02 | 49:45 | 8 | 十公里初體驗與輝達插旗發哥 | [觀看](https://www.youtube.com/watch?v=TsMMO08ub_Q) |
 | [EP692](episodes/EP0692.md) | 2026-08-29 | 49:59 | 7 | 玩具多巴胺論與供應鏈卡位戰 | [觀看](https://www.youtube.com/watch?v=ohoIGtJ3Bwc) |
 | [EP691](episodes/EP0691.md) | 2026-08-26 | 49:55 | 8 | 北海道敲門驚魂與人人一個Jarvis | [觀看](https://www.youtube.com/watch?v=J-e9oxqLzpc) |

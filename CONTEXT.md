@@ -7,11 +7,11 @@
 ## 核心領域實體 (Core Domain Entities)
 
 ### 1. Episode (`EpisodeMetadata`)
-- 正式 Knowledge Base Publication 涵蓋 EP1 至 EP693（全套共 693 集完整無缺漏；EP232 已自逐字稿封存庫補齊）。先前 legacy release 只涵蓋 689 支影片；目前的第 693 集 EP693 是已驗證並發布的 Episode Source。
-- 每集包含集數編號、YouTube 原始標題、第三方策展標題、發布日期、發布日期來源、影片片長與完整逐字稿。
+- 正式 Knowledge Base Publication 涵蓋 EP1 至 EP699（全套共 699 集完整無缺漏；EP232 已自逐字稿封存庫補齊）。先前 legacy release 只涵蓋 689 支影片；EP694–EP699 使用官方音訊 ASR 來源，尚未人工校對。
+- 每集包含集數編號、官方原始標題、發布日期及其來源、片長與完整逐字稿；第三方來源另有策展標題。
 
 ### 2. Full Transcript (完整逐字稿)
-- 取自公開非官方逐字稿網站的完整文字記錄，為所有章節觀念與條列摘錄的唯一真實依據。
+- 來自第三方逐字稿網站或官方音訊 ASR 的文字記錄，是章節觀念與條列摘錄的內容依據。ASR Transcript 是尚未人工校對的機器轉錄；文字接地不代表已核對原音，引用須保留來源與校對狀態。
 
 ### 3. Curated Summary (第三方摘要)
 - 來自外部索引的集數簡介。系統規則嚴格規定：第三方摘要**僅作為主題檢索提示與輔助參考**，禁止直接複製成筆記段落或洩漏至章節標題中，亦不得限制或決定章節切分數量。
@@ -42,11 +42,11 @@
 - 將指定 Episode 的公開上游資料納入本地語料庫的明確邊界；成功只代表該集已形成可供合成使用的 Episode Source Snapshot，不包含筆記合成或正式發布。
 
 ### 11. Episode Source Snapshot（單集來源快照）
-- 同一 Episode 的完整來源集合：官方節目 metadata、第三方策展 metadata 與 Full Transcript；三者集數必須一致並通過完整性驗證。
+- 同一 Episode 的完整來源集合：官方節目 metadata 與 Full Transcript，以及第三方策展 metadata 或官方音訊 ASR 來源證據；各來源集數必須一致並通過完整性驗證。
 - 不包含原始音訊、生成後的 Episode Note 或 Knowledge Base Publication。
 
 ### 12. Knowledge Base Publication（知識庫發布）
-- 一份可獨立使用的完整知識庫發行版；目前涵蓋 693 集雙層 Episode Notes、四份 Topic Guides、索引與導覽文件，並以 SHA-256 Manifest 識別其完整內容。
+- 一份可獨立使用的完整知識庫發行版；目前涵蓋 699 集雙層 Episode Notes、四份 Topic Guides、索引與導覽文件，並以 SHA-256 Manifest 識別其完整內容。
 - 與 689-video legacy release 有明確區別；只有完整 corpus 才是 Publication。
 
 ### 13. Preview（預覽）
@@ -54,8 +54,8 @@
 - 不得位於 Knowledge Base Publication 根目錄或其任何子目錄，亦不得取代 Publication。
 
 ### 14. Cold Transcript Archive（永久逐字稿封存庫）
-- 位於專案根目錄 `transcripts/` 的獨立且完整的全集原始逐字稿集合（`EPxxxx.md` 與 `README.md` 索引）。
-- 專門作為防範外部非官方逐字稿網站下線或資料失聯的獨立永久冷封存層，具備完整 YAML Frontmatter 與一字一句的原始逐字內容。
+- 位於專案根目錄 `transcripts/` 的獨立且完整的全集逐字稿集合（`EPxxxx.md` 與 `README.md` 索引）。
+- 防範外部來源失聯的獨立永久冷封存層，保留完整文字及來源資訊；機器轉錄另標明尚未人工校對。
 - 獨立於 `.work/` 內部處理管線與 `gooaye-youtube-notes/` 結構化發布知識庫之外。
 
 ---
@@ -71,7 +71,7 @@
 
 ### 10. Episode Acquirer (`episode_acquirer.py`)
 - 將 YouTube RSS 的 identity/title、SoundOn RSS 的 duration/date，以及非官方 archive 的策展 metadata/Full Transcript 對齊成一個 `EpisodeSourceSnapshot`。
-- **介面 (Interface)**：`acquire(number, force=False)` 與 `acquire_latest(force=False)`。三個必要來源未齊全時失敗，不改抓音訊轉錄、不自動合成或發布。
+- **介面 (Interface)**：`acquire(number, force=False)` 與 `acquire_latest(force=False)`。預設第三方來源未齊全時失敗；顯式官方音訊 ASR 補集政策見 [ADR 0006](docs/adr/0006-official-audio-asr-fallback.md)。取得來源不自動合成或發布。
 
 ### 11. Transcript Processor (`transcript_processor.py`)
 - **`TranscriptSanitizer`**：負責多階段廣告過濾（開頭贊助區塊、贊助宣告、特定贊助品牌如銀座白石/Sony 耳機等之業配詞、過渡橋段）、結尾重點回顧過濾、Markdown 標題/引言清除與摘錄句標準化。
@@ -135,7 +135,7 @@
 - 跨集數主題專題合成與品質審計深模組：
   - **`TopicDefinition`**：定義主題標識、關鍵字、核心概念與分類。
   - **`ThematicChapterRef`**：包含集數編號、日期、章節標題、Takeaway 與權重關聯評分的引用物件。
-  - **`TopicGuideSynthesizer`**：從目前 693 集 Manifest-managed Publication 的筆記中依時序聚合相關章節、提煉年度里程碑與核心結論矩陣。
+  - **`TopicGuideSynthesizer`**：從目前 699 集 Manifest-managed Publication 的筆記中依時序聚合相關章節、提煉年度里程碑與核心結論矩陣。
   - **`TopicGuideRenderer`**：渲染標準主題專題 Markdown 手冊（`gooaye-youtube-notes/topics/{slug}.md`）與主題總覽索引（`topics/README.md`）。
   - **`TopicQualityAuditor`**：100% 驗證專題手冊之章節引用存在性、發布日期對齊度與點擊連結有效性。
 
@@ -160,7 +160,7 @@
 ### 20. Gooaye Skill (`.agents/skills/gooaye/SKILL.md`)
 - **定位**：極低 Token 待機開銷（~30 tokens）的漸進式按需技能。
 - **雙模態機制 (Dual-Mode)**：
-  - **Archive Query (客觀檢索模式)**：檢索目前 693 集 Manifest-managed Publication 的結構化筆記與跨集數主題專題手冊，提供精確集數、章節、核心觀點與逐字稿引述。
+  - **Archive Query (客觀檢索模式)**：檢索目前 699 集 Manifest-managed Publication 的結構化筆記與跨集數主題專題手冊，提供精確集數、章節、核心觀點與逐字稿引述。
   - **Mindset Roasting (主委心態健檢模式)**：切換謝孟恭口吻，基於部位管理、停損紀律、期望值計算進行風險拷問。
 - **階梯式檢索 (Multi-Stage Progressive Search)**：
   - Stage 1: 先在 `_index.md` 與 `episodes/` 中透過語意或關鍵字定位 1–3 集（~150KB 全域索引）。

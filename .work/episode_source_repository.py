@@ -151,11 +151,31 @@ class EpisodeSourceRepository:
         stripped = snapshot.transcript.lstrip().lower() if isinstance(snapshot.transcript, str) else ""
         if stripped.startswith("<!doctype html") or stripped.startswith("<html"):
             defects.append("transcript must be Markdown, not HTML")
-        if not isinstance(snapshot.source_urls, Mapping) or not REQUIRED_SOURCE_URLS.issubset(snapshot.source_urls):
+        required_urls = REQUIRED_SOURCE_URLS
+        if not isinstance(snapshot.transcription, Mapping):
+            defects.append("transcription provenance must be a mapping")
+        elif snapshot.transcription:
+            required_urls = frozenset({"youtube_metadata", "duration_metadata", "audio", "transcript"})
+            details = snapshot.transcription
+            if not isinstance(details, Mapping) or not all(
+                isinstance(details.get(key), str) and details[key].strip()
+                for key in ("engine", "model", "audio_url", "audio_sha256")
+            ):
+                defects.append("transcription provenance is incomplete")
+            else:
+                if not EpisodeSourceRepository._is_absolute_url(details["audio_url"]):
+                    defects.append("transcription audio_url must be an absolute URL")
+                if not re.fullmatch(r"[a-f0-9]{64}", details["audio_sha256"]):
+                    defects.append("transcription audio_sha256 must be a SHA-256 digest")
+                if isinstance(snapshot.source_urls, Mapping) and snapshot.source_urls.get("audio") != details["audio_url"]:
+                    defects.append("transcription audio_url must match source_urls audio")
+            if isinstance(details, Mapping) and not all(isinstance(k, str) and isinstance(v, str) for k, v in details.items()):
+                defects.append("transcription provenance values must be strings")
+        if not isinstance(snapshot.source_urls, Mapping) or not required_urls.issubset(snapshot.source_urls):
             defects.append("source_urls are incomplete")
         elif any(
             not EpisodeSourceRepository._is_absolute_url(snapshot.source_urls[key])
-            for key in REQUIRED_SOURCE_URLS
+            for key in required_urls
         ):
             defects.append("source_urls must contain non-empty absolute URLs")
         try:
@@ -194,6 +214,8 @@ class EpisodeSourceRepository:
                 "fetched_at": snapshot.fetched_at,
             },
         }
+        if snapshot.transcription:
+            manifest["transcript"]["transcription"] = dict(snapshot.transcription)
         content = {
             "official": manifest["official"],
             "archive": manifest["archive"],
@@ -225,7 +247,12 @@ class EpisodeSourceRepository:
                 if existing_report.is_valid:
                     existing_manifest = self._read_manifest(target)
                     if existing_manifest.get("content_sha256") == manifest["content_sha256"]:
-                        return "unchanged"
+                        # A corrected ASR source URL must replace local-only
+                        # provenance even when transcript bytes are identical.
+                        old_urls = existing_manifest.get("provenance", {}).get("source_urls")
+                        new_urls = manifest["provenance"]["source_urls"]
+                        if not (force and snapshot.transcription and old_urls != new_urls):
+                            return "unchanged"
                 if not force:
                     raise SnapshotConflictError(
                         f"EP{snapshot.number} already exists with different content; "
@@ -445,6 +472,7 @@ class EpisodeSourceRepository:
                     transcript=transcript_text,
                     source_urls=provenance.get("source_urls", {}),
                     fetched_at=provenance.get("fetched_at", ""),
+                    transcription=transcript_meta.get("transcription", {}),
                 )
             )
         except (InvalidSnapshotError, TypeError) as exc:
@@ -558,7 +586,8 @@ class EpisodeSourceRepository:
         if manifest is not None:
             official = manifest["official"]
             archive = manifest["archive"]
-            archive_url = (
+            transcription = manifest["transcript"].get("transcription", {})
+            archive_url = "" if transcription else (
                 f"{self.archive_base_url}episode.html?file={quote(archive['filename'])}"
             )
             return EpisodeMetadata(
@@ -568,11 +597,12 @@ class EpisodeSourceRepository:
                 youtube_title=official["youtube_title"],
                 display_title=archive["display_title"],
                 date=archive["date"],
-                date_source="transcript_archive",
+                date_source="official_metadata" if transcription else "transcript_archive",
                 duration_str=format_duration(official["duration_seconds"]),
                 duration_seconds=official["duration_seconds"],
                 archive_url=archive_url,
                 summary=archive["summary"].strip(),
+                transcription=transcription,
             )
 
         self._load_legacy()

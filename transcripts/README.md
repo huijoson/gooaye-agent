@@ -2,11 +2,11 @@
 
 本目錄為獨立永久封存的股癌 (Gooaye) Podcast 完整逐字稿集合，旨在作為防範外部非官方逐字稿網站（如 whatmkreallysaid.com）未來可能下線或資料失聯的獨立冷備份存檔層。
 
-- **總集數：** 693 集 (EP0001 - EP0693)
-- **涵蓋時間：** 2020-02-27 至 2026-09-02
-- **規格：** 包含標準 YAML Frontmatter 元數據與 100% 原始完整逐字內容
+- **總集數：** 699 集 (EP0001 - EP0699)
+- **涵蓋時間：** 2020-02-27 至 2026-09-23
+- **規格：** 包含標準 YAML Frontmatter；第三方逐字稿保留原文，自動語音轉錄另列音訊與模型來源。
 - **存放定位：** 獨立於 `.work/` 處理管線與 `gooaye-youtube-notes/` 雙層導航筆記發布目錄之外
-- **最新追蹤：** 官方節目目前已發布至 EP698；未收錄集數待第三方逐字稿庫釋出後，執行 `cli.py download --latest` 即自動同步。
+- **來源：** 各集記錄逐字稿來源；自動轉錄不代表已逐句人工校對。
 
 ## 集數索引表
 
@@ -705,3 +705,9 @@
 | EP0691 | 2026-08-26 | 49:55 | 北海道敲門驚魂與人人一個Jarvis | [EP0691.md](EP0691.md) | [YouTube](https://www.youtube.com/watch?v=J-e9oxqLzpc) |
 | EP0692 | 2026-08-29 | 49:59 | 玩具多巴胺論與供應鏈卡位戰 | [EP0692.md](EP0692.md) | [YouTube](https://www.youtube.com/watch?v=ohoIGtJ3Bwc) |
 | EP0693 | 2026-09-02 | 49:45 | 十公里初體驗與輝達插旗發哥 | [EP0693.md](EP0693.md) | [YouTube](https://www.youtube.com/watch?v=TsMMO08ub_Q) |
+| EP0694 | 2026-09-05 | 50:40 | EP694 \| 🥖 | [EP0694.md](EP0694.md) | [YouTube](https://www.youtube.com/watch?v=aOwBYre2B5k) |
+| EP0695 | 2026-09-09 | 49:55 | EP695 \| 🍊 | [EP0695.md](EP0695.md) | [YouTube](https://www.youtube.com/watch?v=OcTI4yvvn2I) |
+| EP0696 | 2026-09-12 | 52:31 | EP696 \| 🎖️ | [EP0696.md](EP0696.md) | [YouTube](https://www.youtube.com/watch?v=Z3zbWLhUS-w) |
+| EP0697 | 2026-09-16 | 49:58 | EP697 \| 🔥 | [EP0697.md](EP0697.md) | [YouTube](https://www.youtube.com/watch?v=SbKGDWhpGhY) |
+| EP0698 | 2026-09-19 | 52:28 | EP698 \| 🎮 | [EP0698.md](EP0698.md) | [YouTube](https://www.youtube.com/watch?v=0bYgYas0lc4) |
+| EP0699 | 2026-09-23 | 50:34 | EP699 \| 🪻 | [EP0699.md](EP0699.md) | [YouTube](https://www.youtube.com/watch?v=bAT7nrf5yhk) |

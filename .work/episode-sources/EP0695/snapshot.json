@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "episode": 695,
+  "official": {
+    "youtube_id": "OcTI4yvvn2I",
+    "youtube_title": "EP695 | 🍊",
+    "published_at": "2026-09-09T08:30:24+00:00",
+    "duration_seconds": 2995
+  },
+  "archive": {
+    "filename": "EP0695.md",
+    "display_title": "EP695 | 🍊",
+    "date": "2026-09-09",
+    "summary": "官方節目音訊自動語音辨識；主題與引述依完整轉錄文字抽取。"
+  },
+  "transcript": {
+    "path": "transcript.md",
+    "size_bytes": 55628,
+    "sha256": "e3ab934827c80c9a54ca16468f7b7fea3b325b7a2c59ef8ffdad8c0264a01bfd",
+    "transcription": {
+      "model_revision": "a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb",
+      "transcribed_at": "2026-09-24T13:19:27.421777+00:00",
+      "review_status": "machine_transcribed_not_manually_verified",
+      "asr_result_sha256": "e4e40635e19806041a835b61eb11eba6b70cf486f7ebed8abc86afb5cce57f46",
+      "asr_result_path": ".work/asr-transcripts/EP0695.json",
+      "normalization": "opencc-python-reimplemented 0.1.7 s2twp; original text retained in ASR JSON",
+      "content_start_line": "47",
+      "engine": "mlx-whisper",
+      "model": "mlx-community/whisper-large-v3-turbo",
+      "audio_url": "https://rss.soundon.fm/rssf/954689a5-3096-43a4-a80b-7810b219cef3/feedurl/184c0e0e-4e66-4273-a4ab-111451d2993d/rssFileVip.mp3?timestamp=1788941955158",
+      "audio_sha256": "cf3725a9a96969bb2a9093cf0dddc5100ddc1ef9a94f982c858f7d088f2f719d"
+    }
+  },
+  "provenance": {
+    "source_urls": {
+      "audio": "https://rss.soundon.fm/rssf/954689a5-3096-43a4-a80b-7810b219cef3/feedurl/184c0e0e-4e66-4273-a4ab-111451d2993d/rssFileVip.mp3?timestamp=1788941955158",
+      "duration_metadata": "https://feeds.soundon.fm/podcasts/954689a5-3096-43a4-a80b-7810b219cef3.xml",
+      "transcript": "https://rss.soundon.fm/rssf/954689a5-3096-43a4-a80b-7810b219cef3/feedurl/184c0e0e-4e66-4273-a4ab-111451d2993d/rssFileVip.mp3?timestamp=1788941955158",
+      "youtube_metadata": "https://www.youtube.com/feeds/videos.xml?channel_id=UC23rnlQU_qE3cec9x709peA"
+    },
+    "fetched_at": "2026-09-25T02:50:50.452100+00:00"
+  },
+  "content_sha256": "2eb303ba41793b0415c6fb05121b911b66d43bc9590d47e3fde054d269c96c23"
+}
