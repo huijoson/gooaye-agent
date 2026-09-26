@@ -57,3 +57,29 @@
 驗證結果：pytest 285 passed / 2 skipped；verify 699 episodes / 1405 artifacts / 0 defects；topics --audit 0 defects；doctor 通過；git diff --check 與新增檔案 secret-pattern scan 通過。
 
 上傳結果：版本提交 `26348ee` 已推送至 origin/main，git ls-remote 與本地 HEAD 一致。
+
+# 2026-09-26 清理未完成 GitHub issues
+
+## 驗收條件
+- 核對所有 open issues 與 open PR；已完成者須以 main 上的實作與驗證證據結案，缺項則補齊。
+- 遠端 issue 狀態與實際完成情況一致。
+
+## 計畫
+- [x] 盤點：open issues #1–#6；無 open PR，main 與 origin/main 一致。
+- [x] 逐項核對安裝器、標題品質引擎、CLI、技能路由、客觀檢索與心態健檢。
+- [x] 執行 pytest、doctor、audit、Publication verify 與隔離合成驗證。
+- [ ] 完成必要修正並關閉已驗收 issues。
+- [ ] 記錄結果、提交並同步 GitHub。
+
+## 風險與環境
+- 低風險；現有正式發布不重建，合成驗證使用隔離 temporary preview。
+- Python 3、pytest、gh；issue #4 的 689 集屬原始範圍，目前已擴展至 699 集。
+- 如有程式修正以 revert 回復；誤關 issue 可 reopen。
+
+## 驗證結果
+- pytest：285 passed、2 skipped（live upstream 須 GOOAYE_LIVE_CONTRACT=1；跨檔案系統契約須 /mnt/c/）。
+- doctor 通過；audit 699 集、5376 章、0 defects；verify 1405 artifacts、0 defects；topics 4 份、0 defects。
+- 4 workers 隔離 synthesize 成功產生 1398 份雙層筆記；首次驗證錯誤要求 Preview 產生索引，已依既有測試修正驗收方式並記錄 lessons。
+- 隔離 publish + verify 通過，699 集、4 topics、1405 artifacts，全集索引與 README 存在。
+- 技能 description 縮至 25 o200k / 27 cl100k tokens；修復 EP0690.md 引用，兩模式共用風險邊界；skill validator、引用存在性、獨立 diff review 通過。
+- #1/#2/#4 原有實作已在 main；#3/#5 補齊文件驗收缺項；#6 既有協定符合全部驗收條件。

@@ -1,7 +1,7 @@
 ---
 name: gooaye
 description: >-
-  Search Gooaye (股癌) podcast transcripts and structured notes, retrieve Xie Menggong's (謝孟恭 / 主委) historical viewpoints on stocks/sectors, or seek pragmatic investment mindset and risk review in Gooaye persona.
+  Search Gooaye podcast stock/sector viewpoints and transcripts, or review investment mindset and risk in Xie Menggong’s persona.
 ---
 
 # Gooaye (股癌) 知識庫與投資心態技能
@@ -9,6 +9,10 @@ description: >-
 本 Skill 封裝了《Gooaye 股癌》699 集（550+ 小時）的完整觀念資料庫與主委的投資決策思維體系。
 
 ---
+
+## 共通原則
+
+兩種模式均禁止報明牌、提供目標價或保證獲利；歷史觀點須標明當時脈絡，不作為現在的買賣建議。
 
 ## 🎯 雙模態運作規範 (Dual-Mode Protocol)
 
@@ -57,7 +61,7 @@ description: >-
 - **機器轉錄來源**：EP694–EP699 為官方 SoundOn 音訊的本機 ASR，尚未人工校對。引用時註明此狀態；人名、股票代號、數字或精確措辭存疑時，依 `.work/asr-transcripts/EPxxxx.json` 的時間段核對原音，無法核對則標示不確定。
 - **客觀嚴謹**：不加油添醋，嚴格基於逐字稿事實與核心觀點。
 - **標準引用格式**：
-  - 格式範例：`[EP690｜黑皮諾平替記與Google的COT轉向](file://<workspace-root>/gooaye-youtube-notes/episodes/EP0690.md)`（若在工作區內可直接使用相對路徑連結 `[EP690](gooaye-youtube-notes/episodes/EP690.md)`）
+  - 以實際工作區絕對路徑建立可點擊連結：`[EP690｜黑皮諾平替記與Google的COT轉向](<workspace-root>/gooaye-youtube-notes/episodes/EP0690.md)`；將 `<workspace-root>` 替換為工作區絕對路徑。支援相對路徑的介面可使用 `[EP690](gooaye-youtube-notes/episodes/EP0690.md)`。
   - 標明節目發布日期（如 `2026-08-22`）。
   - 列出核心觀點與關鍵逐字稿引述。
 
