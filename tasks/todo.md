@@ -68,8 +68,8 @@
 - [x] 盤點：open issues #1–#6；無 open PR，main 與 origin/main 一致。
 - [x] 逐項核對安裝器、標題品質引擎、CLI、技能路由、客觀檢索與心態健檢。
 - [x] 執行 pytest、doctor、audit、Publication verify 與隔離合成驗證。
-- [ ] 完成必要修正並關閉已驗收 issues。
-- [ ] 記錄結果、提交並同步 GitHub。
+- [x] 完成必要修正並關閉已驗收 issues。
+- [x] 記錄結果、提交並同步 GitHub。
 
 ## 風險與環境
 - 低風險；現有正式發布不重建，合成驗證使用隔離 temporary preview。
@@ -83,3 +83,5 @@
 - 隔離 publish + verify 通過，699 集、4 topics、1405 artifacts，全集索引與 README 存在。
 - 技能 description 縮至 25 o200k / 27 cl100k tokens；修復 EP0690.md 引用，兩模式共用風險邊界；skill validator、引用存在性、獨立 diff review 通過。
 - #1/#2/#4 原有實作已在 main；#3/#5 補齊文件驗收缺項；#6 既有協定符合全部驗收條件。
+
+結案結果：#1–#6 均附驗收證據並以 completed 關閉；GitHub open issues 與 open PR 均為空。修正提交 `10078b9` 已推送 origin/main。
