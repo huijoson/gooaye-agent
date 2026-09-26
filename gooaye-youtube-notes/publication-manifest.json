@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "created_at": "2026-09-25T02:51:34.659681Z",
+  "created_at": "2026-09-26T07:56:41.099584Z",
   "source_episodes": [
     1,
     2,
@@ -700,7 +700,8 @@
     696,
     697,
     698,
-    699
+    699,
+    700
   ],
   "topic_catalog": [
     "ai-hardware-and-semiconductor",
@@ -708,18 +709,18 @@
     "investment-mindset-and-risk-control",
     "macro-cycle-and-asset-allocation"
   ],
-  "total_chapters": 5376,
-  "total_seconds": 1981844,
+  "total_chapters": 5384,
+  "total_seconds": 1984845,
   "artifacts": [
     {
       "path": "README.md",
       "size_bytes": 2021,
-      "sha256": "1645f625eae68eccdef6bc199ff8b0533214407e480995e51325d0957646cca9"
+      "sha256": "abea25a28aa5c8bfd29c9dba3d2fa9790dd67a8a9ee15cba29e4ddcb04cb2728"
     },
     {
       "path": "_index.md",
-      "size_bytes": 112773,
-      "sha256": "e74d0766bd3935cde69a14724b110aa8fc299f8babce33b198f8861a802d6e2a"
+      "size_bytes": 112902,
+      "sha256": "fb3c69287e47cbc1f73db666bf7cf2c67affbd56ae76475f4b1feaef8fe04a0b"
     },
     {
       "path": "episodes/EP0001.full.md",
@@ -7712,9 +7713,19 @@
       "sha256": "52700d736221ef8e40e3c60da32578fca24b941136695e5feb493040e6af77af"
     },
     {
+      "path": "episodes/EP0700.full.md",
+      "size_bytes": 17701,
+      "sha256": "b87cf8350618b064b9d51eebee6fb50c3de21f3dc5265e39e9b7599f52f3b844"
+    },
+    {
+      "path": "episodes/EP0700.md",
+      "size_bytes": 8227,
+      "sha256": "ca2d024563bb588658b45c8a51a01a7666b42114729e533393c4b3535095a042"
+    },
+    {
       "path": "topics/README.md",
       "size_bytes": 2538,
-      "sha256": "600fe95d46cc3e6fc099419f140374d0e2817dce9dd35a92f04dd5e8731976e2"
+      "sha256": "fc155555f0ec18f7b802d22baed16399ac03dc0fc5f8b092abb7a83645855271"
     },
     {
       "path": "topics/ai-hardware-and-semiconductor.md",
@@ -7723,13 +7734,13 @@
     },
     {
       "path": "topics/apple-and-consumer-electronics.md",
-      "size_bytes": 674453,
-      "sha256": "3280143be2b449c43ccb466e3ce8bcb78b9e9224aeb4bb06e3b92a22238c217d"
+      "size_bytes": 675564,
+      "sha256": "1ab3090aefd56b8b96bbae2ba14dd22dd211ae8ecb84e2a040667048da2aa49a"
     },
     {
       "path": "topics/investment-mindset-and-risk-control.md",
-      "size_bytes": 846088,
-      "sha256": "ec014345ceff0675522b54c717a20fca848352f57bb0b009ff5c62cfdca45b41"
+      "size_bytes": 847225,
+      "sha256": "f3e1dee28db65ac916dba26ba888525eff0eef36d84500df99829b014a85aa06"
     },
     {
       "path": "topics/macro-cycle-and-asset-allocation.md",

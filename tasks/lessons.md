@@ -23,3 +23,9 @@
 ## 2026-09-26：Preview 不產生 Publication 索引
 - 類別：對 repo 行為的錯誤假設。全集合成成功，但驗證腳本錯誤要求 Preview 有 _index.md/README.md 而失敗。
 - 預防：先讀 `test_synthesize_preview_writes_only_episode_files`；索引驗收改用隔離 publish + verify，不改動既有分層。
+
+## 2026-09-26：官方 RSS 可能回傳快取舊集數
+- 類別：對外部來源狀態的錯誤假設。
+- 訊號：SoundOn 已有 EP700，但 YouTube RSS 標準 URL 僅 EP699，直接 next() 產生 StopIteration。
+- 預防：先列出各 feed 最新 identity；遇到不同步，以 cache-busting query 再查官方 RSS，仍缺資料則安全失敗，不虛構影片 ID。
+- Tripwire：匯入前核對 SoundOn / YouTube 相同集數與日期。

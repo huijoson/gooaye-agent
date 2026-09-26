@@ -2,8 +2,8 @@
 
 本目錄為獨立永久封存的股癌 (Gooaye) Podcast 完整逐字稿集合，旨在作為防範外部非官方逐字稿網站（如 whatmkreallysaid.com）未來可能下線或資料失聯的獨立冷備份存檔層。
 
-- **總集數：** 699 集 (EP0001 - EP0699)
-- **涵蓋時間：** 2020-02-27 至 2026-09-23
+- **總集數：** 700 集 (EP0001 - EP0700)
+- **涵蓋時間：** 2020-02-27 至 2026-09-26
 - **規格：** 包含標準 YAML Frontmatter；第三方逐字稿保留原文，自動語音轉錄另列音訊與模型來源。
 - **存放定位：** 獨立於 `.work/` 處理管線與 `gooaye-youtube-notes/` 雙層導航筆記發布目錄之外
 - **來源：** 各集記錄逐字稿來源；自動轉錄不代表已逐句人工校對。
@@ -711,3 +711,4 @@
 | EP0697 | 2026-09-16 | 49:58 | EP697 \| 🔥 | [EP0697.md](EP0697.md) | [YouTube](https://www.youtube.com/watch?v=SbKGDWhpGhY) |
 | EP0698 | 2026-09-19 | 52:28 | EP698 \| 🎮 | [EP0698.md](EP0698.md) | [YouTube](https://www.youtube.com/watch?v=0bYgYas0lc4) |
 | EP0699 | 2026-09-23 | 50:34 | EP699 \| 🪻 | [EP0699.md](EP0699.md) | [YouTube](https://www.youtube.com/watch?v=bAT7nrf5yhk) |
+| EP0700 | 2026-09-26 | 50:01 | EP700 \| 🪭 | [EP0700.md](EP0700.md) | [YouTube](https://www.youtube.com/watch?v=PzNKL7OTHqw) |

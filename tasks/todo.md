@@ -85,3 +85,29 @@
 - #1/#2/#4 原有實作已在 main；#3/#5 補齊文件驗收缺項；#6 既有協定符合全部驗收條件。
 
 結案結果：#1–#6 均附驗收證據並以 completed 關閉；GitHub open issues 與 open PR 均為空。修正提交 `10078b9` 已推送 origin/main。
+
+# 2026-09-26 更新 EP700
+- 驗收：EP1–EP700 來源、冷封存、雙層筆記與正式索引完整；Manifest 與主題審計通過，ASR 明確標示未人工校對。
+- [x] 查核官方 metadata 與第三方逐字稿；官方皆有 EP700，第三方尚缺。
+- [x] 官方音訊 ASR 完成：2040 segments，涵蓋 0–2999.48 秒，實際音訊 3000.48 秒。
+- [x] 匯入來源與冷封存；廣告截點 segment 54（94.62 秒），8 章 preview 已檢視，標題/觀點快取品質通過。
+- [x] 交易式發布 700 集 / 5384 章 / 1407 artifacts；同步 README、CONTEXT 與技能收錄範圍。
+- [x] 驗證資料完整性、品質、pytest 與 diff。
+- 風險：ASR 誤聽；保留原始時間段證據。正式發布失敗保留舊版本；可從 Git 恢復既有發布檔案。
+- 環境：.venv Python、MLX Whisper、ffmpeg；既有模型本機快取。
+
+
+## EP700 更新結果
+- EP700（2026-09-26，50:01）已加入來源 snapshot、冷封存、導航與深度筆記；4 份主題指南及索引由 publish 同批重建。
+- 官方 RSS 標準 URL 曾回傳舊快取；加入 refresh query 後取得 EP700 YouTube identity，與 SoundOn 日期/集數對齊。第三方 archive 尚未收錄本集。
+- 本機 MLX Whisper 轉錄，保留模型版本、音訊/ASR SHA-256、2040 個時間段及未人工校對標示；廣告截點只影響筆記抽取，全稿封存不裁切。
+- pytest：285 passed、2 skipped（live upstream 與跨檔案系統環境契約）；verify：700 episodes、1407 artifacts、0 defects；EP700 audit：8 chapters、0 defects；topics audit：4 guides、0 defects；doctor 通過。
+- 來源與冷封存/雙層筆記皆連續 EP1–EP700，EP700 snapshot 驗證通過；獨立審查無阻擋；git diff --check 通過。
+- 無程式碼變更；未提交或推送 Git。ASR 尚未逐句人工校音，章節仍受既有摘錄分段限制。
+
+# 2026-09-26 上傳 EP700 至 GitHub
+- 驗收：EP700 來源、ASR 證據、冷封存、正式發布及文件提交至 origin/main；遠端 commit 與本地一致。
+- [x] 檢查變更範圍、分支與遠端；fetch origin。
+- [x] 確認驗證與提交檔案：verify 700 集 / 1407 artifacts / 0 defects、topics audit 0 defects、diff check 與8份新增檔案 secret-pattern/size scan 通過；沿用本次更新已通過的 pytest 285 passed / 2 skipped。
+- [ ] 提交並 push；核對遠端與工作區狀態（完成狀態以遠端 HEAD 與 Git 工作區查核為準）。
+- 風險與回復：低風險資料更新，原始音訊不提交；以 revert 回復，不改寫歷史。
