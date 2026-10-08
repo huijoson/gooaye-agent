@@ -75,5 +75,16 @@
     "soundon_date": "Sat, 26 Sep 2026 06:40:54 GMT",
     "duration": "3001",
     "content_start_segment": 54
+  },
+  {
+    "number": 703,
+    "youtube_id": "eMRkc_sEKA8",
+    "youtube_title": "EP703 | 🏈",
+    "published_at": "2026-10-07T09:50:05+00:00",
+    "audio_url": "https://rss.soundon.fm/rssf/954689a5-3096-43a4-a80b-7810b219cef3/feedurl/0b071f57-45ba-47d3-9f15-2129a0c645a8/rssFileVip.mp3?timestamp=1791449599201",
+    "soundon_title": "EP703 | 🏈",
+    "soundon_date": "Wed, 07 Oct 2026 08:09:40 GMT",
+    "duration": "3044",
+    "content_start_segment": 44
   }
 ]

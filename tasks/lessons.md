@@ -29,3 +29,8 @@
 - 訊號：SoundOn 已有 EP700，但 YouTube RSS 標準 URL 僅 EP699，直接 next() 產生 StopIteration。
 - 預防：先列出各 feed 最新 identity；遇到不同步，以 cache-busting query 再查官方 RSS，仍缺資料則安全失敗，不虛構影片 ID。
 - Tripwire：匯入前核對 SoundOn / YouTube 相同集數與日期。
+
+## 2026-10-08：Whisper 尾端靜音幻覺
+- 類別：外部工具輸出的錯誤假設。
+- 訊號：EP703 最後一段為 YouTube 片尾套話且結束時間超過音訊長度，`import_asr_episodes.py` 的時間戳檢查會拒絕。
+- 預防：轉錄後先檢查最後數段 end ≤ 音訊長度與內容合理性；只移除明確幻覺段，並在 JSON `postprocessing` 記錄原文與時間。

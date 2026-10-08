@@ -1,6 +1,6 @@
 # 全集索引
 
-共 700 支 YouTube 公開影片、5,384 章、10,768 條逐字稿摘錄；涵蓋 EP1–EP700。章節按完整逐字稿內容順序編排，非精確時間碼。
+共 703 支 YouTube 公開影片、5,406 章、10,812 條逐字稿摘錄；涵蓋 EP1–EP703。章節按完整逐字稿內容順序編排，非精確時間碼。
 
 ## 📚 主題專題深度指南 (Thematic Topic Guides)
 
@@ -17,7 +17,7 @@
 
 | 年份 | 集數 |
 |---:|---:|
-| 2026 | 77 |
+| 2026 | 80 |
 | 2025 | 105 |
 | 2024 | 104 |
 | 2023 | 104 |
@@ -29,6 +29,9 @@
 
 | 集數 | 日期 | 片長 | 章節 | 標題 | YouTube |
 |---:|:---:|---:|---:|---|:---:|
+| [EP703](episodes/EP0703.md) | 2026-10-07 | 50:44 | 8 | EP703 \| 🏈 | [觀看](https://www.youtube.com/watch?v=eMRkc_sEKA8) |
+| [EP702](episodes/EP0702.md) | 2026-10-03 | 53:38 | 7 | 抽不到Radiohead與光模組禁令 | [觀看](https://www.youtube.com/watch?v=jnCOZwkndlg) |
+| [EP701](episodes/EP0701.md) | 2026-09-30 | 51:20 | 7 | Roadster下訂與小IC設計表態 | [觀看](https://www.youtube.com/watch?v=8tczWCtxewk) |
 | [EP700](episodes/EP0700.md) | 2026-09-26 | 50:01 | 8 | EP700 \| 🪭 | [觀看](https://www.youtube.com/watch?v=PzNKL7OTHqw) |
 | [EP699](episodes/EP0699.md) | 2026-09-23 | 50:34 | 8 | EP699 \| 🪻 | [觀看](https://www.youtube.com/watch?v=bAT7nrf5yhk) |
 | [EP698](episodes/EP0698.md) | 2026-09-19 | 52:28 | 8 | EP698 \| 🎮 | [觀看](https://www.youtube.com/watch?v=0bYgYas0lc4) |

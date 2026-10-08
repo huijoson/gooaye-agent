@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "episode": 702,
+  "official": {
+    "youtube_id": "jnCOZwkndlg",
+    "youtube_title": "EP702 | 🐉",
+    "published_at": "2026-10-03T08:19:09+00:00",
+    "duration_seconds": 3218
+  },
+  "archive": {
+    "filename": "EP702_抽不到Radiohead與光模組禁令.md",
+    "display_title": "抽不到Radiohead與光模組禁令",
+    "date": "2026-10-03",
+    "summary": "明星3缺1贊助。主委抽不到 Radiohead 演唱會票的怨念，聊信念的力量與拜觀音，還有大型模型商限縮 AI 額度引發的 token maxing 現象。市場端談光輝十月、不要跟大盤對作，主委的這波主力押注就是光，並拆解摩根士丹利的光模組禁令傳聞與 65% 美國 BOM 要求。Q&A 從 193 公分的紐西蘭生活、追星 BIGBANG、單親爸的空虛感，聊到大武營的鬼故事，最後一句是那個地方已經拆掉了。"
+  },
+  "transcript": {
+    "path": "transcript.md",
+    "size_bytes": 64940,
+    "sha256": "02765613d8f105e99d5772316fe89146f61bdcef26a9fdd33e31e9c1fea31723"
+  },
+  "provenance": {
+    "source_urls": {
+      "archive_index": "https://whatmkreallysaid.com/episodes.json",
+      "duration_metadata": "https://feeds.soundon.fm/podcasts/954689a5-3096-43a4-a80b-7810b219cef3.xml",
+      "transcript": "https://whatmkreallysaid.com/episodes/EP702_%E6%8A%BD%E4%B8%8D%E5%88%B0Radiohead%E8%88%87%E5%85%89%E6%A8%A1%E7%B5%84%E7%A6%81%E4%BB%A4.md",
+      "youtube_metadata": "https://www.youtube.com/feeds/videos.xml?channel_id=UC23rnlQU_qE3cec9x709peA"
+    },
+    "fetched_at": "2026-10-08T14:59:55.041579+00:00"
+  },
+  "content_sha256": "81a7813dab0fa69a303da0c4d635d5669e49b285df99291d1cf1b47902c7703e"
+}

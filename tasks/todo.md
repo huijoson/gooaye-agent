@@ -111,3 +111,14 @@
 - [x] 確認驗證與提交檔案：verify 700 集 / 1407 artifacts / 0 defects、topics audit 0 defects、diff check 與8份新增檔案 secret-pattern/size scan 通過；沿用本次更新已通過的 pytest 285 passed / 2 skipped。
 - [x] EP700 更新提交 `d000cc8` 已 push 至 origin/main；git ls-remote 與本地 HEAD 一致，工作區乾淨。
 - 風險與回復：低風險資料更新，原始音訊不提交；以 revert 回復，不改寫歷史。
+
+# 2026-10-08 更新 EP701–EP703
+- 驗收：EP1–EP703 來源、冷封存、雙層筆記與正式索引完整；Manifest 與主題審計通過，ASR 明確標示未人工校對。
+- [x] 查核官方 metadata 與第三方逐字稿：SoundOn / YouTube 皆至 EP703（2026-10-07），第三方 archive 至 EP702。
+- [x] EP701/EP702 以 `download --episode` 取得第三方來源 snapshot 並同步冷封存；YouTube ID 與官方 feed 一致。
+- [x] EP703 官方音訊 ASR：2143 segments，涵蓋 0–3042.4 秒，實際音訊 3043.58 秒；廣告截點 segment 44（101.2 秒）。
+- [x] 標題/觀點快取：EP701–EP703 依每章前兩則核心摘錄人工撰寫，HeadingQualityEngine / TakeawayQualityEngine 逐章通過。
+- [x] 交易式發布 703 集 / 5406 章 / 1413 artifacts；同步 README、CONTEXT 與技能收錄範圍。
+- [x] 驗證：pytest 285 passed、2 skipped；verify 0 defects；audit 703 集 0 defects；topics audit 4 guides 0 defects；doctor 通過；git diff --check 通過。
+- 備註：Whisper 在 EP703 尾端靜音處產生幻覺句（「请不吝点赞 订阅 转发 打赏支持明镜与点点栏目」，3043.4–3073.4 秒，超出音訊長度），已自 ASR JSON 移除並記錄於 `postprocessing` 欄位。
+- 無程式碼變更；尚未提交或推送 Git。
