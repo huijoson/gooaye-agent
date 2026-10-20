@@ -7,16 +7,15 @@
 ## 核心領域實體 (Core Domain Entities)
 
 ### 1. Episode (`EpisodeMetadata`)
-- 正式 Knowledge Base Publication 涵蓋 EP1 至 EP702（共 702 集，無缺號）。先前 legacy release 只涵蓋 689 支影片；已驗證並發布的最新 Episode Source 為 EP702。官方 RSS 已到 EP706，EP703 至 EP706 尚待上游逐字稿。
-- 每集包含集數編號、官方節目標題、第三方策展標題、發布日期、發布日期來源、片長與完整逐字稿。
+- 正式 Knowledge Base Publication 涵蓋 EP1 至 EP703（共 703 集，無缺號；EP232 改以官方 Podcast feed 提供識別與片長）。先前 legacy release 只涵蓋 689 支影片；EP694–EP700 與 EP703 使用官方音訊 ASR 來源，尚未人工校對。
+- 每集包含集數編號、官方原始標題、發布日期及其來源、片長與完整逐字稿；第三方來源另有策展標題。
 
 ### 1a. Video-less Episode（無公開影片集數）
-- 官方 Podcast feed 仍發布、但 YouTube 頻道已無公開影片的 Episode；目前只有 EP232。
-- 以空的 `youtube_id` 標記，官方識別（標題、發布時間、片長）改由官方 Podcast feed 擔任權威，並必須帶一個絕對的 `audio_url` 指向該集的 Podcast 頁面。
-- 筆記與索引改渲染「音檔／收聽」連結，不得輸出空的 YouTube 連結。
+- 官方 Podcast feed 仍發布、但 YouTube 頻道已無公開影片的 Episode；目前為 EP232。以空的 `youtube_id` 與絕對 `audio_url` 記錄官方音檔頁面。
+- 筆記、冷封存與索引使用 SoundOn 收聽連結。官方 Podcast feed 作為 YouTube RSS 與 legacy metadata 均無資料時的識別來源。
 
 ### 2. Full Transcript (完整逐字稿)
-- 取自公開非官方逐字稿網站的完整文字記錄，為所有章節觀念與條列摘錄的唯一真實依據。
+- 來自第三方逐字稿網站或官方音訊 ASR 的文字記錄，是章節觀念與條列摘錄的內容依據。ASR Transcript 是尚未人工校對的機器轉錄；文字接地不代表已核對原音，引用須保留來源與校對狀態。
 
 ### 3. Curated Summary (第三方摘要)
 - 來自外部索引的集數簡介。系統規則嚴格規定：第三方摘要**僅作為主題檢索提示與輔助參考**，禁止直接複製成筆記段落或洩漏至章節標題中，亦不得限制或決定章節切分數量。
@@ -47,16 +46,21 @@
 - 將指定 Episode 的公開上游資料納入本地語料庫的明確邊界；成功只代表該集已形成可供合成使用的 Episode Source Snapshot，不包含筆記合成或正式發布。
 
 ### 11. Episode Source Snapshot（單集來源快照）
-- 同一 Episode 的完整來源集合：官方節目 metadata、第三方策展 metadata 與 Full Transcript；三者集數必須一致並通過完整性驗證。
+- 同一 Episode 的完整來源集合：官方節目 metadata 與 Full Transcript，以及第三方策展 metadata 或官方音訊 ASR 來源證據；各來源集數必須一致並通過完整性驗證。
 - 不包含原始音訊、生成後的 Episode Note 或 Knowledge Base Publication。
 
 ### 12. Knowledge Base Publication（知識庫發布）
-- 一份可獨立使用的完整知識庫發行版；目前涵蓋 702 集雙層 Episode Notes、四份 Topic Guides、索引與導覽文件，並以 SHA-256 Manifest 識別其完整內容。
+- 一份可獨立使用的完整知識庫發行版；目前涵蓋 703 集雙層 Episode Notes、四份 Topic Guides、索引與導覽文件，並以 SHA-256 Manifest 識別其完整內容。
 - 與 689-video legacy release 有明確區別；只有完整 corpus 才是 Publication。
 
 ### 13. Preview（預覽）
 - 指定 Episode 或 Topic 的局部、顯式、隔離產出，用於檢查結果但不構成正式知識庫發布。
 - 不得位於 Knowledge Base Publication 根目錄或其任何子目錄，亦不得取代 Publication。
+
+### 14. Cold Transcript Archive（永久逐字稿封存庫）
+- 位於專案根目錄 `transcripts/` 的獨立且完整的全集逐字稿集合（`EPxxxx.md` 與 `README.md` 索引）。
+- 防範外部來源失聯的獨立永久冷封存層，保留完整文字及來源資訊；機器轉錄另標明尚未人工校對。
+- 獨立於 `.work/` 內部處理管線與 `gooaye-youtube-notes/` 結構化發布知識庫之外。
 
 ---
 
@@ -71,8 +75,8 @@
 
 ### 10. Episode Acquirer (`episode_acquirer.py`)
 - 將 YouTube RSS 的 identity/title、SoundOn RSS 的 duration/date，以及非官方 archive 的策展 metadata/Full Transcript 對齊成一個 `EpisodeSourceSnapshot`。
-- 識別權威依序為 YouTube RSS → legacy channel metadata → 官方 SoundOn Podcast feed；最後一段只在該集完全沒有公開影片時採用，並產生一個 Video-less Episode。
-- **介面 (Interface)**：`acquire(number, force=False)` 與 `acquire_latest(force=False)`。三個必要來源未齊全時失敗，不改抓音訊轉錄、不自動合成或發布。
+- 識別權威依序為官方 YouTube RSS、legacy channel metadata、官方 Podcast feed；最後一層產生 Video-less Episode，見 [ADR 0007](docs/adr/0007-podcast-identity-for-video-less-episodes.md)。
+- **介面 (Interface)**：`acquire(number, force=False)` 與 `acquire_latest(force=False)`。預設第三方來源未齊全時失敗；顯式官方音訊 ASR 補集政策見 [ADR 0006](docs/adr/0006-official-audio-asr-fallback.md)。取得來源不自動合成或發布。
 
 ### 11. Transcript Processor (`transcript_processor.py`)
 - **`TranscriptSanitizer`**：負責多階段廣告過濾（開頭贊助區塊、贊助宣告、特定贊助品牌如銀座白石/Sony 耳機等之業配詞、過渡橋段）、結尾重點回顧過濾、Markdown 標題/引言清除與摘錄句標準化。
@@ -136,7 +140,7 @@
 - 跨集數主題專題合成與品質審計深模組：
   - **`TopicDefinition`**：定義主題標識、關鍵字、核心概念與分類。
   - **`ThematicChapterRef`**：包含集數編號、日期、章節標題、Takeaway 與權重關聯評分的引用物件。
-  - **`TopicGuideSynthesizer`**：從目前 702 集 Manifest-managed Publication 的筆記中依時序聚合相關章節、提煉年度里程碑與核心結論矩陣。
+  - **`TopicGuideSynthesizer`**：從目前 703 集 Manifest-managed Publication 的筆記中依時序聚合相關章節、提煉年度里程碑與核心結論矩陣。
   - **`TopicGuideRenderer`**：渲染標準主題專題 Markdown 手冊（`gooaye-youtube-notes/topics/{slug}.md`）與主題總覽索引（`topics/README.md`）。
   - **`TopicQualityAuditor`**：100% 驗證專題手冊之章節引用存在性、發布日期對齊度與點擊連結有效性。
 
@@ -161,7 +165,7 @@
 ### 20. Gooaye Skill (`.agents/skills/gooaye/SKILL.md`)
 - **定位**：極低 Token 待機開銷（~30 tokens）的漸進式按需技能。
 - **雙模態機制 (Dual-Mode)**：
-  - **Archive Query (客觀檢索模式)**：檢索目前 702 集 Manifest-managed Publication 的結構化筆記與跨集數主題專題手冊，提供精確集數、章節、核心觀點與逐字稿引述。
+  - **Archive Query (客觀檢索模式)**：檢索目前 703 集 Manifest-managed Publication 的結構化筆記與跨集數主題專題手冊，提供精確集數、章節、核心觀點與逐字稿引述。
   - **Mindset Roasting (主委心態健檢模式)**：切換謝孟恭口吻，基於部位管理、停損紀律、期望值計算進行風險拷問。
 - **階梯式檢索 (Multi-Stage Progressive Search)**：
   - Stage 1: 先在 `_index.md` 與 `episodes/` 中透過語意或關鍵字定位 1–3 集（~150KB 全域索引）。

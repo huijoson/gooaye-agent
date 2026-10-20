@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "created_at": "2026-10-20T07:17:47.620602Z",
+  "created_at": "2026-10-20T08:16:49.397307Z",
   "source_episodes": [
     1,
     2,
@@ -703,7 +703,8 @@
     699,
     700,
     701,
-    702
+    702,
+    703
   ],
   "topic_catalog": [
     "ai-hardware-and-semiconductor",
@@ -711,18 +712,18 @@
     "investment-mindset-and-risk-control",
     "macro-cycle-and-asset-allocation"
   ],
-  "total_chapters": 5396,
-  "total_seconds": 1994174,
+  "total_chapters": 5406,
+  "total_seconds": 1997218,
   "artifacts": [
     {
       "path": "README.md",
-      "size_bytes": 2338,
-      "sha256": "e255ccf9b023eab3977c9e68a1c9ffc536a9c2873567ab1073bb44bbcc15dac7"
+      "size_bytes": 2097,
+      "sha256": "78ac82adcd39e08861878485fd4ab91f182fe1a87b9995e4027ee76d974bfb76"
     },
     {
       "path": "_index.md",
-      "size_bytes": 113425,
-      "sha256": "5172f5bc48c5a0af21bbe236220d64a7175b68c5682eb1155523d6fa9da7d41a"
+      "size_bytes": 113416,
+      "sha256": "9e3aea8492e6385b8bd079ed9128b05969d43047584fa70d6fbfefed42fcc286"
     },
     {
       "path": "episodes/EP0001.full.md",
@@ -3036,13 +3037,13 @@
     },
     {
       "path": "episodes/EP0232.full.md",
-      "size_bytes": 12219,
-      "sha256": "4b16fafc50d87a39a93cc1d9e93082c90c04a4007791a159644467a46af2e6cc"
+      "size_bytes": 12006,
+      "sha256": "878e5a7a1169d927b6ec98e68dcd5b1553a21782fe8f1e4fc512656e04d59e77"
     },
     {
       "path": "episodes/EP0232.md",
-      "size_bytes": 7473,
-      "sha256": "db6f21ad22cbbc1e4891ad10baf9e33cb8262f8e8ae632b0deeaf9e355768bf6"
+      "size_bytes": 7260,
+      "sha256": "e8946068dc561409175ba148beba21b12fb9894cd514fc6212a06d7ba32635dc"
     },
     {
       "path": "episodes/EP0233.full.md",
@@ -7656,73 +7657,73 @@
     },
     {
       "path": "episodes/EP0694.full.md",
-      "size_bytes": 13247,
-      "sha256": "f29250137e0941caa46de207b639dfe2aa2715efed71badcf45f66280afd98ea"
+      "size_bytes": 16055,
+      "sha256": "58d9df394fe8c2133094873dd1fade4e648d6f904184ef47f1c091d24a2cf53a"
     },
     {
       "path": "episodes/EP0694.md",
-      "size_bytes": 7711,
-      "sha256": "f95a02eff9a721d12163b63aa867c9192efb811e37a90fa52765e6309ddef8c3"
+      "size_bytes": 8166,
+      "sha256": "2ce367c860740df9153e70594080b0c2325faf38f510c892708bfb55c5f6b693"
     },
     {
       "path": "episodes/EP0695.full.md",
-      "size_bytes": 15722,
-      "sha256": "732d645f5aafb0303ec93ad775f3af78717a34742e46e8bef735ff338eab1a40"
+      "size_bytes": 15546,
+      "sha256": "ac16a4740765ab5a70df6dca7357a8a78e62d86c4bdc41dd2cf7655c2fb686e4"
     },
     {
       "path": "episodes/EP0695.md",
-      "size_bytes": 8150,
-      "sha256": "16266f2932ed7bebd94626d553a3100f01e28f513b4d49686594cf9a2ff47516"
+      "size_bytes": 8256,
+      "sha256": "c87d45ae745f94cdee6dd8055cd8a1c5d05f18f22231a466e3ceb8c71cfcffd3"
     },
     {
       "path": "episodes/EP0696.full.md",
-      "size_bytes": 15733,
-      "sha256": "f7f7309b2871bd1040ed05213dd45afb7b3b25c0105c0c2e04a4949a51ad6ddd"
+      "size_bytes": 15759,
+      "sha256": "1838f75733a3c8a52cda067aa9db51839a4d227d24007b512c2da5393013a3bc"
     },
     {
       "path": "episodes/EP0696.md",
-      "size_bytes": 7800,
-      "sha256": "b9648a029dd9bc4a127cc9c03ba79510d8fa4bd094f5da4cf358d708236d2fbb"
+      "size_bytes": 8199,
+      "sha256": "ea71879152e0d9cef01745cc9b9f09559e892e9b6acbcc79bc4829d1f01f5a0b"
     },
     {
       "path": "episodes/EP0697.full.md",
-      "size_bytes": 11755,
-      "sha256": "d2bf756a596a34373595f542de629df20645d68e329883e50ac53080f351527a"
+      "size_bytes": 15904,
+      "sha256": "2fd5bb6574b55a58942ced7ad91154aca752c5ab3c274fcddc8f537cc50e3eb2"
     },
     {
       "path": "episodes/EP0697.md",
-      "size_bytes": 6253,
-      "sha256": "8b6edc25a16297eb26a1104699fc738a3161ab860215fc123e596ee843b65794"
+      "size_bytes": 8284,
+      "sha256": "3e7186a8e24eb9092281af8b7c8dd60254e81f080a9def89ca8ba37d54f71a0f"
     },
     {
       "path": "episodes/EP0698.full.md",
-      "size_bytes": 17006,
-      "sha256": "f6d322c4029f539f61be90cd4af3e1e7ea4ac41cd24bc5630b114e51669baa79"
+      "size_bytes": 16793,
+      "sha256": "4d1562223a29999582a25b12ccefd0649452e244b0368c9738d02724c2f42ef5"
     },
     {
       "path": "episodes/EP0698.md",
-      "size_bytes": 8807,
-      "sha256": "612ff0940a23a60a04f36fc3a1314d926d7ed612154e631fbae8507966c4d6dd"
+      "size_bytes": 8071,
+      "sha256": "6fef14af08f83e1b1d8786521e11b9d67ea62b6c9f462aa9587aed7a077d4d43"
     },
     {
       "path": "episodes/EP0699.full.md",
-      "size_bytes": 15918,
-      "sha256": "47c8267e5a3e5968088c008f87a8dbdad68115e7da937a7c5e5cf365fc18298b"
+      "size_bytes": 14906,
+      "sha256": "c92f76f7686da30621fc3f4490de288a5de17ea1ea94ecadcee46031f6adc769"
     },
     {
       "path": "episodes/EP0699.md",
-      "size_bytes": 7988,
-      "sha256": "a643221ad239abe360dddf2bdbf01cc60fe3d8bdd9385e5dd84dea0909b1b586"
+      "size_bytes": 7997,
+      "sha256": "52700d736221ef8e40e3c60da32578fca24b941136695e5feb493040e6af77af"
     },
     {
       "path": "episodes/EP0700.full.md",
-      "size_bytes": 14249,
-      "sha256": "ca1da9eb964ecb8b9dc469a93e1b47202cb30c0ed21707556b773baa460831db"
+      "size_bytes": 17701,
+      "sha256": "b87cf8350618b064b9d51eebee6fb50c3de21f3dc5265e39e9b7599f52f3b844"
     },
     {
       "path": "episodes/EP0700.md",
-      "size_bytes": 7763,
-      "sha256": "2c2b33ba15b1fa96f8403b8dc5eac5eccb989bdc3f13b1e1e8c8154726abc7db"
+      "size_bytes": 8227,
+      "sha256": "ca2d024563bb588658b45c8a51a01a7666b42114729e533393c4b3535095a042"
     },
     {
       "path": "episodes/EP0701.full.md",
@@ -7745,29 +7746,39 @@
       "sha256": "0d0d6e8a4ca8c9b7fd62fc365a6e44b3df1ec5ef130d17ac83df35ce9aa380fe"
     },
     {
+      "path": "episodes/EP0703.full.md",
+      "size_bytes": 18190,
+      "sha256": "2926a7ab05e9a68d13a77f4320b4cdc36586c3676fc77b371c716e83d4797530"
+    },
+    {
+      "path": "episodes/EP0703.md",
+      "size_bytes": 8641,
+      "sha256": "ecdd7c43d1f19b64de6ecea3f5201e87ecfb823c0cf3105c42d40ccbce0dd50b"
+    },
+    {
       "path": "topics/README.md",
       "size_bytes": 2538,
-      "sha256": "4fd8151cfc390243066d60aff4a9ed28fef9047d194ddcda9a6fe60bee886e80"
+      "sha256": "a5144c1a975b15075d65632df0108b29c5472fc3367a32e15c6c3cab1abe4e64"
     },
     {
       "path": "topics/ai-hardware-and-semiconductor.md",
-      "size_bytes": 253363,
-      "sha256": "9c9e9d200ea77b83936b6deab834cd6b8420e0a87841a379327ba4a4ef216d63"
+      "size_bytes": 250865,
+      "sha256": "154be7888e850954a33a6bd9d1033a99675bcc2a6ba3f21475a4ddbf0264231c"
     },
     {
       "path": "topics/apple-and-consumer-electronics.md",
-      "size_bytes": 681728,
-      "sha256": "52e55a42ce17767490cc51b71f9437f2e49236b3874ceb6e18d644b2cb56ed3c"
+      "size_bytes": 678105,
+      "sha256": "e11a0376ce2650d079603ef434495f7b4f62f8aa3085a426a2a3637bd795a42d"
     },
     {
       "path": "topics/investment-mindset-and-risk-control.md",
-      "size_bytes": 850291,
-      "sha256": "1853659b2aaff9443f09ebdbda740227175550df368f92f30d3399d3eff700e3"
+      "size_bytes": 854611,
+      "sha256": "815a2f1a209b210fab8789c7ee275dc593b7da0e57ea6fd383c3016be5b300d1"
     },
     {
       "path": "topics/macro-cycle-and-asset-allocation.md",
-      "size_bytes": 590934,
-      "sha256": "bd11569cdca3668f76ad335383c5c1992df3775e00013789084636ee030864d2"
+      "size_bytes": 595460,
+      "sha256": "f4c64ab273ec4b97b32d496827a6daa8fbe3575e10235047f6f23ed59a6c4efe"
     }
   ]
 }

@@ -41,7 +41,8 @@ def make_snapshot(marker: str) -> EpisodeSourceSnapshot:
 def test_mnt_c_staging_force_and_rollback_contract(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    assert str(REPO_ROOT).startswith("/mnt/c/")
+    if not str(REPO_ROOT).startswith("/mnt/c/"):
+        pytest.skip("Test requires /mnt/c/ filesystem")
     with TemporaryDirectory(
         prefix="episode-source-filesystem-contract-",
         dir=REPO_ROOT / ".work",

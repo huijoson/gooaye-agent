@@ -1,6 +1,6 @@
 # 全集索引
 
-共 702 集節目（701 支公開 YouTube 影片）、5,396 章、10,792 條逐字稿摘錄；涵蓋 EP1–EP702。章節按完整逐字稿內容順序編排，非精確時間碼。
+共 703 集節目（702 支公開 YouTube 影片）、5,406 章、10,812 條逐字稿摘錄；涵蓋 EP1–EP703。章節按完整逐字稿內容順序編排，非精確時間碼。
 
 ## 📚 主題專題深度指南 (Thematic Topic Guides)
 
@@ -17,7 +17,7 @@
 
 | 年份 | 集數 |
 |---:|---:|
-| 2026 | 79 |
+| 2026 | 80 |
 | 2025 | 105 |
 | 2024 | 104 |
 | 2023 | 104 |
@@ -29,15 +29,16 @@
 
 | 集數 | 日期 | 片長 | 章節 | 標題 | 連結 |
 |---:|:---:|---:|---:|---|:---:|
+| [EP703](episodes/EP0703.md) | 2026-10-07 | 50:44 | 8 | EP703 \| 🏈 | [觀看](https://www.youtube.com/watch?v=eMRkc_sEKA8) |
 | [EP702](episodes/EP0702.md) | 2026-10-03 | 53:38 | 7 | 抽不到Radiohead與光模組禁令 | [觀看](https://www.youtube.com/watch?v=jnCOZwkndlg) |
 | [EP701](episodes/EP0701.md) | 2026-09-30 | 51:20 | 7 | Roadster下訂與小IC設計表態 | [觀看](https://www.youtube.com/watch?v=8tczWCtxewk) |
-| [EP700](episodes/EP0700.md) | 2026-09-26 | 50:01 | 8 | 東京巨蛋被三振與Muse電子雞 | [觀看](https://www.youtube.com/watch?v=PzNKL7OTHqw) |
-| [EP699](episodes/EP0699.md) | 2026-09-23 | 50:34 | 8 | 小學生棒球課與DSP漲價 | [觀看](https://www.youtube.com/watch?v=bAT7nrf5yhk) |
-| [EP698](episodes/EP0698.md) | 2026-09-19 | 52:28 | 8 | 吸菸房升級與CCL降規 | [觀看](https://www.youtube.com/watch?v=0bYgYas0lc4) |
-| [EP697](episodes/EP0697.md) | 2026-09-16 | 49:58 | 6 | 出差大爆哭與監管捕獲 | [觀看](https://www.youtube.com/watch?v=SbKGDWhpGhY) |
-| [EP696](episodes/EP0696.md) | 2026-09-12 | 52:31 | 8 | 中年戰鬥陀螺與謝家家恥日 | [觀看](https://www.youtube.com/watch?v=Z3zbWLhUS-w) |
-| [EP695](episodes/EP0695.md) | 2026-09-09 | 49:55 | 8 | 東京電玩展烏龍與TPU一年回本 | [觀看](https://www.youtube.com/watch?v=OcTI4yvvn2I) |
-| [EP694](episodes/EP0694.md) | 2026-09-05 | 50:40 | 8 | 內容通膨論與外蒙古學生 | [觀看](https://www.youtube.com/watch?v=aOwBYre2B5k) |
+| [EP700](episodes/EP0700.md) | 2026-09-26 | 50:01 | 8 | EP700 \| 🪭 | [觀看](https://www.youtube.com/watch?v=PzNKL7OTHqw) |
+| [EP699](episodes/EP0699.md) | 2026-09-23 | 50:34 | 8 | EP699 \| 🪻 | [觀看](https://www.youtube.com/watch?v=bAT7nrf5yhk) |
+| [EP698](episodes/EP0698.md) | 2026-09-19 | 52:28 | 8 | EP698 \| 🎮 | [觀看](https://www.youtube.com/watch?v=0bYgYas0lc4) |
+| [EP697](episodes/EP0697.md) | 2026-09-16 | 49:58 | 8 | EP697 \| 🔥 | [觀看](https://www.youtube.com/watch?v=SbKGDWhpGhY) |
+| [EP696](episodes/EP0696.md) | 2026-09-12 | 52:31 | 8 | EP696 \| 🎖️ | [觀看](https://www.youtube.com/watch?v=Z3zbWLhUS-w) |
+| [EP695](episodes/EP0695.md) | 2026-09-09 | 49:55 | 8 | EP695 \| 🍊 | [觀看](https://www.youtube.com/watch?v=OcTI4yvvn2I) |
+| [EP694](episodes/EP0694.md) | 2026-09-05 | 50:40 | 8 | EP694 \| 🥖 | [觀看](https://www.youtube.com/watch?v=aOwBYre2B5k) |
 | [EP693](episodes/EP0693.md) | 2026-09-02 | 49:45 | 8 | 十公里初體驗與輝達插旗發哥 | [觀看](https://www.youtube.com/watch?v=TsMMO08ub_Q) |
 | [EP692](episodes/EP0692.md) | 2026-08-29 | 49:59 | 7 | 玩具多巴胺論與供應鏈卡位戰 | [觀看](https://www.youtube.com/watch?v=ohoIGtJ3Bwc) |
 | [EP691](episodes/EP0691.md) | 2026-08-26 | 49:55 | 8 | 北海道敲門驚魂與人人一個Jarvis | [觀看](https://www.youtube.com/watch?v=J-e9oxqLzpc) |

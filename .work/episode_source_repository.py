@@ -179,14 +179,31 @@ class EpisodeSourceRepository:
         stripped = snapshot.transcript.lstrip().lower() if isinstance(snapshot.transcript, str) else ""
         if stripped.startswith("<!doctype html") or stripped.startswith("<html"):
             defects.append("transcript must be Markdown, not HTML")
-        required_source_urls = (
-            VIDEOLESS_REQUIRED_SOURCE_URLS if videoless else REQUIRED_SOURCE_URLS
-        )
-        if not isinstance(snapshot.source_urls, Mapping) or not required_source_urls.issubset(snapshot.source_urls):
+        required_urls = VIDEOLESS_REQUIRED_SOURCE_URLS if videoless else REQUIRED_SOURCE_URLS
+        if not isinstance(snapshot.transcription, Mapping):
+            defects.append("transcription provenance must be a mapping")
+        elif snapshot.transcription:
+            required_urls = frozenset({"youtube_metadata", "duration_metadata", "audio", "transcript"})
+            details = snapshot.transcription
+            if not isinstance(details, Mapping) or not all(
+                isinstance(details.get(key), str) and details[key].strip()
+                for key in ("engine", "model", "audio_url", "audio_sha256")
+            ):
+                defects.append("transcription provenance is incomplete")
+            else:
+                if not EpisodeSourceRepository._is_absolute_url(details["audio_url"]):
+                    defects.append("transcription audio_url must be an absolute URL")
+                if not re.fullmatch(r"[a-f0-9]{64}", details["audio_sha256"]):
+                    defects.append("transcription audio_sha256 must be a SHA-256 digest")
+                if isinstance(snapshot.source_urls, Mapping) and snapshot.source_urls.get("audio") != details["audio_url"]:
+                    defects.append("transcription audio_url must match source_urls audio")
+            if isinstance(details, Mapping) and not all(isinstance(k, str) and isinstance(v, str) for k, v in details.items()):
+                defects.append("transcription provenance values must be strings")
+        if not isinstance(snapshot.source_urls, Mapping) or not required_urls.issubset(snapshot.source_urls):
             defects.append("source_urls are incomplete")
         elif any(
             not EpisodeSourceRepository._is_absolute_url(snapshot.source_urls[key])
-            for key in required_source_urls
+            for key in required_urls
         ):
             defects.append("source_urls must contain non-empty absolute URLs")
         try:
@@ -228,6 +245,8 @@ class EpisodeSourceRepository:
                 "fetched_at": snapshot.fetched_at,
             },
         }
+        if snapshot.transcription:
+            manifest["transcript"]["transcription"] = dict(snapshot.transcription)
         content = {
             "official": manifest["official"],
             "archive": manifest["archive"],
@@ -259,7 +278,12 @@ class EpisodeSourceRepository:
                 if existing_report.is_valid:
                     existing_manifest = self._read_manifest(target)
                     if existing_manifest.get("content_sha256") == manifest["content_sha256"]:
-                        return "unchanged"
+                        # A corrected ASR source URL must replace local-only
+                        # provenance even when transcript bytes are identical.
+                        old_urls = existing_manifest.get("provenance", {}).get("source_urls")
+                        new_urls = manifest["provenance"]["source_urls"]
+                        if not (force and snapshot.transcription and old_urls != new_urls):
+                            return "unchanged"
                 if not force:
                     raise SnapshotConflictError(
                         f"EP{snapshot.number} already exists with different content; "
@@ -480,6 +504,7 @@ class EpisodeSourceRepository:
                     source_urls=provenance.get("source_urls", {}),
                     fetched_at=provenance.get("fetched_at", ""),
                     audio_url=official.get("audio_url", ""),
+                    transcription=transcript_meta.get("transcription", {}),
                 )
             )
         except (InvalidSnapshotError, TypeError) as exc:
@@ -532,7 +557,14 @@ class EpisodeSourceRepository:
         self._load_legacy()
         assert self._legacy_channel_entries is not None
         assert self._legacy_archive_entries is not None
-        legacy = set(self._legacy_channel_entries) & set(self._legacy_archive_entries)
+        legacy = {
+            number
+            for number in self._legacy_archive_entries
+            if (
+                number in self._legacy_channel_entries
+                or (self.legacy_transcript_dir / f"EP{number:04d}.md").exists()
+            )
+        }
         return sorted(legacy | self._normalized_numbers())
 
     @property
@@ -586,7 +618,8 @@ class EpisodeSourceRepository:
         if manifest is not None:
             official = manifest["official"]
             archive = manifest["archive"]
-            archive_url = (
+            transcription = manifest["transcript"].get("transcription", {})
+            archive_url = "" if transcription else (
                 f"{self.archive_base_url}episode.html?file={quote(archive['filename'])}"
             )
             youtube_id = official["youtube_id"]
@@ -599,12 +632,13 @@ class EpisodeSourceRepository:
                 youtube_title=official["youtube_title"],
                 display_title=archive["display_title"],
                 date=archive["date"],
-                date_source="transcript_archive",
+                date_source="official_metadata" if transcription else "transcript_archive",
                 duration_str=format_duration(official["duration_seconds"]),
                 duration_seconds=official["duration_seconds"],
                 archive_url=archive_url,
                 summary=archive["summary"].strip(),
                 audio_url=official.get("audio_url", ""),
+                transcription=transcription,
             )
 
         self._load_legacy()
@@ -612,11 +646,25 @@ class EpisodeSourceRepository:
         assert self._legacy_archive_entries is not None
         channel_entry = self._legacy_channel_entries.get(number)
         archive_entry = self._legacy_archive_entries.get(number)
-        if not channel_entry or not archive_entry:
+        if not archive_entry or (
+            not channel_entry
+            and not (self.legacy_transcript_dir / f"EP{number:04d}.md").exists()
+        ):
             raise ValueError(f"Metadata not found for EP{number}")
-        youtube_id = channel_entry["id"]
-        duration_seconds = round(channel_entry.get("duration") or 0)
-        original_title = channel_entry.get("title") or f"EP{number}"
+
+        if channel_entry:
+            youtube_id = channel_entry["id"]
+            duration_seconds = round(channel_entry.get("duration") or 0)
+            original_title = channel_entry.get("title") or f"EP{number}"
+            duration_str = format_duration(channel_entry.get("duration"))
+            youtube_url = f"https://www.youtube.com/watch?v={youtube_id}"
+        else:
+            youtube_id = ""
+            duration_seconds = 0
+            original_title = f"EP{number} | {archive_entry.get('title', '')}"
+            duration_str = "未知"
+            youtube_url = "https://www.youtube.com/@Gooaye/videos"
+
         display_title = (
             archive_entry.get("display_title")
             or archive_entry.get("title")
@@ -626,7 +674,7 @@ class EpisodeSourceRepository:
         archive_date = archive_entry.get("date")
         if archive_date:
             date_value, date_source = archive_date, "transcript_archive"
-        else:
+        elif channel_entry:
             sample_path = (
                 self.legacy_channel_path.parent
                 / "samples"
@@ -645,15 +693,17 @@ class EpisodeSourceRepository:
                     date_value, date_source = "未知", "unknown"
             else:
                 date_value, date_source = "未知", "unknown"
+        else:
+            date_value, date_source = "未知", "unknown"
         return EpisodeMetadata(
             number=number,
             youtube_id=youtube_id,
-            youtube_url=f"https://www.youtube.com/watch?v={youtube_id}",
+            youtube_url=youtube_url,
             youtube_title=original_title,
             display_title=display_title,
             date=date_value,
             date_source=date_source,
-            duration_str=format_duration(channel_entry.get("duration")),
+            duration_str=duration_str,
             duration_seconds=duration_seconds,
             archive_url=(
                 f"{self.archive_base_url}episode.html?file={quote(archive_filename)}"
