@@ -82,11 +82,57 @@ class TestMarkdownRenderer(unittest.TestCase):
 
         readme = MarkdownRenderer.render_readme([note1], summary)
         self.assertIn("Gooaye 股癌 YouTube 全集章節觀念整理", readme)
-        self.assertIn("收錄 **1 支目前公開的 YouTube 影片**", readme)
+        self.assertIn("收錄 **1 集節目**（其中 1 集仍有公開 YouTube 影片）", readme)
 
         index = MarkdownRenderer.render_index([note1], summary)
         self.assertIn("# 全集索引", index)
         self.assertIn("[EP1](episodes/EP0001.md)", index)
+        self.assertIn("[觀看](https://youtube.com/watch?v=id1)", index)
+
+    def test_an_episode_without_a_video_links_to_the_podcast(self) -> None:
+        meta = EpisodeMetadata(
+            number=232,
+            youtube_id="",
+            youtube_url="",
+            youtube_title="EP232 | 🧙",
+            display_title="育兒碎碎念與市場現象分析",
+            date="2022-04-02",
+            date_source="transcript_archive",
+            duration_str="50:31",
+            duration_seconds=3031,
+            archive_url="https://whatmkreallysaid.com/232",
+            audio_url="https://player.soundon.fm/p/podcast/episodes/ep232",
+            summary="摘要",
+        )
+        note = EpisodeNote(
+            metadata=meta,
+            chapters=(Chapter(index=1, heading="章節標題", excerpts=("摘錄1", "摘錄2")),),
+        )
+        summary = SynthesisSummary(
+            total_episodes=1,
+            total_chapters=1,
+            total_seconds=3031,
+            chapter_distribution=Counter({1: 1}),
+            notes=(note,),
+        )
+
+        rendered = MarkdownRenderer.render_episode(note)
+
+        self.assertIn(
+            "- **音檔：** [SoundOn](https://player.soundon.fm/p/podcast/episodes/ep232)",
+            rendered,
+        )
+        self.assertIn('audio_url: "https://player.soundon.fm/p/podcast/episodes/ep232"', rendered)
+        self.assertIn("- **官方節目標題：** EP232 | 🧙", rendered)
+        self.assertIn("本集在 YouTube 頻道已無公開影片", rendered)
+        self.assertNotIn("[YouTube]()", rendered)
+
+        index = MarkdownRenderer.render_index([note], summary)
+        readme = MarkdownRenderer.render_readme([note], summary)
+
+        self.assertIn("[收聽](https://player.soundon.fm/p/podcast/episodes/ep232)", index)
+        self.assertIn("共 1 集節目（0 支公開 YouTube 影片）", index)
+        self.assertIn("收錄 **1 集節目**（其中 0 集仍有公開 YouTube 影片）", readme)
 
     def test_readme_and_index_derive_range_and_chapter_range_from_notes(self) -> None:
         notes = []

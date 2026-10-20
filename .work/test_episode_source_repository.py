@@ -412,3 +412,100 @@ def test_legacy_metadata_keeps_youtube_sample_date_fallback(tmp_path: Path) -> N
 
     assert metadata.date == "2020-02-27"
     assert metadata.date_source == "youtube_metadata"
+
+
+VIDEOLESS_AUDIO_URL = (
+    "https://player.soundon.fm/p/954689a5/episodes/5de01abe-6ccb-4126-8fad-2d9a01640f1d"
+)
+
+
+def make_videoless_snapshot(**overrides) -> EpisodeSourceSnapshot:
+    fields = dict(
+        number=232,
+        youtube_id="",
+        youtube_title="EP232 | 🧙",
+        published_at="2022-04-02T07:47:20+00:00",
+        duration_seconds=3031,
+        archive_filename="EP232_🧙.md",
+        display_title="育兒碎碎念與市場現象分析",
+        archive_date="2022-04-02",
+        summary="育兒心得與市場供應鏈盤點。",
+        transcript="歡迎收聽《股癌》，我是謝孟恭。" * 200,
+        source_urls={
+            "audio_metadata": "https://feeds.soundon.fm/test.xml",
+            "duration_metadata": "https://feeds.soundon.fm/test.xml",
+            "archive_index": "https://whatmkreallysaid.com/episodes.json",
+            "transcript": "https://whatmkreallysaid.com/episodes/EP232.md",
+        },
+        fetched_at=datetime(2026, 9, 9, 0, 0, tzinfo=UTC).isoformat(),
+        audio_url=VIDEOLESS_AUDIO_URL,
+    )
+    fields.update(overrides)
+    return EpisodeSourceSnapshot(**fields)
+
+
+def test_commit_accepts_an_episode_whose_video_is_gone(tmp_path: Path) -> None:
+    repository = make_repository(tmp_path)
+
+    assert repository.commit(make_videoless_snapshot()) == "created"
+    assert repository.verify(232).is_valid
+
+    manifest = json.loads(
+        (tmp_path / "episode-sources/EP0232/snapshot.json").read_text(encoding="utf-8")
+    )
+    metadata = repository.get_metadata(232)
+
+    assert manifest["official"]["audio_url"] == VIDEOLESS_AUDIO_URL
+    assert metadata.youtube_url == ""
+    assert metadata.audio_url == VIDEOLESS_AUDIO_URL
+    assert metadata.media_url == VIDEOLESS_AUDIO_URL
+    assert not metadata.has_video
+    assert 232 in repository.episode_numbers
+
+
+def test_a_snapshot_with_a_video_keeps_the_manifest_free_of_audio_url(
+    tmp_path: Path,
+) -> None:
+    repository = make_repository(tmp_path)
+
+    repository.commit(make_snapshot())
+
+    manifest = json.loads(
+        (tmp_path / "episode-sources/EP0691/snapshot.json").read_text(encoding="utf-8")
+    )
+
+    assert "audio_url" not in manifest["official"]
+    assert repository.get_metadata(691).has_video
+
+
+def test_an_episode_without_a_video_requires_an_audio_url(tmp_path: Path) -> None:
+    repository = make_repository(tmp_path)
+
+    with pytest.raises(InvalidSnapshotError, match="audio_url"):
+        repository.commit(make_videoless_snapshot(audio_url=""))
+
+
+def test_an_episode_without_a_video_documents_the_podcast_as_its_source(
+    tmp_path: Path,
+) -> None:
+    repository = make_repository(tmp_path)
+    snapshot = make_videoless_snapshot(
+        source_urls={
+            "youtube_metadata": "https://www.youtube.com/feeds/videos.xml?channel_id=test",
+            "duration_metadata": "https://feeds.soundon.fm/test.xml",
+            "archive_index": "https://whatmkreallysaid.com/episodes.json",
+            "transcript": "https://whatmkreallysaid.com/episodes/EP232.md",
+        },
+    )
+
+    with pytest.raises(InvalidSnapshotError, match="source_urls are incomplete"):
+        repository.commit(snapshot)
+
+
+def test_a_transcript_without_a_heading_must_be_named_by_the_archive_filename(
+    tmp_path: Path,
+) -> None:
+    repository = make_repository(tmp_path)
+
+    with pytest.raises(InvalidSnapshotError, match="archive filename"):
+        repository.commit(make_videoless_snapshot(archive_filename="EP233_🧙.md"))

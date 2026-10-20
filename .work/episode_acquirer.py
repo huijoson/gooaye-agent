@@ -84,6 +84,7 @@ class AcquisitionResult:
     duration_seconds: int
     snapshot_path: str
     verification: EpisodeSourceVerification
+    audio_url: str = ""
 
 
 class EpisodeAcquisitionError(RuntimeError):
@@ -96,6 +97,10 @@ class SourceFormatError(EpisodeAcquisitionError):
 
 class SourceMismatchError(EpisodeAcquisitionError):
     """Raised when upstream authorities disagree on episode identity."""
+
+
+class EpisodeNotInPodcastFeedError(SourceMismatchError):
+    """Raised when the official podcast feed carries no entry for an episode."""
 
 
 class EpisodeNotInOfficialFeedError(EpisodeAcquisitionError):
@@ -224,6 +229,8 @@ class EpisodeAcquirer:
             if episode_text and not episode_text.isdigit():
                 raise SourceFormatError("SoundOn itunes:episode is invalid")
             item_number = int(episode_text) if episode_text else title_number
+            if item_number != number:
+                continue
             if (
                 episode_text
                 and title_number is not None
@@ -232,8 +239,6 @@ class EpisodeAcquirer:
                 raise SourceMismatchError(
                     "SoundOn itunes:episode disagrees with the title episode number"
                 )
-            if item_number != number:
-                continue
             published_text = (item.findtext("pubDate") or "").strip()
             duration_text = (item.findtext(f"{{{ITUNES}}}duration") or "").strip()
             if not published_text or not duration_text:
@@ -246,10 +251,14 @@ class EpisodeAcquirer:
                 ) from exc
             return {
                 "number": number,
+                "title": title,
                 "published_at": published_at,
                 "duration_seconds": parse_duration(duration_text),
+                "audio_url": (item.findtext("link") or "").strip(),
             }
-        raise SourceMismatchError(f"EP{number} is missing from the SoundOn feed")
+        raise EpisodeNotInPodcastFeedError(
+            f"EP{number} is missing from the SoundOn feed"
+        )
 
     def _archive_entry(self, number: int) -> dict:
         body = self._response_body(
@@ -314,6 +323,27 @@ class EpisodeAcquirer:
                 f"EP{number} publication dates disagree across upstream sources"
             )
 
+    def _podcast_identity(
+        self,
+        number: int,
+        no_video: EpisodeNotInOfficialFeedError,
+    ) -> tuple[dict, dict]:
+        """Fall back to the official podcast feed when no public video exists."""
+        try:
+            soundon = self._soundon_entry(number)
+        except EpisodeNotInPodcastFeedError:
+            raise no_video from None
+        if not soundon["audio_url"]:
+            raise SourceFormatError(f"SoundOn entry for EP{number} has no episode link")
+        official = {
+            "number": number,
+            "youtube_id": "",
+            "youtube_title": soundon["title"] or f"EP{number}",
+            "published_at": soundon["published_at"].isoformat(),
+            "audio_url": soundon["audio_url"],
+        }
+        return official, soundon
+
     def acquire(self, number: int, force: bool = False) -> AcquisitionResult:
         """Acquire and persist one complete source snapshot."""
         return self._acquire(number, force=force)
@@ -324,29 +354,32 @@ class EpisodeAcquirer:
         force: bool,
         youtube_entry: dict | None = None,
     ) -> AcquisitionResult:
-        youtube = youtube_entry
-        if youtube is None:
+        official = youtube_entry
+        if official is None:
             try:
-                youtube = self._youtube_entry(number)
-            except EpisodeNotInOfficialFeedError:
+                official = self._youtube_entry(number)
+            except EpisodeNotInOfficialFeedError as no_video:
                 legacy = self.repository.get_legacy_acquisition_metadata(number)
-                if legacy is None:
-                    raise
-                youtube = legacy
-                soundon = {
-                    "number": number,
-                    "published_at": datetime.fromisoformat(legacy["published_at"]),
-                    "duration_seconds": legacy["duration_seconds"],
-                }
-                youtube_metadata_source = legacy["metadata_source"]
-                duration_metadata_source = legacy["metadata_source"]
+                if legacy is not None:
+                    official = legacy
+                    soundon = {
+                        "number": number,
+                        "published_at": datetime.fromisoformat(legacy["published_at"]),
+                        "duration_seconds": legacy["duration_seconds"],
+                    }
+                    identity_metadata_source = legacy["metadata_source"]
+                    duration_metadata_source = legacy["metadata_source"]
+                else:
+                    official, soundon = self._podcast_identity(number, no_video)
+                    identity_metadata_source = self.soundon_feed_url
+                    duration_metadata_source = self.soundon_feed_url
             else:
                 soundon = self._soundon_entry(number)
-                youtube_metadata_source = self.youtube_feed_url
+                identity_metadata_source = self.youtube_feed_url
                 duration_metadata_source = self.soundon_feed_url
         else:
             soundon = self._soundon_entry(number)
-            youtube_metadata_source = self.youtube_feed_url
+            identity_metadata_source = self.youtube_feed_url
             duration_metadata_source = self.soundon_feed_url
         archive = self._archive_entry(number)
         archive_filename, display_title, archive_date, summary = self._archive_metadata(
@@ -373,26 +406,37 @@ class EpisodeAcquirer:
             raise SourceFormatError(
                 f"EP{number} transcript must contain at least 1000 UTF-8 bytes"
             )
-        if not re.search(
-            rf"^#\s+EP0*{number}\b",
+        heading_match = re.search(
+            r"^#\s+EP\s*(\d+)\b",
             transcript_text,
             re.IGNORECASE | re.MULTILINE,
-        ):
+        )
+        if heading_match and int(heading_match.group(1)) != number:
             raise SourceMismatchError(
                 f"EP{number} transcript heading does not match the requested episode"
+            )
+        if not heading_match and not re.match(
+            rf"EP0*{number}(?!\d)", archive_filename, re.IGNORECASE
+        ):
+            raise SourceMismatchError(
+                f"EP{number} transcript has no episode heading and its archive "
+                "filename does not name the episode"
             )
 
         self._cross_check_dates(
             number,
-            youtube["published_at"],
+            official["published_at"],
             soundon["published_at"],
             archive_date,
         )
+        identity_url_key = (
+            "youtube_metadata" if official["youtube_id"] else "audio_metadata"
+        )
         snapshot = EpisodeSourceSnapshot(
             number=number,
-            youtube_id=youtube["youtube_id"],
-            youtube_title=youtube["youtube_title"],
-            published_at=youtube["published_at"],
+            youtube_id=official["youtube_id"],
+            youtube_title=official["youtube_title"],
+            published_at=official["published_at"],
             duration_seconds=soundon["duration_seconds"],
             archive_filename=archive_filename,
             display_title=display_title,
@@ -400,12 +444,13 @@ class EpisodeAcquirer:
             summary=summary,
             transcript=transcript_text,
             source_urls={
-                "youtube_metadata": youtube_metadata_source,
+                identity_url_key: identity_metadata_source,
                 "duration_metadata": duration_metadata_source,
                 "archive_index": self.archive_index_url,
                 "transcript": transcript_url,
             },
             fetched_at=self.clock().astimezone(UTC).isoformat(),
+            audio_url=official.get("audio_url", ""),
         )
         status = self.repository.commit(snapshot, force=force)
         verification = self.repository.verify(number)
@@ -421,6 +466,7 @@ class EpisodeAcquirer:
             duration_seconds=snapshot.duration_seconds,
             snapshot_path=str(self.repository.snapshot_root / f"EP{number:04d}"),
             verification=verification,
+            audio_url=snapshot.audio_url,
         )
 
     def acquire_latest(self, force: bool = False) -> AcquisitionResult:
@@ -440,6 +486,7 @@ __all__ = [
     "EpisodeAcquirer",
     "EpisodeAcquisitionError",
     "EpisodeNotInOfficialFeedError",
+    "EpisodeNotInPodcastFeedError",
     "HttpResponse",
     "SOUNDON_FEED_URL",
     "SourceFormatError",

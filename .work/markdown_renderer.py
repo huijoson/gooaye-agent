@@ -45,10 +45,11 @@ class MarkdownRenderer:
         dist_str = "、".join(f"{count} 章：{episodes} 集" for count, episodes in sorted(summary.chapter_distribution.items()))
         year_range = f"{years[0]}–{years[-1]}" if years else "2020–2026"
         episode_range, chapter_range = MarkdownRenderer._corpus_ranges(notes)
+        video_count = sum(1 for note in notes if note.metadata.has_video)
 
         return f"""# Gooaye 股癌 YouTube 全集章節觀念整理
 
-本資料夾收錄 **{len(notes)} 支目前公開的 YouTube 影片**，涵蓋 {episode_range}，合計約 **{hours:.1f} 小時**。全集共 **{summary.total_chapters:,} 章**、**{2 * summary.total_chapters:,} 條逐字稿摘錄**；每集各有一份 Markdown，以完整逐字稿為內容依據，整理成依討論順序排列的章節觀念。
+本資料夾收錄 **{len(notes)} 集節目**（其中 {video_count} 集仍有公開 YouTube 影片），涵蓋 {episode_range}，合計約 **{hours:.1f} 小時**。全集共 **{summary.total_chapters:,} 章**、**{2 * summary.total_chapters:,} 條逐字稿摘錄**；每集各有一份 Markdown，以完整逐字稿為內容依據，整理成依討論順序排列的章節觀念。
 
 - [全集索引](_index.md)
 - [逐集筆記](episodes/)
@@ -67,7 +68,7 @@ class MarkdownRenderer:
 - 各章標題由該章入選的兩段完整逐字稿摘錄重新命名：命名模型的輸入不含第三方 `summary`；`summary` 只在產生後用來拒絕撞句，少數未通過自動驗證者由人工直接依兩段摘錄覆核。章序依入選摘錄在逐字稿中的實際位置排列。
 - 這些章節是主題／觀念索引，不是精確時間碼。
 - 日期主要來自第三方逐字稿索引，不宣稱已逐集核對 YouTube 上傳日期；唯一缺日期的 EP162 使用單支 YouTube metadata 補為 2021-07-31。
-- 公開 YouTube 清單共有 {len(notes)} 支，集數範圍為 {episode_range}；只收錄實際出現在頻道公開清單中的影片。
+- 公開 YouTube 清單共有 {video_count} 支，集數範圍為 {episode_range}；頻道已無公開影片的集數改以官方 Podcast feed 作為官方來源，並在該集筆記中標註。
 - 非官方逐字稿與抽取結果可能有聽寫或專有名詞錯誤，正確內容以原始影片為準。
 - 所有內容僅供學習與索引，不構成投資建議。
 
@@ -82,6 +83,7 @@ class MarkdownRenderer:
     ) -> str:
         """Render the _index.md directory file."""
         episode_range, _ = MarkdownRenderer._corpus_ranges(notes)
+        video_count = sum(1 for note in notes if note.metadata.has_video)
         grouped: dict[str, list[EpisodeNote]] = defaultdict(list)
         for note in sorted(notes, key=lambda n: n.metadata.number, reverse=True):
             year = note.metadata.date[:4] if re.match(r"\d{4}-", note.metadata.date) else "日期未知"
@@ -90,7 +92,7 @@ class MarkdownRenderer:
         lines = [
             "# 全集索引",
             "",
-            f"共 {len(notes)} 支 YouTube 公開影片、{summary.total_chapters:,} 章、{2 * summary.total_chapters:,} 條逐字稿摘錄；涵蓋 {episode_range}。章節按完整逐字稿內容順序編排，非精確時間碼。",
+            f"共 {len(notes)} 集節目（{video_count} 支公開 YouTube 影片）、{summary.total_chapters:,} 章、{2 * summary.total_chapters:,} 條逐字稿摘錄；涵蓋 {episode_range}。章節按完整逐字稿內容順序編排，非精確時間碼。",
             "",
             "## 📚 主題專題深度指南 (Thematic Topic Guides)",
             "",
@@ -114,13 +116,14 @@ class MarkdownRenderer:
             lines.append(f"| {year} | {len(grouped[year])} |")
 
         for year in sorted(grouped, reverse=True):
-            lines.extend(["", f"## {year}", "", "| 集數 | 日期 | 片長 | 章節 | 標題 | YouTube |", "|---:|:---:|---:|---:|---|:---:|"])
+            lines.extend(["", f"## {year}", "", "| 集數 | 日期 | 片長 | 章節 | 標題 | 連結 |", "|---:|:---:|---:|---:|---|:---:|"])
             for note in grouped[year]:
                 title = note.metadata.display_title.replace("|", "\\|").replace("\n", " ")
+                media_action = "觀看" if note.metadata.has_video else "收聽"
                 lines.append(
                     f"| [EP{note.metadata.number}](episodes/EP{note.metadata.number:04d}.md) | "
                     f"{note.metadata.date} | {note.metadata.duration_str} | {len(note.chapters)} | {title} | "
-                    f"[觀看]({note.metadata.youtube_url}) |"
+                    f"[{media_action}]({note.metadata.media_url}) |"
                 )
         lines.append("")
         return "\n".join(lines)

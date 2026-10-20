@@ -590,3 +590,177 @@ def test_live_ep691_sources_still_satisfy_the_acquisition_contract(
     assert result.verification.is_valid
     assert repository.get_metadata(691).date == "2026-08-26"
     assert len(repository.load_transcript(691).encode("utf-8")) >= 50_000
+
+
+EP232_FILENAME = "EP232_🧙.md"
+EP232_TRANSCRIPT_URL = "https://whatmkreallysaid.com/episodes/" + quote(EP232_FILENAME)
+EP232_AUDIO_URL = (
+    "https://player.soundon.fm/p/954689a5/episodes/5de01abe-6ccb-4126-8fad-2d9a01640f1d"
+)
+
+
+def soundon_feed_with_ep232(include_link: bool = True) -> bytes:
+    link = f"<link>{EP232_AUDIO_URL}</link>" if include_link else ""
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+  <channel>
+    <title>Gooaye 股癌</title>
+    <item>
+      <title>EP232 | 🧙</title>
+      {link}
+      <pubDate>Sat, 02 Apr 2022 07:47:20 GMT</pubDate>
+      <guid>5de01abe-6ccb-4126-8fad-2d9a01640f1d</guid>
+      <itunes:episode>232</itunes:episode>
+      <itunes:duration>3031</itunes:duration>
+      <description>盤點一下</description>
+    </item>
+  </channel>
+</rss>
+""".encode()
+
+
+def ep232_responses(include_link: bool = True) -> dict[str, HttpResponse]:
+    archive = [
+        {
+            "number": 232,
+            "title": "🧙",
+            "filename": EP232_FILENAME,
+            "display_title": "育兒碎碎念與市場現象分析",
+            "summary": "育兒心得與市場供應鏈盤點。",
+            "date": "2022-04-02",
+        }
+    ]
+    return {
+        YOUTUBE_FEED_URL: HttpResponse(
+            url=YOUTUBE_FEED_URL,
+            status=200,
+            content_type="application/atom+xml; charset=UTF-8",
+            body=youtube_feed(),
+        ),
+        SOUNDON_FEED_URL: HttpResponse(
+            url=SOUNDON_FEED_URL,
+            status=200,
+            content_type="application/rss+xml; charset=UTF-8",
+            body=soundon_feed_with_ep232(include_link=include_link),
+        ),
+        ARCHIVE_INDEX_URL: HttpResponse(
+            url=ARCHIVE_INDEX_URL,
+            status=200,
+            content_type="application/json; charset=utf-8",
+            body=json.dumps(archive, ensure_ascii=False).encode(),
+        ),
+        EP232_TRANSCRIPT_URL: HttpResponse(
+            url=EP232_TRANSCRIPT_URL,
+            status=200,
+            content_type="text/markdown; charset=utf-8",
+            body=("歡迎收聽《股癌》，我是謝孟恭。" * 200).encode(),
+        ),
+    }
+
+
+def test_an_episode_with_no_public_video_is_acquired_from_the_podcast_feed(
+    tmp_path: Path,
+) -> None:
+    repository = make_repository(tmp_path)
+    acquirer = EpisodeAcquirer(
+        repository=repository,
+        http_client=FixtureHttpClient(ep232_responses()),
+        clock=lambda: datetime(2026, 9, 9, 0, 0, tzinfo=UTC),
+    )
+
+    result = acquirer.acquire(232)
+
+    assert result.status == "created"
+    assert result.youtube_id == ""
+    assert result.audio_url == EP232_AUDIO_URL
+    assert result.duration_seconds == 3031
+    assert result.verification.is_valid
+
+    metadata = repository.get_metadata(232)
+    manifest = json.loads(
+        (tmp_path / "episode-sources/EP0232/snapshot.json").read_text(encoding="utf-8")
+    )
+
+    assert not metadata.has_video
+    assert metadata.media_url == EP232_AUDIO_URL
+    assert metadata.youtube_title == "EP232 | 🧙"
+    assert metadata.date == "2022-04-02"
+    assert manifest["provenance"]["source_urls"]["audio_metadata"] == SOUNDON_FEED_URL
+    assert "youtube_metadata" not in manifest["provenance"]["source_urls"]
+
+
+def test_a_podcast_entry_without_an_episode_link_is_a_format_error(
+    tmp_path: Path,
+) -> None:
+    acquirer = EpisodeAcquirer(
+        repository=make_repository(tmp_path),
+        http_client=FixtureHttpClient(ep232_responses(include_link=False)),
+    )
+
+    with pytest.raises(SourceFormatError, match="episode link"):
+        acquirer.acquire(232)
+
+
+def test_a_mislabelled_neighbour_does_not_hide_the_requested_podcast_entry(
+    tmp_path: Path,
+) -> None:
+    mislabelled_neighbour = """<title>Gooaye 股癌</title>
+    <item>
+      <title>EP622 | 🕯️</title>
+      <pubDate>Tue, 30 Jan 2024 08:00:00 GMT</pubDate>
+      <itunes:episode>623</itunes:episode>
+      <itunes:duration>3000</itunes:duration>
+    </item>"""
+    responses = ep232_responses()
+    responses[SOUNDON_FEED_URL] = HttpResponse(
+        url=SOUNDON_FEED_URL,
+        status=200,
+        content_type="application/rss+xml",
+        body=soundon_feed_with_ep232()
+        .decode("utf-8")
+        .replace("<title>Gooaye 股癌</title>", mislabelled_neighbour, 1)
+        .encode(),
+    )
+    acquirer = EpisodeAcquirer(
+        repository=make_repository(tmp_path),
+        http_client=FixtureHttpClient(responses),
+    )
+
+    result = acquirer.acquire(232)
+
+    assert result.number == 232
+    assert result.audio_url == EP232_AUDIO_URL
+
+
+def test_a_podcast_entry_that_contradicts_its_own_title_is_rejected(
+    tmp_path: Path,
+) -> None:
+    responses = ep232_responses()
+    responses[SOUNDON_FEED_URL] = HttpResponse(
+        url=SOUNDON_FEED_URL,
+        status=200,
+        content_type="application/rss+xml",
+        body=soundon_feed_with_ep232().replace(
+            b"<itunes:episode>232</itunes:episode>",
+            b"<itunes:episode>233</itunes:episode>",
+        ),
+    )
+    acquirer = EpisodeAcquirer(
+        repository=make_repository(tmp_path),
+        http_client=FixtureHttpClient(responses),
+    )
+
+    with pytest.raises(SourceMismatchError, match="disagrees with the title"):
+        acquirer.acquire(233)
+
+
+def test_an_episode_missing_from_every_official_feed_still_fails_as_out_of_window(
+    tmp_path: Path,
+) -> None:
+    acquirer = EpisodeAcquirer(
+        repository=make_repository(tmp_path),
+        http_client=FixtureHttpClient(ep232_responses()),
+    )
+
+    with pytest.raises(EpisodeNotInOfficialFeedError, match="EP233"):
+        acquirer.acquire(233)

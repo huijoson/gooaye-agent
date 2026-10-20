@@ -112,6 +112,22 @@ class EpisodeMetadata:
     duration_seconds: int
     archive_url: str
     summary: str
+    audio_url: str = ""
+
+    @property
+    def has_video(self) -> bool:
+        """Whether the episode still has a public video on the YouTube channel."""
+        return bool(self.youtube_id)
+
+    @property
+    def media_url(self) -> str:
+        """Canonical link for whichever medium still publishes this episode."""
+        return self.youtube_url if self.has_video else self.audio_url
+
+    @property
+    def media_label(self) -> str:
+        """Name of the platform that `media_url` points at."""
+        return "YouTube" if self.has_video else "SoundOn"
 
 
 @dataclass(frozen=True)
@@ -129,6 +145,7 @@ class EpisodeSourceSnapshot:
     transcript: str
     source_urls: Mapping[str, str]
     fetched_at: str
+    audio_url: str = ""
 
 
 @dataclass(frozen=True)
@@ -162,13 +179,34 @@ class EpisodeNote:
             body = "\n".join(lines)
             chapter_markdown.append(f"### {ch.index}. {ch.heading}\n\n{body}")
 
+        audio_frontmatter = (
+            ""
+            if self.metadata.has_video
+            else f"audio_url: {yaml_string(self.metadata.audio_url)}\n"
+        )
+        title_label = "YouTube 原始標題" if self.metadata.has_video else "官方節目標題"
+        media_noun = "影片" if self.metadata.has_video else "音檔"
+        media_line = (
+            f"- **影片：** [YouTube]({self.metadata.youtube_url})"
+            if self.metadata.has_video
+            else f"- **音檔：** [SoundOn]({self.metadata.audio_url})"
+        )
+        media_source_lines = (
+            f"- 影片資訊：[Gooaye 股癌 YouTube]({self.metadata.youtube_url})"
+            if self.metadata.has_video
+            else (
+                f"- 音檔資訊：[Gooaye 股癌 SoundOn]({self.metadata.audio_url})\n"
+                "- 本集在 YouTube 頻道已無公開影片，官方標題、日期與片長改以官方 Podcast feed 為準。"
+            )
+        )
+
         return f"""---
 episode: {self.metadata.number}
 title: {yaml_string(self.metadata.display_title)}
 youtube_title: {yaml_string(self.metadata.youtube_title)}
 youtube_id: {yaml_string(self.metadata.youtube_id)}
 youtube_url: {yaml_string(self.metadata.youtube_url)}
-episode_date: {yaml_string(self.metadata.date)}
+{audio_frontmatter}episode_date: {yaml_string(self.metadata.date)}
 episode_date_source: {yaml_string(self.metadata.date_source)}
 duration: {yaml_string(self.metadata.duration_str)}
 content_method: {yaml_string("hybrid_extractive_distilled")}
@@ -176,10 +214,10 @@ content_method: {yaml_string("hybrid_extractive_distilled")}
 
 # EP{self.metadata.number}｜{self.metadata.display_title}
 
-- **YouTube 原始標題：** {self.metadata.youtube_title}
+- **{title_label}：** {self.metadata.youtube_title}
 - **節目日期：** {self.metadata.date}
 - **片長：** {self.metadata.duration_str}
-- **影片：** [YouTube]({self.metadata.youtube_url})
+{media_line}
 
 ## 章節觀念
 
@@ -187,12 +225,12 @@ content_method: {yaml_string("hybrid_extractive_distilled")}
 
 ## 資料來源與整理方式
 
-- 影片資訊：[Gooaye 股癌 YouTube]({self.metadata.youtube_url})
+{media_source_lines}
 - 完整內容依據：[公開非官方逐字稿]({self.metadata.archive_url})
-- 頁首策展標題來自第三方逐字稿索引；YouTube 原始標題另列於上方。
+- 頁首策展標題來自第三方逐字稿索引；{title_label}另列於上方。
 - 第三方摘要只作全文檢索提示；章節按入選摘錄在**完整逐字稿**中的實際位置排序。命名模型只接收每章全文摘錄，不接收摘要；摘要只在事後用來拒絕撞句，少數未通過自動驗證的標題由人工直接依摘錄覆核。條列也是全文短摘錄，而非摘要切片。
 - 節目日期主要取自第三方逐字稿索引；若該欄缺漏，才使用單支 YouTube metadata。日期不宣稱等同 YouTube 上傳日。
-- 本文沒有虛構時間碼。非官方逐字稿可能有聽寫或專有名詞錯誤，請以原始影片為準。
+- 本文沒有虛構時間碼。非官方逐字稿可能有聽寫或專有名詞錯誤，請以原始{media_noun}為準。
 - 本文僅供學習與索引，不構成投資建議。
 """
 

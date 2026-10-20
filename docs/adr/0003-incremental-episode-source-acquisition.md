@@ -5,7 +5,7 @@ date: 2026-08-28
 
 # Incremental episode source acquisition
 
-Episode Acquisition produces one synthesis-ready Episode Source Snapshot without synthesizing notes or publishing the knowledge base. YouTube RSS is authoritative for episode identity, video ID, and original title; SoundOn RSS supplies publication time and duration for cross-checking; the non-official transcript archive supplies curated metadata and the Full Transcript. A missing or inconsistent source fails the acquisition instead of silently degrading or generating a replacement transcript.
+Episode Acquisition produces one synthesis-ready Episode Source Snapshot without synthesizing notes or publishing the knowledge base. YouTube RSS is authoritative for episode identity, video ID, and original title (ADR 0005 adds the official podcast feed as the last identity tier for an episode with no public video); SoundOn RSS supplies publication time and duration for cross-checking; the non-official transcript archive supplies curated metadata and the Full Transcript. A missing or inconsistent source fails the acquisition instead of silently degrading or generating a replacement transcript.
 
 New episodes are stored as self-contained, per-episode directories layered over the existing legacy snapshots. This keeps each change small and allows a fully validated directory to cross the commit boundary as one unit, while an Episode Source Repository hides the legacy/new layout from consumers. The first version is intentionally incremental and dependency-free: it supports existing local episodes and new episodes still present in the official feeds, but fails explicitly for an unknown episode outside the feed window rather than adding `yt-dlp` or accepting incomplete metadata.
 

@@ -136,7 +136,10 @@ def cmd_download(args: argparse.Namespace) -> None:
         raise SystemExit(1) from exc
 
     print(f"EP{result.number} source snapshot: {result.status}")
-    print(f"youtube_id: {result.youtube_id}")
+    if result.youtube_id:
+        print(f"youtube_id: {result.youtube_id}")
+    else:
+        print(f"audio_url: {result.audio_url}")
     print(f"duration_seconds: {result.duration_seconds}")
     print(f"Path: {result.snapshot_path}")
     print("verification: OK")

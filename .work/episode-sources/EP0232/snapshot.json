@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "episode": 232,
+  "official": {
+    "youtube_id": "",
+    "youtube_title": "EP232 | 🧙",
+    "published_at": "2022-04-02T07:47:20+00:00",
+    "duration_seconds": 3031,
+    "audio_url": "https://player.soundon.fm/p/954689a5-3096-43a4-a80b-7810b219cef3/episodes/5de01abe-6ccb-4126-8fad-2d9a01640f1d"
+  },
+  "archive": {
+    "filename": "EP232_🧙.md",
+    "display_title": "🧙 育兒碎碎念與市場現象分析",
+    "date": "2022-04-02",
+    "summary": "開場業配情趣商城後，謝孟恭分享育兒心得，談小孩被霸凌風險與台灣小學生的惡質文化，也討論了是否送小孩去國外念書的考量。後半談市場，強調不要被分析師追高殺低的預測洗腦，應有中心思想；逐一檢視手機、PC、資料中心、車用供應鏈現況，認為整體沒有到很恐慌，但提醒油價走向很重要。最後 Q&A 回答股票面額、槓桿投資、儲蓄險解約等常見問題。"
+  },
+  "transcript": {
+    "path": "transcript.md",
+    "size_bytes": 58499,
+    "sha256": "b23d8308a25482e53bab86b6826935b24f5ee4cc59d5ac122c742223e4dc934d"
+  },
+  "provenance": {
+    "source_urls": {
+      "archive_index": "https://whatmkreallysaid.com/episodes.json",
+      "audio_metadata": "https://feeds.soundon.fm/podcasts/954689a5-3096-43a4-a80b-7810b219cef3.xml",
+      "duration_metadata": "https://feeds.soundon.fm/podcasts/954689a5-3096-43a4-a80b-7810b219cef3.xml",
+      "transcript": "https://whatmkreallysaid.com/episodes/EP232_%F0%9F%A7%99.md"
+    },
+    "fetched_at": "2026-09-09T09:18:27.229182+00:00"
+  },
+  "content_sha256": "fb338e1097187bfc797ac0f9b57f7f084392018f8d37dcd4c36fed2a8e74a7d3"
+}

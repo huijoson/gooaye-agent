@@ -28,6 +28,9 @@ MANIFEST_FILENAME = "snapshot.json"
 REQUIRED_SOURCE_URLS = frozenset(
     {"youtube_metadata", "duration_metadata", "archive_index", "transcript"}
 )
+VIDEOLESS_REQUIRED_SOURCE_URLS = frozenset(
+    {"audio_metadata", "duration_metadata", "archive_index", "transcript"}
+)
 MIN_TRANSCRIPT_BYTES = 1000
 
 
@@ -103,10 +106,20 @@ class EpisodeSourceRepository:
             defects.append("episode number must be an integer")
         elif snapshot.number <= 0:
             defects.append("episode number must be positive")
-        if not isinstance(snapshot.youtube_id, str) or not re.fullmatch(
-            r"[A-Za-z0-9_-]{11}", snapshot.youtube_id
+        videoless = isinstance(snapshot.youtube_id, str) and not snapshot.youtube_id
+        if not isinstance(snapshot.youtube_id, str) or (
+            not videoless
+            and not re.fullmatch(r"[A-Za-z0-9_-]{11}", snapshot.youtube_id)
         ):
             defects.append("youtube_id must be an 11-character video ID")
+        if videoless and not EpisodeSourceRepository._is_absolute_url(snapshot.audio_url):
+            defects.append("an episode without a video ID requires an absolute audio_url")
+        elif (
+            not videoless
+            and snapshot.audio_url
+            and not EpisodeSourceRepository._is_absolute_url(snapshot.audio_url)
+        ):
+            defects.append("audio_url must be an absolute URL")
         if not isinstance(snapshot.youtube_title, str) or not snapshot.youtube_title.strip():
             defects.append("youtube_title is required")
         if (
@@ -143,19 +156,37 @@ class EpisodeSourceRepository:
         )
         if not isinstance(snapshot.transcript, str) or len(transcript_bytes) < MIN_TRANSCRIPT_BYTES:
             defects.append("transcript must contain at least 1000 UTF-8 bytes")
-        heading_pattern = rf"^#\s+EP0*{snapshot.number}\b"
-        if not isinstance(snapshot.transcript, str) or not re.search(
-            heading_pattern, snapshot.transcript, re.IGNORECASE | re.MULTILINE
-        ):
+        heading_match = (
+            re.search(
+                r"^#\s+EP\s*(\d+)\b",
+                snapshot.transcript,
+                re.IGNORECASE | re.MULTILINE,
+            )
+            if isinstance(snapshot.transcript, str)
+            else None
+        )
+        if heading_match and int(heading_match.group(1)) != snapshot.number:
             defects.append("transcript heading must match the episode number")
+        elif not heading_match and not re.match(
+            rf"EP0*{snapshot.number}(?!\d)",
+            snapshot.archive_filename if isinstance(snapshot.archive_filename, str) else "",
+            re.IGNORECASE,
+        ):
+            defects.append(
+                "a transcript without an episode heading needs an archive filename "
+                "that names the episode"
+            )
         stripped = snapshot.transcript.lstrip().lower() if isinstance(snapshot.transcript, str) else ""
         if stripped.startswith("<!doctype html") or stripped.startswith("<html"):
             defects.append("transcript must be Markdown, not HTML")
-        if not isinstance(snapshot.source_urls, Mapping) or not REQUIRED_SOURCE_URLS.issubset(snapshot.source_urls):
+        required_source_urls = (
+            VIDEOLESS_REQUIRED_SOURCE_URLS if videoless else REQUIRED_SOURCE_URLS
+        )
+        if not isinstance(snapshot.source_urls, Mapping) or not required_source_urls.issubset(snapshot.source_urls):
             defects.append("source_urls are incomplete")
         elif any(
             not EpisodeSourceRepository._is_absolute_url(snapshot.source_urls[key])
-            for key in REQUIRED_SOURCE_URLS
+            for key in required_source_urls
         ):
             defects.append("source_urls must contain non-empty absolute URLs")
         try:
@@ -169,15 +200,18 @@ class EpisodeSourceRepository:
 
     @staticmethod
     def _manifest(snapshot: EpisodeSourceSnapshot, transcript_bytes: bytes) -> dict:
+        official = {
+            "youtube_id": snapshot.youtube_id,
+            "youtube_title": snapshot.youtube_title,
+            "published_at": snapshot.published_at,
+            "duration_seconds": snapshot.duration_seconds,
+        }
+        if snapshot.audio_url:
+            official["audio_url"] = snapshot.audio_url
         manifest = {
             "schema_version": SCHEMA_VERSION,
             "episode": snapshot.number,
-            "official": {
-                "youtube_id": snapshot.youtube_id,
-                "youtube_title": snapshot.youtube_title,
-                "published_at": snapshot.published_at,
-                "duration_seconds": snapshot.duration_seconds,
-            },
+            "official": official,
             "archive": {
                 "filename": snapshot.archive_filename,
                 "display_title": snapshot.display_title,
@@ -445,6 +479,7 @@ class EpisodeSourceRepository:
                     transcript=transcript_text,
                     source_urls=provenance.get("source_urls", {}),
                     fetched_at=provenance.get("fetched_at", ""),
+                    audio_url=official.get("audio_url", ""),
                 )
             )
         except (InvalidSnapshotError, TypeError) as exc:
@@ -554,10 +589,13 @@ class EpisodeSourceRepository:
             archive_url = (
                 f"{self.archive_base_url}episode.html?file={quote(archive['filename'])}"
             )
+            youtube_id = official["youtube_id"]
             return EpisodeMetadata(
                 number=number,
-                youtube_id=official["youtube_id"],
-                youtube_url=f"https://www.youtube.com/watch?v={official['youtube_id']}",
+                youtube_id=youtube_id,
+                youtube_url=(
+                    f"https://www.youtube.com/watch?v={youtube_id}" if youtube_id else ""
+                ),
                 youtube_title=official["youtube_title"],
                 display_title=archive["display_title"],
                 date=archive["date"],
@@ -566,6 +604,7 @@ class EpisodeSourceRepository:
                 duration_seconds=official["duration_seconds"],
                 archive_url=archive_url,
                 summary=archive["summary"].strip(),
+                audio_url=official.get("audio_url", ""),
             )
 
         self._load_legacy()
