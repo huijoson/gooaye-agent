@@ -7,8 +7,13 @@
 ## 核心領域實體 (Core Domain Entities)
 
 ### 1. Episode (`EpisodeMetadata`)
-- 正式 Knowledge Base Publication 涵蓋 EP1 至 EP693（共 692 集，缺 EP232）。先前 legacy release 只涵蓋 689 支影片；目前的第 692 集 EP693 是已驗證並發布的 Episode Source。
-- 每集包含集數編號、YouTube 原始標題、第三方策展標題、發布日期、發布日期來源、影片片長與完整逐字稿。
+- 正式 Knowledge Base Publication 涵蓋 EP1 至 EP702（共 702 集，無缺號）。先前 legacy release 只涵蓋 689 支影片；已驗證並發布的最新 Episode Source 為 EP702。官方 RSS 已到 EP706，EP703 至 EP706 尚待上游逐字稿。
+- 每集包含集數編號、官方節目標題、第三方策展標題、發布日期、發布日期來源、片長與完整逐字稿。
+
+### 1a. Video-less Episode（無公開影片集數）
+- 官方 Podcast feed 仍發布、但 YouTube 頻道已無公開影片的 Episode；目前只有 EP232。
+- 以空的 `youtube_id` 標記，官方識別（標題、發布時間、片長）改由官方 Podcast feed 擔任權威，並必須帶一個絕對的 `audio_url` 指向該集的 Podcast 頁面。
+- 筆記與索引改渲染「音檔／收聽」連結，不得輸出空的 YouTube 連結。
 
 ### 2. Full Transcript (完整逐字稿)
 - 取自公開非官方逐字稿網站的完整文字記錄，為所有章節觀念與條列摘錄的唯一真實依據。
@@ -46,7 +51,7 @@
 - 不包含原始音訊、生成後的 Episode Note 或 Knowledge Base Publication。
 
 ### 12. Knowledge Base Publication（知識庫發布）
-- 一份可獨立使用的完整知識庫發行版；目前涵蓋 692 集雙層 Episode Notes、四份 Topic Guides、索引與導覽文件，並以 SHA-256 Manifest 識別其完整內容。
+- 一份可獨立使用的完整知識庫發行版；目前涵蓋 702 集雙層 Episode Notes、四份 Topic Guides、索引與導覽文件，並以 SHA-256 Manifest 識別其完整內容。
 - 與 689-video legacy release 有明確區別；只有完整 corpus 才是 Publication。
 
 ### 13. Preview（預覽）
@@ -66,6 +71,7 @@
 
 ### 10. Episode Acquirer (`episode_acquirer.py`)
 - 將 YouTube RSS 的 identity/title、SoundOn RSS 的 duration/date，以及非官方 archive 的策展 metadata/Full Transcript 對齊成一個 `EpisodeSourceSnapshot`。
+- 識別權威依序為 YouTube RSS → legacy channel metadata → 官方 SoundOn Podcast feed；最後一段只在該集完全沒有公開影片時採用，並產生一個 Video-less Episode。
 - **介面 (Interface)**：`acquire(number, force=False)` 與 `acquire_latest(force=False)`。三個必要來源未齊全時失敗，不改抓音訊轉錄、不自動合成或發布。
 
 ### 11. Transcript Processor (`transcript_processor.py`)
@@ -130,7 +136,7 @@
 - 跨集數主題專題合成與品質審計深模組：
   - **`TopicDefinition`**：定義主題標識、關鍵字、核心概念與分類。
   - **`ThematicChapterRef`**：包含集數編號、日期、章節標題、Takeaway 與權重關聯評分的引用物件。
-  - **`TopicGuideSynthesizer`**：從目前 692 集 Manifest-managed Publication 的筆記中依時序聚合相關章節、提煉年度里程碑與核心結論矩陣。
+  - **`TopicGuideSynthesizer`**：從目前 702 集 Manifest-managed Publication 的筆記中依時序聚合相關章節、提煉年度里程碑與核心結論矩陣。
   - **`TopicGuideRenderer`**：渲染標準主題專題 Markdown 手冊（`gooaye-youtube-notes/topics/{slug}.md`）與主題總覽索引（`topics/README.md`）。
   - **`TopicQualityAuditor`**：100% 驗證專題手冊之章節引用存在性、發布日期對齊度與點擊連結有效性。
 
@@ -155,7 +161,7 @@
 ### 20. Gooaye Skill (`.agents/skills/gooaye/SKILL.md`)
 - **定位**：極低 Token 待機開銷（~30 tokens）的漸進式按需技能。
 - **雙模態機制 (Dual-Mode)**：
-  - **Archive Query (客觀檢索模式)**：檢索目前 692 集 Manifest-managed Publication 的結構化筆記與跨集數主題專題手冊，提供精確集數、章節、核心觀點與逐字稿引述。
+  - **Archive Query (客觀檢索模式)**：檢索目前 702 集 Manifest-managed Publication 的結構化筆記與跨集數主題專題手冊，提供精確集數、章節、核心觀點與逐字稿引述。
   - **Mindset Roasting (主委心態健檢模式)**：切換謝孟恭口吻，基於部位管理、停損紀律、期望值計算進行風險拷問。
 - **階梯式檢索 (Multi-Stage Progressive Search)**：
   - Stage 1: 先在 `_index.md` 與 `episodes/` 中透過語意或關鍵字定位 1–3 集（~150KB 全域索引）。

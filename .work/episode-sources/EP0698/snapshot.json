@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "episode": 698,
+  "official": {
+    "youtube_id": "0bYgYas0lc4",
+    "youtube_title": "EP698 | 🎮",
+    "published_at": "2026-09-19T02:59:51+00:00",
+    "duration_seconds": 3148
+  },
+  "archive": {
+    "filename": "EP698_吸菸房升級與CCL降規.md",
+    "display_title": "吸菸房升級與CCL降規",
+    "date": "2026-09-19",
+    "summary": "首次出差住進幕張新大谷，從吸菸房升級聊到 American Psycho 式的低調奢華名片；東京電玩展的觀察是大 IP 不如 indie games。市場端拆解「CCL 降規」鬼故事與 AMD 漲價貼文的意識流，大盤在新高附近卻沒有連續性，轉空與否怎麼看。Q&A 只有六則但篇篇長：長照與安樂死的沉重提問、八位數龍妹妹的人生、出國四十幾次的牙醫，收尾是 GTA6 與打遊戲的人比較聰明。"
+  },
+  "transcript": {
+    "path": "transcript.md",
+    "size_bytes": 62304,
+    "sha256": "ca99028676485424645ebfbe8c33d81faded71b698b009902aa185d867790dca"
+  },
+  "provenance": {
+    "source_urls": {
+      "archive_index": "https://whatmkreallysaid.com/episodes.json",
+      "duration_metadata": "https://feeds.soundon.fm/podcasts/954689a5-3096-43a4-a80b-7810b219cef3.xml",
+      "transcript": "https://whatmkreallysaid.com/episodes/EP698_%E5%90%B8%E8%8F%B8%E6%88%BF%E5%8D%87%E7%B4%9A%E8%88%87CCL%E9%99%8D%E8%A6%8F.md",
+      "youtube_metadata": "https://www.youtube.com/feeds/videos.xml?channel_id=UC23rnlQU_qE3cec9x709peA"
+    },
+    "fetched_at": "2026-10-20T07:08:37.466226+00:00"
+  },
+  "content_sha256": "d30c85787950671d6e5c017db447210eddd016e5717507c5284801cee498edf7"
+}

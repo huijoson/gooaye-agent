@@ -1,6 +1,6 @@
 # 全集索引
 
-共 692 支 YouTube 公開影片、5,321 章、10,642 條逐字稿摘錄；涵蓋 EP1–EP693。章節按完整逐字稿內容順序編排，非精確時間碼。
+共 702 集節目（701 支公開 YouTube 影片）、5,396 章、10,792 條逐字稿摘錄；涵蓋 EP1–EP702。章節按完整逐字稿內容順序編排，非精確時間碼。
 
 ## 📚 主題專題深度指南 (Thematic Topic Guides)
 
@@ -17,18 +17,27 @@
 
 | 年份 | 集數 |
 |---:|---:|
-| 2026 | 70 |
+| 2026 | 79 |
 | 2025 | 105 |
 | 2024 | 104 |
 | 2023 | 104 |
-| 2022 | 104 |
+| 2022 | 105 |
 | 2021 | 104 |
 | 2020 | 101 |
 
 ## 2026
 
-| 集數 | 日期 | 片長 | 章節 | 標題 | YouTube |
+| 集數 | 日期 | 片長 | 章節 | 標題 | 連結 |
 |---:|:---:|---:|---:|---|:---:|
+| [EP702](episodes/EP0702.md) | 2026-10-03 | 53:38 | 7 | 抽不到Radiohead與光模組禁令 | [觀看](https://www.youtube.com/watch?v=jnCOZwkndlg) |
+| [EP701](episodes/EP0701.md) | 2026-09-30 | 51:20 | 7 | Roadster下訂與小IC設計表態 | [觀看](https://www.youtube.com/watch?v=8tczWCtxewk) |
+| [EP700](episodes/EP0700.md) | 2026-09-26 | 50:01 | 8 | 東京巨蛋被三振與Muse電子雞 | [觀看](https://www.youtube.com/watch?v=PzNKL7OTHqw) |
+| [EP699](episodes/EP0699.md) | 2026-09-23 | 50:34 | 8 | 小學生棒球課與DSP漲價 | [觀看](https://www.youtube.com/watch?v=bAT7nrf5yhk) |
+| [EP698](episodes/EP0698.md) | 2026-09-19 | 52:28 | 8 | 吸菸房升級與CCL降規 | [觀看](https://www.youtube.com/watch?v=0bYgYas0lc4) |
+| [EP697](episodes/EP0697.md) | 2026-09-16 | 49:58 | 6 | 出差大爆哭與監管捕獲 | [觀看](https://www.youtube.com/watch?v=SbKGDWhpGhY) |
+| [EP696](episodes/EP0696.md) | 2026-09-12 | 52:31 | 8 | 中年戰鬥陀螺與謝家家恥日 | [觀看](https://www.youtube.com/watch?v=Z3zbWLhUS-w) |
+| [EP695](episodes/EP0695.md) | 2026-09-09 | 49:55 | 8 | 東京電玩展烏龍與TPU一年回本 | [觀看](https://www.youtube.com/watch?v=OcTI4yvvn2I) |
+| [EP694](episodes/EP0694.md) | 2026-09-05 | 50:40 | 8 | 內容通膨論與外蒙古學生 | [觀看](https://www.youtube.com/watch?v=aOwBYre2B5k) |
 | [EP693](episodes/EP0693.md) | 2026-09-02 | 49:45 | 8 | 十公里初體驗與輝達插旗發哥 | [觀看](https://www.youtube.com/watch?v=TsMMO08ub_Q) |
 | [EP692](episodes/EP0692.md) | 2026-08-29 | 49:59 | 7 | 玩具多巴胺論與供應鏈卡位戰 | [觀看](https://www.youtube.com/watch?v=ohoIGtJ3Bwc) |
 | [EP691](episodes/EP0691.md) | 2026-08-26 | 49:55 | 8 | 北海道敲門驚魂與人人一個Jarvis | [觀看](https://www.youtube.com/watch?v=J-e9oxqLzpc) |
@@ -102,7 +111,7 @@
 
 ## 2025
 
-| 集數 | 日期 | 片長 | 章節 | 標題 | YouTube |
+| 集數 | 日期 | 片長 | 章節 | 標題 | 連結 |
 |---:|:---:|---:|---:|---|:---:|
 | [EP623](episodes/EP0623.md) | 2025-12-31 | 50:01 | 7 | 2024年度回顧與2025展望 產業動能與個股布局 | [觀看](https://www.youtube.com/watch?v=OrqAYoAKd8M) |
 | [EP622](episodes/EP0622.md) | 2025-12-27 | 49:55 | 7 | 記憶體持續上漲與NVIDIA收購Groq分析 | [觀看](https://www.youtube.com/watch?v=MM6BOGSsZxU) |
@@ -212,7 +221,7 @@
 
 ## 2024
 
-| 集數 | 日期 | 片長 | 章節 | 標題 | YouTube |
+| 集數 | 日期 | 片長 | 章節 | 標題 | 連結 |
 |---:|:---:|---:|---:|---|:---:|
 | [EP518](episodes/EP0518.md) | 2024-12-28 | 49:56 | 8 | 🌴 奇幻作品與 Deepseek 技術突破 | [觀看](https://www.youtube.com/watch?v=1AY_Nwv3k74) |
 | [EP517](episodes/EP0517.md) | 2024-12-25 | 50:51 | 8 | 🐧 2024年投資總結與市場展望 | [觀看](https://www.youtube.com/watch?v=W8HXqQ_WnG4) |
@@ -321,7 +330,7 @@
 
 ## 2023
 
-| 集數 | 日期 | 片長 | 章節 | 標題 | YouTube |
+| 集數 | 日期 | 片長 | 章節 | 標題 | 連結 |
 |---:|:---:|---:|---:|---|:---:|
 | [EP414](episodes/EP0414.md) | 2023-12-30 | 56:12 | 8 | 🎆 房地產規劃與市場展望分享 | [觀看](https://www.youtube.com/watch?v=IcXJloDqjrw) |
 | [EP413](episodes/EP0413.md) | 2023-12-27 | 50:22 | 8 | 🧑 聖誕禮物、年度投資檢討與明年展望 | [觀看](https://www.youtube.com/watch?v=AgqX44MYK40) |
@@ -430,7 +439,7 @@
 
 ## 2022
 
-| 集數 | 日期 | 片長 | 章節 | 標題 | YouTube |
+| 集數 | 日期 | 片長 | 章節 | 標題 | 連結 |
 |---:|:---:|---:|---:|---|:---:|
 | [EP310](episodes/EP0310.md) | 2022-12-31 | 47:52 | 8 | 又老一歲了ㄟ== 跨年反思與 2023 年投資布局 | [觀看](https://www.youtube.com/watch?v=aal8lZzzHTQ) |
 | [EP309](episodes/EP0309.md) | 2022-12-28 | 51:29 | 8 | 🛀 睡眠與身體保養的重要性 | [觀看](https://www.youtube.com/watch?v=NgcLUrfqZvk) |
@@ -510,6 +519,7 @@
 | [EP235](episodes/EP0235.md) | 2022-04-13 | 49:46 | 7 | 🦔 資金配置與風險管理的投資智慧 | [觀看](https://www.youtube.com/watch?v=_2QBm9H5d64) |
 | [EP234](episodes/EP0234.md) | 2022-04-09 | 52:38 | 8 | 🕴️ 市場恐慌與投資心態調整 | [觀看](https://www.youtube.com/watch?v=NYsNPay1OzI) |
 | [EP233](episodes/EP0233.md) | 2022-04-06 | 47:52 | 8 | 🛵 騎士精神與投資心法 | [觀看](https://www.youtube.com/watch?v=aySAUQcGrog) |
+| [EP232](episodes/EP0232.md) | 2022-04-02 | 50:31 | 7 | 🧙 育兒碎碎念與市場現象分析 | [收聽](https://player.soundon.fm/p/954689a5-3096-43a4-a80b-7810b219cef3/episodes/5de01abe-6ccb-4126-8fad-2d9a01640f1d) |
 | [EP231](episodes/EP0231.md) | 2022-05-30 | 51:14 | 8 | 👽 散戶心態與投資自主性 | [觀看](https://www.youtube.com/watch?v=Ebd4V6HyuSI) |
 | [EP230](episodes/EP0230.md) | 2022-05-26 | 52:53 | 7 | 🀅 烏克蘭戰爭、IC設計競爭與市場瘋狂 | [觀看](https://www.youtube.com/watch?v=4wcXypELb9E) |
 | [EP229](episodes/EP0229.md) | 2022-05-23 | 50:02 | 7 | 🙏 股市與生活的理性思考 | [觀看](https://www.youtube.com/watch?v=6rzEi1hCriw) |
@@ -539,7 +549,7 @@
 
 ## 2021
 
-| 集數 | 日期 | 片長 | 章節 | 標題 | YouTube |
+| 集數 | 日期 | 片長 | 章節 | 標題 | 連結 |
 |---:|:---:|---:|---:|---|:---:|
 | [EP205](episodes/EP0205.md) | 2021-12-29 | 46:14 | 8 | 上集欠ㄉ 主動選股挑選與題材分析心得 | [觀看](https://www.youtube.com/watch?v=KuzyKo-uC08) |
 | [EP204](episodes/EP0204.md) | 2021-12-25 | 46:43 | 8 | 聖誕快樂 市場總結與投資展望 | [觀看](https://www.youtube.com/watch?v=Y9krlbOoQOg) |
@@ -648,7 +658,7 @@
 
 ## 2020
 
-| 集數 | 日期 | 片長 | 章節 | 標題 | YouTube |
+| 集數 | 日期 | 片長 | 章節 | 標題 | 連結 |
 |---:|:---:|---:|---:|---|:---:|
 | [EP101](episodes/EP0101.md) | 2020-12-30 | 42:05 | 8 | 方舟漏水RRRRrr | [觀看](https://www.youtube.com/watch?v=L5Msimz-L4U) |
 | [EP100](episodes/EP0100.md) | 2020-12-26 | 41:40 | 8 | Jack Ma又來了 | [觀看](https://www.youtube.com/watch?v=dDQB54vWQNY) |

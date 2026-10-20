@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "episode": 695,
+  "official": {
+    "youtube_id": "OcTI4yvvn2I",
+    "youtube_title": "EP695 | 🍊",
+    "published_at": "2026-09-09T08:30:24+00:00",
+    "duration_seconds": 2995
+  },
+  "archive": {
+    "filename": "EP695_東京電玩展烏龍與TPU一年回本.md",
+    "display_title": "東京電玩展烏龍與TPU一年回本",
+    "date": "2026-09-09",
+    "summary": "主委把 TGS 誤認成台北電玩展、其實是東京的烏龍開場，聊千葉飯店與蕭南資本放眼海外。市場端聚焦 Google Cloud 的 Thomas Kurian 宣稱自家 TPU 一年回本：雲端現金流轉負、模型半衰期縮短、TPU 性價比與循環融資的疑慮一次拆解，結論是股價是狗、主人才是基本面。Q&A 從 CPO 供應鏈、美股融資成本，聊到養貓辜負的遺憾與狗派宣言。"
+  },
+  "transcript": {
+    "path": "transcript.md",
+    "size_bytes": 61953,
+    "sha256": "4f14fdc14580796a394d02076e761aa6ac3f82247ce80b92642412799f2f311d"
+  },
+  "provenance": {
+    "source_urls": {
+      "archive_index": "https://whatmkreallysaid.com/episodes.json",
+      "duration_metadata": "https://feeds.soundon.fm/podcasts/954689a5-3096-43a4-a80b-7810b219cef3.xml",
+      "transcript": "https://whatmkreallysaid.com/episodes/EP695_%E6%9D%B1%E4%BA%AC%E9%9B%BB%E7%8E%A9%E5%B1%95%E7%83%8F%E9%BE%8D%E8%88%87TPU%E4%B8%80%E5%B9%B4%E5%9B%9E%E6%9C%AC.md",
+      "youtube_metadata": "https://www.youtube.com/feeds/videos.xml?channel_id=UC23rnlQU_qE3cec9x709peA"
+    },
+    "fetched_at": "2026-10-20T07:08:33.967511+00:00"
+  },
+  "content_sha256": "a2d41d29c638598261547b16880d23e1ac8bbc19e0a294aae135acb3ca85e122"
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "created_at": "2026-09-05T01:26:05.195866Z",
+  "created_at": "2026-10-20T07:17:47.620602Z",
   "source_episodes": [
     1,
     2,
@@ -233,6 +233,7 @@
     229,
     230,
     231,
+    232,
     233,
     234,
     235,
@@ -693,7 +694,16 @@
     690,
     691,
     692,
-    693
+    693,
+    694,
+    695,
+    696,
+    697,
+    698,
+    699,
+    700,
+    701,
+    702
   ],
   "topic_catalog": [
     "ai-hardware-and-semiconductor",
@@ -701,18 +711,18 @@
     "investment-mindset-and-risk-control",
     "macro-cycle-and-asset-allocation"
   ],
-  "total_chapters": 5321,
-  "total_seconds": 1963478,
+  "total_chapters": 5396,
+  "total_seconds": 1994174,
   "artifacts": [
     {
       "path": "README.md",
-      "size_bytes": 2262,
-      "sha256": "202699bff0dc3b887b295675aacfa5f3aa13acdc5c55a4ffddc7ee3998845a5c"
+      "size_bytes": 2338,
+      "sha256": "e255ccf9b023eab3977c9e68a1c9ffc536a9c2873567ab1073bb44bbcc15dac7"
     },
     {
       "path": "_index.md",
-      "size_bytes": 111843,
-      "sha256": "24daea99825849442f3bbfd1b66e4006d2a4fe4a6cb9356012a108c7a4f24c8b"
+      "size_bytes": 113425,
+      "sha256": "5172f5bc48c5a0af21bbe236220d64a7175b68c5682eb1155523d6fa9da7d41a"
     },
     {
       "path": "episodes/EP0001.full.md",
@@ -3023,6 +3033,16 @@
       "path": "episodes/EP0231.md",
       "size_bytes": 8392,
       "sha256": "409e86e6957275ba00c7924ee4eb8feb1b81abc70ce2f0e765aa630d85092006"
+    },
+    {
+      "path": "episodes/EP0232.full.md",
+      "size_bytes": 12219,
+      "sha256": "4b16fafc50d87a39a93cc1d9e93082c90c04a4007791a159644467a46af2e6cc"
+    },
+    {
+      "path": "episodes/EP0232.md",
+      "size_bytes": 7473,
+      "sha256": "db6f21ad22cbbc1e4891ad10baf9e33cb8262f8e8ae632b0deeaf9e355768bf6"
     },
     {
       "path": "episodes/EP0233.full.md",
@@ -7635,29 +7655,119 @@
       "sha256": "e47408e7c3e56a563ea38cc8f5a4364baeec141436b9d516b4d0e6c20935e04d"
     },
     {
+      "path": "episodes/EP0694.full.md",
+      "size_bytes": 13247,
+      "sha256": "f29250137e0941caa46de207b639dfe2aa2715efed71badcf45f66280afd98ea"
+    },
+    {
+      "path": "episodes/EP0694.md",
+      "size_bytes": 7711,
+      "sha256": "f95a02eff9a721d12163b63aa867c9192efb811e37a90fa52765e6309ddef8c3"
+    },
+    {
+      "path": "episodes/EP0695.full.md",
+      "size_bytes": 15722,
+      "sha256": "732d645f5aafb0303ec93ad775f3af78717a34742e46e8bef735ff338eab1a40"
+    },
+    {
+      "path": "episodes/EP0695.md",
+      "size_bytes": 8150,
+      "sha256": "16266f2932ed7bebd94626d553a3100f01e28f513b4d49686594cf9a2ff47516"
+    },
+    {
+      "path": "episodes/EP0696.full.md",
+      "size_bytes": 15733,
+      "sha256": "f7f7309b2871bd1040ed05213dd45afb7b3b25c0105c0c2e04a4949a51ad6ddd"
+    },
+    {
+      "path": "episodes/EP0696.md",
+      "size_bytes": 7800,
+      "sha256": "b9648a029dd9bc4a127cc9c03ba79510d8fa4bd094f5da4cf358d708236d2fbb"
+    },
+    {
+      "path": "episodes/EP0697.full.md",
+      "size_bytes": 11755,
+      "sha256": "d2bf756a596a34373595f542de629df20645d68e329883e50ac53080f351527a"
+    },
+    {
+      "path": "episodes/EP0697.md",
+      "size_bytes": 6253,
+      "sha256": "8b6edc25a16297eb26a1104699fc738a3161ab860215fc123e596ee843b65794"
+    },
+    {
+      "path": "episodes/EP0698.full.md",
+      "size_bytes": 17006,
+      "sha256": "f6d322c4029f539f61be90cd4af3e1e7ea4ac41cd24bc5630b114e51669baa79"
+    },
+    {
+      "path": "episodes/EP0698.md",
+      "size_bytes": 8807,
+      "sha256": "612ff0940a23a60a04f36fc3a1314d926d7ed612154e631fbae8507966c4d6dd"
+    },
+    {
+      "path": "episodes/EP0699.full.md",
+      "size_bytes": 15918,
+      "sha256": "47c8267e5a3e5968088c008f87a8dbdad68115e7da937a7c5e5cf365fc18298b"
+    },
+    {
+      "path": "episodes/EP0699.md",
+      "size_bytes": 7988,
+      "sha256": "a643221ad239abe360dddf2bdbf01cc60fe3d8bdd9385e5dd84dea0909b1b586"
+    },
+    {
+      "path": "episodes/EP0700.full.md",
+      "size_bytes": 14249,
+      "sha256": "ca1da9eb964ecb8b9dc469a93e1b47202cb30c0ed21707556b773baa460831db"
+    },
+    {
+      "path": "episodes/EP0700.md",
+      "size_bytes": 7763,
+      "sha256": "2c2b33ba15b1fa96f8403b8dc5eac5eccb989bdc3f13b1e1e8c8154726abc7db"
+    },
+    {
+      "path": "episodes/EP0701.full.md",
+      "size_bytes": 13575,
+      "sha256": "05ea06050b1775c61f6b29a243c934b858fd1ac15133450753e43cf0fd1c02a9"
+    },
+    {
+      "path": "episodes/EP0701.md",
+      "size_bytes": 6868,
+      "sha256": "6031cce8933007307af54bb2ff3ac50b2fa96c412ae828d6da5bdea43d56ba70"
+    },
+    {
+      "path": "episodes/EP0702.full.md",
+      "size_bytes": 8445,
+      "sha256": "9278083eba022a3f489b13619d14fe37980f776a1d740e04692707cce3802bb8"
+    },
+    {
+      "path": "episodes/EP0702.md",
+      "size_bytes": 5637,
+      "sha256": "0d0d6e8a4ca8c9b7fd62fc365a6e44b3df1ec5ef130d17ac83df35ce9aa380fe"
+    },
+    {
       "path": "topics/README.md",
       "size_bytes": 2538,
-      "sha256": "d86edf8aae1af63d3c82cc879959f0c27b2b56550c8a6d5e0f8add5f46afb2fc"
+      "sha256": "4fd8151cfc390243066d60aff4a9ed28fef9047d194ddcda9a6fe60bee886e80"
     },
     {
       "path": "topics/ai-hardware-and-semiconductor.md",
-      "size_bytes": 248362,
-      "sha256": "3d1522e4241cbd198f8179dbbe655161db768d12ba84aa56f42d56b40b4ae6c0"
+      "size_bytes": 253363,
+      "sha256": "9c9e9d200ea77b83936b6deab834cd6b8420e0a87841a379327ba4a4ef216d63"
     },
     {
       "path": "topics/apple-and-consumer-electronics.md",
-      "size_bytes": 668378,
-      "sha256": "74d5b26582c68529802d65ee5f928ce792da929bdc6a46d4d969f67130866620"
+      "size_bytes": 681728,
+      "sha256": "52e55a42ce17767490cc51b71f9437f2e49236b3874ceb6e18d644b2cb56ed3c"
     },
     {
       "path": "topics/investment-mindset-and-risk-control.md",
-      "size_bytes": 836932,
-      "sha256": "6dc9ee3467bd9de4a87132054f06fabd1e144ddc82b7aaebbb7ae6923eda4009"
+      "size_bytes": 850291,
+      "sha256": "1853659b2aaff9443f09ebdbda740227175550df368f92f30d3399d3eff700e3"
     },
     {
       "path": "topics/macro-cycle-and-asset-allocation.md",
-      "size_bytes": 583729,
-      "sha256": "af2a78e4cef42bf3769bd1fb35ea98ae5f51a1257125e273d799b041edb7cc49"
+      "size_bytes": 590934,
+      "sha256": "bd11569cdca3668f76ad335383c5c1992df3775e00013789084636ee030864d2"
     }
   ]
 }

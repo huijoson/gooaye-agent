@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "episode": 694,
+  "official": {
+    "youtube_id": "aOwBYre2B5k",
+    "youtube_title": "EP694 | 🥖",
+    "published_at": "2026-09-05T08:15:05+00:00",
+    "duration_seconds": 3040
+  },
+  "archive": {
+    "filename": "EP694_內容通膨論與外蒙古學生.md",
+    "display_title": "內容通膨論與外蒙古學生",
+    "date": "2026-09-05",
+    "summary": "參加 Startup Sphere 論壇有感：AI 讓內容生產爆量，「內容通膨」時代真正稀缺的是 IP 與國際化能力，也聊蕭南資本押注 IP 目錄與遊戲業 Design House 模式。市場端解讀博通法說：Hock 口中的「外蒙古學生」指 Anthropic 與 OpenAI，信用條件差讓供應商得撐起融資；好財報為何不漲、Hock 點名聯發科、AI 進入中場休息。Q&A 從侍酒師之路、對世界失去興趣，聊到待業小菜雞的下一步。"
+  },
+  "transcript": {
+    "path": "transcript.md",
+    "size_bytes": 61942,
+    "sha256": "e08e55f9561f959907d96f99db0e61cc37e15ac010f42f5bc425c0ace46d15cd"
+  },
+  "provenance": {
+    "source_urls": {
+      "archive_index": "https://whatmkreallysaid.com/episodes.json",
+      "duration_metadata": "https://feeds.soundon.fm/podcasts/954689a5-3096-43a4-a80b-7810b219cef3.xml",
+      "transcript": "https://whatmkreallysaid.com/episodes/EP694_%E5%85%A7%E5%AE%B9%E9%80%9A%E8%86%A8%E8%AB%96%E8%88%87%E5%A4%96%E8%92%99%E5%8F%A4%E5%AD%B8%E7%94%9F.md",
+      "youtube_metadata": "https://www.youtube.com/feeds/videos.xml?channel_id=UC23rnlQU_qE3cec9x709peA"
+    },
+    "fetched_at": "2026-10-20T07:08:32.815705+00:00"
+  },
+  "content_sha256": "55aabf0bf76eceeaa4f8abd96cccc4412309837607595139aa4c4c7dc3c6cd6f"
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "episode": 701,
+  "official": {
+    "youtube_id": "8tczWCtxewk",
+    "youtube_title": "EP701 | 🐡",
+    "published_at": "2026-09-30T11:05:15+00:00",
+    "duration_seconds": 3080
+  },
+  "archive": {
+    "filename": "EP701_Roadster下訂與小IC設計表態.md",
+    "display_title": "Roadster下訂與小IC設計表態",
+    "date": "2026-09-30",
+    "summary": "主委下訂 Tesla Roadster，順便回顧 Q3 與 Muse Charm 的使用心得。市場端聚焦台灣小 IC 設計股集體表態、AI 晶片設計訂單外溢，以及閉源模型落地企業、美中會談、德州設廠傳聞對盤面的影響，氣氛正在回暖。Q&A 一口氣 24 則：從快 30 歲還交不到女友、宙斯法則不如壽司打折、2327 讓人 25 歲上 A8，到大股東不爽就買進去投票的市場生存法則。"
+  },
+  "transcript": {
+    "path": "transcript.md",
+    "size_bytes": 63702,
+    "sha256": "cd51149331ec06dc3eac51e84d5cd80116965a67f66b617067195aaf5e788325"
+  },
+  "provenance": {
+    "source_urls": {
+      "archive_index": "https://whatmkreallysaid.com/episodes.json",
+      "duration_metadata": "https://feeds.soundon.fm/podcasts/954689a5-3096-43a4-a80b-7810b219cef3.xml",
+      "transcript": "https://whatmkreallysaid.com/episodes/EP701_Roadster%E4%B8%8B%E8%A8%82%E8%88%87%E5%B0%8FIC%E8%A8%AD%E8%A8%88%E8%A1%A8%E6%85%8B.md",
+      "youtube_metadata": "https://www.youtube.com/feeds/videos.xml?channel_id=UC23rnlQU_qE3cec9x709peA"
+    },
+    "fetched_at": "2026-10-20T07:08:40.483524+00:00"
+  },
+  "content_sha256": "12c9bfc8be81cf85c05ced0ca3075a236906dac2a1584d13672eeedc289eda4d"
+}

@@ -1,13 +1,15 @@
 # Gooaye Agent & Knowledge Base (股癌知識庫與智能代理)
 
-[![Episodes](https://img.shields.io/badge/Episodes-690%20Videos-blue.svg)](gooaye-youtube-notes/_index.md)
-[![Chapters](https://img.shields.io/badge/Chapters-5%2C306%20Topics-orange.svg)](gooaye-youtube-notes/_index.md)
+[![Episodes](https://img.shields.io/badge/Episodes-702%20Episodes-blue.svg)](gooaye-youtube-notes/_index.md)
+[![Chapters](https://img.shields.io/badge/Chapters-5%2C396%20Topics-orange.svg)](gooaye-youtube-notes/_index.md)
 [![Topic Guides](https://img.shields.io/badge/Topics-4%20Playbooks-green.svg)](gooaye-youtube-notes/topics/README.md)
 [![Skill Architecture](https://img.shields.io/badge/Antigravity-Progressive%20Skill-purple.svg)](.agents/skills/gooaye/SKILL.md)
 
-本專案將《Gooaye 股癌》目前可用的 **692 集 Episode Source**（EP1–EP693，缺 EP232；545+ 小時）經由雙層混合架構（Dual-Tier Hybrid Extractive-Distilled Pipeline），整理為結構化觀念章節、單句核心觀點判斷與真實逐字稿引述，並提煉出 **4 大跨集數主題專題手冊**；全套知識庫封裝為符合 Antigravity 規範之極低 Token 待機開銷（~30 tokens）的漸進式按需技能（Progressive Skill）。
+本專案將《Gooaye 股癌》目前可用的 **702 集 Episode Source**（EP1–EP702 無缺號；553+ 小時）經由雙層混合架構（Dual-Tier Hybrid Extractive-Distilled Pipeline），整理為結構化觀念章節、單句核心觀點判斷與真實逐字稿引述，並提煉出 **4 大跨集數主題專題手冊**；全套知識庫封裝為符合 Antigravity 規範之極低 Token 待機開銷（~30 tokens）的漸進式按需技能（Progressive Skill）。
 
-> 先前的 legacy release 僅有 **689 支影片**；目前正式 Knowledge Base Publication 為 692 集。`download` 只建立或驗證 Episode Source Snapshot，絕不自動合成或發布。
+> 截至 2026-10-20，官方 RSS 已發布 EP706，逐字稿索引僅收錄至 EP702；EP703 至 EP706 等待上游完整逐字稿，尚未納入 Publication。詳見[本次更新紀錄](docs/updates/2026-10-20.md)。
+
+> 先前的 legacy release 僅有 **689 支影片**；目前正式 Knowledge Base Publication 為 702 集。其中 EP232 在 YouTube 頻道已無公開影片，改以官方 SoundOn Podcast feed 作為官方識別來源。`download` 只建立或驗證 Episode Source Snapshot，絕不自動合成或發布。
 
 ---
 
@@ -20,7 +22,7 @@ gooaye-agent/
 │       └── gooaye/
 │           └── SKILL.md                    # Gooaye 漸進式雙模態技能主定義檔
 │
-├── gooaye-youtube-notes/                    # 692 集受 Manifest 管理的正式知識庫
+├── gooaye-youtube-notes/                    # 702 集受 Manifest 管理的正式知識庫
 │   ├── README.md                           # 筆記資料集統計與限制說明
 │   ├── _index.md                           # 全集章節大綱與關鍵字快速檢索表 (Stage 1 索引)
 │   ├── publication-manifest.json           # 所有發布檔案的 SHA-256 Manifest
@@ -30,7 +32,7 @@ gooaye-agent/
 │   │   ├── investment-mindset-and-risk-control.md
 │   │   ├── macro-cycle-and-asset-allocation.md
 │   │   └── apple-and-consumer-electronics.md
-│   └── episodes/                           # EP0001.md ~ EP0693.md（缺 EP0232）雙層觀念筆記
+│   └── episodes/                           # EP0001.md ~ EP0702.md 雙層觀念筆記
 │
 ├── docs/                                   # 系統架構規格與決策紀錄
 │   ├── adr/
@@ -142,16 +144,16 @@ ln -s "$(pwd)/.agents/skills/gooaye" ~/.gemini/config/skills/gooaye
 
 ```bash
 # 1. 取得指定集數或最新集的完整來源 snapshot
-python3 .work/cli.py download --episode 693
+python3 .work/cli.py download --episode 702
 python3 .work/cli.py download --latest
 
 # 已存在且內容相同會 no-op；上游內容有變動時需顯式覆蓋
-python3 .work/cli.py download --episode 693 --force
+python3 .work/cli.py download --episode 702 --force
 
 # 2. 執行環境與數據源體檢
 python3 .work/cli.py doctor
 
-# 3. 執行全集 692 集標題與觀點品質審計
+# 3. 執行全集 702 集標題與觀點品質審計
 python3 .work/cli.py audit
 
 # 4. 執行四大主題專題手冊品質審計
@@ -164,15 +166,15 @@ python3 .work/cli.py publish --output-dir gooaye-youtube-notes --resolver compos
 python3 .work/cli.py verify --output-dir gooaye-youtube-notes
 
 # 7. 僅產生隔離 Preview；不得指定正式發布根目錄或其子目錄
-python3 .work/cli.py synthesize --episode 693 --output-dir /tmp/gooaye-preview-693 --resolver composite
+python3 .work/cli.py synthesize --episode 702 --output-dir /tmp/gooaye-preview-702 --resolver composite
 
 # 8. 執行核心模組單元測試套件
 pytest .work/
 ```
 
-`--latest` 以 YouTube RSS 的最新官方集數為目標；若 archive 索引或逐字稿尚未齊全，命令會回報 `archive pending` 而不降級。缺少 SoundOn 集目則是來源不一致（source mismatch），會明確失敗。第一版只能取得仍在官方 RSS window 內的新集，或已有 legacy metadata 的舊集；其他集數會明確失敗。
+`--latest` 以 YouTube RSS 的最新官方集數為目標；若 archive 索引或逐字稿尚未齊全，命令會回報 `archive pending` 而不降級。可取得的集數為：仍在官方 RSS window 內的新集、已有 legacy metadata 的舊集，以及頻道已無公開影片但仍在官方 Podcast feed 內的集數（例如 EP232）；三者皆不符時會明確失敗。
 
-`publish` 是正式 Publication 的唯一寫入入口：它在同層 staging 目錄完整建立 692 集筆記與四份 Topic Guide、寫入 SHA-256 Manifest、驗證整個圖後，才在目的地鎖定期間交易式取代舊根目錄。請預留至少 **兩倍既有發布目錄大小加 100 MiB** 的可用空間；發布失敗會保留先前完整版本並清理暫存 sibling。`verify` 只讀取並驗證現有 legacy 或 Manifest-managed 根目錄。Preview 是局部、顯式且隔離的產出，永遠不能取代正式 Publication。
+`publish` 是正式 Publication 的唯一寫入入口：它在同層 staging 目錄完整建立 702 集筆記與四份 Topic Guide、寫入 SHA-256 Manifest、驗證整個圖後，才在目的地鎖定期間交易式取代舊根目錄。請預留至少 **兩倍既有發布目錄大小加 100 MiB** 的可用空間；發布失敗會保留先前完整版本並清理暫存 sibling。`verify` 只讀取並驗證現有 legacy 或 Manifest-managed 根目錄。Preview 是局部、顯式且隔離的產出，永遠不能取代正式 Publication。
 
 ### 相關架構文件
 - [CONTEXT.md](CONTEXT.md)：核心領域概念、深模組介面與品質閘門標準。
@@ -180,8 +182,9 @@ pytest .work/
 - [ADR 0002](docs/adr/0002-hybrid-extractive-distilled-notes.md)：雙層混合筆記架構決策紀錄。
 - [ADR 0003](docs/adr/0003-incremental-episode-source-acquisition.md)：增量單集來源取得、驗證與取代政策。
 - [ADR 0004](docs/adr/0004-transactional-knowledge-base-publication.md)：完整知識庫的交易式發布與 Manifest 管理政策。
+- [ADR 0005](docs/adr/0005-podcast-identity-for-video-less-episodes.md)：無公開影片集數改由官方 Podcast feed 擔任識別權威。
 - [主題專題目錄](gooaye-youtube-notes/topics/README.md)：四大主題專題手冊。
-- [全集索引表](gooaye-youtube-notes/_index.md)：692 集完整章節索引。
+- [全集索引表](gooaye-youtube-notes/_index.md)：702 集完整章節索引。
 
 ---
 

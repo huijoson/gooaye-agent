@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "episode": 699,
+  "official": {
+    "youtube_id": "bAT7nrf5yhk",
+    "youtube_title": "EP699 | 🪻",
+    "published_at": "2026-09-23T08:39:38+00:00",
+    "duration_seconds": 3034
+  },
+  "archive": {
+    "filename": "EP699_小學生棒球課與DSP漲價.md",
+    "display_title": "小學生棒球課與DSP漲價",
+    "date": "2026-09-23",
+    "summary": "主委帶隊跟國小一軍打棒球被電爆，聊泰拳、壺鈴等全面運動化的生活。市場端談 agentic AI 讓 CPU 核心需求從 3000 萬顆跳到 1.2 億、Arm 與 Qualcomm 的布局，以及 DSP 漲價與 CPO 供應鏈的連動；指數創新高，但選股越來越難。Q&A 從被狗幹的人生、史迪奇為什麼不能喝咖啡的三分冷笑話，聊到蕭南資本投遊戲團隊的門票 500K 起跳。"
+  },
+  "transcript": {
+    "path": "transcript.md",
+    "size_bytes": 62248,
+    "sha256": "0d174018c87a729896fe4c17675496843aa44d4aafc19586a5b1d2a8f349c8fe"
+  },
+  "provenance": {
+    "source_urls": {
+      "archive_index": "https://whatmkreallysaid.com/episodes.json",
+      "duration_metadata": "https://feeds.soundon.fm/podcasts/954689a5-3096-43a4-a80b-7810b219cef3.xml",
+      "transcript": "https://whatmkreallysaid.com/episodes/EP699_%E5%B0%8F%E5%AD%B8%E7%94%9F%E6%A3%92%E7%90%83%E8%AA%B2%E8%88%87DSP%E6%BC%B2%E5%83%B9.md",
+      "youtube_metadata": "https://www.youtube.com/feeds/videos.xml?channel_id=UC23rnlQU_qE3cec9x709peA"
+    },
+    "fetched_at": "2026-10-20T07:08:38.500985+00:00"
+  },
+  "content_sha256": "dc314a148ace2e36bece796b91c6476247f8443eaf9792baffdecd01b46f7398"
+}

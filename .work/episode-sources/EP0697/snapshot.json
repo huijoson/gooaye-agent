@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "episode": 697,
+  "official": {
+    "youtube_id": "SbKGDWhpGhY",
+    "youtube_title": "EP697 | 🔥",
+    "published_at": "2026-09-16T07:06:15+00:00",
+    "duration_seconds": 2998
+  },
+  "archive": {
+    "filename": "EP697_出差大爆哭與監管捕獲.md",
+    "display_title": "出差大爆哭與監管捕獲",
+    "date": "2026-09-16",
+    "summary": "主委第一次出差，兒子在家爆哭；順便聊抽血報告與滑輪組功能訓練。主軸拆解 Dario 的長文：表面談放慢前沿 AI，主委讀出的是「監管捕獲」，再對照馬斯克的算盤、超級對齊算力從 20% 縮到 1-2%，結論是驗證與監控本身就要吃掉大量算力。Q&A 從抽籤與打星星的股票、朋友的女友創業抄襲要不要爆破，聊到沖繩美食推薦，最後以 once you go black 收尾。"
+  },
+  "transcript": {
+    "path": "transcript.md",
+    "size_bytes": 57537,
+    "sha256": "48e9ea7f304857a8c55a02ed0abc90c350f216ecf1cdd4bae4706e854df1086b"
+  },
+  "provenance": {
+    "source_urls": {
+      "archive_index": "https://whatmkreallysaid.com/episodes.json",
+      "duration_metadata": "https://feeds.soundon.fm/podcasts/954689a5-3096-43a4-a80b-7810b219cef3.xml",
+      "transcript": "https://whatmkreallysaid.com/episodes/EP697_%E5%87%BA%E5%B7%AE%E5%A4%A7%E7%88%86%E5%93%AD%E8%88%87%E7%9B%A3%E7%AE%A1%E6%8D%95%E7%8D%B2.md",
+      "youtube_metadata": "https://www.youtube.com/feeds/videos.xml?channel_id=UC23rnlQU_qE3cec9x709peA"
+    },
+    "fetched_at": "2026-10-20T07:08:36.410299+00:00"
+  },
+  "content_sha256": "a3ae5e5556f0898f09629984e498675c29562ecca273268f4368f4a787f847d9"
+}
