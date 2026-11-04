@@ -1,7 +1,7 @@
 # pstack in Codex
 
 This project installs pstack from `cursor/plugins` at commit
-`88d47514b82e7c44f00f2b2a72ff6dd12158038c` with a local Codex adapter.
+`fd268b808c786469e6dd8c8d9db864d0de4d669e` with a local Codex adapter.
 Read this adapter once per session before following a pstack workflow.
 Session instructions and the user's authorized task scope govern execution.
 
